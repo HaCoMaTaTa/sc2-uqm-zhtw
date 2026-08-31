@@ -70,50 +70,57 @@ foreach ($f in $Files) {
 
 # ---- 寫 Security_Scan_Report 半成品 --------------------------------
 $now = Get-Date -Format 'yyyy-MM-dd HH:mm'
-$sb = [System.Text.StringBuilder]::new()
-[void]$sb.AppendLine("# APK / ZIP 安全掃描報告")
-[void]$sb.AppendLine("")
-[void]$sb.AppendLine("> **掃描時間**: $now")
-[void]$sb.AppendLine("> **掃描服務**: VirusTotal (<https://www.virustotal.com>)")
-[void]$sb.AppendLine("> **報告狀態**: SHA256 已產生 · VirusTotal URL 待手動上傳確認")
-[void]$sb.AppendLine("")
-[void]$sb.AppendLine("## 檔案清單")
-[void]$sb.AppendLine("")
-[void]$sb.AppendLine("| 檔案 | 大小 (MB) | SHA256 | VirusTotal 報告 |")
-[void]$sb.AppendLine("|---|---:|---|---|")
+
+$rowLines = @()
 foreach ($r in $results) {
-    [void]$sb.AppendLine("| $($r.Name) | $($r.SizeMB) | ``$($r.SHA256)`` | [檢視]($($r.VirusTotalGui)) |")
+    $rowLines += "| $($r.Name) | $($r.SizeMB) | ``$($r.SHA256)`` | [檢視]($($r.VirusTotalGui)) |"
 }
-[void]$sb.AppendLine("")
-[void]$sb.AppendLine("## 手動掃描步驟")
-[void]$sb.AppendLine("")
-[void]$sb.AppendLine("1. 開啟 <https://www.virustotal.com/gui/home/upload>")
-[void]$sb.AppendLine("2. 拖曳上表任一檔案上傳（若表格內 URL 已顯示掃過結果，直接檢視即可）")
-[void]$sb.AppendLine("3. 等待掃描完成（每檔約 1 分鐘）")
-[void]$sb.AppendLine("4. 複製結果頁 URL → 貼回本檔對應列的『VirusTotal 報告』欄")
-[void]$sb.AppendLine("5. commit 本檔更新")
-[void]$sb.AppendLine("")
-[void]$sb.AppendLine("## APK 權限清單（僅供對照 · release 版）")
-[void]$sb.AppendLine("")
-[void]$sb.AppendLine("| 權限 | 用途 |")
-[void]$sb.AppendLine("|---|---|")
-[void]$sb.AppendLine("| `WAKE_LOCK` | 玩遊戲時螢幕不睡（`EngineActivity.setKeepScreenOn`）|")
-[void]$sb.AppendLine("| `VIBRATE` | 未來 haptic 預留（目前未觸發）|")
-[void]$sb.AppendLine("| `WRITE_EXTERNAL_STORAGE` (maxSdkVersion=29) | 舊 Android 相容（Android 10+ 自動忽略）|")
-[void]$sb.AppendLine("")
-[void]$sb.AppendLine("**已移除**（過去版本曾有，v1.5 起清理）：`INTERNET`, `MANAGE_EXTERNAL_STORAGE`, `PACKAGE_USAGE_STATS`, `DUMP`, `READ_EXTERNAL_STORAGE`")
-[void]$sb.AppendLine("")
-[void]$sb.AppendLine("## 常見誤判說明")
-[void]$sb.AppendLine("")
-[void]$sb.AppendLine("- **VirusTotal < 5 引擎警告**：屬正常範圍。自簽 APK + 大量 native lib (libSDL2/libpng/libvorbis) + Zip64 asset 常被啟發式引擎誤判")
-[void]$sb.AppendLine("- **Windows Defender SmartScreen**：因 exe 未購買 Authenticode 簽章，右鍵 → 內容 → 解除封鎖即可")
-[void]$sb.AppendLine("- **Android Play Protect 警告**：因非 Play Store 來源；設定裡明確 allow 即可")
-[void]$sb.AppendLine("")
-[void]$sb.AppendLine("如發現任何真的可疑報告，請開 GitHub Issue 附上 VirusTotal 連結，我會第一時間查看。")
+$rowsText = $rowLines -join "`n"
+
+$content = @"
+# APK / ZIP 安全掃描報告
+
+> **掃描時間**: $now
+> **掃描服務**: VirusTotal (<https://www.virustotal.com>)
+> **報告狀態**: SHA256 已產生 · VirusTotal URL 待手動上傳確認
+
+## 檔案清單
+
+| 檔案 | 大小 (MB) | SHA256 | VirusTotal 報告 |
+|---|---:|---|---|
+$rowsText
+
+## 手動掃描步驟
+
+1. 開啟 <https://www.virustotal.com/gui/home/upload>
+2. 拖曳上表任一檔案上傳（若表格內 URL 已顯示掃過結果，直接檢視即可）
+3. 等待掃描完成（每檔約 1 分鐘）
+4. 複製結果頁 URL → 貼回本檔對應列的『VirusTotal 報告』欄
+5. commit 本檔更新
+"@ + @'
+
+## APK 權限清單（僅供對照 · release 版）
+
+| 權限 | 用途 |
+|---|---|
+| `WAKE_LOCK` | 玩遊戲時螢幕不睡（`EngineActivity.setKeepScreenOn`）|
+| `VIBRATE` | 未來 haptic 預留（目前未觸發）|
+| `WRITE_EXTERNAL_STORAGE` (maxSdkVersion=29) | 舊 Android 相容（Android 10+ 自動忽略）|
+
+**已移除**（過去版本曾有，v1.5 起清理）：`INTERNET`, `MANAGE_EXTERNAL_STORAGE`, `PACKAGE_USAGE_STATS`, `DUMP`, `READ_EXTERNAL_STORAGE`
+
+## 常見誤判說明
+
+- **VirusTotal < 5 引擎警告**：屬正常範圍。自簽 APK + 大量 native lib (libSDL2/libpng/libvorbis) + Zip64 asset 常被啟發式引擎誤判
+- **Windows Defender SmartScreen**：因 exe 未購買 Authenticode 簽章，右鍵 → 內容 → 解除封鎖即可
+- **Android Play Protect 警告**：因非 Play Store 來源；設定裡明確 allow 即可
+
+如發現任何真的可疑報告，請開 GitHub Issue 附上 VirusTotal 連結，我會第一時間查看。
+'@
 
 $outDir = Split-Path -Parent $OutReport
 if (-not (Test-Path $outDir)) { New-Item -ItemType Directory -Path $outDir -Force | Out-Null }
-$sb.ToString() | Set-Content -Path $OutReport -Encoding utf8
+$content | Set-Content -Path $OutReport -Encoding utf8
 Write-Host ""
 Write-Host "=== 完成 ===" -ForegroundColor Cyan
 Write-Host "半成品報告: $OutReport" -ForegroundColor Green
