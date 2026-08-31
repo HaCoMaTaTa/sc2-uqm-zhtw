@@ -1,7 +1,7 @@
 # Release 上傳 · 保姆級步驟
 
 > **對象**：你已經在另一台電腦、有 GitHub 登入了，準備把 apk + zip 上傳到 GitHub Releases。
-> **前提**：本 repo（`uqm-megamod-zhTW`）已 push 到 GitHub（見 [`PUSH_FROM_ANOTHER_MACHINE.md`](PUSH_FROM_ANOTHER_MACHINE.md)）。
+> **前提**：本 repo（`sc2-uqm-zhtw`）已 push 到 GitHub（見 [`PUSH_FROM_ANOTHER_MACHINE.md`](PUSH_FROM_ANOTHER_MACHINE.md)）。
 
 ---
 
@@ -28,7 +28,7 @@
 
 在瀏覽器打開：
 ```
-https://github.com/YOUR_USER/uqm-megamod-zhTW/releases/new
+https://github.com/YOUR_USER/sc2-uqm-zhtw/releases/new
 ```
 （把 `YOUR_USER` 換成你的實際 GitHub 帳號）
 
@@ -104,7 +104,7 @@ Toys for Bob (Fred Ford, Paul Reiche III) · UQM Team · JHGuitarFreak (MegaMod)
 
 Release page URL 例如：
 ```
-https://github.com/YOUR_USER/uqm-megamod-zhTW/releases/tag/v1.0.12
+https://github.com/YOUR_USER/sc2-uqm-zhtw/releases/tag/v1.0.12
 ```
 
 複製這個 URL，任何人開瀏覽器打開都能看到 6 個附件、可直接下載。
@@ -136,8 +136,8 @@ gh auth status
 ## 步驟 B · 建 release 並上傳（一氣呵成）
 
 ```powershell
-# 進入你 clone 的 uqm-megamod-zhTW 資料夾
-cd D:\Projects\uqm-megamod-zhTW
+# 進入你 clone 的 sc2-uqm-zhtw 資料夾
+cd D:\Projects\sc2-uqm-zhtw
 
 # 建 release（先 draft，還沒公開）
 gh release create v1.0.12 `

@@ -18,7 +18,7 @@
 ## 二、下載
 
 前往 GitHub Release 頁面：
-- <https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/releases/latest>
+- <https://github.com/HaCoMaTaTa/sc2-uqm-zhtw/releases/latest>
 - 下載 `SC2-zhTW-v1.0.13.zip`（或最新版）
 - 下載 `SC2-zhTW-v1.0.13.zip.sha256`（用來驗證檔案完整性）
 
@@ -163,7 +163,7 @@ Windows 預設：
 
 ## 十三、資源與支援
 
-- **GitHub Issues**：<https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/issues>
+- **GitHub Issues**：<https://github.com/HaCoMaTaTa/sc2-uqm-zhtw/issues>
 - **翻譯錯誤回報**：附上 tag/場景 + 建議中譯
 - **技術 bug**：附上 `game.log` 最後 100 行
 

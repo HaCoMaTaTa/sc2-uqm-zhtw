@@ -47,7 +47,7 @@ git bundle create GitHubRepo.bundle --all
 
 - 已安裝 Git for Windows / macOS Git / Linux git
 - 已用 `gh auth login` 登入 GitHub CLI（或用瀏覽器登入 github.com）
-- 決定好 GitHub URL：`https://github.com/HaCoMaTaTa/uqm-megamod-zhTW`
+- 決定好 GitHub URL：`https://github.com/HaCoMaTaTa/sc2-uqm-zhtw`
 
 ### 步驟 1 · 解壓與定位
 
@@ -70,12 +70,12 @@ git config user.email "your.email@example.com"
 
 **方法 A · 用 GitHub CLI**：
 ```powershell
-gh repo create uqm-megamod-zhTW --public --description "繁體中文化 · UQM MegaMod 激戰M星雲II" --no-clone
+gh repo create sc2-uqm-zhtw --public --description "繁體中文化 · UQM MegaMod 激戰M星雲II" --no-clone
 ```
 
 **方法 B · 用瀏覽器**：
 1. 開 <https://github.com/new>
-2. Repository name: `uqm-megamod-zhTW`
+2. Repository name: `sc2-uqm-zhtw`
 3. Public
 4. **不要** initialize with README / .gitignore / license（我們本地已有）
 5. Create
@@ -83,14 +83,14 @@ gh repo create uqm-megamod-zhTW --public --description "繁體中文化 · UQM M
 ### 步驟 4 · 加 remote 並 push
 
 ```powershell
-git remote add origin https://github.com/HaCoMaTaTa/uqm-megamod-zhTW.git
+git remote add origin https://github.com/HaCoMaTaTa/sc2-uqm-zhtw.git
 git branch -M main
 git push -u origin main
 ```
 
 推送時 GitHub 會要驗證：
 - **HTTPS**：跳 GitHub OAuth 對話框 · 用瀏覽器登入
-- **SSH**：改用 `git@github.com:HaCoMaTaTa/uqm-megamod-zhTW.git`
+- **SSH**：改用 `git@github.com:HaCoMaTaTa/sc2-uqm-zhtw.git`
 - **PAT (Personal Access Token)**：GitHub Settings → Developer settings → PAT · 建 fine-grained token · push 時當密碼
 
 ### 步驟 5 · 上傳 APK / PC zip 到 Release Page
@@ -121,7 +121,7 @@ gh release edit v1.0.12 --draft=false
 ```
 
 **方法 B · 用瀏覽器**：
-1. 進 <https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/releases/new>
+1. 進 <https://github.com/HaCoMaTaTa/sc2-uqm-zhtw/releases/new>
 2. Choose tag: `v1.0.12`（新建）
 3. Release title: 「繁中版 v1.0.12 (激戰M星雲II Android v3.8)」
 4. Description: 貼 CHANGELOG 內容

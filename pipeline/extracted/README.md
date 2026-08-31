@@ -14,7 +14,7 @@
 ### 選項 A · 使用 `pipeline/download_megamod.ps1`（推薦）
 
 ```powershell
-cd path\to\uqm-megamod-zhTW\pipeline
+cd path\to\sc2-uqm-zhtw\pipeline
 .\download_megamod.ps1 -Preset Minimum       # 只下最小必需（installer + content）
 # 或
 .\download_megamod.ps1 -Preset Recommended   # 加上 HD、3DO 語音、3DO 音樂

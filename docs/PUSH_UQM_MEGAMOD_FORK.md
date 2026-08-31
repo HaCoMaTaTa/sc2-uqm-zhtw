@@ -1,7 +1,7 @@
 # Push UQM-MegaMod 到你的 GitHub Fork · 詳細步驟
 
 > **這份文件是為了修好 `setup_upstream.ps1` 而生**。你必須把本地 `UQM-MegaMod/`
-> 也 push 到 GitHub，變成你的 fork。這樣別人 clone `uqm-megamod-zhTW` 之後跑
+> 也 push 到 GitHub，變成你的 fork。這樣別人 clone `sc2-uqm-zhtw` 之後跑
 > `setup_upstream.ps1` 才能拿到跟你本地一模一樣的 patched MegaMod。
 
 ---
@@ -22,7 +22,7 @@
 1. 【開發電腦】把本地 `UQM-MegaMod/` 打包成 git bundle
 2. 【傳輸】把 bundle 帶到另一台有 GitHub 登入的電腦
 3. 【登入電腦】從 bundle 恢復 → push 到你的 GitHub
-4. 【傳回】更新 `uqm-megamod-zhTW/patches/UPSTREAM_COMMIT.txt` 內的 fork URL
+4. 【傳回】更新 `sc2-uqm-zhtw/patches/UPSTREAM_COMMIT.txt` 內的 fork URL
 5. 【commit + push】把 URL 更新也 push 到主 repo
 
 ---
@@ -59,7 +59,7 @@ Get-Item ..\UQM-MegaMod-fork.bundle | Select-Object Length,LastWriteTime
 **方法 A · 用 GitHub CLI**（推薦）：
 ```powershell
 # 前置：gh auth login
-gh repo create UQM-MegaMod-zhTW `
+gh repo create uqm-megamod-zhTW `
   --public `
   --description "SC2 繁中化 · MegaMod fork with CJK/Android patches (base of 激戰M星雲II)" `
   --no-clone
@@ -67,12 +67,12 @@ gh repo create UQM-MegaMod-zhTW `
 
 **方法 B · 用瀏覽器**：
 1. 開 <https://github.com/new>
-2. **Repository name**: `UQM-MegaMod-zhTW`
+2. **Repository name**: `uqm-megamod-zhTW`
 3. **Public**（若要別人能免登入 clone）
 4. **不要** initialize with README/gitignore/license（保持完全空白）
 5. Create
 
-**注意 repo 命名**：可以叫 `UQM-MegaMod-zhTW` 或 `UQM-MegaMod-fork` 或 `激戰M星雲II-engine` 等。**你選什麼都行**，但要記下實際 URL。
+**注意 repo 命名**：可以叫 `uqm-megamod-zhTW` 或 `UQM-MegaMod-fork` 或 `激戰M星雲II-engine` 等。**你選什麼都行**，但要記下實際 URL。
 
 ## 步驟 4【登入電腦】從 bundle 恢復本地 clone 並 push
 
@@ -93,7 +93,7 @@ git log -1 --pretty=format:'%H %s'
 
 # 設 remote 到你剛建的空 fork
 git remote remove origin  # bundle 建的預設 remote 是 bundle 路徑，先移除
-git remote add origin https://github.com/YOUR_USER/UQM-MegaMod-zhTW.git
+git remote add origin https://github.com/YOUR_USER/uqm-megamod-zhTW.git
 
 # 決定分支名稱（本地可能叫 master · 建議改成 main）
 git branch -M main
@@ -104,21 +104,21 @@ git push -u origin main --tags
 
 **推送時 GitHub 會要驗證**：
 - **HTTPS**：跳 GitHub OAuth 對話框，用瀏覽器登入
-- **SSH**：改用 `git@github.com:YOUR_USER/UQM-MegaMod-zhTW.git`
+- **SSH**：改用 `git@github.com:YOUR_USER/uqm-megamod-zhTW.git`
 - **PAT**：GitHub Settings → Developer settings → PAT · fine-grained token · push 時當密碼
 
 ## 步驟 5【登入電腦】更新 `UPSTREAM_COMMIT.txt` 內的 fork URL
 
-前往 `uqm-megamod-zhTW` 主 repo 資料夾（也在這台電腦）：
+前往 `sc2-uqm-zhtw` 主 repo 資料夾（也在這台電腦）：
 
 ```powershell
-cd D:\Projects\uqm-megamod-zhTW
+cd D:\Projects\sc2-uqm-zhtw
 
 # 用 PowerShell 一鍵替換佔位符
 $file = 'patches\UPSTREAM_COMMIT.txt'
-$myUrl = 'https://github.com/YOUR_USER/UQM-MegaMod-zhTW.git'
+$myUrl = 'https://github.com/YOUR_USER/uqm-megamod-zhTW.git'
 (Get-Content $file -Raw) -replace `
-  'https://github\.com/CHANGE_ME_TO_YOUR_GITHUB_USER/UQM-MegaMod-zhTW\.git', `
+  'https://github\.com/CHANGE_ME_TO_YOUR_GITHUB_USER/uqm-megamod-zhTW\.git', `
   $myUrl | Set-Content $file -NoNewline -Encoding utf8
 
 # 驗證
@@ -144,11 +144,11 @@ git push
 ## 步驟 7【任一電腦】驗證 setup_upstream.ps1 可用
 
 ```powershell
-cd D:\Projects\uqm-megamod-zhTW
+cd D:\Projects\sc2-uqm-zhtw
 
 # DryRun 確認 URL 已對
 .\scripts\setup_upstream.ps1
-# 應該看到 "Fork URL: https://github.com/YOUR_USER/UQM-MegaMod-zhTW.git"
+# 應該看到 "Fork URL: https://github.com/YOUR_USER/uqm-megamod-zhTW.git"
 
 # 實跑（會 clone 到 ../UQM-MegaMod/）
 Remove-Item ..\UQM-MegaMod -Recurse -Force -ErrorAction SilentlyContinue
@@ -180,11 +180,11 @@ git log -1 --pretty=format:'%H %s'
 ### 「setup_upstream.ps1 clone 失敗說 fork URL 錯誤」
 1. 檢查 `patches/UPSTREAM_COMMIT.txt` 內 URL 是否指到實際存在的 repo
 2. 用瀏覽器開 URL 對應網頁，若 404 表示 fork 沒建成功
-3. 用 `gh repo view YOUR_USER/UQM-MegaMod-zhTW --web` 開啟
+3. 用 `gh repo view YOUR_USER/uqm-megamod-zhTW --web` 開啟
 
 ### 「checkout 失敗說 SHA 不存在」
-1. 檢查你的 fork 是否 push 了最新 branch：`gh repo view YOUR_USER/UQM-MegaMod-zhTW --json defaultBranchRef`
-2. 檢查 SHA 在 fork 內：`git ls-remote https://github.com/YOUR_USER/UQM-MegaMod-zhTW.git | Select-String 'dc2a4e6'`
+1. 檢查你的 fork 是否 push 了最新 branch：`gh repo view YOUR_USER/uqm-megamod-zhTW --json defaultBranchRef`
+2. 檢查 SHA 在 fork 內：`git ls-remote https://github.com/YOUR_USER/uqm-megamod-zhTW.git | Select-String 'dc2a4e6'`
 3. 若沒 SHA，你可能忘了 `git push --tags` 或 branch 沒 push 完整
 
 ### 「網路不能連 GitHub」
@@ -224,7 +224,7 @@ git merge official/master   # 若你偏好乾淨線性 log，用 rebase 但注�
 git push origin main
 
 # 更新主 repo 內的 SHA
-cd D:\Projects\uqm-megamod-zhTW
+cd D:\Projects\sc2-uqm-zhtw
 # 手動編輯 patches/UPSTREAM_COMMIT.txt · 更新新 SHA + metadata
 git add patches/UPSTREAM_COMMIT.txt
 git commit -m "chore: bump upstream to $(cd ..\UQM-MegaMod; git rev-parse --short HEAD)"

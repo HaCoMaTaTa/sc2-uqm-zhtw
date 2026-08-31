@@ -6,7 +6,7 @@
 
 ```powershell
 # 前置：先跑 ../scripts/setup_upstream.ps1 準備好 ../UQM-MegaMod/
-cd Q:\path\to\uqm-megamod-zhTW\pipeline
+cd Q:\path\to\sc2-uqm-zhtw\pipeline
 
 # 1. 首次或翻譯有更新 → 產出 SD addon
 .\build_zh-TW.ps1        # JSON → txt + rasterize 字型 → shadow content

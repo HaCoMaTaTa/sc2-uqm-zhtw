@@ -28,8 +28,8 @@ $env:ANDROID_SDK_ROOT = $env:ANDROID_HOME
 ## 1. Clone 本 repo + Upstream MegaMod
 
 ```powershell
-git clone https://github.com/HaCoMaTaTa/uqm-megamod-zhTW.git
-cd uqm-megamod-zhTW
+git clone https://github.com/HaCoMaTaTa/sc2-uqm-zhtw.git
+cd sc2-uqm-zhtw
 .\scripts\first_time_setup.ps1              # 檢查環境
 .\scripts\setup_upstream.ps1 -Execute       # clone MegaMod fork（含全部 34 個 patch 已 commit）
 ```
@@ -68,7 +68,7 @@ cd pipeline
 
 **安裝到 install/**（見 [`../pipeline/install/README.md`](../pipeline/install/README.md)）：
 ```powershell
-.\downloads\mm-0.8.5-installer.exe /D=Q:\path\to\uqm-megamod-zhTW\pipeline\install
+.\downloads\mm-0.8.5-installer.exe /D=Q:\path\to\sc2-uqm-zhtw\pipeline\install
 ```
 
 **替換為 patched exe**：

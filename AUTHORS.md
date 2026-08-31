@@ -1,6 +1,6 @@
 # AUTHORS
 
-## 本專案（uqm-megamod-zhTW / 激戰M星雲II 繁體中文化）
+## 本專案（sc2-uqm-zhtw / 激戰M星雲II 繁體中文化）
 
 - **繁體中文化與 Android 移植** — HaCoMaTaTa（詳見 GitHub commit history）
 - **AI 協作** — GitHub Copilot Chat（Claude / GPT 家族模型，依使用者提詞執行）

@@ -7,7 +7,7 @@
 #   .\scripts\setup_upstream.ps1 -Execute        # 實跑
 #   .\scripts\setup_upstream.ps1 -Execute -Force # 已存在也強制重跑（重置本地變更）
 #   .\scripts\setup_upstream.ps1 -Execute -TargetPath 'D:\my\path\UQM-MegaMod'
-#   .\scripts\setup_upstream.ps1 -Execute -ForkUrl 'https://github.com/USER/UQM-MegaMod-zhTW.git'
+#   .\scripts\setup_upstream.ps1 -Execute -ForkUrl 'https://github.com/USER/uqm-megamod-zhTW.git'
 #
 # 這個腳本 **不** apply patches/*.patch。
 # 原因見 patches/UPSTREAM_COMMIT.txt § patches/*.patch 的角色。
@@ -86,7 +86,7 @@ if ($ForkUrl -match 'CHANGE_ME_TO_YOUR_GITHUB_USER') {
     Write-Host "專案作者尚未把 UQM-MegaMod push 到 GitHub。請完成以下之一：" -ForegroundColor Yellow
     Write-Host "  1. 依 docs/PUSH_UQM_MEGAMOD_FORK.md 建立 fork · 更新 UPSTREAM_COMMIT.txt"
     Write-Host "  2. 或用 -ForkUrl 手動指定 URL：" -ForegroundColor Yellow
-    Write-Host "     .\scripts\setup_upstream.ps1 -Execute -ForkUrl 'https://github.com/YOUR_USER/UQM-MegaMod-zhTW.git'"
+    Write-Host "     .\scripts\setup_upstream.ps1 -Execute -ForkUrl 'https://github.com/YOUR_USER/uqm-megamod-zhTW.git'"
     Write-Host ""
     if (-not $Execute) {
         Write-Host "（DryRun 允許繼續往下印剩餘檢查步驟）" -ForegroundColor DarkGray

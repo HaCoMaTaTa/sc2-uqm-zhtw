@@ -138,7 +138,7 @@
 **在你的 fork README** 建議這樣寫：
 
 ```
-This is a fork of [uqm-megamod-zhTW](https://github.com/...).
+This is a fork of [sc2-uqm-zhtw](https://github.com/...).
 Modifications:
 - Fixed X in Y
 - Added Z

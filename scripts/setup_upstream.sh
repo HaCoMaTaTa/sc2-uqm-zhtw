@@ -7,7 +7,7 @@
 #   ./scripts/setup_upstream.sh --execute
 #   ./scripts/setup_upstream.sh --execute --force
 #   ./scripts/setup_upstream.sh --execute --target-path /path/to/UQM-MegaMod
-#   ./scripts/setup_upstream.sh --execute --fork-url 'https://github.com/USER/UQM-MegaMod-zhTW.git'
+#   ./scripts/setup_upstream.sh --execute --fork-url 'https://github.com/USER/uqm-megamod-zhTW.git'
 #
 # 這個腳本 **不** apply patches/*.patch。
 # 原因見 patches/UPSTREAM_COMMIT.txt § patches/*.patch 的角色。
@@ -68,7 +68,7 @@ if [[ "$FORK_URL" == *CHANGE_ME_TO_YOUR_GITHUB_USER* ]]; then
     echo "專案作者尚未把 UQM-MegaMod push 到 GitHub。請完成以下之一："
     echo "  1. 依 docs/PUSH_UQM_MEGAMOD_FORK.md 建立 fork · 更新 UPSTREAM_COMMIT.txt"
     echo "  2. 或用 --fork-url 手動指定："
-    echo "     ./scripts/setup_upstream.sh --execute --fork-url 'https://github.com/YOUR/UQM-MegaMod-zhTW.git'"
+    echo "     ./scripts/setup_upstream.sh --execute --fork-url 'https://github.com/YOUR/uqm-megamod-zhTW.git'"
     if [[ $EXECUTE -eq 1 ]]; then
         exit 1
     fi

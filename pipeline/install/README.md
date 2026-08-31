@@ -14,7 +14,7 @@ cd pipeline
 
 例：
 ```powershell
-.\downloads\mm-0.8.5-installer.exe /D=Q:\Projects\uqm-megamod-zhTW\pipeline\install
+.\downloads\mm-0.8.5-installer.exe /D=Q:\Projects\sc2-uqm-zhtw\pipeline\install
 ```
 
 ### 選項 B · 交互安裝

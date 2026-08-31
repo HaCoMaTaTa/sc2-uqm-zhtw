@@ -1,4 +1,4 @@
-# uqm-megamod-zhTW · 激戰M星雲II 繁體中文化
+# sc2-uqm-zhtw · 激戰M星雲II 繁體中文化
 
 > **繁體中文（台灣用語）版** of *Star Control II: The Ur-Quan Masters* (MegaMod 分支)
 > **PC** + **Android** 雙平台 · 3547 tokens 翻譯 · 26 族 Level 3 audit · 34 個引擎 patch
@@ -41,7 +41,7 @@ Not intended for Play Store distribution (CC-NC clause). Free side-load and pers
 | **Android** | `激戰M星雲II-v3.8-release.apk` | ~380 MB | side-load only · 見安裝說明 |
 | **Debug APK** | `激戰M星雲II-v3.8-debug.apk` | ~400 MB | 給 QA / 除錯用 |
 
-前往 [**Releases 頁面**](https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/releases/latest) 下載。
+前往 [**Releases 頁面**](https://github.com/HaCoMaTaTa/sc2-uqm-zhtw/releases/latest) 下載。
 
 **驗證檔案完整性**：
 - 每個檔案附 `.sha256` sidecar
@@ -65,8 +65,8 @@ Not intended for Play Store distribution (CC-NC clause). Free side-load and pers
 
 ```powershell
 # 1. Clone
-git clone https://github.com/HaCoMaTaTa/uqm-megamod-zhTW.git
-cd uqm-megamod-zhTW
+git clone https://github.com/HaCoMaTaTa/sc2-uqm-zhtw.git
+cd sc2-uqm-zhtw
 
 # 2. 環境檢查
 .\scripts\first_time_setup.ps1
@@ -86,7 +86,7 @@ cd uqm-megamod-zhTW
 ## 四、專案結構
 
 ```
-uqm-megamod-zhTW/
+sc2-uqm-zhtw/
 ├── README.md                          ← 本檔
 ├── LICENSE                            ← GPL-2.0（源碼）
 ├── LICENSE.CONTENT                    ← CC BY-NC-SA 2.5（內容）
@@ -190,8 +190,8 @@ uqm-megamod-zhTW/
 
 ## 八、貢獻
 
-- **翻譯錯誤** → [開 Issue](https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/issues/new?template=translation_correction.md)
-- **技術 bug** → [開 Issue](https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/issues/new?template=bug_report.md) · 附 `game.log` / `uqm_log.txt`
+- **翻譯錯誤** → [開 Issue](https://github.com/HaCoMaTaTa/sc2-uqm-zhtw/issues/new?template=translation_correction.md)
+- **技術 bug** → [開 Issue](https://github.com/HaCoMaTaTa/sc2-uqm-zhtw/issues/new?template=bug_report.md) · 附 `game.log` / `uqm_log.txt`
 - **Pull Request** → 先讀 [`docs/SOP_Rebuild_And_Release.md`](docs/SOP_Rebuild_And_Release.md) 與 [`docs/AI_Handoff/README.md`](docs/AI_Handoff/README.md)
 - **翻譯風格** → 依 [`translation/08_Translation_Rules/`](translation/08_Translation_Rules/) 規範
 
