@@ -1,0 +1,21 @@
+{
+  "_notes": [
+    "v0.1 — VUX Beast (VUX 生物) lander/bio 唯一報告. 修 v1.0.7-1.0.10 build gap: 此檔漏翻譯導致玩家抓 VUX 獸時 report 全英文.",
+    "Source: extracted/base/base/lander/bio/vuxbeast.txt",
+    "Speaker: Landing party report (crew wrestling with the VUX Beast).",
+    "Register: 焦頭爛額的軍事現場報告 · 帶點驚恐口語.",
+    "2 variants: VUXBEAST 1 = 首次抓 (VUX 需要生物換修烈士少女) | VUXBEAST 2 = 再抓一次 (罕見情境).",
+    "Terminology (aligned with vux.zh-TW.json):",
+    "  hideous beast = 可怖巨獸",
+    "  stun batteries = 電擊砲",
+    "  barbed head = 帶刺的頭部",
+    "  magnetic restraits = 磁性束縛器 (原 typo 應為 restraints, 保留原意)",
+    "  steam engine = 蒸汽火車",
+    "  admiral = 上將 (VUX Alpha Cerenkov 契倫科夫上將 canonical)",
+    "  CRITICAL: --allow-line-mismatch used (無 voice cue, \\n 可拆行)"
+  ],
+
+  "VUXBEAST 1": " ---- 地表傳回報告 ----\n\n我方終於捕獲了近日來難以擒獲的那頭可怖巨獸。\n\n我發誓，我方對那玩意兒清空電擊砲十幾次牠才減速。\n又幾發打進牠帶刺的頭部，牠總算倒下，\n但我方只有幾秒鐘把牠塞進磁性束縛器，\n接著牠又開始瘋狂扭動。\n\n即使此刻我在報告，那該死的怪物仍像蒸汽火車般嘶叫，\n試圖掙脫。\n\n我希望我方知道自己在幹什麼，把那東西帶上艦。\n如果牠在艦上掙脫……艦長，這種事……\n我根本不敢想。\n\n正返回艦上。\n\n        ---- 報告結束 ----",
+
+  "VUXBEAST 2": " ---- 地表傳回報告 ----\n\n我方再一次捕獲了那頭可怖巨獸。所幸這次我方裝備準備得好多了。\n\n不過仍然是一場漫長的煎熬。\n牠這次似乎有點分心。\n\n進一步檢查後，\n發現牠齒縫間卡著上將的殘骸。\n如果不會造成太大困擾，\n艦長，我方請求盡快把這東西送離我方視野。\n\n        ---- 報告結束 ----"
+}

@@ -1,0 +1,39 @@
+docs: add translation lesson-learned rules to 3 MD files
+
+從 spathi/starbase/urquan/orz/arilou audit 累積的直譯陷阱與
+讀順性規則，加入 3 個核心翻譯規則與 prompt 文件中，避免未來
+首譯與 audit 犯相同錯誤。
+
+Updates:
+
+1. 08_Translation_Rules/Dialogue_Rule.md (+5418 bytes)
+   - 新增 §十一：詞彙直譯陷阱 (Direct Translation Vocabulary Traps)
+     10 個常見 EN→CN 直譯錯誤（quality→特質、represent→構成、
+     translation→躍入、Farewell→再見了 等）
+   - 新增 §十二：標點排版陷阱 (Punctuation & Layout Traps)
+     4 個子節（逗號位置/副詞句掛尾/量詞查表/代表堆疊）
+   - 新增 §十三：從句連詞規則 (Connective Clause Rules)
+     if/because/so/and/but/so-that/or-else 通用逗號規則表
+   - 重命名 §十一參考來源 → §十四，補入 4 次 audit 來源
+
+2. 09_AI_Prompt/Translate_Dialogue.md (+1796 bytes)
+   - 新增 §九·五：Anti-Direct-Translation Guardrails
+     翻譯時應避免的直譯 pattern checklist（A/B/C/D 四類）
+     cross-ref 到 Dialogue_Rule.md §11-13
+
+3. 09_AI_Prompt/Reaudit_Dialogue.md (+3472 bytes)
+   - 新增 §九·五：Audit Sweep Checklist
+     逐 token 掃描 6 大類 pattern（詞彙/標點/從句/canonical/
+     hex typo/例外處理）
+     附 PowerShell hex typo sweep script pattern
+
+案例來源全部使用非 Orz 種族（arilou / urquan / starbase / spathi），
+因 Orz 破碎英文有其設計意圖，不宜作為通用直譯反例。所有規則明確
+標註「破碎英文族例外」條款，指向 Alien_Speech_Rule.md §6。
+
+Sources:
+- arilou v3.1 audit (2026-08-26, in progress)
+- urquan v0.9 audit (2026-08-26, commit 90cff61)
+- starbase v0.7 audit (2026-08-26, commit db9b7ab)
+- spathi v0.7 audit (2026-08-25, commit 15d84db)
+- orz v0.5 audit (2026-08-26, commit 750ae41)
