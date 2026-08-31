@@ -46,7 +46,6 @@ build/
 dist/
 release/
 output/
-install/
 extracted/
 downloads/
 _downloads/
@@ -63,6 +62,16 @@ _megamod_content_085/
 _en_starbase_extract/
 _en_source/
 _uqmmap/
+
+# pipeline/ 內的三個目錄整體 gitignore，但保留 README stub 說明如何取得內容
+pipeline/install/*
+pipeline/extracted/*
+pipeline/downloads/*
+!pipeline/install/README.md
+!pipeline/extracted/README.md
+!pipeline/downloads/README.md
+# 其他位置的 install/ 仍全 ignore
+install/
 
 # ---- 敏感檔（絕對不能進 repo）----
 keystore/
@@ -93,7 +102,3 @@ _release_*_log.txt
 !docs/**/*.md
 !patches/*.patch
 !.github/**
-# 允許 pipeline 內的 stub README（雖然 extracted/ downloads/ install/ 是 gitignore）
-!pipeline/extracted/README.md
-!pipeline/downloads/README.md
-!pipeline/install/README.md
