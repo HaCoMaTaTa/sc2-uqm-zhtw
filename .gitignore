@@ -46,8 +46,6 @@ build/
 dist/
 release/
 output/
-extracted/
-downloads/
 _downloads/
 _snapshots/
 _tmp*/
@@ -63,15 +61,13 @@ _en_starbase_extract/
 _en_source/
 _uqmmap/
 
-# pipeline/ 內的三個目錄整體 gitignore，但保留 README stub 說明如何取得內容
+# pipeline/ 內三個運行時目錄整體 gitignore，但保留 README stub 說明如何取得內容
 pipeline/install/*
 pipeline/extracted/*
 pipeline/downloads/*
 !pipeline/install/README.md
 !pipeline/extracted/README.md
 !pipeline/downloads/README.md
-# 其他位置的 install/ 仍全 ignore
-install/
 
 # ---- 敏感檔（絕對不能進 repo）----
 keystore/
