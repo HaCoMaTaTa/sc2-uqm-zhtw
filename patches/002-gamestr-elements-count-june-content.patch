@@ -1,0 +1,14 @@
+diff --git a/src/uqm/gamestr.h b/src/uqm/gamestr.h
+index 2aee1de..9133a4c 100644
+--- a/src/uqm/gamestr.h
++++ b/src/uqm/gamestr.h
+@@ -33,7 +33,8 @@ extern "C" {
+ #define STAR_STRING_COUNT       149
+ #define DEVICE_STRING_COUNT      29
+ #define CARGO_STRING_COUNT       14
+-#define ELEMENTS_STRING_COUNT   135
++// zh-TW patch: match June-era content pack (mm-0.8.5-content.uqm has 133 not 135)
++#define ELEMENTS_STRING_COUNT   133
+ #define SCAN_STRING_COUNT        66
+ #define STAR_NUMBER_COUNT        14
+ #define PLANET_NUMBER_COUNT      43

@@ -1,0 +1,182 @@
+diff --git a/src/uqm/planets/pstarmap.c b/src/uqm/planets/pstarmap.c
+index d6dc653..e37a438 100644
+--- a/src/uqm/planets/pstarmap.c
++++ b/src/uqm/planets/pstarmap.c
+@@ -2098,43 +2098,129 @@ SkipStarCluster (int *sortedStars, int istar)
+ 	return istar;
+ }
+ 
++// zh-TW patch 031 helpers.
++// Detect if a UTF-8 string contains any CJK codepoint. Used to gate the
++// ZH-alias fallback in both FindNextStarIndex (search) and
++// DrawMatchedStarName (autocomplete) so ASCII-only queries retain the
++// exact upstream behaviour.
++static BOOLEAN
++ContainsCjk (const UNICODE *str)
++{
++	if (str == NULL)
++		return FALSE;
++	while (*str != '\0')
++	{
++		UniChar cc = getCharFromString (&str);
++		if ((cc >= 0x4E00 && cc <= 0x9FFF)      // CJK Unified Ideographs
++				|| (cc >= 0x3400 && cc <= 0x4DBF))  // CJK Extension A
++			return TRUE;
++	}
++	return FALSE;
++}
++
++// STAR_POSTFIX_ZH_BASE values are stored as "English（中文）" (fullwidth
++// brackets U+FF08 / U+FF09) so the star-map top-header can display both.
++// When the user is typing CJK we want autocomplete to show only the pure
++// Chinese portion — this parses out the bytes between the brackets.
++// Writes an empty string to `out` if brackets are missing or malformed.
++static void
++ExtractPureZh (const UNICODE *aliasStr, UNICODE *out, size_t outSize)
++{
++	const UNICODE *open;
++	const UNICODE *close;
++	size_t len;
++
++	if (outSize == 0)
++		return;
++	out[0] = '\0';
++	if (aliasStr == NULL)
++		return;
++
++	// U+FF08 「（」 → UTF-8 bytes EF BC 88 (3 bytes)
++	open = strstr (aliasStr, "\xEF\xBC\x88");
++	if (!open)
++		return;
++	open += 3;
++
++	// U+FF09 「）」 → UTF-8 bytes EF BC 89 (3 bytes)
++	close = strstr (open, "\xEF\xBC\x89");
++	if (!close)
++		return;
++
++	len = (size_t)(close - open);
++	if (len >= outSize)
++		len = outSize - 1;
++	memcpy (out, open, len);
++	out[len] = '\0';
++}
++
+ static int
+ FindNextStarIndex (STAR_SEARCH_STATE *pSS, int from, BOOLEAN WithinClust)
+ {
+ 	int i;
++	// zh-TW patch 031: gate ZH-alias fallback so ASCII-only queries (like
++	// "z" -> "Zeeman") aren't hijacked by ASCII bytes embedded in the
++	// English half of ZH alias strings ("Mizar（開陽星）" would substring-
++	// match "z"). Computed once — pSS->Cluster doesn't change across the
++	// star-array scan below.
++	BOOLEAN userIsCjk;
+ 
+ 	if (!pSS->Cluster)
+ 		return -1; // nothing to search for
+ 
++	userIsCjk = ContainsCjk (pSS->Cluster);
++
+ 	for (i = from; i < NUM_SOLAR_SYSTEMS; ++i)
+ 	{
+ 		STAR_DESC *SDPtr = &star_array[pSS->SortedStars[i]];
+ 		UNICODE FullName[STAR_SEARCH_BUFSIZE];
+ 		UNICODE *ClusterName = GAME_STRING (SDPtr->Postfix);
++		// zh-TW patch 031: also read localised alias so the F6 star-map
++		// search accepts CJK constellation names in addition to the English
++		// postfix. STAR_POSTFIX_ZH_BASE is the same table that
++		// GetClusterNameLocalized() renders (patch 009). Falls back
++		// gracefully to English-only search when the ZH entry is missing.
++		UNICODE *ClusterNameZh =
++				GAME_STRING (STAR_POSTFIX_ZH_BASE + SDPtr->Postfix);
++		BOOLEAN hasZh = (ClusterNameZh != NULL && ClusterNameZh[0] != '\0');
++		BOOLEAN matched = FALSE;
+ 		const UNICODE *sptr;
+ 		const UNICODE *dptr;
+ 		int dlen;
+ 		int c;
+-		
++
++		// Try English postfix first (case-insensitive, matches upstream).
+ 		dlen = utf8StringCount (ClusterName);
+-		if (pSS->ClusterLen > dlen)
+-		{	// no match, skip the rest of cluster
+-			i = SkipStarCluster (pSS->SortedStars, i) - 1;
+-			continue;
++		if (pSS->ClusterLen <= dlen)
++		{
++			for (c = 0, sptr = pSS->Cluster, dptr = ClusterName;
++					c < pSS->ClusterLen; ++c)
++			{
++				UniChar sc = getCharFromString (&sptr);
++				UniChar dc = getCharFromString (&dptr);
++
++				if (UniChar_toUpper (sc) != UniChar_toUpper (dc))
++					break;
++			}
++			if (c >= pSS->ClusterLen)
++				matched = TRUE;
+ 		}
+ 
+-		for (c = 0, sptr = pSS->Cluster, dptr = ClusterName;
+-				c < pSS->ClusterLen; ++c)
++		// If English didn't match, try the ZH alias. STAR_POSTFIX_ZH_BASE
++		// values are stored as "English（中文）" for on-screen legibility,
++		// so we can't compare char-by-char from the head. Instead treat the
++		// alias as a haystack and look for the user's cluster string as a
++		// UTF-8 substring anywhere inside it — strstr is safe on UTF-8
++		// (self-synchronising encoding: a valid UTF-8 sub-sequence never
++		// occurs at a byte boundary inside another codepoint).
++		if (!matched && hasZh && userIsCjk)
+ 		{
+-			UniChar sc = getCharFromString (&sptr);
+-			UniChar dc = getCharFromString (&dptr);
+-
+-			if (UniChar_toUpper (sc) != UniChar_toUpper (dc))
+-				break;
++			if (strstr (ClusterNameZh, pSS->Cluster) != NULL)
++				matched = TRUE;
+ 		}
+ 
+-		if (c < pSS->ClusterLen)
+-		{	// no match here, skip the rest of cluster
++		if (!matched)
++		{	// no match on either alphabet, skip the rest of cluster
+ 			i = SkipStarCluster (pSS->SortedStars, i) - 1;
+ 			continue;
+ 		}
+@@ -2205,12 +2291,32 @@ DrawMatchedStarName (TEXTENTRY_STATE *pTES)
+ 	else
+ 	{	// draw substring match
+ 		UNICODE *pstr = buf;
++		// zh-TW patch 031: language-aware autocomplete completion.
++		// If the user typed CJK, complete with the pure-Chinese portion
++		// parsed out of the "English（中文）" alias so they see e.g.
++		// 「織」 + 「女星」 rather than "Vega". ASCII input keeps upstream
++		// behaviour and shows the English postfix.
++		BOOLEAN userIsCjk = ContainsCjk (pSS->Cluster);
+ 
+ 		strcpy (pstr, pSS->Text);
+ 		ExPos = pSS->ClusterPos;
+ 		pstr = skipUTF8Chars (pstr, pSS->ClusterPos);
+ 
+-		strcpy (pstr, GAME_STRING (SDPtr->Postfix));
++		if (userIsCjk)
++		{
++			UNICODE pureZh[STAR_SEARCH_BUFSIZE];
++			ExtractPureZh (
++					GAME_STRING (STAR_POSTFIX_ZH_BASE + SDPtr->Postfix),
++					pureZh, sizeof (pureZh));
++			if (pureZh[0] != '\0')
++				strcpy (pstr, pureZh);
++			else  // ZH entry missing or malformed → English fallback
++				strcpy (pstr, GAME_STRING (SDPtr->Postfix));
++		}
++		else
++		{
++			strcpy (pstr, GAME_STRING (SDPtr->Postfix));
++		}
+ 		ExPos += pSS->ClusterLen;
+ 		CurPos = pTES->CursorPos;
+ 

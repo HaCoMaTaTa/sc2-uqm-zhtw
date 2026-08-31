@@ -1,0 +1,25 @@
+{
+  "_notes": [
+    "v0.7 — Umgah Hyperwave Caster (陰嘎超波發送器) lander report.",
+    "Source: extracted/base/base/lander/energy/umgahcaster.txt",
+    "Speaker: Lieutenant Robinson landing party report + Spathi note.",
+    "Register: 中尉正式報告 + Spathi 議會諷刺紙條(白爛感)。",
+    "Terminology:",
+    "  Umgah = 陰嘎族",
+    "  Spathi = 史怕族",
+    "  Spathi High Council / Ruling Council = 史怕族最高議會 (Master L66)",
+    "  Spathiwa = 史怕瓦 (v0.5 canonical, 廢史怕娃)",
+    "  HyperWave Caster = 超波發送器",
+    "  slave shield = 奴役護盾 (v0.3 canonical)",
+    "  Grand Master Planet Eaters = 膳魔行星大師 (使用者鎖定 2026-08-13, 黑色幽默)",
+    "  Lieutenant Robinson = 羅賓森中尉",
+    "  Officer Talbot = 塔波軍官",
+    "  hunams = 呼那姆 (Spathi 誤稱 humans 的口音, Master L293-ish 音譯感)",
+    "  YESSIREE = 對呀對呀 (口語)",
+    "  ---- END OF TRANSMISSION ---- = 通訊結束"
+  ],
+
+  "UMGTRANS 1": " ---- 地表傳回報告 ----\n\n艦長,我是羅賓森中尉,\n報告如下。我方於此處\n定位到一件外星遺物。\n更重要的是,我方發現了\n或許能解釋史怕族下落的東西...\n而我認為您不會喜歡這消息。\n我方正調查一台巨大的藍色機器時,\n塔波軍官發現裝置側面\n貼著一封訊息。\n這是史怕族最高議會的紙條,\n我唸給您聽...\n\n    親愛的呼那姆:\n\n      您們好嗎?我方很好。\n    多虧貴方\n    讓我方研究貴方地球的\n    奴役護盾,不知該如何感謝?\n\n    坦白說,我方要自己複製\n    這項科技花了些時間,\n    但我方對成果實在\n    相當滿意!\n\n    對呀對呀,我方非常喜歡\n    在自家星球周圍\n    套上密不透風防護罩的\n    這個主意!那些正要來\n    攻擊我方的邪惡怪物,\n    現在都吃不到我方了——\n    謝啦!\n\n\n    我猜這意味著我方\n    無法再送任何星艦艦長\n    給您們了——抱歉!\n    好吧,他們想現在\n    就啟動護盾了,所以\n    我方得先走了。\n    我確信我方永遠\n    不會再與您們對話,\n    所以再會了,再次感謝!\n\n                    您的朋友,\n\n              史怕族最高議會\n\n    附註:此機器即是\n    當初陰嘎族用來欺騙我方,\n    讓我方相信「膳魔行星大師」\n    正要來毀滅史怕瓦的\n    超強力超波發送器。\n    我方認為或許您們會想要它。\n\n  ---- 通訊結束 ----",
+
+  "UMGTRANS 2": " ---- 地表傳回報告 ----\n\n艦長,我是羅賓森中尉,\n報告如下。我方於此處\n定位到一件外星遺物。\n我方正調查這台巨大的藍色機器時,\n塔波軍官發現裝置側面\n貼著一張紙條。\n我唸給您聽...\n\n    此機器即是當初\n    陰嘎族用來欺騙我方,\n    讓我方相信\n    「膳魔行星大師」正要\n    來毀滅史怕瓦的\n    超強力超波發送器。\n    我方認為或許有誰會想要它。\n\n  ---- 通訊結束 ----"
+}

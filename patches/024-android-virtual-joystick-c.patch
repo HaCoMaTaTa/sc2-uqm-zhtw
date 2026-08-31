@@ -1,0 +1,178 @@
+diff --git a/src/android_virtual_joystick.c b/src/android_virtual_joystick.c
+new file mode 100644
+index 0000000..1055425
+--- /dev/null
++++ b/src/android_virtual_joystick.c
+@@ -0,0 +1,172 @@
++/*
++ * zh-TW Android port ΓÇö virtual SDL joystick bridge.
++ *
++ * Purpose: Give UQM's built-in directional-joystick input path
++ * (src/uqm/gameinp.c: GetDirectionalJoystickInput) a genuine SDL joystick to
++ * read from, so on-screen analog stick displacement in Kotlin translates into
++ * proper 360┬░ "aim ship at target heading and thrust" behavior ΓÇö without any
++ * change to UQM's engine physics or combat AI.
++ *
++ * Wire:
++ *   Kotlin AnalogStick (dx, dy in [-1, 1])
++ *      ΓåÆ VirtualJoystick.setAxes()
++ *          ΓåÆ nativeSetAxes()  ΓåÉ this file
++ *              ΓåÆ SDL_JoystickSetVirtualAxis(gameControllerHandle, LEFTX/Y, ...)
++ *                  ΓåÆ SDL2 event pump
++ *                      ΓåÆ UQM's VControl_GetJoyAxis / GetDirectionalJoystickInput
++ *                          ΓåÆ BATTLE_LEFT/RIGHT/THRUST
++ *
++ * Companion CLI flag: --dirjoystick=3 (ADDONDIR_OPT+1 ΓåÆ DIRJOY_OPT in uqm.c),
++ * which sets optDirJoy[player 1] = 3 = "left stick controls direction + thrust".
++ *
++ * SDL_JoystickAttachVirtualEx is available from SDL 2.24; we ship 2.32.10.
++ */
++
++#include <SDL.h>
++#include <jni.h>
++#include <android/log.h>
++
++#define LOG_TAG "UqmVJoy"
++#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,  LOG_TAG, __VA_ARGS__)
++#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
++
++/* Guarded by SDL's own main thread; Kotlin calls nativeAttach only once and
++ * nativeSetAxes from the Compose UI thread ΓÇö SDL's event pump reads axes
++ * atomically so no extra locking is required for a single stick. */
++static SDL_JoystickID g_virtual_id = -1;
++static SDL_Joystick*  g_virtual_handle = NULL;
++
++/* SDL_CONTROLLER_AXIS_LEFTX / LEFTY according to SDL's game controller layout. */
++#define AXIS_LEFT_X 0
++#define AXIS_LEFT_Y 1
++
++JNIEXPORT jint JNICALL
++Java_org_megamod_uqm_VirtualJoystick_nativeAttach(JNIEnv* env, jclass cls)
++{
++	(void)env; (void)cls;
++
++	if (g_virtual_id >= 0 && g_virtual_handle != NULL) {
++		LOGI("virtual joystick already attached (id=%d)", g_virtual_id);
++		return 0;
++	}
++
++	/* Bring the joystick subsystem up if UQM's SDL_Init did not already. */
++	if (!SDL_WasInit(SDL_INIT_JOYSTICK)) {
++		if (SDL_InitSubSystem(SDL_INIT_JOYSTICK) < 0) {
++			LOGE("SDL_InitSubSystem(JOYSTICK) failed: %s", SDL_GetError());
++			return -1;
++		}
++	}
++
++	g_virtual_id = SDL_JoystickAttachVirtual(
++			SDL_JOYSTICK_TYPE_GAMECONTROLLER,
++			/* naxes    */ 6,   /* LX LY RX RY TL TR */
++			/* nbuttons */ 15,
++			/* nhats    */ 0);
++	if (g_virtual_id < 0) {
++		LOGE("SDL_JoystickAttachVirtual failed: %s", SDL_GetError());
++		return -1;
++	}
++
++	g_virtual_handle = SDL_JoystickOpen(g_virtual_id);
++	if (g_virtual_handle == NULL) {
++		LOGE("SDL_JoystickOpen(virtual) failed: %s", SDL_GetError());
++		SDL_JoystickDetachVirtual(g_virtual_id);
++		g_virtual_id = -1;
++		return -1;
++	}
++
++	/* Register an explicit game-controller mapping so
++	 * SDL_IsGameController(device_index) returns true, which is UQM's
++	 * gate for calling create_joystick() in libs/input/sdl/vcontrol.c on
++	 * the SDL_CONTROLLERDEVICEADDED event. Without this the ADDED event
++	 * would still fire but UQM would skip the controller and
++	 * VControl_GetJoyAxis() would return 0 forever, defeating
++	 * --dirjoystick=3. Layout matches the axis order we push in
++	 * nativeSetAxes above (LEFTX=a0, LEFTY=a1). */
++	{
++		SDL_JoystickGUID guid = SDL_JoystickGetGUID(g_virtual_handle);
++		char guid_str[33];
++		char mapping[512];
++		SDL_JoystickGetGUIDString(guid, guid_str, sizeof(guid_str));
++		SDL_snprintf(mapping, sizeof(mapping),
++			"%s,UQM Virtual Analog Stick,"
++			"leftx:a0,lefty:a1,rightx:a2,righty:a3,"
++			"lefttrigger:a4,righttrigger:a5,"
++			"a:b0,b:b1,x:b2,y:b3,"
++			"back:b4,guide:b5,start:b6,"
++			"leftstick:b7,rightstick:b8,"
++			"leftshoulder:b9,rightshoulder:b10,"
++			"dpup:b11,dpdown:b12,dpleft:b13,dpright:b14,"
++			"platform:Android,",
++			guid_str);
++		int added = SDL_GameControllerAddMapping(mapping);
++		LOGI("added controller mapping for GUID %s: ret=%d", guid_str, added);
++
++		/* Find our device_index by iterating joysticks (device_index is
++		 * different from instance_id). Then verify controller status. */
++		int device_index = -1;
++		int njoy = SDL_NumJoysticks();
++		for (int i = 0; i < njoy; i++) {
++			if (SDL_JoystickGetDeviceInstanceID(i) == g_virtual_id) {
++				device_index = i;
++				break;
++			}
++		}
++		LOGI("virtual joystick device_index=%d (of %d joysticks total)",
++				device_index, njoy);
++		if (device_index >= 0 && SDL_IsGameController(device_index)) {
++			LOGI("virtual joystick is recognized as a GameController");
++			/* Manually push CONTROLLERDEVICEADDED so UQM's event pump
++			 * (vcontrol.c: case SDL_CONTROLLERDEVICEADDED) picks it up.
++			 * SDL itself only auto-fires this at attach time if the
++			 * mapping existed then ΓÇö but we added the mapping AFTER
++			 * attach, so we synthesize the event manually. */
++			SDL_Event evt;
++			SDL_zero(evt);
++			evt.type = SDL_CONTROLLERDEVICEADDED;
++			evt.cdevice.which = device_index;
++			evt.cdevice.timestamp = SDL_GetTicks();
++			int pushed = SDL_PushEvent(&evt);
++			LOGI("pushed CONTROLLERDEVICEADDED for device_index=%d: ret=%d",
++					device_index, pushed);
++		} else {
++			LOGE("virtual joystick NOT recognized as GameController");
++		}
++	}
++
++	LOGI("attached virtual joystick id=%d name='%s' naxes=%d",
++			g_virtual_id,
++			SDL_JoystickName(g_virtual_handle),
++			SDL_JoystickNumAxes(g_virtual_handle));
++	return 0;
++}
++
++JNIEXPORT void JNICALL
++Java_org_megamod_uqm_VirtualJoystick_nativeSetAxes(JNIEnv* env, jclass cls,
++                                                    jfloat x, jfloat y)
++{
++	(void)env; (void)cls;
++	if (g_virtual_handle == NULL) return;
++	if (x < -1.0f) x = -1.0f; else if (x > 1.0f) x = 1.0f;
++	if (y < -1.0f) y = -1.0f; else if (y > 1.0f) y = 1.0f;
++	Sint16 sx = (Sint16)(x * 32767.0f);
++	Sint16 sy = (Sint16)(y * 32767.0f);
++	SDL_JoystickSetVirtualAxis(g_virtual_handle, AXIS_LEFT_X, sx);
++	SDL_JoystickSetVirtualAxis(g_virtual_handle, AXIS_LEFT_Y, sy);
++}
++
++JNIEXPORT void JNICALL
++Java_org_megamod_uqm_VirtualJoystick_nativeDetach(JNIEnv* env, jclass cls)
++{
++	(void)env; (void)cls;
++	if (g_virtual_handle) {
++		SDL_JoystickClose(g_virtual_handle);
++		g_virtual_handle = NULL;
++	}
++	if (g_virtual_id >= 0) {
++		SDL_JoystickDetachVirtual(g_virtual_id);
++		g_virtual_id = -1;
++	}
++	LOGI("virtual joystick detached");
++}

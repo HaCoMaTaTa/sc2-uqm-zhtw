@@ -1,0 +1,22 @@
+{
+  "_notes": [
+    "v0.7 — Aqua Helix (蔚藍螺旋) lander report on Thraddash shrine.",
+    "Source: extracted/base/base/lander/energy/aquahelix.txt",
+    "Speaker: Landing party report on Thraddash's ancient shrine.",
+    "Terminology:",
+    "  Thraddash = 撻伐族 (v0.4 canonical)",
+    "  Aqua Helix = 蔚藍螺旋 (Master_Glossary v0.5.2)",
+    "  cylindrical shrine = 圓柱形神殿",
+    "  hieroglyphs = 象形文字",
+    "  nineteen Thraddash cultures = 撻伐族十九代文化 (漢字數字, Master L292)",
+    "  star-faring = 星際航行",
+    "  Nuke themselves back to Stone Age = 用核彈把自己炸回石器時代 (撻伐族黑歷史)",
+    "  Private Hendryx = 韓德瑞克斯二等兵",
+    "  dais = 神壇/祭壇",
+    "  aqua gemstone = 蔚藍寶石 (對應 canonical 蔚藍螺旋色澤)",
+    "  DNA helix = DNA 雙螺旋",
+    "  strobe light = 頻閃燈"
+  ],
+
+  "AQUHELIX 1": " ---- 地表傳回報告 ----\n\n艦長,我方於此地表\n發現某種外星神殿。\n\n該建築年代久遠,至少兩千年。\n圓柱形神殿的外緣\n刻有無數象形文字,\n記載了撻伐族十九代文化\n各自的歷史。\n\n就目前所見,我方得知\n撻伐族至少三度發展至\n星際航行的科技水平,\n卻反覆用核彈\n把自己炸回石器時代。\n真正令人驚訝的,艦長,\n是我方於神殿內所發現之物!\n\n我方原知撻伐族在此保管某物,\n但直到進入神殿才知是何物。\n建築正中央有一座白石高台,\n台上放置著一顆巨大的蔚藍寶石,\n不知何故被塑成扁平扭曲的緞帶,\n宛如 DNA 雙螺旋。\n\n此蔚藍螺旋原本會發出\n驚人的光脈衝,\n如巨型頻閃燈般\n照亮整座洞穴神殿——\n至少,原本會...\n\n\n...直到韓德瑞克斯二等兵決定\n看看抓住此遺物會怎樣。\n螺旋當場停止發光,\n此後便一直沉寂。\n\n我方將把蔚藍螺旋帶回艦上\n進行進一步研究。\n\n  ---- 報告結束 ----"
+}

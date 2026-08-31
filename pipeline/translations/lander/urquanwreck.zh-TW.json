@@ -1,0 +1,17 @@
+{
+  "_notes": [
+    "v0.7 B1B — Ur-Quan Dreadnought Wreck (超空間曲速艙可撈).",
+    "Source: extracted/base/base/lander/energy/urquanwreck.txt",
+    "2 variants: 首見拾得曲速艙 / 再訪無新物",
+    "Terminology:",
+    "  Ur-Quan Dreadnought = 烏寬無畏艦",
+    "  hyperspace warp pod = 超空間曲速艙 (Warp Pod = 曲速艙, matches Master canonical)",
+    "  starboard = 右舷 (航海術語)",
+    "  holos = 全像照 (holograms)",
+    "  egghead xenotechs = 學究氣的外星科技官 (口語俚語, 略帶不耐煩)"
+  ],
+
+  "URQWRECK 1": " ---- 地表傳回報告 ----\n\n艦長,我方已定位到\n一艘烏寬無畏艦的殘骸。\n\n此處尚有殘骸而非只剩地面凹坑,\n表示該艦墜落時\n仍有部分引擎動力緩衝。\n\n無畏艦大部分只是外星廢料。\n我方已對一切製作全像照,\n然這些恐怕只對基地那些\n學究氣的外星科技官有用。\n\n我方發現一具設備相對完整——\n一具巨大的超空間曲速艙,\n我認為是右舷單元。\n我方將把它帶回艦上。\n\n  ---- 報告結束 ----",
+
+  "URQWRECK 2": " ---- 地表傳回報告 ----\n\n我方於烏寬無畏艦殘骸中\n未再發現有趣之物。\n\n  ---- 報告結束 ----"
+}

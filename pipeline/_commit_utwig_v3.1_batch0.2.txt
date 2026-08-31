@@ -1,0 +1,48 @@
+v3.1 utwig Batch 0.2: end-of-line and post-paren comma sweep
+
+Race: 憂特族 (Utwig · v0.1 baseline · 114 tokens)
+Depends-on: ac9a510 (v3.1 Batch 0.1 CJK-CJK punctuation sweep)
+Nature: Third-pass typography normalization
+
+## Discovery
+
+After Batch 0.1 (CJK-CJK commas/colons/semicolons), extended scan found
+additional patterns my earlier regex missed:
+
+| Pattern | Count | Reason |
+|---------|------:|--------|
+| CJK + `,` + `\n` (end-of-line) | 68 | My CJK-CJK regex only matched CJK-CJK-CJK sequences |
+| `）` + `,` + CJK/text | 3 | After close-paren `）`, half-comma before next content |
+| Total | **71** | (all now normalized to full-width `，`) |
+
+## Normalization Applied
+
+Dialog values only:
+- 68 × end-of-line CJK-CJK-newline `,` → `，`
+- 3 × post-`）` `,` → `，`
+
+## Remaining half-width `,` (all legitimate)
+
+After Batch 0.2, 11 half-width commas remain in dialog:
+- 1 × inside English content: 「（Oh, woe!）」 — English uses `,` correctly
+- 10 × inside template function calls: `<% comm.getStarName("A", "B") %>`
+  These are programming syntax (JavaScript-like function args) and MUST
+  stay half-width.
+
+## Gates PASS
+
+- Purity: race=0 · simp=0 · variant=0
+- Lua template: 0 suspicious first-args
+- JSON valid · 114 tokens
+- No semantic content changes; strictly typography
+
+## Cumulative typography edits
+
+| Batch | Edits | Type |
+|-------|------:|------|
+| 0 | 31 | half-paren `(X)` → `（X）` |
+| 0.1 | 284 | CJK-CJK `,`/`:`/`;` → 全形 |
+| 0.2 | 71 | end-of-line `,` + post-`）` `,` → `，` |
+| **Total** | **386** | Utwig punctuation now 100% CJK canonical |
+
+Content audit batches follow (with 4 wenyan 「哉」 issues to address).

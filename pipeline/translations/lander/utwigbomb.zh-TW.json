@@ -1,0 +1,19 @@
+{
+  "_notes": [
+    "v0.7 — Utwig Bomb (憂特族炸彈) lander report.",
+    "Source: extracted/base/base/lander/energy/utwigbomb.txt",
+    "Speaker: Landing party report.",
+    "Terminology:",
+    "  Precursor = 先驅者 (Master §4.1)",
+    "  Precursor device = 先驅者裝置",
+    "  Precursor script = 先驅者文字",
+    "  Utwig Bomb = 憂特族炸彈 (亦稱 先驅者炸彈, Master L87)",
+    "  black cylinder = 黑色圓柱體",
+    "  defensive grid = 防禦柵欄",
+    "  Jenkins = 詹金斯",
+    "  redline = 極限功率 (航行術語)",
+    "  cargo area = 貨艙"
+  ],
+
+  "UTWBOMB 1": " ---- 地表傳回報告 ----\n\n我方於行星地表\n發現一件巨大的先驅者裝置——\n一具置於簡易防禦柵欄內的\n巨型黑色圓柱體。\n我方已中和該柵欄——\n嗯,其實是詹金斯不小心\n開車撞穿而過,但似乎有效。\n\n此遺物覆滿先驅者文字,\n雖無法翻譯全部,\n然明顯地是一則警告,\n反覆重複多次。\n\n此遺物的能量輸出\n極為驚人——\n匹敵我方全艦引擎極限功率!\n若容我大膽建言,艦長,\n我方在返回星際基地前,\n最好不要對此裝置進行實驗。\n\n我方將攜此黑色圓柱體裝置\n返回艦上,\n並妥善置於貨艙。\n\n  ---- 報告結束 ----"
+}

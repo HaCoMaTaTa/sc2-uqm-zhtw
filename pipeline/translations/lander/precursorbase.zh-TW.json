@@ -1,0 +1,16 @@
+{
+  "_notes": [
+    "v0.7 B1B — Precursor Starbase (Alliance-picked-clean + Ur-Quan wrecked).",
+    "Source: extracted/base/base/lander/energy/precursorbase.txt",
+    "Register: 士兵報告口吻,略帶失望與 Precursor 崇敬感。",
+    "Terminology:",
+    "  Precursor = 先驅者",
+    "  xenotech = 外星科技官",
+    "  Alliance = 自由星系聯盟",
+    "  nuked = 核爆炸掉 (烏寬族清除他們拿不走的東西)",
+    "  landing platform = 降落平台",
+    "  picked clean = 搜刮一空"
+  ],
+
+  "PRECURSOR STARBASE": " ---- 軌道傳回報告 ----\n\n我方發現先驅者星際基地遺骸。\n\n我方外星科技官驚訝於\n此處竟還有東西可探。\n此地在戰前與戰時皆已被\n聯盟科學家搜刮一空,\n烏寬族之後路過時\n更把他們拿不走的東西全都核爆炸掉。\n\n幸,先驅者建造得比一般堅固些。\n\n不幸,也沒堅固到哪裡去。\n此處已被翻遍,\n我方所用的降落平台不穩,\n再多探查太過危險。\n\n返回艦上。\n\n  ---- 通訊結束 ----"
+}

@@ -1,0 +1,99 @@
+{
+  "_notes": ["== Zoq-Fot-Pik v3 clean-room · Partial 5/7 (GENERAL_INFO_40-411 + UTWIG_DELAY + KOHRAH_WINNING + URQUAN_NEARLY_GONE + KOHRAH_FRENZY0-4) ==", "Nyark 首介 = GENERAL_INFO_43"],
+
+  "GENERAL_INFO_40": "我們之前可能沒告訴過你，艦長\n但我這個物種\n對某些超心靈震盪還算敏感。",
+
+  "GENERAL_INFO_41": "喔不！ 又是這個心靈那一套！",
+
+  "GENERAL_INFO_42": "雖然我朋友這個物種\n很難理解我們的力量\n我可以跟你保證，艦長\n我們有限的能力是相當真實的。",
+
+  "GENERAL_INFO_43": "喔對啊！ 記得那次\n你說你用你的「共感靈能波」\n可以修好我們故障的計時器嗎？\n要我說根本是「可悲能波」！\n嘿嘿嘿！（Nyark! Nyark! Nyark!）",
+
+  "GENERAL_INFO_44": "就算隔著這些負面能量，艦長\n我們也發現了……",
+
+  "GENERAL_INFO_45": "……然「後」還有那次\n你說你可以只靠你的意志力\n就把多爾夫（dorfs）彎折……",
+
+  "GENERAL_INFO_46": "閉嘴！",
+
+  "GENERAL_INFO_47": "……抱歉。",
+
+  "GENERAL_INFO_48": "如我剛剛所說，在我被人「粗魯地」打斷之前！……",
+
+  "GENERAL_INFO_49": "我說了抱歉。",
+
+  "GENERAL_INFO_410": "我們最厲害的占卜者偵測到\n從 <% comm.getConstellation(\"獵戶座\", \"talking pet\") %> 星座方向\n傳來一些不祥又強大的超心靈訊號。",
+
+  "GENERAL_INFO_411": "騙子。（Faker.）",
+
+  "any_war_news": "有沒有關於兩個外星種族之間戰爭的消息？",
+
+  "UTWIG_DELAY0": "我們的偵察兵在 <% comm.getConstellation(\"時鐘座\", \"samatra\") %> 星系裡\n目擊了一件令人興奮的事。",
+
+  "UTWIG_DELAY1": "沒錯！ 大新聞！",
+
+  "UTWIG_DELAY2": "兩個外星種族從 <% comm.getConstellation(\"銀核方向\", \"utwig\") %>\n進入那片星域。",
+
+  "UTWIG_DELAY3": "其中一族看起來像會講話的巨大雜草\n另一族戴著搞笑的面具。",
+
+  "UTWIG_DELAY4": "而且他們正在攻擊我們的敵人！",
+
+  "UTWIG_DELAY5": "呃，反正是其中一個敵人啦。",
+
+  "UTWIG_DELAY6": "是啊，這些新來的外星人似乎只針對\n那個陰險的柯亞人展開攻擊。",
+
+  "UTWIG_DELAY7": "說實在的，這是好消息。",
+
+  "UTWIG_DELAY8": "他們專打柯亞人\n目前為止在戰爭中一直佔上風的正是柯亞人……",
+
+  "UTWIG_DELAY9": "他們一直在痛扁烏寬人。",
+
+  "UTWIG_DELAY10": "這樣力量平衡就多少扳回一些了……",
+
+  "UTWIG_DELAY11": "但柯亞人「還是」很可能會贏！",
+
+  "UTWIG_DELAY12": "不過我們估計，這些新來的外星種族的努力\n把柯亞人最終的勝利\n往後延了九到十二個月。",
+
+  "UTWIG_DELAY13": "有總比沒有好！",
+
+  "KOHRAH_WINNING0": "我們改裝了幾艘「刺針號」星艦\n讓它們執行長程偵察任務。",
+
+  "KOHRAH_WINNING1": "我們在船殼上綁了一堆燃料罐。",
+
+  "KOHRAH_WINNING2": "偵察兵接到命令\n要調查那場戰爭的進展\n綠船一方，我們現在知道叫「烏寬人」\n黑船那邊，叫「柯亞人」駕駛。",
+
+  "KOHRAH_WINNING3": "我們派了十艘出去…… 回來了兩艘",
+
+  "KOHRAH_WINNING4": "但他們收集到的情報值回票價。",
+
+  "KOHRAH_WINNING5": "除非你就是那些偵察兵之一，我猜？\n嘿嘿嘿！（Nyark! Nyark! Nyark!）",
+
+  "KOHRAH_WINNING6": "閉嘴！",
+
+  "KOHRAH_WINNING7": "……抱歉。",
+
+  "KOHRAH_WINNING8": "總之，如我剛剛所說，他們收集到的情報\n顯示柯亞人會在\n2158 年年初左右贏得那場戰爭。",
+
+  "KOHRAH_WINNING9": "除非有人幫忙扳平外星勢力\n把大概一萬億艘柯亞人的艦艇打爆。",
+
+  "URQUAN_NEARLY_GONE0": "我們的偵察艦又一次回來了",
+
+  "URQUAN_NEARLY_GONE1": "帶著壞消息。",
+
+  "URQUAN_NEARLY_GONE2": "根據他們的所見\n柯亞人會在不到六個月內\n擊敗烏寬人。",
+
+  "URQUAN_NEARLY_GONE3": "糟啊。（Bummer.）",
+
+  "URQUAN_NEARLY_GONE4": "而且根據我們上次跟柯亞人的接觸\n我們預估他們贏得跟烏寬人的戰爭後\n柯亞人會橫掃這整片星域\n毀滅所有有智慧的生命。",
+
+  "URQUAN_NEARLY_GONE5": "大糟糕啦！（Major bummer!）",
+
+  "KOHRAH_FRENZY0": "艦長，恐怕我們收到偵察兵最後的報告了。",
+
+  "KOHRAH_FRENZY1": "可憐的葉普、屯跟哈菲！ 我真的會很想念那些傢伙！",
+
+  "KOHRAH_FRENZY2": "我們沒有一個偵察兵活著回家",
+
+  "KOHRAH_FRENZY3": "……還有吉夫…… 還有佛德…… 還有（啜泣！）（sniff!）……\n……還有我最好的哥兒們，羅吉！",
+
+  "KOHRAH_FRENZY4": "他們終究是送出了最後一則訊息。\n柯亞人打贏了對烏寬人的戰爭\n然後展開了他們醜惡的死亡行軍。"
+}

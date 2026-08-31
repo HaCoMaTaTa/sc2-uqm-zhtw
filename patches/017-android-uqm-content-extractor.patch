@@ -1,0 +1,158 @@
+diff --git a/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/UqmContentExtractor.kt b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/UqmContentExtractor.kt
+new file mode 100644
+index 0000000..5c81df9
+--- /dev/null
++++ b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/UqmContentExtractor.kt
+@@ -0,0 +1,152 @@
++package org.megamod.uqm
++
++import android.content.Context
++import android.util.Log
++import java.io.File
++import java.io.FileOutputStream
++import java.security.MessageDigest
++
++/**
++ * Extracts the UQM content pack + zh-TW addon from the APK's `assets/uqm-content/`
++ * subtree into a writable directory (typically `getExternalFilesDir(null)/uqm-megamod/content/`).
++ *
++ * Why extract instead of reading directly from `AAssetManager`:
++ *  - MegaMod's UIO layer opens content packs via native `fopen()` / `read()`. Reading
++ *    from APK assets requires `AAssetManager_open`, which UIO doesn't call. Reworking
++ *    UIO to speak `AAsset` is a bigger patch; extracting to files is a straight bypass.
++ *  - Extraction only happens on first launch (or when the packaged content version
++ *    changes). Subsequent launches are instant.
++ *
++ * Storage location: `Context.getExternalFilesDir(null)` — no runtime permission
++ * required on API 24+ and content is auto-deleted on uninstall.
++ */
++object UqmContentExtractor {
++    private const val TAG = "UqmContentExtractor"
++    private const val ASSET_ROOT = "uqm-content"
++    private const val VERSION_MARKER = ".uqm-content-version"
++
++    data class Progress(
++        val currentFile: String,
++        val filesDone: Int,
++        val filesTotal: Int,
++        val bytesDone: Long,
++        val bytesTotal: Long,
++    )
++
++    /**
++     * Ensure content is extracted at [contentRoot]. Returns true if extraction ran
++     * (or was already up-to-date), false if a fatal error occurred.
++     *
++     * @param onProgress Optional callback, invoked from the calling thread as bytes
++     *                   are written. Safe to be null.
++     */
++    fun ensureExtracted(
++        context: Context,
++        contentRoot: File,
++        onProgress: ((Progress) -> Unit)? = null,
++    ): Boolean {
++        return try {
++            val assetSignature = computeAssetSignature(context)
++            val markerFile = File(contentRoot, VERSION_MARKER)
++            val currentSignature = if (markerFile.isFile) markerFile.readText().trim() else null
++
++            if (currentSignature == assetSignature) {
++                Log.i(TAG, "Content already extracted (signature=$assetSignature).")
++                return true
++            }
++
++            Log.i(TAG, "Extracting content to $contentRoot (want=$assetSignature, have=$currentSignature)")
++            if (contentRoot.exists()) {
++                contentRoot.deleteRecursively()
++            }
++            contentRoot.mkdirs()
++
++            val files = listAssetsRecursively(context, ASSET_ROOT)
++            val totalBytes = files.sumOf { it.second }
++            var doneBytes = 0L
++            files.forEachIndexed { index, (relPath, size) ->
++                val dst = File(contentRoot, relPath)
++                dst.parentFile?.mkdirs()
++                context.assets.open("$ASSET_ROOT/$relPath").use { input ->
++                    FileOutputStream(dst).use { output ->
++                        val buffer = ByteArray(64 * 1024)
++                        while (true) {
++                            val n = input.read(buffer)
++                            if (n <= 0) break
++                            output.write(buffer, 0, n)
++                            doneBytes += n
++                            onProgress?.invoke(
++                                Progress(relPath, index, files.size, doneBytes, totalBytes)
++                            )
++                        }
++                    }
++                }
++            }
++            markerFile.writeText(assetSignature)
++            Log.i(TAG, "Extraction complete: ${files.size} file(s), ${doneBytes / 1024} KiB.")
++            true
++        } catch (t: Throwable) {
++            Log.e(TAG, "Extraction failed", t)
++            false
++        }
++    }
++
++    /**
++     * Signature = sha256 of "relPath:size" lines for every asset under uqm-content/,
++     * sorted lexically. Cheap to compute (no file reads — asset metadata only) and
++     * detects any content change between APK updates.
++     */
++    private fun computeAssetSignature(context: Context): String {
++        val md = MessageDigest.getInstance("SHA-256")
++        listAssetsRecursively(context, ASSET_ROOT)
++            .sortedBy { it.first }
++            .forEach { (rel, size) ->
++                md.update("$rel:$size\n".toByteArray(Charsets.UTF_8))
++            }
++        return md.digest().joinToString("") { "%02x".format(it) }
++    }
++
++    /**
++     * Recursively enumerate `(relPath, size)` for every file under [assetPath].
++     * `size` is retrieved via `AssetManager.openFd()` where possible; falls back to
++     * `AssetFileDescriptor.UNKNOWN_LENGTH` (= -1) for compressed entries.
++     */
++    private fun listAssetsRecursively(
++        context: Context,
++        assetPath: String,
++        acc: MutableList<Pair<String, Long>> = mutableListOf(),
++        relPrefix: String = "",
++    ): List<Pair<String, Long>> {
++        val children = context.assets.list(assetPath).orEmpty()
++        if (children.isEmpty()) {
++            // Leaf — either a real file or an empty dir. Try to open as file.
++            val size = try {
++                context.assets.openFd(assetPath).use { it.length }
++            } catch (_: Throwable) {
++                // openFd fails for compressed assets — fall back to streaming length.
++                try {
++                    context.assets.open(assetPath).use { stream ->
++                        var total = 0L
++                        val buf = ByteArray(64 * 1024)
++                        while (true) {
++                            val n = stream.read(buf)
++                            if (n <= 0) break
++                            total += n
++                        }
++                        total
++                    }
++                } catch (_: Throwable) {
++                    -1L
++                }
++            }
++            if (size >= 0) acc += relPrefix to size
++        } else {
++            for (child in children) {
++                val childAsset = if (assetPath.isEmpty()) child else "$assetPath/$child"
++                val childRel = if (relPrefix.isEmpty()) child else "$relPrefix/$child"
++                listAssetsRecursively(context, childAsset, acc, childRel)
++            }
++        }
++        return acc
++    }
++}

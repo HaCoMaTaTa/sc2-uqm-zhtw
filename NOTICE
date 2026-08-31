@@ -1,0 +1,66 @@
+# NOTICE — 第三方致謝
+
+本專案（**uqm-megamod-zhTW**）是一個粉絲製作的繁體中文化與 Android 移植版本，站在下列前人的肩膀上完成。
+
+依 GPL-2.0 §1 與 CC BY-NC-SA 2.5「BY」條款，以下致謝必須隨任何再散布保留。
+
+---
+
+## 原始遊戲 · Star Control II: The Ur-Quan Masters (1992)
+
+- **原作團隊**：Toys for Bob
+  - **Fred Ford** — 主程式
+  - **Paul Reiche III** — 設計、劇本、世界觀
+  - Erol Otus, Iain McCaig, Kyle Balda — 美術
+  - Riku Nuottajärvi, Dan Nicholson — 音樂
+- **原發行**：Accolade（1992, MS-DOS / 3DO）
+- **後續持有**：Toys for Bob → Activision → *Ur-Quan* 智財於 2011 年由原作者要求釋出開源
+
+## 開源引擎 · The Ur-Quan Masters (UQM)
+
+- **來源**：<https://sc2.sourceforge.net/>
+- **授權**：GPL-2.0（引擎）+ CC BY-NC-SA 2.5（內容）
+- **貢獻者**：UQM Team 全體（見 upstream `AUTHORS`）
+
+## MegaMod 分支
+
+- **維護者**：JHGuitarFreak（Kris Cardwell）
+- **原始碼**：<https://github.com/JHGuitarFreak/UQM-MegaMod>
+- **本專案基於的 upstream commit**：見 [patches/UPSTREAM_COMMIT.txt](patches/UPSTREAM_COMMIT.txt)
+- **主要 MegaMod 貢獻**：HD 資產整合、Kzer-Za 主線擴充、Android build scaffold、Saibuster 主選單音樂
+
+## 中文化字型
+
+- **Ark Pixel** — 開源像素字型 <https://github.com/TakWolf/ark-pixel-font>
+- **Fusion Pixel** — 開源像素字型 <https://github.com/TakWolf/fusion-pixel-font>
+- **Cubic 11 (ACh-K)** — 開源像素字型 <https://github.com/ACh-K/Cubic-11>
+- **思源黑體 / Microsoft JhengHei**（若用於星圖）— 依各字型授權處理
+
+## 開發工具鏈
+
+- **SDL2** — <https://libsdl.org/> (zlib license)
+- **libpng, zlib, libogg, libvorbis** — 各自的 BSD/zlib 相容授權
+- **Tesseract OCR** — Apache 2.0（用於手冊 OCR 分析階段，不進 shipped）
+- **PDF::API2 / Perl** — Alan De Smet 之 UQM Starmap tool 衍生
+
+## 音樂 · Android 版
+
+- **Saibuster** — Main Menu Music (MegaMod 內建)
+
+## 繁體中文化 & Android 移植
+
+- **本 repo 作者**（依 CC BY-NC-SA 2.5 授權繁中翻譯與 Android 港版工程）
+- **AI 助理**（GitHub Copilot Chat）— 依使用者指示執行翻譯與程式碼修改
+
+---
+
+## 詳細授權對照
+
+| 元件 | 授權 | 對應檔案 |
+|---|---|---|
+| 引擎 C 源碼 | GPL-2.0 | `patches/*.patch` 修改自 UQM-MegaMod 主樹 |
+| 我們寫的 Python / PowerShell 腳本 | GPL-2.0（相容引擎）| `pipeline/*.py`, `pipeline/*.ps1`, `scripts/*.ps1` |
+| 翻譯文字、字型 raster、圖示、遊戲說明書 | CC BY-NC-SA 2.5 | `translation/`, `pipeline/translations/`, `pipeline/zh-TW-addon/`, `android/_icon_candidates/`, `docs/Game_Manual_zh-TW.md` |
+| GPL 原始碼取得方式（GPL §3 要求）| 本 repo 本身即為「對應源碼」提供處 | 或至 <https://github.com/JHGuitarFreak/UQM-MegaMod> 取得 upstream + 本 repo `patches/` 對齊 |
+
+若你發現任何署名遺漏，請開 issue 告知，我們會盡快補上。

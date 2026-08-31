@@ -1,0 +1,105 @@
+{
+  "_notes": [
+    "v0.1 — Ending Final (SC2 主結局動畫敘事) translation。42 TFI blocks。",
+    "Source: extracted/base/base/cutscene/ending/final.txt",
+    "Format: 對齊 intro.zh-TW.json,以英文原句為 key,中文譯為 value。",
+    "Speaker: 老年艦長第一人稱回憶,對孫兒講述打敗 Sa-Matra 的往事。",
+    "Register: 溫暖懷舊 + 勝利氣氛,穿插孫兒天真提問。",
+    "===== v0.5.2 canonical (Q1-Q9, 2026-08-11) =====",
+    "  Q1 Grandfather/Grandma = 爺爺/奶奶 (台灣通用,不會出戲)",
+    "  Q2 angel = 天使 (瀕死艦長對泰蘭娜的浪漫暗喻)",
+    "  Q3 Mark II = 保留原文 (軍事型號慣例)",
+    "  Q4 Chmmr crystals = 查姆晶體 (對齊 chmmr.zh-TW.json)",
+    "  Q5 escape pod = 逃生艙 (航太業界標準)",
+    "===== 繼承 canonical =====",
+    "  Talana=泰蘭娜 | Chmmr=查姆族 | Sa-Matra=薩瑪特拉 | Ur-Quan=烏寬 | Kohr-Ah=柯亞",
+    "  slave shield=奴役護盾 | Unzervalt=恩澤伐特 | children=孩子們",
+    "===== 排版 =====",
+    "  translate_intro.py 做字串替換,不硬性要求行數對齊",
+    "  每視覺行 ≤ 14 CJK 字,對齊 intro.zh-TW.json 排版慣例"
+  ],
+
+  "When I awoke, there was an angel\nfloating above me.": "我甦醒時，有一位天使\n浮於我上方。",
+
+  "I knew I was dead.": "我知道自己已經死了。",
+
+  "But if one HAS to die, I thought\nto myself...": "但若一人「必須」死去\n我心想……",
+
+  "...this was definitely the RIGHT\nway to be dead.": "……這絕對是最「對」的\n死法。",
+
+  "That was about the time I heard\nTalana's voice...": "就在那一刻，我聽見了\n泰蘭娜的聲音……",
+
+  "...telling me to stop babbling\nand listen for a moment.": "……叫我別再胡言亂語\n聽她說話。",
+
+  "She told me that the escape pod\nhad almost been torn in half.": "她告訴我，那具逃生艙\n幾乎被撕成了兩半。",
+
+  "I had been unconscious for over\nthree weeks...": "我已昏迷超過三個禮拜……",
+
+  "...but my crew and I had\nsucceeded in our mission!": "……但艦員與我\n已成功完成任務！",
+
+  "The force of the explosion,\namplified by the Chmmr\ncrystals...": "那次爆炸之威力\n經查姆晶體放大……",
+
+  "...had been sufficient to\nvaporize the Sa-Matra!": "……已足以將薩瑪特拉\n汽化殆盡！",
+
+  "And following the destruction of\nthe Sa-Matra battle platform...": "而在薩瑪特拉戰鬥平台\n毀滅之後……",
+
+  "...the fleets of the Ur-Quan and\nthe Kohr-Ah had fallen into\nchaos...": "……烏寬與柯亞的艦隊\n頓時陷入混亂……",
+
+  "...and had been vanquished by\nChmmr forces and allied\nstarships.": "……終為查姆軍團與\n聯盟星艦所擊潰。",
+
+  "Then Talana told me to sit up.": "隨後泰蘭娜要我坐起身來。",
+
+  "She said there was something she\nthought I'd like to see...": "她說有一樣東西\n她覺得我會想看看……",
+
+  "I pulled myself up and looked\naround...": "我撐起身子環顧四周……",
+
+  "...I was in Sick Bay of the\nStarbase, looking out over\nEarth.": "……我身處星艦基地的醫療艙\n俯瞰著地球。",
+
+  "Beneath me throbbed the sick red\nglow of the Ur-Quan slave shield.": "腳下那烏寬奴役護盾\n泛著病態的紅光脈動。",
+
+  "Talana smiled and said that for\nthe past few days...": "泰蘭娜微笑著說\n過去這幾天……",
+
+  "the Chmmr had been working on\nlowering the shield...": "查姆族一直在設法\n降下這道護盾……",
+
+  "and that it should be neutralized\nright about... Now!": "而它應會被解除\n就在……此刻！",
+
+  "With a flare of incandescent\nlight, the slave shield\nvanished...": "一道熾亮閃光乍現\n奴役護盾隨即消失……",
+
+  "...and for the first time in my\nlife I saw the true colors of\nEarth...": "……我此生頭一次\n看見了地球真正的色彩……",
+
+  "...blues and greens in a thousand\ndifferent shades.": "……千般層次的\n蔚藍與翠綠。",
+
+  "As we watched, we could see the\nfirst signs of ships coming up\nfrom Earth.": "望著望著，我們看見了\n第一批船艦自地球升起。",
+
+  "They lifted from the planet's\nsurface to join us in space.": "它們自星球表面升空\n與我們會合於太空。",
+
+  "The destiny of Mankind had been\ndelayed for over twenty years...": "人類的命運\n被拖延了逾二十年……",
+
+  "...but now our world was free\nand nothing could stop us!": "……但如今我們的世界已然自由\n再也無人能夠阻擋！",
+
+  "I stayed in that hospital for\nalmost a month...": "我在那家醫院\n待了將近一個月……",
+
+  "...but that day...": "……但那一天……",
+
+  "...that day I watched the shield\nfall and beautiful Talana stood\nat my side...": "……那一天我看著護盾墜下\n美麗的泰蘭娜佇立我身旁……",
+
+  "I'll never forget that day. Not\nfor the rest of my life...": "我此生永難忘懷那一天。",
+
+  "But Grandfather then what\nhappened?": "可是爺爺！那後來呢？",
+
+  "Yeah! How did you get home?": "對呀！你怎麼回家的？",
+
+  "How long did it take before you\nand Grandma finally got married?": "你和奶奶隔了多久\n才終於結婚？",
+
+  "Oh, while we intended to come\nright home...": "唉，我們本想\n立刻回家……",
+
+  "...we got a little sidetracked.": "……卻多少繞了點遠路。",
+
+  "Talana and I didn't make it back\nhere to Unzervalt until almost\nfive years later.": "泰蘭娜和我幾乎又過了五年\n才回到恩澤伐特（Unzervalt）。",
+
+  "But Grandfather! What happened?\nWhere did you go?": "可是爺爺！發生了什麼事？\n你去了哪裡？",
+
+  "And how did you find the Mark II?": "你又是怎麼找到 Mark II 的？",
+
+  "That, my children, is an entirely\ndifferent story.": "那，我的孩子們\n是完全不同的另一個故事了。"
+}

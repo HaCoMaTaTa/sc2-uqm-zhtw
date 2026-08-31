@@ -1,0 +1,19 @@
+{
+  "_notes": [
+    "v0.7 — Taalo Device (塔洛防護罩) lander report.",
+    "Source: extracted/base/base/lander/energy/taalodevice.txt",
+    "Speaker: Landing party report.",
+    "Terminology:",
+    "  Taalo = 塔洛族 (唯一免疫蟾亞心靈控制 - Master §4.3)",
+    "  Taalo Shield / Taalo Device = 塔洛防護罩 (Phase 7 canonical)",
+    "  igneous dike = 火成岩牆",
+    "  radiometrics = 放射性年代測定",
+    "  EMR spectrum = 電磁輻射光譜",
+    "  IR / infrared = 紅外線",
+    "  Ensign Hodgkins / Witherspoon = 霍金斯少尉 / 威瑟斯本少尉",
+    "  starbase = 星際基地",
+    "  Puppy = 寶貝 (口語俚語, 對重物的暱稱)"
+  ],
+
+  "TAADEVIC 1": " ---- 地表傳回報告 ----\n\n艦長! 我方於地表\n發現一件不尋常的發光岩狀物。\n\n初見時我方以為它是\n某種天然螢光的火成岩牆,\n然近觀後我方只能斷定\n此物為人工造物——塔洛族設計!\n\n那些傢伙的建造功力\n真是耐得住時間。\n簡單的放射性年代測定顯示\n年齡超過兩萬年。\n\n無論多老,它仍持續在整個\n電磁輻射光譜輻射能量,\n並集中發射於\n紅光至紅外線波段。\n\n儘管重達一噸,我方仍決定\n將這寶貝拖回艦上。\n\n通訊結束前最後一句——\n霍金斯少尉與威瑟斯本少尉\n皆回報,只要靠近塔洛裝置\n便有嚴重頭痛與精神錯亂。\n我方其他人皆無異狀,\n因此要麼是兩位少尉太嬌氣,\n要麼是塔洛裝置產生某種\n只影響特定人心智的防護場。\n\n或許星際基地的科學家們\n能告訴我方更多。\n\n  ---- 報告結束 ----"
+}

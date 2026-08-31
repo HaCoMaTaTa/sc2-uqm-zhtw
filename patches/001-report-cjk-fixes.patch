@@ -1,0 +1,66 @@
+diff --git a/src/uqm/planets/report.c b/src/uqm/planets/report.c
+index 5b344b9..6c38fc1 100644
+--- a/src/uqm/planets/report.c
++++ b/src/uqm/planets/report.c
+@@ -35,11 +35,21 @@
+ #include <ctype.h>
+ #include <string.h>
+ #include "../lua/luacomm.h"
++// zh-TW patch note: utf8StringCount() comes via lander.h ΓåÆ gfxlib.h ΓåÆ strlib.h ΓåÆ unicode.h
+ 
+ 
++// zh-TW patch: cell counts derive from the actual size of SpaceJunkFrame[18]
++// (the cell-step "prototype" graphic in nav/orbitbackground.ani).
++// Original hardcoded 34 cols ├ù 11 rows assumes 5x5 cells for 5px English glyphs.
++// When we override the frame PNG to 8x10 (via zh-TW addon) to give CJK breathing
++// room, the same 34x11 grid would overflow the report display area.
++// These globals are refreshed at the start of MakeReport().
++static COUNT __zhtw_num_cell_cols = 34;  // fallback for original 5x5 cells
++static COUNT __zhtw_num_cell_rows = 11;
++
+ #define COL_MULTIPLIER (isPC (optSuperPC) || IS_PAD ? 7 : 6)
+-#define NUM_CELL_COLS (UQM_MAP_WIDTH / COL_MULTIPLIER)
+-#define NUM_CELL_ROWS (SC2_MAP_HEIGHT / 6)
++#define NUM_CELL_COLS __zhtw_num_cell_cols
++#define NUM_CELL_ROWS __zhtw_num_cell_rows
+ #define MAX_CELL_COLS 40 // Why is this is never used???
+ 
+ extern FRAME SpaceJunkFrame;
+@@ -103,6 +113,24 @@ MakeReport (SOUND ReadOutSounds, UNICODE *pStr, COUNT StrLen)
+ 			GAME_STRING (SCAN_STRING_BASE + NUM_SCAN_TYPES));
+ 	end_page_len = utf8StringCount (end_page_buf);
+ 
++	// zh-TW patch: recompute cell counts from actual frame size each call
++	// (frame 18 dimensions are what MakeReport uses for x/y step). This allows
++	// the addon to override orbitbackground-018.png with a larger cell (e.g.
++	// 8x10 for CJK breathing room) without overflowing the report display area.
++	{
++		RECT frameRect;
++		GetFrameRect (SetAbsFrameIndex (SpaceJunkFrame, 18), &frameRect);
++		COUNT stepX = frameRect.extent.width + RES_SCALE (1);
++		COUNT stepY = frameRect.extent.height + RES_SCALE (1);
++		if (stepX > 0 && stepY > 0)
++		{
++			__zhtw_num_cell_cols = UQM_MAP_WIDTH / stepX;
++			__zhtw_num_cell_rows = SC2_MAP_HEIGHT / stepY;
++			if (__zhtw_num_cell_cols < 4)  __zhtw_num_cell_cols = 4;   // sanity
++			if (__zhtw_num_cell_rows < 3)  __zhtw_num_cell_rows = 3;
++		}
++	}
++
+ 	GetFrameRect (SetAbsFrameIndex (SpaceJunkFrame, 18), &r);
+ 	GetContextClipRect (&contextRect);
+ 
+@@ -350,7 +378,11 @@ DoDiscoveryReport (SOUND ReadOutSounds)
+ 			allocated = TRUE;
+ 			StrPtr = luaUqm_comm_stringInterpolate (StrPtr);
+ 		}
+-		MakeReport (ReadOutSounds, StrPtr, (COUNT)strlen (StrPtr));
++		// zh-TW patch: use UTF-8 char count instead of byte count, otherwise
++		// MakeReport's internal loop over-reads past nul for CJK content
++		// (each CJK char = 3 bytes but StrLen decrements per-char, so residue
++		// after content = 2├ùCJK_chars ΓåÆ memory corruption + crash).
++		MakeReport (ReadOutSounds, StrPtr, (COUNT)utf8StringCount (StrPtr));
+ 		
+ 		luaUqm_comm_uninit ();
+ 		if (allocated)

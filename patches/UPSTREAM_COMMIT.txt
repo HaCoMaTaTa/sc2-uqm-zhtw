@@ -1,0 +1,48 @@
+# UPSTREAM_COMMIT — MegaMod pinned SHA
+
+本專案的 34 個引擎 patch **必須套用在此 upstream commit 之上**。
+`scripts/setup_upstream.ps1` 會讀取本檔並自動 `git checkout` 到此 SHA。
+
+## Pinned SHA
+
+```
+dc2a4e68ccbe1011a8ad7c1c57a547fa5c1c67b9
+```
+
+## Metadata（僅供人類閱讀，腳本不依賴）
+
+- **Short SHA**: `dc2a4e6`
+- **Date**: 2026-08-31T11:14:49+08:00
+- **Subject**: chore(android): v3.8 refresh zh-TW addon — sync with PC release v1.0.12
+- **Parent**: `d3fbebdceaae6ff3fce7d4edbf74c487a058f8b9`
+- **Upstream repo**: <https://github.com/JHGuitarFreak/UQM-MegaMod>
+- **Recorded**: 2026-08-31
+
+## 為什麼要 pin SHA
+
+MegaMod 主幹持續更新（AGP / SDK / bug fix），若我們套 patch 時對到不同 upstream，會 conflict 甚至 build 出無法運作的 exe/apk。鎖 SHA 保證：
+
+1. **同步性**：本 repo 內任何工作站都能重現一模一樣的 build
+2. **可回溯**：發現問題可 checkout 這個 SHA 對照
+3. **升 upstream 有紀律**：想跟上 upstream 時，更新此檔並重跑 3-gate 驗證
+
+## 已知內建 CJK patches（不需要再套）
+
+以下 patches 已由本專案作者提交到 MegaMod HEAD（不在 `patches/` 內，但 `checkout dc2a4e6` 就能拿到）：
+
+- Zip64 EOCD parsing (patch 007 曾在本 repo，現已 upstream)
+- STAR_POSTFIX_ZH_BASE=1024 (patch 009 已 upstream)
+- pstarmap cursor-hover zh (patch 011 已 upstream)
+- CJK scan report hang (patch 008 · 內含於引擎，未產出 patch 檔)
+- Race SoI zh labels (patch 010 · 純 addon shadow content，無 patch 檔)
+
+## 如何升級 upstream
+
+```powershell
+cd Q:\path\to\UQM-MegaMod
+git fetch origin
+git log --oneline HEAD..origin/master   # 看有多少新 commit
+# 若想升，先把 patches 反套用測試 → 選新 SHA → 更新本檔 → 重跑 setup_upstream.ps1
+```
+
+**必做**：升 upstream 後，跑 `pipeline/build_zh-TW.ps1` + `pipeline/package_zh-TW.ps1` + `_verify_v032.py`，確認翻譯 addon 對齊。

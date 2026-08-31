@@ -1,0 +1,75 @@
+diff --git a/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/EngineActivity.kt b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/EngineActivity.kt
+index 1620d41..c39fc8a 100644
+--- a/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/EngineActivity.kt
++++ b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/EngineActivity.kt
+@@ -12,6 +12,8 @@ class EngineActivity : SDLActivity() {
+     private lateinit var sdlView: View
+     private var loggingEnabled = false
+     private var logFilePath = ""
++    private var contentDirPath = ""
++    private var userDirPath = ""
+ 
+     var uqm = "UrQuanMasters"
+ 
+@@ -31,6 +33,8 @@ class EngineActivity : SDLActivity() {
+ 
+         loggingEnabled = intent.getBooleanExtra("logging_enabled", false)
+         logFilePath = intent.getStringExtra("log_file_path") ?: ""
++        contentDirPath = intent.getStringExtra("content_dir") ?: ""
++        userDirPath = intent.getStringExtra("user_dir") ?: ""
+         
+         setContentView(R.layout.engine_activity)
+         sdlView = getContentView()
+@@ -44,15 +48,49 @@ class EngineActivity : SDLActivity() {
+         sdlContainer.addView(composeViewUI)
+ 
+         composeViewUI.setContent {
+-            // Nothing yet
++            // zh-TW Android port: virtual dpad + A/B/ESC controls rendered
++            // above the SDL2 render surface. Presses route to
++            // SDLActivity.onNativeKeyDown()/Up() which SDL2 translates to
++            // SDL_KEYDOWN/SDL_KEYUP for UQM's default keymap.
++            TouchOverlay()
+         }
+     }
+ 
+     override fun getArguments(): Array<String> {
+         val arguments = mutableListOf<String>()
+-        
++
++        // Point the UQM engine at the extracted content + writable config dir.
++        // These CLI switches are handled by src/uqm.c getopt (long options
++        // `--contentdir`, `--configdir`). Without them the engine falls back to
++        // the compile-time CONTENTDIR / USERDIR from src/config_android.h which
++        // are hard-wired to /storage/emulated/0/uqm-megamod/ and inaccessible on
++        // Android 10+ scoped storage.
++        if (contentDirPath.isNotEmpty()) {
++            arguments.add("--contentdir=$contentDirPath")
++        }
++        if (userDirPath.isNotEmpty()) {
++            arguments.add("--configdir=$userDirPath")
++        }
++
++        // zh-TW port: auto-enable the Traditional Chinese addon so the main menu
++        // and dialogs come up localized without the user having to navigate
++        // Setup → Add-ons on first launch. Wired via `--addon <name>` (ADDON_OPT
++        // in src/uqm.c:1264) which pushes onto options.addons[] and is later
++        // mounted by prepareShadowAddons(). The name must match the addon
++        // directory / archive name — packaged as `addons/zh-TW.uqm`.
++        arguments.add("--addon=zh-TW")
++
++        // zh-TW port (Stage 4 P2): enable "directional joystick, left stick
++        // controls direction + thrust" mode for Player 1 in melee. UQM's
++        // GetDirectionalJoystickInput() (src/uqm/gameinp.c:715) reads the
++        // left-stick axes from SDL and translates them into the classic
++        // BATTLE_LEFT / BATTLE_RIGHT / BATTLE_THRUST bit flags — including
++        // auto-turn toward the target heading — without any engine physics
++        // changes. Value 3 = "left stick, thrust when facing target".
++        arguments.add("--dirjoystick=3")
++
+         if (loggingEnabled && logFilePath.isNotEmpty()) {
+-            arguments.add("--log=$logFilePath")
++            arguments.add("--logfile=$logFilePath")
+         }
+         
+         return arguments.toTypedArray()

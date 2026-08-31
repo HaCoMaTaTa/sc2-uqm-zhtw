@@ -1,0 +1,153 @@
+diff --git a/src/libs/uio/types.h b/src/libs/uio/types.h
+index f5024b5..2c7d800 100644
+--- a/src/libs/uio/types.h
++++ b/src/libs/uio/types.h
+@@ -62,6 +62,11 @@ typedef   signed short uio_sint16;
+ typedef unsigned int   uio_uint32;
+ typedef   signed int   uio_sint32;
+
++// zh-TW patch (007-uio-zip64-eocd): 64-bit integer types needed by
++// Zip64 EOCD Record parsing (fields > 32 bits).
++typedef unsigned long long uio_uint64;
++typedef   signed long long uio_sint64;
++
+ typedef unsigned long  uio_uintptr;
+ 		// Needs to be adapted for 64 bits systems
+
+diff --git a/src/libs/uio/uioutils.h b/src/libs/uio/uioutils.h
+index 6e04843..f1c9659 100644
+--- a/src/libs/uio/uioutils.h
++++ b/src/libs/uio/uioutils.h
+@@ -57,6 +57,21 @@ makeUInt32(uio_uint8 byte1, uio_uint8 byte2, uio_uint8 byte3, uio_uint8 byte4) {
+ 	return byte1 | (byte2 << 8) | (byte3 << 16) | (byte4 << 24);
+ }
+
++// zh-TW patch (007-uio-zip64-eocd): 8-byte little-endian to uio_uint64.
++// Used by Zip64 EOCD Record parsing (total entries, CD offset, CD size).
++static inline uio_uint64
++makeUInt64(uio_uint8 byte1, uio_uint8 byte2, uio_uint8 byte3, uio_uint8 byte4,
++		uio_uint8 byte5, uio_uint8 byte6, uio_uint8 byte7, uio_uint8 byte8) {
++	return ((uio_uint64) byte1)
++			| (((uio_uint64) byte2) << 8)
++			| (((uio_uint64) byte3) << 16)
++			| (((uio_uint64) byte4) << 24)
++			| (((uio_uint64) byte5) << 32)
++			| (((uio_uint64) byte6) << 40)
++			| (((uio_uint64) byte7) << 48)
++			| (((uio_uint64) byte8) << 56);
++}
++
+ static inline uio_uint16
+ makeUInt16(uio_uint8 byte1, uio_uint8 byte2) {
+ 	return byte1 | (byte2 << 8);
+diff --git a/src/libs/uio/zip/zip.c b/src/libs/uio/zip/zip.c
+index f7f8969..f263e28 100644
+--- a/src/libs/uio/zip/zip.c
++++ b/src/libs/uio/zip/zip.c
+@@ -664,7 +664,10 @@ zip_fillDirStructureCentral(uio_GPDir *top, uio_Handle *handle) {
+ 	off_t pos;
+ 	char *buf;
+ 	ssize_t numBytes;
+-	uio_uint16 numEntries;
++	// zh-TW patch (007-uio-zip64-eocd): widened from uio_uint16 to
++	// uio_uint64 to hold Zip64 EOCD Record's 8-byte entry count
++	// (needed when addon has > 65535 entries).
++	uio_uint64 numEntries;
+ 			// TODO: use numEntries to initialise the hash table
+ 			//       to a smart size
+ 	off_t eocdr;
+@@ -694,14 +697,88 @@ zip_fillDirStructureCentral(uio_GPDir *top, uio_Handle *handle) {
+ 	}
+
+ 	numEntries = makeUInt16(buf[10], buf[11]);
+-	if (numEntries == 0xffff) {
+-		fprintf(stderr, "Error: Zip64 .zip files are not supported.\n");
+-		errno = ENOSYS;
+-		goto err;
+-	}
+-
+ 	startCentralDir = makeUInt32(buf[16], buf[17], buf[18], buf[19]);
+
++	// zh-TW patch (007-uio-zip64-eocd): Zip64 EOCD fallback.
++	// When the standard EOCD reports 0xFFFF entries or 0xFFFFFFFF as
++	// CD offset, the actual 64-bit values live in the Zip64 EOCD
++	// Record, whose offset is stored in the Zip64 EOCD Locator (which
++	// sits immediately BEFORE the standard EOCD).
++	if (numEntries == 0xffff || startCentralDir == (off_t) 0xffffffff) {
++		char *locBuf;
++		char *z64Buf;
++		off_t z64EocdOffset;
++
++		if (eocdr < 20) {
++			fprintf(stderr, "Error: Zip64 EOCD Locator position "
++					"invalid (EOCD too close to file start).\n");
++			errno = EIO;
++			goto err;
++		}
++
++		// Zip64 EOCD Locator is 20 bytes, sitting immediately before
++		// the standard EOCD Record.
++		numBytes = uio_accessFileBlock(fileBlock, eocdr - 20, 20,
++				&locBuf);
++		if (numBytes == -1) {
++			// errno is set
++			goto err;
++		}
++		if (numBytes != 20) {
++			fprintf(stderr, "Error: Cannot read Zip64 EOCD "
++					"Locator (short read).\n");
++			errno = EIO;
++			goto err;
++		}
++		// Verify Zip64 EOCD Locator signature (0x07064b50 LE = PK\6\7)
++		if ((uio_uint8) locBuf[0] != 0x50
++				|| (uio_uint8) locBuf[1] != 0x4b
++				|| (uio_uint8) locBuf[2] != 0x06
++				|| (uio_uint8) locBuf[3] != 0x07) {
++			fprintf(stderr, "Error: Zip64 EOCD Locator "
++					"signature not found.\n");
++			errno = EIO;
++			goto err;
++		}
++		// Zip64 EOCD Record offset is 8 bytes at Locator offset 8.
++		z64EocdOffset = (off_t) makeUInt64(locBuf[8], locBuf[9],
++				locBuf[10], locBuf[11], locBuf[12], locBuf[13],
++				locBuf[14], locBuf[15]);
++
++		// Read Zip64 EOCD Record (minimum 56 bytes; may contain
++		// variable extensible data, but only first 56 are needed).
++		numBytes = uio_accessFileBlock(fileBlock, z64EocdOffset, 56,
++				&z64Buf);
++		if (numBytes == -1) {
++			// errno is set
++			goto err;
++		}
++		if (numBytes != 56) {
++			fprintf(stderr, "Error: Cannot read Zip64 EOCD "
++					"Record (short read).\n");
++			errno = EIO;
++			goto err;
++		}
++		// Verify Zip64 EOCD Record signature (0x06064b50 LE = PK\6\6)
++		if ((uio_uint8) z64Buf[0] != 0x50
++				|| (uio_uint8) z64Buf[1] != 0x4b
++				|| (uio_uint8) z64Buf[2] != 0x06
++				|| (uio_uint8) z64Buf[3] != 0x06) {
++			fprintf(stderr, "Error: Zip64 EOCD Record "
++					"signature not found.\n");
++			errno = EIO;
++			goto err;
++		}
++		// Real total entries: 8 bytes at Z64 EOCD offset 32.
++		numEntries = makeUInt64(z64Buf[32], z64Buf[33], z64Buf[34],
++				z64Buf[35], z64Buf[36], z64Buf[37],
++				z64Buf[38], z64Buf[39]);
++		// Real CD start offset: 8 bytes at Z64 EOCD offset 48.
++		startCentralDir = (off_t) makeUInt64(z64Buf[48], z64Buf[49],
++				z64Buf[50], z64Buf[51], z64Buf[52], z64Buf[53],
++				z64Buf[54], z64Buf[55]);
++	}
++
+ 	// Enable read-ahead buffering, for speed.
+ 	uio_setFileBlockUsageHint(fileBlock, uio_FB_USAGE_FORWARD,
+ 			DIR_STRUCTURE_READ_BUFSIZE);

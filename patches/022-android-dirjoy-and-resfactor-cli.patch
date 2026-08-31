@@ -1,0 +1,70 @@
+diff --git a/src/uqm.c b/src/uqm.c
+index e79aaa8..991c374 100644
+--- a/src/uqm.c
++++ b/src/uqm.c
+@@ -1341,6 +1341,7 @@ enum
+ 	DZRP1_OPT,
+ 	DZLP2_OPT,
+ 	DZRP2_OPT,
++	RESFACTOR_OPT,
+ #ifdef NETPLAY
+ 	NETHOST1_OPT,
+ 	NETPORT1_OPT,
+@@ -1418,6 +1419,11 @@ static struct option longOptions[] =
+ 	{"landerhold", 0, NULL, LANDHOLD_OPT},
+ 	{"scrtrans", 1, NULL, SCRTRANS_OPT},
+ 	{"melee", 0, NULL, MELEE_OPT},
++	// zh-TW Android port: expose resolutionfactor (0=SD, 1=hd2x window,
++	// 2=full HD 1280x960). No short opt because a single-letter alias with
++	// numeric arg (like -r) already exists for --res; new opt takes long
++	// form only. Handler in the option-processing switch below.
++	{"resfactor", 1, NULL, RESFACTOR_OPT},
+ 	{"loadgame", 0, NULL, LOADGAME_OPT},
+ 	{"difficulty", 1, NULL, DIFFICULTY_OPT},
+ 	{"fuelrange", 1, NULL, FUELRANGE_OPT},
+@@ -1999,7 +2005,7 @@ parseOptions (int argc, char *argv[], struct options_struct *options)
+ 					badArg = true;
+ 					break;
+ 				}
+-				else if (temp < 0 || temp > 2)
++				else if (temp < 0 || temp > 4)
+ 				{
+ 					saveError ("\nDirectional Joystick has to be "
+ 						"0, 1, 2, 3, or 4.\n");
+@@ -2012,6 +2018,36 @@ parseOptions (int argc, char *argv[], struct options_struct *options)
+ 				}
+ 				break;
+ 			}
++			case RESFACTOR_OPT:
++			{
++				// zh-TW Android port: expose resolutionfactor as a CLI flag
++				// (matches Play_HD.bat's uqm.cfg `resolutionfactor=INT32:2`).
++				// UQM upstream only reads this from cfg; on Android our
++				// --configdir is not the compile-time default so cfg is
++				// unreachable at first boot. This flag closes the gap so
++				// EngineActivity.getArguments() can force HD without needing
++				// to seed a cfg file.
++				//
++				// 0 = SD (320x240), 1 = 2x window / HD-ready, 2 = HD 1280x960
++				int temp;
++				if (parseIntOption (optarg, &temp,
++						"Resolution Factor") == -1)
++				{
++					badArg = true;
++					break;
++				}
++				else if (temp < 0 || temp > 2)
++				{
++					saveError ("\nResolution Factor has to be 0, 1, or 2.\n");
++					badArg = true;
++				}
++				else
++				{
++					options->resolutionFactor.value = temp;
++					options->resolutionFactor.set = true;
++				}
++				break;
++			}
+ 			case LANDHOLD_OPT:
+ 				if (!setChoiceOption (&options->landerHold, optarg)) {
+ 					InvalidArgument (optarg, "--landerhold");

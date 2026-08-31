@@ -1,0 +1,18 @@
+{
+  "_notes": [
+    "v0.7 — Sun Device (太陽裝置) lander report on Mycon site.",
+    "Source: extracted/base/base/lander/energy/sundevice.txt",
+    "Speaker: Landing party report (斷續, 地震撼動中).",
+    "Register: 士兵在地震中通訊斷斷續續,語氣驚慌。",
+    "Terminology:",
+    "  Mycon = 麥孔族",
+    "  Sun Device = 太陽裝置 (Phase 7 canonical)",
+    "  tectonic shocks = 地殼震動",
+    "  Jeevo the engineer = 吉沃工程師",
+    "  spider and antenna = 蜘蛛與天線 (直譯: 交叉物比喻)",
+    "  visible light = 可見光",
+    "  redlining voice: 用 - 符號模擬電波中斷 (e.g. S-SIR-R WE-E)"
+  ],
+
+  "SUNDEVIC 1": " ---- 地表傳回報告 ----\n\n報-報告艦-艦長 我方正經-經歷嚴-嚴重的\n地-地殼震-震-動...\n\n等一下... 似乎過了。呼! 那真恐怖!\n\n\n艦長,我方沒被彈上艙頂\n或撞向登陸艇艙壁之時,\n一直在尋找麥孔族在此\n藏匿的東西。我方認為已找到!\n\n我不知該如何稱呼——\n它看起來像蜘蛛與天線的混合體,\n然我方隨行的吉沃工程師表示,\n該裝置具有\n以可見光形式輻射巨量能量\n的能力。\n\n我方決定不對該遺物進行實驗,\n將於稍加探查周邊環境後\n立即攜帶登艦...\n\n...噢-噢艦-艦長! 震-震動看-看起來\n又-又開-開始了! 我-我方無-無法\n再-再承-承受更-更多了!\n\n返-返回艦-艦上!\n\n  ---- 報告結束 ----"
+}

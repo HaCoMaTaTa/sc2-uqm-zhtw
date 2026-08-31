@@ -1,0 +1,95 @@
+# =====================================================================
+# uqm-megamod-zhTW / .gitignore
+# 原則：只追蹤源碼、翻譯 JSON、md 文件、腳本。
+# 排除：build 產物、DOS 原檔、大型二進位、venv、快取、密鑰。
+# =====================================================================
+
+# ---- 大型二進位（走 GitHub Releases，不進 git 歷史）----
+*.apk
+*.aab
+*.zip
+*.uqm
+*.7z
+*.rar
+*.iso
+*.pdf
+*.exe
+*.dll
+*.so
+*.jar
+
+# ---- Python ----
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.venv-ocr/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# ---- IDE / OS ----
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# ---- Build / 工作區 ----
+_stage/
+_stage_hd_fonts/
+_stage_*/
+build/
+dist/
+release/
+output/
+install/
+extracted/
+downloads/
+_downloads/
+_snapshots/
+_tmp*/
+_verify*/
+_ocr*/
+_rpg*/
+_starmap_out/
+_test*/
+_terms/
+_megamod_content/
+_megamod_content_085/
+_en_starbase_extract/
+_en_source/
+_uqmmap/
+
+# ---- 敏感檔（絕對不能進 repo）----
+keystore/
+keystore.properties
+*.jks
+*.keystore
+*.env
+*.env.*
+!*.env.example
+!keystore.properties.example
+
+# ---- 個人記憶暫存 ----
+memory-tool/
+.copilot/
+
+# ---- 日誌 / 暫存 ----
+*.log
+*.tmp
+*.bak
+*.orig
+_build*.log
+_pkg*.log
+_release_*_log.txt
+
+# ---- 例外（強制包含）----
+!scripts/*.example
+!android/keystore.properties.example
+!docs/**/*.md
+!patches/*.patch
+!.github/**

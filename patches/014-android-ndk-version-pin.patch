@@ -1,0 +1,15 @@
+diff --git a/build/android/composeApp/build.gradle.kts b/build/android/composeApp/build.gradle.kts
+index ef43c32..fcf6000 100644
+--- a/build/android/composeApp/build.gradle.kts
++++ b/build/android/composeApp/build.gradle.kts
+@@ -40,6 +40,10 @@ android {
+     namespace = "org.megamod.uqm"
+     compileSdk = libs.versions.android.compileSdk.get().toInt()
+ 
++    // zh-TW port: pin NDK to r27d LTS (27.2.12479018) so AGP does not silently
++    // pick the older 27.0 rc that ships with cmdline-tools.
++    ndkVersion = "27.2.12479018"
++
+     defaultConfig {
+         applicationId = "org.megamod.uqm"
+         minSdk = libs.versions.android.minSdk.get().toInt()

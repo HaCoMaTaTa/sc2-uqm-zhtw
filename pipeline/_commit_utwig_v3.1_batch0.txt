@@ -1,0 +1,50 @@
+v3.1 utwig Batch 0: shipped punctuation typography normalization
+
+Race: 憂特族 (Utwig · v0.1 baseline · 114 tokens · Tier 2 High)
+Nature: Pre-content typography drift fix (Q1=B canonical alignment)
+
+## Discovery
+
+Utwig v0.1 shipped had mixed half/full-width Latin parentheses in dialog:
+
+| State | half `(English)` | full 「（English）」 |
+|-------|-----------------:|-------------------:|
+| Before | **31** | 14 |
+| After  | 0 | 45 |
+
+Cross-race canonical (all use 全形 for CJK-context English parentheticals):
+- syreen: 0 / 17
+- mycon: 0 / 9
+- melnorme: 0 / 46
+- arilou: 0 / 19
+- pkunk: 0 (after v3.1 typography sweep) / 38
+
+Utwig had many Q1=B first-mention parentheticals in mixed style — mask names,
+mask categories, character/rank titles, emotional exclamations. Normalized
+uniformly to full-width per跨檔 canonical.
+
+## Normalization Applied
+
+Dialog values only (skipped `_notes` annotations):
+- 31 × `(English...)` → `（English...）` (across 20+ keys touched)
+
+Internal English punctuation preserved:
+- `（Yagh!）`, `（Bah!）`, `（Alas!）` — 14 emotional exclamations keep `!`
+  half-width because it's part of the English content inside the parens.
+
+_notes annotations restored (25 items) — internal decision comments keep
+original half-width convention.
+
+## Gates PASS
+
+- Purity: race=0 · simp=0 · variant=0
+- Lua template: 0 suspicious first-args
+- JSON valid · 114 tokens
+- No semantic content changes; strictly typography
+
+## Rationale
+
+Doing this as Batch 0 (before content audit batches) so:
+1. Subsequent content commits stay clean (semantic-only diffs)
+2. Content audit sees canonical typography state
+3. Reviewers can review typography vs content separately

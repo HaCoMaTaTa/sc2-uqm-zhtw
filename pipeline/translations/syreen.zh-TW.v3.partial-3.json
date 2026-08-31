@@ -1,0 +1,90 @@
+{
+  "_notes": [
+    "== Syreen v0.7 Rebuild-Compare · Batch 3/3 · 42 tokens (FOUND_VAULT_YET_1~OUT_TAKES) ==",
+    "Batch 3 涵蓋 Mode 1 vault/ambush 任務尾聲 + Mode 2 sex 段完整 + Mode 4 NOT_EVIL_MONSTER 拖音 (Q10=A) + Mode 2 SEX_GOODBYE 深情 + OUT_TAKES 打破第四牆 gag"
+  ],
+
+  "FOUND_VAULT_YET_1": "您找到艦隊地窖了嗎？",
+
+  "FOUND_VAULT_YET_2": "找到我族的艦艇了嗎，艦長？",
+
+  "vault_hint": "呃…… 沒有。 妳有沒有頭緒它在哪裡，就算是猜也好？",
+
+  "OK_HINT": "我族只知道地窖在一顆 <% comm.getColor(\"紅色或許橘色\", \"ship vault\") %> 恆星附近，離我族的位置不太遠。",
+
+  "found_vault": "找到了！ 我方在 <% comm.getStarName(\"鹿豹座ε\", \"ship vault\") %> I 的衛星上找到它。",
+
+  "bye_before_vault": "再見了，泰蘭娜。 我這就去找地窖！",
+
+  "GOODBYE_BEFORE_VAULT": "祝您好運，艦長。",
+
+  "what_do_i_get_for_this": "所以我做這事能得到什麼呢，嗯？ 嗯？ 嗯？",
+
+  "GRATITUDE": "你會收到多到你不知道怎麼處理的感激，艦長。",
+
+  "not_sure": "呃…… 我不太確定。 聽起來很危險。",
+
+  "PLEASE": "拜託您了，艦長，我族需要您的幫助！",
+
+  "READY_FOR_AMBUSH": "我族會在此等候麥孔族。",
+
+  "repeat_plan": "可以再說一次計畫嗎？",
+
+  "OK_REPEAT_PLAN": "好，計畫再說一次。\n您必須前往麥孔族那裡，告訴他們 <% comm.getStarName(\"歐加農\", \"mycon trap\") %>（Organon） 星系有一顆世界。\n告訴他們您找到給他們可怕深淵之子的完美世界。\n我族會躲在那裡埋伏等候他們。\n然後我族將消滅他們。",
+
+  "bye_before_ambush": "祝妳好運，泰蘭娜。",
+
+  "GOODBYE_BEFORE_AMBUSH": "你也一樣，我的人類。",
+
+  "what_about_us": "我的意思是…… 那我們呢，泰蘭娜？",
+
+  "ABOUT_US": "恐怕我們的職責會讓我們分離，艦長\n但至少現在，還有這個……",
+
+  "MORE_COMFORTABLE": "這樣才對嘛…… 好，<% state.sis.getCaptainName() %>，讓我幫你把這個脫掉\n對了…… 現在你是不是舒服多了？",
+
+  "in_the_spirit": "我懂了！ 好吧，本著跨物種交流的精神，容我說一句：卡哇邦嘎！（COWABUNGA!）",
+
+  "OK_SPIRIT": "噢——！ 再說一次那個詞！\n讓我覺得好興奮！\n讓我想為你做點好事——\n像這樣……\n還有這樣……\n特別是，這樣！",
+
+  "what_in_mind": "嘿…… 妳心裡在盤算什麼？",
+
+  "SOMETHING_LIKE_THIS": "嗯，剛開始我想咱倆可以做點像這樣的事\n除非你的物種身段不夠柔軟\n然後我想咱倆可以進到有點像…… 唔…… 這樣的事。\n等你恢復後，我想這樣應該會很有趣！\n如果你還有意識，我想咱倆可以試試這個\n即使我從沒做過！",
+
+  "hands_off": "嘿！ 手拿開，小姐！ 我可不是「那種」艦長。",
+
+  "OK_WONT_USE_HANDS": "喔，艦長…… 我絕對不會想對你做什麼不愉快的事\n事實上，恰恰相反。\n但如果你要我把手拿開…… 我可以用別的…… 東西……\n像這裡的這個……\n還有這裡的這個……\n還有大概就在這裡的這個。",
+
+  "why_lights_off": "啊…… 為什麼燈關了？",
+
+  "LIGHTS_OFF_BECAUSE": "因為，我親愛的，如果燈亮著，我就沒法做這個……\n也沒法這樣……\n也沒法這樣……\n更沒法…… 嗯…… 這樣。",
+
+  "evil_monster": "妳現在該不會變成什麼奇怪的外星怪物，然後把我的頭一口咬下去吧？",
+
+  "NOT_EVIL_MONSTER": "哈！-哈！-哈！ 外星怪物？ 我？\n我？！ 為什——麼——艦——長！ 你怎——麼——會——這麼——說呢——！！！\n呃嗚嗷嗷嗷！！！！\n…… 開玩笑的啦！",
+
+  "disease": "真好笑。 聽著，如果我們把燈重新打開，我會比較自在。",
+
+  "JUST_RELAX": "放輕鬆，我這傻乎乎的人類艦長。 一切交給我。",
+
+  "what_happens_if_i_touch_this": "嗯…… 如果我這樣做會怎樣？",
+
+  "THIS_HAPPENS": "喔，<% state.sis.getCaptainName() %>！ MMMmm！！……\nMmmmm……",
+
+  "are_you_sure_this_is_ok": "妳確定這樣沒問題嗎？ 我有點緊張。",
+
+  "YES_SURE": "別擔心，我親愛的人類\n咱倆有的是時間\n而且我的門鎖得很牢。",
+
+  "boy_they_never_taught": "天啊，天啊！ 在恩澤伐特他們可沒教過我這種事！",
+
+  "THEN_LET_ME_TEACH": "那就讓我來教你需要知道的東西\n咱倆從塞蓮族基礎生理學開始……",
+
+  "not_much_more_to_say": "嗯，呃…… 好吧，呃，我大概沒什麼可說的了，對吧？",
+
+  "THEN_STOP_TALKING": "那就別再讓你的雙唇白白說話了，你這傻子\n過來這裡吧！……",
+
+  "LATER": "（……稍後……）\n（……過了一段時間……）\n（……又過了好一段時間……）",
+
+  "SEX_GOODBYE": "再見了，親愛的艦長…… 咱倆各自都有職責要盡\n你必須走了！\n但你會永遠留在我的心裡與腦海中\n在我內心深處，我知道，總有一天，當這一切瘋狂結束時\n咱倆會再像這樣…… 在一起。",
+
+  "OUT_TAKES": "萬一你在想我的近況…… 別擔心！ 我過得很好！\n事實上，我剛跟設計師談過，他們向我保證\n續集會完全以我為主角！ 這是不是太棒了！\n他們說想跳脫戰士神話原型\n多發展治癒者原型的角色。\n這可能是我的大好機會！\n我唯一不確定的是他們要我穿的新服裝。\n他們說這一套會非常…… 曝露。"
+}

@@ -1,0 +1,17 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 76a71c1..be52824 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -456,6 +456,12 @@ endif ()
+ 
+ if (ANDROID)
+ 	list (APPEND UQM_LINK_LIBRARIES log)
++
++	# zh-TW Android port: NDK Clang enforces -Werror=format-security which
++	# rejects lander.c's deliberate use of runtime-resolved GAME_STRING(...)
++	# as the format arg to sprintf (element description injection). Downgrade
++	# to warning on Android only — the desktop builds keep the strict default.
++	target_compile_options (UrQuanMasters PRIVATE -Wno-error=format-security)
+ endif ()
+ 
+ target_link_libraries (UrQuanMasters ${UQM_LINK_LIBRARIES})

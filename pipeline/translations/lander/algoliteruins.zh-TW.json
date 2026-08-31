@@ -1,0 +1,12 @@
+{
+  "_notes": [
+    "v0.7 B1C — Algolite ruins (神秘 Spathi 造訪+大氣消失).",
+    "Source: extracted/base/base/lander/energy/algoliteruins.txt",
+    "Terminology:",
+    "  Algolites = 阿爾戈萊族 (音譯,依 SC2 lore 已滅絕種族)",
+    "  Spathi = 史怕族",
+    "  atmosphere stripped away = 大氣被剝離 (真空後結果)"
+  ],
+
+  "ALGOLITES 1": " ---- 地表傳回報告 ----\n\n我方發現一個名為\n「阿爾戈萊族」的文明廢墟。\n令人稱奇的是,\n此行星大氣為零。\n\n我方開始翻譯所發現的紀錄,\n看似史怕族曾於某時刻抵達此地,\n但歷史記載如同他們抵達般突兀地結束。\n\n我方無從得知箇中原委,\n然儀器顯示大氣層在史怕族抵達後\n不久便遭剝離。\n\n我方將把發現造冊登錄後,\n返回登陸艇。\n\n  ---- 報告結束 ----"
+}

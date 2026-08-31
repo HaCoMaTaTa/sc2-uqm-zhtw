@@ -1,0 +1,10 @@
+{
+  "_notes": [
+    "v0.1 — Suicide game-over 短訊 (玩家自爆或無腦送死)。1 TFI block。",
+    "Source: extracted/base/base/cutscene/gameover/suicide.txt",
+    "Register: 遊戲吐槽玩家的黑色幽默。",
+    "Q9 suicide = B · 詼諧化 (保 heck 罵人語氣)"
+  ],
+
+  "What the heck did you think was going to happen?": "你到底以為會怎樣？"
+}

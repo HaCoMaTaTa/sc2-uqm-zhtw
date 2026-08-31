@@ -1,0 +1,16 @@
+{
+  "_notes": [
+    "v0.7 — Shofixti Maidens (VUX Zex 冷凍艙) lander report.",
+    "Source: extracted/base/base/lander/energy/maidens.txt",
+    "Speaker: Landing party report.",
+    "Register: 軍事簡報風 (moonbase 基準)。",
+    "Terminology:",
+    "  VUX = VUX (保留原文全大寫, Fixed_Terms canonical)",
+    "  Shofixti = 修烈士族",
+    "  menagerie = 珍禽異獸館 (使用者鎖定 2026-08-13)",
+    "  cryotanks = 冷凍艙",
+    "  bipedal creatures = 兩足生物"
+  ],
+
+  "MAIDENS 1": " ---- 地表傳回報告 ----\n\n我方於 VUX 指揮官的珍禽異獸館中\n發現數座似仍運作的冷凍艙,\n內裝約十二具兩足生物。\n雖無法確認,\n但透過冷凍艙的霧化觀察窗,\n我方認為艙內冷凍者\n為年輕的修烈士族女性。\n我方已將冷凍艙轉移至登陸艇,\n正返回旗艦。\n\n  ---- 報告結束 ----"
+}

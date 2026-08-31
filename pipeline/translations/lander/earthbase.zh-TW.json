@@ -1,0 +1,21 @@
+{
+  "_notes": [
+    "v0.7 B1B — Earth Base (Hayes' warning transmission).",
+    "Source: extracted/base/base/lander/energy/earthbase.txt",
+    "NOTE: Source file's ID header is '#(DESTROYED BASE 1)' which appears to be",
+    "      a re-used ID from destroyedbase.txt. Preserve as-is (translate_ui.py",
+    "      matches by ID string).",
+    "Speaker: Cdr. Hayes broadcasting from Earth's slave-shielded starbase.",
+    "Register: 軍事官方警告 (Hayes 的 Ur-Quan 條約警告)。",
+    "Terminology:",
+    "  Starbase Commander Hayes = 星際基地指揮官海斯 (canonical)",
+    "  Ur-Quan = 烏寬族",
+    "  Slave Treaty = 奴役條約",
+    "  Article 15 = 第 15 條",
+    "  Hierarchy = 戰奴階層 (v0.2 canonical)",
+    "  INCOMING MESSAGE = 收到訊息",
+    "  END OF MESSAGE = 訊息結束"
+  ],
+
+  "DESTROYED BASE 1": " ---- 收到訊息 ----\n\n注意,身分不明太空艦艇。\n\n本官為星際基地指揮官海斯,\n屬奴役行星地球。\n\n貴艦艇目前違反\n烏寬奴役條約第 15 條。\n\n本方有義務向主宰\n通報任何違反此條約之事,\n故建議貴艦即刻離開、\n永不返回。\n\n否則將招致\n烏寬戰奴階層全部之怒火。\n\n  ---- 訊息結束 ----"
+}

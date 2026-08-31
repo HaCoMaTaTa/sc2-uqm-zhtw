@@ -1,0 +1,826 @@
+============================================================
+zh-TW purity check
+============================================================
+  [PASS] arilou       race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] chmmr        race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] commander    race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] deathmarch   race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] defeated     race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] druuge       race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] final        race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] ilwrath      race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] intro        race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] kohrah       race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] melnorme     race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] mycon        race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] orz          race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] pkunk        race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] probe        race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] safeones     race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] setupmenu    race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] shofixti     race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] slylandro    race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] spathi       race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] starbase     race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] suicide      race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] supox        race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] surrendered  race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] syreen       race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] talkingpet   race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] thraddash    race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] umgah        race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] urquan       race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] utwig        race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] vux          race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] yehat        race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] yehatrebels  race=  0  simp=  0  variant=  0  tokens=  0
+  [PASS] zoqfotpik    race=  0  simp=  0  variant=  0  tokens=  0
+============================================================
+τ╕╜Φ¿ê: race=0, simp=0, variant=0, µ£ëσòÅΘíîµ¬öµíê=0
+============================================================
+====================================================================
+Lua template first-arg (English residual) check
+====================================================================
+  [PASS] arilou       suspicious first-args: 0
+  [PASS] chmmr        suspicious first-args: 0
+  [PASS] commander    suspicious first-args: 0
+  [PASS] deathmarch   suspicious first-args: 0
+  [PASS] defeated     suspicious first-args: 0
+  [PASS] druuge       suspicious first-args: 0
+  [PASS] final        suspicious first-args: 0
+  [PASS] ilwrath      suspicious first-args: 0
+  [PASS] intro        suspicious first-args: 0
+  [PASS] kohrah       suspicious first-args: 0
+  [PASS] algoliteruins suspicious first-args: 0
+  [PASS] androsynth_ruins suspicious first-args: 0
+  [PASS] aquahelix    suspicious first-args: 0
+  [PASS] vuxbeast     suspicious first-args: 0
+  [PASS] burvixcaster suspicious first-args: 0
+  [PASS] burvixeseruins suspicious first-args: 0
+  [PASS] chmmrbase    suspicious first-args: 0
+  [PASS] chmmrhome    suspicious first-args: 0
+  [PASS] destroyedbase suspicious first-args: 0
+  [PASS] earthbase    suspicious first-args: 0
+  [PASS] eggcase      suspicious first-args: 0
+  [PASS] excavationsite suspicious first-args: 0
+  [PASS] fwiffo       suspicious first-args: 0
+  [PASS] maidens      suspicious first-args: 0
+  [PASS] moonbase     suspicious first-args: 0
+  [PASS] motherark    suspicious first-args: 0
+  [PASS] precursorbase suspicious first-args: 0
+  [PASS] ruins        suspicious first-args: 0
+  [PASS] shofixtibase suspicious first-args: 0
+  [PASS] spathimonument suspicious first-args: 0
+  [PASS] sphere       suspicious first-args: 0
+  [PASS] spindle      suspicious first-args: 0
+  [PASS] stele        suspicious first-args: 0
+  [PASS] sundevice    suspicious first-args: 0
+  [PASS] syreenbase   suspicious first-args: 0
+  [PASS] syreenvault  suspicious first-args: 0
+  [PASS] taalodevice  suspicious first-args: 0
+  [PASS] ultron       suspicious first-args: 0
+  [PASS] umgahcaster  suspicious first-args: 0
+  [PASS] urquanbase   suspicious first-args: 0
+  [PASS] urquanwreck  suspicious first-args: 0
+  [PASS] utwigbomb    suspicious first-args: 0
+  [PASS] zfpcolony    suspicious first-args: 0
+  [PASS] melnorme     suspicious first-args: 0
+  [PASS] mycon        suspicious first-args: 0
+  [PASS] orz          suspicious first-args: 0
+  [PASS] pkunk        suspicious first-args: 0
+  [PASS] probe        suspicious first-args: 0
+  [PASS] safeones     suspicious first-args: 0
+  [PASS] setupmenu    suspicious first-args: 0
+  [PASS] shofixti     suspicious first-args: 0
+  [PASS] slylandro    suspicious first-args: 0
+  [PASS] spathi       suspicious first-args: 0
+  [PASS] starbase     suspicious first-args: 0
+  [PASS] suicide      suspicious first-args: 0
+  [PASS] supox        suspicious first-args: 0
+  [PASS] surrendered  suspicious first-args: 0
+  [PASS] syreen       suspicious first-args: 0
+  [PASS] talkingpet   suspicious first-args: 0
+  [PASS] thraddash    suspicious first-args: 0
+  [PASS] umgah        suspicious first-args: 0
+  [PASS] urquan       suspicious first-args: 0
+  [PASS] utwig        suspicious first-args: 0
+  [PASS] vux          suspicious first-args: 0
+  [PASS] yehat        suspicious first-args: 0
+  [PASS] yehatrebels  suspicious first-args: 0
+  [PASS] zoqfotpik    suspicious first-args: 0
+====================================================================
+τ╕╜Φ¿ê: 0 σÇïσÅ»τûæ English ΘªûσÅâµò╕
+====================================================================
+================================================================
+Line-count alignment check (source .txt vs .zh-TW.json)
+================================================================
+  [PASS] arilou       tokens= 97  mismatches=0
+  [PASS] chmmr        tokens= 78  mismatches=0
+  [PASS] commander    tokens= 90  mismatches=0
+  [PASS] druuge       tokens=105  mismatches=0
+  [PASS] ilwrath      tokens=109  mismatches=0
+  [PASS] kohrah       tokens= 76  mismatches=0
+  [PASS] melnorme     tokens=277  mismatches=0
+  [PASS] mycon        tokens=109  mismatches=0
+  [PASS] orz          tokens=114  mismatches=0
+  [PASS] pkunk        tokens=175  mismatches=0
+  [PASS] probe        tokens= 86  mismatches=0
+  [PASS] safeones     tokens=143  mismatches=0
+  [PASS] shofixti     tokens= 87  mismatches=0
+  [PASS] slylandro    tokens=114  mismatches=0
+  [PASS] spathi       tokens=135  mismatches=0
+  [PASS] starbase     tokens=267  mismatches=0
+  [PASS] supox        tokens= 89  mismatches=0
+  [PASS] syreen       tokens=127  mismatches=0
+  [PASS] talkingpet   tokens=112  mismatches=0
+  [PASS] thraddash    tokens=148  mismatches=0
+  [PASS] umgah        tokens= 85  mismatches=0
+  [PASS] urquan       tokens= 76  mismatches=0
+  [PASS] utwig        tokens=110  mismatches=0
+  [PASS] vux          tokens=102  mismatches=0
+  [PASS] yehat        tokens= 64  mismatches=0
+  [PASS] yehatrebels  tokens= 34  mismatches=0
+  [PASS] zoqfotpik    tokens=330  mismatches=0
+================================================================
+τ╕╜Φ¿êΣ╕ìσî╣Θàì tokens: 0
+================================================================
+========================================================================
+Wrap-hostile character sequence check
+========================================================================
+  [PASS] arilou         HIGH=0 MED=0 LOW=0
+  [PASS] chmmr          HIGH=0 MED=0 LOW=0
+  [PASS] commander      HIGH=0 MED=0 LOW=0
+  [PASS] deathmarch     HIGH=0 MED=0 LOW=0
+  [PASS] defeated       HIGH=0 MED=0 LOW=0
+  [PASS] druuge         HIGH=0 MED=0 LOW=0
+  [PASS] final          HIGH=0 MED=0 LOW=0
+  [PASS] ilwrath        HIGH=0 MED=0 LOW=0
+  [PASS] intro          HIGH=0 MED=0 LOW=0
+  [PASS] kohrah         HIGH=0 MED=0 LOW=0
+  [PASS] algoliteruins  HIGH=0 MED=0 LOW=0
+  [PASS] androsynth_ruins HIGH=0 MED=0 LOW=0
+  [PASS] aquahelix      HIGH=0 MED=0 LOW=0
+  [PASS] vuxbeast       HIGH=0 MED=0 LOW=0
+  [PASS] burvixcaster   HIGH=0 MED=0 LOW=0
+  [PASS] burvixeseruins HIGH=0 MED=0 LOW=0
+  [PASS] chmmrbase      HIGH=0 MED=0 LOW=0
+  [PASS] chmmrhome      HIGH=0 MED=0 LOW=0
+  [PASS] destroyedbase  HIGH=0 MED=0 LOW=0
+  [PASS] earthbase      HIGH=0 MED=0 LOW=0
+  [PASS] eggcase        HIGH=0 MED=0 LOW=0
+  [PASS] excavationsite HIGH=0 MED=0 LOW=0
+  [PASS] fwiffo         HIGH=0 MED=0 LOW=0
+  [PASS] maidens        HIGH=0 MED=0 LOW=0
+  [PASS] moonbase       HIGH=0 MED=0 LOW=0
+  [PASS] motherark      HIGH=0 MED=0 LOW=0
+  [PASS] precursorbase  HIGH=0 MED=0 LOW=0
+  [PASS] ruins          HIGH=0 MED=0 LOW=0
+  [PASS] shofixtibase   HIGH=0 MED=0 LOW=0
+  [PASS] spathimonument HIGH=0 MED=0 LOW=0
+  [PASS] sphere         HIGH=0 MED=0 LOW=0
+  [PASS] spindle        HIGH=0 MED=0 LOW=0
+  [PASS] stele          HIGH=0 MED=0 LOW=0
+  [PASS] sundevice      HIGH=0 MED=0 LOW=0
+  [PASS] syreenbase     HIGH=0 MED=0 LOW=0
+  [PASS] syreenvault    HIGH=0 MED=0 LOW=0
+  [PASS] taalodevice    HIGH=0 MED=0 LOW=0
+  [PASS] ultron         HIGH=0 MED=0 LOW=0
+  [PASS] umgahcaster    HIGH=0 MED=0 LOW=0
+  [PASS] urquanbase     HIGH=0 MED=0 LOW=0
+  [PASS] urquanwreck    HIGH=0 MED=0 LOW=0
+  [PASS] utwigbomb      HIGH=0 MED=0 LOW=0
+  [PASS] zfpcolony      HIGH=0 MED=0 LOW=0
+  [PASS] melnorme       HIGH=0 MED=0 LOW=0
+  [PASS] mycon          HIGH=0 MED=0 LOW=0
+  [PASS] orz            HIGH=0 MED=3 LOW=0
+  [PASS] pkunk          HIGH=0 MED=0 LOW=0
+  [PASS] probe          HIGH=0 MED=0 LOW=0
+  [PASS] safeones       HIGH=0 MED=0 LOW=0
+  [PASS] setupmenu      HIGH=0 MED=0 LOW=0
+  [PASS] shofixti       HIGH=0 MED=0 LOW=0
+  [PASS] slylandro      HIGH=0 MED=0 LOW=0
+  [PASS] spathi         HIGH=0 MED=0 LOW=0
+  [PASS] starbase       HIGH=0 MED=0 LOW=0
+  [PASS] suicide        HIGH=0 MED=0 LOW=0
+  [PASS] supox          HIGH=0 MED=0 LOW=0
+  [PASS] surrendered    HIGH=0 MED=0 LOW=0
+  [PASS] syreen         HIGH=0 MED=0 LOW=0
+  [PASS] talkingpet     HIGH=0 MED=0 LOW=0
+  [PASS] thraddash      HIGH=0 MED=0 LOW=0
+  [PASS] umgah          HIGH=0 MED=0 LOW=0
+  [PASS] urquan         HIGH=0 MED=0 LOW=0
+  [PASS] utwig          HIGH=0 MED=0 LOW=0
+  [PASS] vux            HIGH=0 MED=0 LOW=0
+  [PASS] yehat          HIGH=0 MED=0 LOW=0
+  [PASS] yehatrebels    HIGH=0 MED=0 LOW=0
+  [PASS] zoqfotpik      HIGH=0 MED=0 LOW=0
+========================================================================
+Total: HIGH=0  MED=3  LOW=0
+========================================================================
+Loaded 813 string records from extracted\base\base\gamestrings.txt
+Loaded 849 translations from translations\gamestrings.zh-TW.json
+  WARN: id 'NoQuickSave' translation has 3 lines but source has 4. Padding/trimming.
+  WARN: id 'mouse_err' translation has 2 lines but source has 4. Padding/trimming.
+  WARN: id 'Hard' translation has 1 lines but source has 3. Padding/trimming.
+Applied 743 translations (matching IDs), 3 count-mismatch warnings.
+WARNING: 159 translation IDs not found in source:
+  - _notes
+  - FUEL:
+  - CREW:
+  - CARGO:
+  - _note_compound_minerals
+  - _note_fullwidth_fix
+  - _DEVICE_SECTION_notes
+  - be
+  - _STAR_POSTFIX_ZH_NOTES
+  - _STAR_POSTFIX_ZH_000
+  ... and 149 more
+Wrote zh-TW-addon\content\base\gamestrings.txt
+Current gamestrings.txt entry count: 814
+Padding 210 empty entries so ZH_000 lands at index 1024
+OK: appended 210 pad + 149 STAR_POSTFIX_ZH records + 1 ZHTW_TEMPLATE records to zh-TW-addon\content\base\gamestrings.txt
+     Final entry indices: 0..813 (base) + 814..1023 (pad) + 1024..1172 (ZH postfix) + 1173..1173 (ZHTW template)
+  [OK] androsynth   idx1 'Androsyn' ΓåÆ 'σ«ëσìôΦ╛¢µùÅ' ┬╖ [N-3] 'ANDROSYNTH' ΓåÆ 'σ«ëσìôΦ╛¢µùÅ' ┬╖ [N-2] 'GUARDIAN' ΓåÆ 'σ«êΦí¢Φëª'
+  [OK] arilou       idx1 'Arilou' ΓåÆ 'Θÿ┐Θ║ùΘ£▓' ┬╖ [N-3] 'ARILOU' ΓåÆ 'Θÿ┐Θ║ùΘ£▓' ┬╖ [N-2] 'SKIFF' ΓåÆ 'σ┐½Φëç'
+  [OK] chenjesu     idx1 'Chenjesu' ΓåÆ 'µÖ╢µÖ║µùÅ' ┬╖ [N-3] 'CHENJESU' ΓåÆ 'µÖ╢µÖ║µùÅ' ┬╖ [N-2] 'BROODHOME' ΓåÆ 'Φé▓σ╖óΦëª'
+  [OK] chmmr        idx1 'Chmmr' ΓåÆ 'µƒÑσºåµùÅ' ┬╖ [N-3] '|-1|CHMMR' ΓåÆ 'µƒÑσºåµùÅ' ┬╖ [N-2] '|-1|AVATAR' ΓåÆ 'σ╛⌐Σ╗çΦÖƒ'
+  [OK] druuge       idx1 'Druuge' ΓåÆ 'µ»ÆΦ│êµùÅ' ┬╖ [N-3] '|-2|DRUUGE' ΓåÆ 'µ»ÆΦ│êµùÅ' ┬╖ [N-2] '|-2|MAULER' ΓåÆ 'ΘçìµôèΦÇà'
+  [OK] human        idx1 'Earthling' ΓåÆ 'σ£░τÉâΣ║║' ┬╖ [N-3] 'EARTHLING' ΓåÆ 'σ£░τÉâΣ║║' ┬╖ [N-2] 'CRUISER' ΓåÆ 'σ╖íµ┤ïΦëª'
+  [OK] ilwrath      idx1 'Ilwrath' ΓåÆ 'Φ¢¢τïéµùÅ' ┬╖ [N-3] 'ILWRATH' ΓåÆ 'Φ¢¢τïéµùÅ' ┬╖ [N-2] 'AVENGER' ΓåÆ 'σ╛⌐Σ╗çΦÇà'
+  [OK] kohrah       idx1 'Kohr-Ah' ΓåÆ 'µƒ»Σ║₧µùÅ' ┬╖ [N-3] 'KOHR-AH' ΓåÆ 'µƒ»Σ║₧µùÅ' ┬╖ [N-2] 'MARAUDER' ΓåÆ 'µÄáσÑ¬ΦÇà'
+  [OK] melnorme     idx1 'Melnorme' ΓåÆ 'µóàΦ½╛σòå' ┬╖ [N-3] '|-1|MELNORME' ΓåÆ 'µóàΦ½╛σòå' ┬╖ [N-2] '|-1|TRADER' ΓåÆ 'Φ▓┐µÿôΦëª'
+  [OK] mmrnmhrm     idx1 'Mmrnmhrm' ΓåÆ 'σºåσºåµùÅ' ┬╖ [N-3] 'MMRNMHRM' ΓåÆ 'σºåσºåµùÅ' ┬╖ [N-2] 'X-FORM' ΓåÆ 'Φ«èσ╜óΦëª'
+  [OK] mycon        idx1 'Mycon' ΓåÆ 'Θ║Ñσ¡öµùÅ' ┬╖ [N-3] '|-3|MYCON' ΓåÆ 'Θ║Ñσ¡öµùÅ' ┬╖ [N-2] '|-2|PODSHIP' ΓåÆ 'ΦÄóΦëª'
+  [OK] orz          idx1 'Orz' ΓåÆ 'µ¡ÉΦî▓' ┬╖ [N-3] '|-1|ORZ' ΓåÆ 'µ¡ÉΦî▓' ┬╖ [N-2] '|-1|NEMESIS' ΓåÆ 'σ«┐µò╡ΦÖƒ'
+  [OK] pkunk        idx1 'Pkunk' ΓåÆ 'µÖ«µü⌐µùÅ' ┬╖ [N-3] '|-1|PKUNK' ΓåÆ 'µÖ«µü⌐µùÅ' ┬╖ [N-2] '|-1|FURY' ΓåÆ 'τâêµåñΦëª'
+  [OK] shofixti     idx1 'Shofixti' ΓåÆ 'Σ┐«τâêσú½µùÅ' ┬╖ [N-3] 'SHOFIXTI' ΓåÆ 'Σ┐«τâêσú½µùÅ' ┬╖ [N-2] 'SCOUT' ΓåÆ 'σü╡σ»ƒΦëª'
+  [OK] slylandro    idx1 'Slylandro' ΓåÆ 'µû»ΦÉèµùÅ' ┬╖ [N-3] 'SLYLANDRO' ΓåÆ 'µû»ΦÉèµùÅ' ┬╖ [N-2] 'PROBE' ΓåÆ 'µÄóµ╕¼σÖ¿'
+  [OK] spathi       idx1 'Spathi' ΓåÆ 'σÅ▓µÇòµùÅ' ┬╖ [N-3] '|-1|SPATHI' ΓåÆ 'σÅ▓µÇòµùÅ' ┬╖ [N-2] '|-1|ELUDER' ΓåÆ 'Φ┐┤Θü┐ΦÇà'
+  [OK] supox        idx1 'Supox' ΓåÆ 'ΦÿçΦÅ⌐µùÅ' ┬╖ [N-3] '|-2|SUPOX' ΓåÆ 'ΦÿçΦÅ⌐µùÅ' ┬╖ [N-2] '|-2|BLADE' ΓåÆ 'σêÇσêâΦëª'
+  [OK] syreen       idx1 'Syreen' ΓåÆ 'σí₧Φô«µùÅ' ┬╖ [N-3] 'SYREEN' ΓåÆ 'σí₧Φô«µùÅ' ┬╖ [N-2] 'PENETRATOR' ΓåÆ 'τ⌐┐ΘÇÅΦëª'
+  [OK] thraddash    idx1 'Thraddash' ΓåÆ 'µÆ╗Σ╝ÉµùÅ' ┬╖ [N-3] 'THRADDASH' ΓåÆ 'µÆ╗Σ╝ÉµùÅ' ┬╖ [N-2] '|-1|TORCH' ΓåÆ 'τü½τé¼Φëª'
+  [OK] umgah        idx1 'Umgah' ΓåÆ 'ΘÖ░σÿÄµùÅ' ┬╖ [N-3] '|-2|UMGAH' ΓåÆ 'ΘÖ░σÿÄµùÅ' ┬╖ [N-2] '|-2|DRONE' ΓåÆ 'Φ£éµ⌐ƒΦëª'
+  [OK] urquan       idx1 'Ur-Quan' ΓåÆ 'τâÅσ»¼µùÅ' ┬╖ [N-3] 'UR-QUAN' ΓåÆ 'τâÅσ»¼µùÅ' ┬╖ [N-2] 'DREADNT.' ΓåÆ 'τäíτòÅΦëª'
+  [OK] utwig        idx1 'Utwig' ΓåÆ 'µåéτë╣µùÅ' ┬╖ [N-3] '|-2|UTWIG' ΓåÆ 'µåéτë╣µùÅ' ┬╖ [N-2] '|-2|JUGGER' ΓåÆ 'Θçìτá▓Φëª'
+  [OK] vux          idx1 'VUX' ΓåÆ 'VUX' ┬╖ [N-3] 'VUX' ΓåÆ 'VUX' ┬╖ [N-2] 'INTRUDER' ΓåÆ 'σàÑΣ╛╡ΦÇà'
+  [OK] yehat        idx1 'Yehat' ΓåÆ 'τ┐╝σôêτë╣µùÅ' ┬╖ [N-3] '|-1|YEHAT' ΓåÆ 'τ┐╝σôêτë╣µùÅ' ┬╖ [N-2] 'TERMINATOR' ΓåÆ 'τ╡éτ╡ÉΦÇà'
+  [OK] zoqfotpik    idx1 'ZoqFot' ΓåÆ 'Σ╜É-Σ╜¢-τÜ«' ┬╖ [N-3] '|-2|ZOQ-FOT' ΓåÆ 'Σ╜É-Σ╜¢-τÜ«' ┬╖ [N-2] '|-3|STINGER' ΓåÆ 'σê║µ┐ÇΦÇàΦÖƒ'
+
+=== patch 010 v0.7.2 race labels: 25 ok, 0 fail (25 total) ===
+Loaded 524 string records from extracted\base\base\ui\setupmenu.txt
+Loaded 401 translations from translations\setupmenu.zh-TW.json
+Applied 404 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 8 translation IDs not found in source:
+  - _notes
+  - _comment_old
+  - _B1_SLIDERS_LABELS_BUTTONS
+  - _B2_DESCRIPTIONS
+  - _B3_CHOICES_CATS
+  - _glossary_v1
+  - _desc_v1
+  - _D_batch
+Wrote zh-TW-addon\content\base\ui\setupmenu.txt
+Loaded 30 translation entries
+Translated 29 TFI blocks
+MISS (3) ΓÇö untranslated TFI blocks (kept as English):
+  [0] 'Based on the source code of STAR CONTROL II'
+  [1] 'Originally Created by'
+  [2] 'Set free into the Open Source community'
+WARN: 1 translation KEYS not found in source:
+  - '_notes'
+Wrote zh-TW-addon\content\base\cutscene\intro\intro.txt
+Loaded 43 translation entries
+Translated 42 TFI blocks
+WARN: 1 translation KEYS not found in source:
+  - '_notes'
+Wrote zh-TW-addon\content\base\cutscene\ending\final.txt
+Loaded 10 translation entries
+Translated 9 TFI blocks
+WARN: 1 translation KEYS not found in source:
+  - '_notes'
+Wrote zh-TW-addon\content\base\cutscene\gameover\deathmarch.txt
+Loaded 2 translation entries
+Translated 1 TFI blocks
+WARN: 1 translation KEYS not found in source:
+  - '_notes'
+Wrote zh-TW-addon\content\base\cutscene\gameover\defeated.txt
+Loaded 2 translation entries
+Translated 1 TFI blocks
+WARN: 1 translation KEYS not found in source:
+  - '_notes'
+Wrote zh-TW-addon\content\base\cutscene\gameover\suicide.txt
+Loaded 2 translation entries
+Translated 1 TFI blocks
+WARN: 1 translation KEYS not found in source:
+  - '_notes'
+Wrote zh-TW-addon\content\base\cutscene\gameover\surrendered.txt
+Loaded 76 string records from extracted\base\base\comm\urquan\urquan.txt
+Loaded 77 translations from translations\urquan.zh-TW.json
+Applied 76 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\urquan\urquan.txt
+Loaded 94 string records from extracted\base\base\comm\commander\commander.txt
+Loaded 95 translations from translations\commander.zh-TW.json
+Applied 94 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\commander\commander.txt
+Loaded 114 string records from extracted\base\base\comm\slylandro\slylandro.txt
+Loaded 115 translations from translations\slylandro.zh-TW.json
+Applied 114 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\slylandro\slylandro.txt
+Loaded 91 string records from extracted\base\base\comm\shofixti\shofixti.txt
+Loaded 92 translations from translations\shofixti.zh-TW.json
+Applied 91 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\shofixti\shofixti.txt
+Loaded 180 string records from extracted\base\base\comm\pkunk\pkunk.txt
+Loaded 181 translations from translations\pkunk.zh-TW.json
+Applied 180 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\pkunk\pkunk.txt
+Loaded 135 string records from extracted\base\base\comm\spathi\spathi.txt
+Loaded 136 translations from translations\spathi.zh-TW.json
+Applied 135 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\spathi\spathi.txt
+Loaded 109 string records from extracted\base\base\comm\ilwrath\ilwrath.txt
+Loaded 110 translations from translations\ilwrath.zh-TW.json
+Applied 109 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\ilwrath\ilwrath.txt
+Loaded 68 string records from extracted\base\base\comm\yehat\yehat.txt
+Loaded 69 translations from translations\yehat.zh-TW.json
+Applied 68 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\yehat\yehat.txt
+Loaded 114 string records from extracted\base\base\comm\orz\orz.txt
+Loaded 115 translations from translations\orz.zh-TW.json
+Applied 114 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\orz\orz.txt
+Loaded 76 string records from extracted\base\base\comm\kohrah\kohrah.txt
+Loaded 77 translations from translations\kohrah.zh-TW.json
+  WARN: id 'WE_WERE_SLAVES' translation has 13 lines but source has 12. Padding/trimming.
+  WARN: id 'OUT_TAKES' translation has 8 lines but source has 7. Padding/trimming.
+Applied 76 translations (matching IDs), 2 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\kohrah\kohrah.txt
+Loaded 127 string records from extracted\base\base\comm\syreen\syreen.txt
+Loaded 128 translations from translations\syreen.zh-TW.json
+Applied 127 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\syreen\syreen.txt
+Loaded 97 string records from extracted\base\base\comm\arilou\arilou.txt
+Loaded 98 translations from translations\arilou.zh-TW.json
+Applied 97 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\arilou\arilou.txt
+Loaded 78 string records from extracted\base\base\comm\chmmr\chmmr.txt
+Loaded 79 translations from translations\chmmr.zh-TW.json
+Applied 78 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\chmmr\chmmr.txt
+Loaded 105 string records from extracted\base\base\comm\druuge\druuge.txt
+Loaded 106 translations from translations\druuge.zh-TW.json
+Applied 105 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\druuge\druuge.txt
+Loaded 93 string records from extracted\base\base\comm\supox\supox.txt
+Loaded 94 translations from translations\supox.zh-TW.json
+Applied 93 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\supox\supox.txt
+Loaded 85 string records from extracted\base\base\comm\umgah\umgah.txt
+Loaded 86 translations from translations\umgah.zh-TW.json
+Applied 85 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\umgah\umgah.txt
+Loaded 143 string records from extracted\base\base\comm\safeones\safeones.txt
+Loaded 144 translations from translations\safeones.zh-TW.json
+Applied 143 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\safeones\safeones.txt
+Loaded 112 string records from extracted\base\base\comm\talkingpet\talkingpet.txt
+Loaded 113 translations from translations\talkingpet.zh-TW.json
+  WARN: id 'HYPNO_TAIL' translation has 1 lines but source has 0. Padding/trimming.
+Applied 112 translations (matching IDs), 1 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\talkingpet\talkingpet.txt
+Loaded 114 string records from extracted\base\base\comm\utwig\utwig.txt
+Loaded 115 translations from translations\utwig.zh-TW.json
+Applied 114 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\utwig\utwig.txt
+Loaded 109 string records from extracted\base\base\comm\mycon\mycon.txt
+Loaded 110 translations from translations\mycon.zh-TW.json
+  WARN: id 'AMBUSH_TAIL' translation has 1 lines but source has 0. Padding/trimming.
+  WARN: id 'RAMBLE_TAIL' translation has 1 lines but source has 0. Padding/trimming.
+Applied 109 translations (matching IDs), 2 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\mycon\mycon.txt
+Loaded 102 string records from extracted\base\base\comm\vux\vux.txt
+Loaded 103 translations from translations\vux.zh-TW.json
+Applied 102 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\vux\vux.txt
+Loaded 152 string records from extracted\base\base\comm\thraddash\thraddash.txt
+Loaded 153 translations from translations\thraddash.zh-TW.json
+  WARN: id 'NAME_TAIL' translation has 1 lines but source has 0. Padding/trimming.
+Applied 152 translations (matching IDs), 1 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\thraddash\thraddash.txt
+Loaded 334 string records from extracted\base\base\comm\zoqfotpik\zoqfotpik.txt
+Loaded 335 translations from translations\zoqfotpik.zh-TW.json
+Applied 334 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\zoqfotpik\zoqfotpik.txt
+Loaded 281 string records from extracted\base\base\comm\melnorme\melnorme.txt
+Loaded 282 translations from translations\melnorme.zh-TW.json
+Applied 281 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\melnorme\melnorme.txt
+Loaded 34 string records from extracted\base\base\comm\yehatrebels\yehatrebels.txt
+Loaded 35 translations from translations\yehatrebels.zh-TW.json
+Applied 34 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\yehatrebels\yehatrebels.txt
+Loaded 86 string records from extracted\base\base\comm\probe\probe.txt
+Loaded 87 translations from translations\probe.zh-TW.json
+Applied 86 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\probe\probe.txt
+Loaded 267 string records from extracted\base\base\comm\starbase\starbase.txt
+Loaded 268 translations from translations\starbase.zh-TW.json
+  WARN: id 'BLANK' translation has 1 lines but source has 0. Padding/trimming.
+Applied 267 translations (matching IDs), 1 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\comm\starbase\starbase.txt
+Loaded 1 string records from extracted\base\base\lander\energy\moonbase.txt
+Loaded 2 translations from translations\lander\moonbase.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\moonbase.txt
+Loaded 2 string records from extracted\base\base\lander\energy\urquanbase.txt
+Loaded 3 translations from translations\lander\urquanbase.zh-TW.json
+Applied 2 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\urquanbase.txt
+Loaded 1 string records from extracted\base\base\lander\energy\aquahelix.txt
+Loaded 2 translations from translations\lander\aquahelix.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\aquahelix.txt
+Loaded 1 string records from extracted\base\base\lander\energy\burvixcaster.txt
+Loaded 2 translations from translations\lander\burvixcaster.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\burvixcaster.txt
+Loaded 1 string records from extracted\base\base\lander\energy\eggcase.txt
+Loaded 2 translations from translations\lander\eggcase.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\eggcase.txt
+Loaded 1 string records from extracted\base\base\lander\energy\fwiffo.txt
+Loaded 2 translations from translations\lander\fwiffo.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\fwiffo.txt
+Loaded 1 string records from extracted\base\base\lander\energy\maidens.txt
+Loaded 2 translations from translations\lander\maidens.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\maidens.txt
+Loaded 2 string records from extracted\base\base\lander\energy\motherark.txt
+Loaded 3 translations from translations\lander\motherark.zh-TW.json
+Applied 2 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\motherark.txt
+Loaded 2 string records from extracted\base\base\lander\energy\sphere.txt
+Loaded 3 translations from translations\lander\sphere.zh-TW.json
+Applied 2 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\sphere.txt
+Loaded 2 string records from extracted\base\base\lander\energy\spindle.txt
+Loaded 3 translations from translations\lander\spindle.zh-TW.json
+Applied 2 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\spindle.txt
+Loaded 1 string records from extracted\base\base\lander\energy\sundevice.txt
+Loaded 2 translations from translations\lander\sundevice.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\sundevice.txt
+Loaded 1 string records from extracted\base\base\lander\energy\taalodevice.txt
+Loaded 2 translations from translations\lander\taalodevice.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\taalodevice.txt
+Loaded 2 string records from extracted\base\base\lander\energy\ultron.txt
+Loaded 3 translations from translations\lander\ultron.zh-TW.json
+Applied 2 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\ultron.txt
+Loaded 2 string records from extracted\base\base\lander\energy\umgahcaster.txt
+Loaded 3 translations from translations\lander\umgahcaster.zh-TW.json
+Applied 2 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\umgahcaster.txt
+Loaded 1 string records from extracted\base\base\lander\energy\utwigbomb.txt
+Loaded 2 translations from translations\lander\utwigbomb.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\utwigbomb.txt
+Loaded 1 string records from extracted\base\base\lander\energy\chmmrbase.txt
+Loaded 2 translations from translations\lander\chmmrbase.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\chmmrbase.txt
+Loaded 1 string records from extracted\base\base\lander\energy\chmmrhome.txt
+Loaded 2 translations from translations\lander\chmmrhome.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\chmmrhome.txt
+Loaded 2 string records from extracted\base\base\lander\energy\destroyedbase.txt
+Loaded 3 translations from translations\lander\destroyedbase.zh-TW.json
+Applied 2 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\destroyedbase.txt
+Loaded 1 string records from extracted\base\base\lander\energy\earthbase.txt
+Loaded 2 translations from translations\lander\earthbase.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\earthbase.txt
+Loaded 1 string records from extracted\base\base\lander\energy\precursorbase.txt
+Loaded 2 translations from translations\lander\precursorbase.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\precursorbase.txt
+Loaded 3 string records from extracted\base\base\lander\energy\shofixtibase.txt
+Loaded 4 translations from translations\lander\shofixtibase.zh-TW.json
+Applied 3 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\shofixtibase.txt
+Loaded 1 string records from extracted\base\base\lander\energy\spathimonument.txt
+Loaded 2 translations from translations\lander\spathimonument.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\spathimonument.txt
+Loaded 1 string records from extracted\base\base\lander\energy\syreenbase.txt
+Loaded 2 translations from translations\lander\syreenbase.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\syreenbase.txt
+Loaded 3 string records from extracted\base\base\lander\energy\syreenvault.txt
+Loaded 4 translations from translations\lander\syreenvault.zh-TW.json
+Applied 3 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\syreenvault.txt
+Loaded 2 string records from extracted\base\base\lander\energy\urquanwreck.txt
+Loaded 3 translations from translations\lander\urquanwreck.zh-TW.json
+Applied 2 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\urquanwreck.txt
+Loaded 1 string records from extracted\base\base\lander\energy\zfpcolony.txt
+Loaded 2 translations from translations\lander\zfpcolony.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\zfpcolony.txt
+Loaded 1 string records from extracted\base\base\lander\energy\algoliteruins.txt
+Loaded 2 translations from translations\lander\algoliteruins.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\algoliteruins.txt
+Loaded 3 string records from extracted\base\base\lander\energy\androsynth_ruins.txt
+Loaded 4 translations from translations\lander\androsynth_ruins.zh-TW.json
+Applied 3 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\androsynth_ruins.txt
+Loaded 1 string records from extracted\base\base\lander\energy\burvixeseruins.txt
+Loaded 2 translations from translations\lander\burvixeseruins.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\burvixeseruins.txt
+Loaded 1 string records from extracted\base\base\lander\energy\excavationsite.txt
+Loaded 2 translations from translations\lander\excavationsite.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\excavationsite.txt
+Loaded 1 string records from extracted\base\base\lander\energy\ruins.txt
+Loaded 2 translations from translations\lander\ruins.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\ruins.txt
+Loaded 1 string records from extracted\base\base\lander\energy\stele.txt
+Loaded 2 translations from translations\lander\stele.zh-TW.json
+Applied 1 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\energy\stele.txt
+Loaded 2 string records from extracted\base\base\lander\bio\vuxbeast.txt
+Loaded 3 translations from translations\lander\bio\vuxbeast.zh-TW.json
+Applied 2 translations (matching IDs), 0 count-mismatch warnings.
+WARNING: 1 translation IDs not found in source:
+  - _notes
+Wrote zh-TW-addon\content\base\lander\bio\vuxbeast.txt
+  Reference:  slab.fon  png_h=34  latin_top=8  latin_bottom=28  cap_h=20  (kerndat baseline=26)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  slides.fon  png_h=20  latin_top=2  latin_bottom=15  cap_h=13  (kerndat baseline=-4)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  urquan.fon  png_h=16  latin_top=3  latin_bottom=13  cap_h=10  (kerndat baseline=2)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  kohrah.fon  png_h=16  latin_top=3  latin_bottom=13  cap_h=10  (kerndat baseline=2)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  shofixti.fon  png_h=16  latin_top=5  latin_bottom=13  cap_h=8  (kerndat baseline=4)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  ilwrath.fon  png_h=13  latin_top=3  latin_bottom=12  cap_h=9  (kerndat baseline=2)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  orz.fon  png_h=15  latin_top=3  latin_bottom=12  cap_h=9  (kerndat baseline=4)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  computer.fon  png_h=15  latin_top=2  latin_bottom=13  cap_h=11  (kerndat baseline=4)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  spathi.fon  png_h=15  latin_top=3  latin_bottom=12  cap_h=9  (kerndat baseline=4)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  mycon.fon  png_h=15  latin_top=3  latin_bottom=12  cap_h=9  (kerndat baseline=4)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  utwig.fon  png_h=18  latin_top=5  latin_bottom=15  cap_h=10  (kerndat baseline=3)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  syreen.fon  png_h=17  latin_top=5  latin_bottom=13  cap_h=8  (kerndat baseline=5)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  pkunk.fon  png_h=14  latin_top=2  latin_bottom=11  cap_h=9  (kerndat baseline=6)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  yehat.fon  png_h=14  latin_top=3  latin_bottom=11  cap_h=8  (kerndat baseline=1)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  slylandro.fon  png_h=14  latin_top=3  latin_bottom=11  cap_h=8  (kerndat baseline=6)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  Reference:  vux.fon  png_h=13  latin_top=3  latin_bottom=11  cap_h=8  (kerndat baseline=5)
+  Weight axis set to: 700
+  Rasterized: 0 new PNGs, 3038 overwrites, 87 ASCII skipped
+  shofixti.fon: 5x16 -> 2x16
+  urquan.fon: 5x16 -> 2x16
+  slylandro.fon: 4x14 -> 2x14
+  computer.fon: 4x15 -> 2x15
+  skip: commander.fon (not in shadow)
+  skip: player.fon (not in shadow)
+  slides.fon: 4x20 -> 2x20
+  slab.fon: 4x34 -> 2x34
+  018: (5, 5) -> (8, 10), color=(0, 168, 0, 255)
+  021: (8, 10) dark grey RGB(30, 30, 30) + 4 alpha corners
+  copied orbitbackground.ani
+  copied 23 other frames
+  latin_bottom OVERRIDDEN to 9
+  Reference:  label.fon  png_h=10  latin_top=1  latin_bottom=9  cap_h=8  (kerndat baseline=3)
+  Weight axis not applied (invalid argument); using font's default weight.
+  Rasterized: 3029 new PNGs, 9 overwrites, 87 ASCII skipped
+  Reference:  label.fon  png_h=10  latin_top=1  latin_bottom=8  cap_h=7  (kerndat baseline=3)
+  Weight axis not applied (invalid argument); using font's default weight.
+  Rasterized: 3029 new PNGs, 9 overwrites, 87 ASCII skipped
+  base  1 files
+  base\comm\arilou  1 files
+  base\comm\chmmr  1 files
+  base\comm\commander  1 files
+  base\comm\druuge  1 files
+  base\comm\ilwrath  1 files
+  base\comm\kohrah  1 files
+  base\comm\melnorme  1 files
+  base\comm\mycon  1 files
+  base\comm\orz  1 files
+  base\comm\pkunk  1 files
+  base\comm\probe  1 files
+  base\comm\safeones  1 files
+  base\comm\shofixti  1 files
+  base\comm\slylandro  1 files
+  base\comm\spathi  1 files
+  base\comm\starbase  1 files
+  base\comm\supox  1 files
+  base\comm\syreen  1 files
+  base\comm\talkingpet  1 files
+  base\comm\thraddash  1 files
+  base\comm\umgah  1 files
+  base\comm\urquan  1 files
+  base\comm\utwig  1 files
+  base\comm\vux  1 files
+  base\comm\yehat  1 files
+  base\comm\yehatrebels  1 files
+  base\comm\zoqfotpik  1 files
+  base\cutscene\ending  1 files
+  base\cutscene\gameover  4 files
+  base\cutscene\intro  1 files
+  base\fonts\computer.fon  3276 files
+  base\fonts\ilwrath.fon  3274 files
+  base\fonts\kohrah.fon  3269 files
+  base\fonts\mycon.fon  3263 files
+  base\fonts\orz.fon  3269 files
+  base\fonts\pkunk.fon  3276 files
+  base\fonts\shofixti.fon  3276 files
+  base\fonts\slab.fon  3343 files
+  base\fonts\slides.fon  3261 files
+  base\fonts\slylandro.fon  3276 files
+  base\fonts\spathi.fon  3269 files
+  base\fonts\syreen.fon  3270 files
+  base\fonts\urquan.fon  3269 files
+  base\fonts\utwig.fon  3270 files
+  base\fonts\vux.fon  3270 files
+  base\fonts\yehat.fon  3276 files
+  base\lander\bio  1 files
+  base\lander\energy  32 files
+  base\nav  26 files
+  base\ships\androsynth  1 files
+  base\ships\arilou  1 files
+  base\ships\chenjesu  1 files
+  base\ships\chmmr  1 files
+  base\ships\druuge  1 files
+  base\ships\human  1 files
+  base\ships\ilwrath  1 files
+  base\ships\kohrah  1 files
+  base\ships\melnorme  1 files
+  base\ships\mmrnmhrm  1 files
+  base\ships\mycon  1 files
+  base\ships\orz  1 files
+  base\ships\pkunk  1 files
+  base\ships\shofixti  1 files
+  base\ships\slylandro  1 files
+  base\ships\spathi  1 files
+  base\ships\supox  1 files
+  base\ships\syreen  1 files
+  base\ships\thraddash  1 files
+  base\ships\umgah  1 files
+  base\ships\urquan  1 files
+  base\ships\utwig  1 files
+  base\ships\vux  1 files
+  base\ships\yehat  1 files
+  base\ships\zoqfotpik  1 files
+  base\ui  1 files

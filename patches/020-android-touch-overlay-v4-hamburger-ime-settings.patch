@@ -1,0 +1,913 @@
+diff --git a/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/TouchOverlay.kt b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/TouchOverlay.kt
+new file mode 100644
+index 0000000..f8a3288
+--- /dev/null
++++ b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/TouchOverlay.kt
+@@ -0,0 +1,907 @@
++package org.megamod.uqm
++
++import android.util.Log
++import android.view.KeyEvent
++import androidx.compose.animation.core.animateFloatAsState
++import androidx.compose.animation.core.tween
++import androidx.compose.foundation.Canvas
++import androidx.compose.foundation.background
++import androidx.compose.foundation.border
++import androidx.compose.foundation.layout.Arrangement
++import androidx.compose.foundation.layout.Box
++import androidx.compose.foundation.layout.Column
++import androidx.compose.foundation.layout.Row
++import androidx.compose.foundation.layout.Spacer
++import androidx.compose.foundation.layout.fillMaxSize
++import androidx.compose.foundation.layout.fillMaxWidth
++import androidx.compose.foundation.layout.height
++import androidx.compose.foundation.layout.padding
++import androidx.compose.foundation.layout.size
++import androidx.compose.foundation.layout.width
++import androidx.compose.foundation.shape.CircleShape
++import androidx.compose.foundation.shape.RoundedCornerShape
++import androidx.compose.material3.AlertDialog
++import androidx.compose.material3.DropdownMenu
++import androidx.compose.material3.DropdownMenuItem
++import androidx.compose.material3.Slider
++import androidx.compose.material3.Text
++import androidx.compose.material3.TextButton
++import androidx.compose.runtime.Composable
++import androidx.compose.runtime.LaunchedEffect
++import androidx.compose.runtime.getValue
++import androidx.compose.runtime.mutableLongStateOf
++import androidx.compose.runtime.mutableStateOf
++import androidx.compose.runtime.remember
++import androidx.compose.runtime.setValue
++import androidx.compose.ui.Alignment
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.draw.alpha
++import androidx.compose.ui.draw.clip
++import androidx.compose.ui.geometry.Offset
++import androidx.compose.ui.graphics.Color
++import androidx.compose.ui.graphics.drawscope.Stroke
++import androidx.compose.ui.input.pointer.PointerEventPass
++import androidx.compose.ui.input.pointer.pointerInput
++import androidx.compose.ui.platform.LocalContext
++import androidx.compose.ui.platform.LocalDensity
++import androidx.compose.ui.text.TextStyle
++import androidx.compose.ui.text.font.FontWeight
++import androidx.compose.ui.unit.Dp
++import androidx.compose.ui.unit.dp
++import androidx.compose.ui.unit.sp
++import kotlinx.coroutines.delay
++import org.libsdl.app.SDLActivity
++
++/**
++ * zh-TW Android port ΓÇö v2 touch overlay.
++ *
++ * Design (see Stage 4 runbook for full analysis):
++ *  - Bottom-left  : 360┬░ virtual analog stick. Push in any direction ΓåÆ emit
++ *                   [KeyEvent.KEYCODE_DPAD_UP] (thrust) + LEFT/RIGHT based on
++ *                   the horizontal component of the stick displacement. This
++ *                   translates *at the input layer* into UQM's classic
++ *                   `Γåæ + ΓåÉ/ΓåÆ` combo without touching any engine physics.
++ *  - Bottom-right : Weapon (KEYCODE_ENTER) and Special (KEYCODE_SHIFT_RIGHT)
++ *                   circular action buttons.
++ *  - Top-right    : ESC (KEYCODE_ESCAPE) ΓÇö pause / menu / back.
++ *
++ * Menu compromise: pushing the stick nearly-straight-down (|y| > 0.7┬╖R with
++ * |x| < 0.15┬╖R) emits [KeyEvent.KEYCODE_DPAD_DOWN] *instead of* Up, so save-
++ * game slots and dialog choice lists remain navigable. Straight-up remains
++ * Up. Any diagonal push always emits Up (matches user spec: "push any
++ * direction = thrust + turn"). Combat uses Up/Left/Right only ΓÇö Down is
++ * inert in melee, so the menu-navigate carve-out is harmless there.
++ */
++@Composable
++fun TouchOverlay(modifier: Modifier = Modifier) {
++    val mode by OverlayPrefs.modeState
++    val baseAlpha by OverlayPrefs.alphaState
++    val scale by OverlayPrefs.scaleState
++    val autoHideSec by OverlayPrefs.autoHideSecondsState
++
++    // --------- Auto-hide state ---------
++    // lastInteraction: wall-clock ms of the most recent overlay touch. Any
++    // button/stick tap resets this via [markInteraction]. LaunchedEffect
++    // ticks every autoHideSec and recomputes isFaded.
++    val lastInteraction = remember { mutableLongStateOf(System.currentTimeMillis()) }
++    var isFaded by remember { mutableStateOf(false) }
++    LaunchedEffect(autoHideSec, lastInteraction.longValue) {
++        if (autoHideSec <= 0) {
++            isFaded = false
++            return@LaunchedEffect
++        }
++        isFaded = false
++        delay(autoHideSec * 1000L)
++        // Re-check: if no fresh interaction happened during the delay,
++        // fade out. Otherwise a new LaunchedEffect will restart the timer.
++        if (System.currentTimeMillis() - lastInteraction.longValue >=
++                autoHideSec * 1000L) {
++            isFaded = true
++        }
++    }
++    val effectiveAlpha by animateFloatAsState(
++        targetValue = if (isFaded) 0.15f else baseAlpha,
++        animationSpec = tween(durationMillis = 400),
++        label = "overlay-alpha",
++    )
++
++    // Reset auto-hide timer whenever anything in the overlay is touched.
++    // We reset from every button (see [markInteraction] passed into each).
++    val markInteraction: () -> Unit = remember {
++        { lastInteraction.longValue = System.currentTimeMillis() }
++    }
++
++    // --------- Dropdown / dialog state ---------
++    var menuOpen by remember { mutableStateOf(false) }
++    var settingsOpen by remember { mutableStateOf(false) }
++
++    // Grab the Context once at composable scope so lambdas below can use
++    // it without needing to re-enter @Composable context (LocalContext.current
++    // is a composable read, not lambda-safe).
++    val ctx = LocalContext.current
++
++    // Sizing helpers: prefs scale multiplier applied to every dp constant.
++    val s = { d: Dp -> (d.value * scale).dp }
++
++    Box(modifier = modifier.fillMaxSize()) {
++        // --------- Full-screen pinch detector layer ---------
++        PinchZoomDetector()
++
++        // Everything below inherits the auto-hide fade + user alpha pref.
++        Box(modifier = Modifier.fillMaxSize().alpha(effectiveAlpha)) {
++
++            // ============ TOP-LEFT cluster ============
++            //
++            //   [Γÿ░]  [C/M]  [Γî¿]
++            //   [ESC]
++            //
++            // The hamburger anchors a DropdownMenu with the less-used
++            // hotkeys (F3/F4/F6/F7/F10, keyboard shortcut, settings...).
++            Column(
++                modifier = Modifier
++                    .align(Alignment.TopStart)
++                    .padding(top = 20.dp, start = 24.dp),
++                verticalArrangement = Arrangement.spacedBy(10.dp),
++                horizontalAlignment = Alignment.Start,
++            ) {
++                Row(
++                    horizontalArrangement = Arrangement.spacedBy(10.dp),
++                    verticalAlignment = Alignment.CenterVertically,
++                ) {
++                    Box {
++                        HamburgerButton(
++                            size = s(48.dp),
++                            onClick = {
++                                markInteraction()
++                                menuOpen = true
++                            },
++                        )
++                        HamburgerDropdown(
++                            expanded = menuOpen,
++                            onDismiss = { menuOpen = false },
++                            onOpenSettings = {
++                                menuOpen = false
++                                settingsOpen = true
++                            },
++                            onKeyboard = {
++                                menuOpen = false
++                                SdlIme.toggle(ctx)
++                            },
++                            markInteraction = markInteraction,
++                        )
++                    }
++                    ModeToggleButton(size = s(48.dp), onInteract = markInteraction)
++                    KeyboardButton(size = s(48.dp), onInteract = markInteraction)
++                }
++                VirtualButton(
++                    label = "ESC",
++                    keyCode = KeyEvent.KEYCODE_ESCAPE,
++                    size = s(60.dp),
++                    shape = RoundedCornerShape(10.dp),
++                    bgColor = Color(0x66000000),
++                    borderColor = Color.White.copy(alpha = 0.4f),
++                    onInteract = markInteraction,
++                )
++            }
++
++            // ============ BOTTOM-LEFT: stick (Modern) or D-pad (Classic) ============
++            Box(
++                modifier = Modifier
++                    .align(Alignment.BottomStart)
++                    .padding(start = 36.dp, bottom = 36.dp)
++            ) {
++                when (mode) {
++                    ControlMode.MODERN -> AnalogStick(size = s(200.dp), onInteract = markInteraction)
++                    ControlMode.CLASSIC -> ClassicDPad(size = s(200.dp), onInteract = markInteraction)
++                }
++            }
++
++            // ============ BOTTOM-RIGHT: Thrust (Classic only) + Weapon + Special ============
++            // Weapon (primary) at bottom, Special (secondary) above, Thrust
++            // (Classic only) above Special. Placement mirrors mobile shoot-em-up
++            // conventions: the closer / larger button under the thumb is the
++            // most-used action. UQM Melee mashes Weapon far more often than
++            // Special, and Thrust is a hold-not-tap action so it lives at the
++            // top of the stack where the thumb can rest on it.
++            Column(
++                modifier = Modifier
++                    .align(Alignment.BottomEnd)
++                    .padding(end = 36.dp, bottom = 44.dp),
++                horizontalAlignment = Alignment.End,
++                verticalArrangement = Arrangement.spacedBy(20.dp),
++            ) {
++                // Classic-only Thrust ΓÇö same keycode (DPAD_UP) as the D-pad's
++                // Γåæ so UQM treats it as regular thrust; on Modern the analog
++                // stick already provides thrust via its own KEYCODE_DPAD_UP
++                // emission, so no extra button is needed.
++                if (mode == ControlMode.CLASSIC) {
++                    VirtualButton(
++                        label = "\u2191",
++                        keyCode = KeyEvent.KEYCODE_DPAD_UP,
++                        size = s(84.dp),
++                        shape = CircleShape,
++                        bgColor = Color(0x66225577),
++                        borderColor = Color(0xFF66CCFF),
++                        onInteract = markInteraction,
++                    )
++                }
++                VirtualButton(
++                    label = "S",
++                    keyCode = KeyEvent.KEYCODE_SHIFT_RIGHT,
++                    size = s(84.dp),
++                    shape = CircleShape,
++                    bgColor = Color(0x66884400),
++                    borderColor = Color(0xFFFFCC66),
++                    onInteract = markInteraction,
++                )
++                VirtualButton(
++                    label = "W",
++                    keyCode = KeyEvent.KEYCODE_ENTER,
++                    size = s(108.dp),
++                    shape = CircleShape,
++                    bgColor = Color(0x66004488),
++                    borderColor = Color(0xFF66CCFF),
++                    onInteract = markInteraction,
++                )
++            }
++        }
++
++        // ============ Settings dialog (top-most, not faded) ============
++        if (settingsOpen) {
++            OverlaySettingsDialog(onDismiss = { settingsOpen = false })
++        }
++    }
++}
++
++// ---------------------------------------------------------------------------
++// Analog stick
++// ---------------------------------------------------------------------------
++
++/**
++ * Virtual 360┬░ analog stick. Anchored at a fixed position; the knob follows
++ * the finger within [size]/2 radius. Stick displacement is translated into
++ * held keys via [computeKeys] and dispatched with pairwise Down/Up so
++ * transitions are clean even when Compose collapses frames.
++ */
++@Composable
++private fun AnalogStick(size: Dp, onInteract: () -> Unit = {}) {
++    val density = LocalDensity.current
++    val sizePx = with(density) { size.toPx() }
++    val radiusPx = sizePx / 2f
++    val knobRadiusPx = radiusPx * 0.42f
++
++    var offset by remember { mutableStateOf(Offset.Zero) }
++    // Set of Android keycodes currently held. Kept in sync via dispatchKeys().
++    val heldKeys = remember { HashSet<Int>() }
++
++    // Attach the SDL virtual joystick as soon as the analog stick is composed.
++    // Idempotent + defensive: the C side re-inits SDL_INIT_JOYSTICK if UQM's
++    // SDL_Init happened after us and the joystick subsystem is not yet up.
++    // The virtual joystick fires SDL_JOYDEVICEADDED which UQM's hotplug path
++    // picks up so `--dirjoystick=3` can bind to it.
++    LaunchedEffect(Unit) {
++        VirtualJoystick.ensureAttached()
++    }
++
++    fun dispatchKeys(target: Set<Int>) {
++        // Release keys no longer in target
++        val toRelease = heldKeys - target
++        for (k in toRelease) {
++            SDLActivity.onNativeKeyUp(k)
++            Log.d("UqmOverlay", "stick keyup ${keyName(k)}")
++        }
++        heldKeys.removeAll(toRelease)
++        // Press keys not yet held
++        val toPress = target - heldKeys
++        for (k in toPress) {
++            SDLActivity.onNativeKeyDown(k)
++            Log.d("UqmOverlay", "stick keydown ${keyName(k)}")
++        }
++        heldKeys.addAll(toPress)
++    }
++
++    Box(
++        modifier = Modifier
++            .size(size)
++            .pointerInput(Unit) {
++                awaitPointerEventScope {
++                    while (true) {
++                        val event = awaitPointerEvent(PointerEventPass.Initial)
++                        val ch = event.changes.firstOrNull()
++                        if (ch == null || !ch.pressed) {
++                            // Finger lifted or no active pointer ΓÇö recentre.
++                            if (offset != Offset.Zero) offset = Offset.Zero
++                            dispatchKeys(emptySet())
++                            VirtualJoystick.setAxes(0f, 0f)
++                        } else {
++                            // ch.position is in local coordinates (0,0) = top-left
++                            val center = Offset(sizePx / 2f, sizePx / 2f)
++                            val raw = ch.position - center
++                            offset = clampToRadius(raw, radiusPx)
++                            dispatchKeys(computeKeys(offset, radiusPx))
++                            // Feed normalized axes to UQM's directional joystick
++                            // path (--dirjoystick=3). SDL LEFTY convention is
++                            // "down positive" ΓÇö matches Compose screen y.
++                            val nx = offset.x / radiusPx
++                            val ny = offset.y / radiusPx
++                            VirtualJoystick.setAxes(nx, ny)
++                            onInteract()
++                        }
++                        // Consume so the underlying SDL surface does not also
++                        // interpret this as a mouse/touch event.
++                        event.changes.forEach { if (it.pressed) it.consume() }
++                    }
++                }
++            }
++    ) {
++        Canvas(modifier = Modifier.fillMaxSize()) {
++            val center = Offset(this.size.width / 2f, this.size.height / 2f)
++            // Base ring
++            drawCircle(
++                color = Color(0x33FFFFFF),
++                radius = radiusPx,
++                center = center,
++            )
++            drawCircle(
++                color = Color(0xAAFFFFFF),
++                radius = radiusPx,
++                center = center,
++                style = Stroke(width = 3f),
++            )
++            // Knob at current offset
++            drawCircle(
++                color = Color(0x9966CCFF),
++                radius = knobRadiusPx,
++                center = center + offset,
++            )
++            drawCircle(
++                color = Color.White.copy(alpha = 0.85f),
++                radius = knobRadiusPx,
++                center = center + offset,
++                style = Stroke(width = 2f),
++            )
++        }
++    }
++}
++
++private fun clampToRadius(v: Offset, r: Float): Offset {
++    val d = v.getDistance()
++    return if (d <= r) v else v * (r / d)
++}
++
++/**
++ * Translate stick displacement into the set of Android keycodes that should
++ * currently be held down. See KDoc on [TouchOverlay] for the menu-vs-combat
++ * compromise; this is where those numeric thresholds live.
++ *
++ * P2 (--dirjoystick=3) note: we deliberately do **not** emit keyboard LEFT /
++ * RIGHT here. The virtual SDL joystick (see [VirtualJoystick]) feeds UQM's
++ * GetDirectionalJoystickInput which drives auto-align turning in melee; if
++ * we also mashed keyboard LEFT / RIGHT the two sources would race and the
++ * ship would jitter. Menu-mode Left/Right navigation is provided by the
++ * dedicated `MenuArrowButton` composables next to ESC in [TouchOverlay].
++ */
++private fun computeKeys(offset: Offset, radius: Float): Set<Int> {
++    val magNorm = offset.getDistance() / radius
++    if (magNorm < 0.2f) return emptySet()  // dead zone
++
++    val xNorm = offset.x / radius
++    val yNorm = offset.y / radius  // screen coords: down = +y
++
++    val keys = HashSet<Int>()
++
++    // Menu carve-out: near-vertical push nearly-fully down ΓåÆ menu Down only.
++    // Requires both dominant downward and negligible horizontal component,
++    // so accidental down-right in combat still yields thrust.
++    val isNearlyStraightDown = yNorm > 0.7f && kotlin.math.abs(xNorm) < 0.15f
++    if (isNearlyStraightDown) {
++        keys.add(KeyEvent.KEYCODE_DPAD_DOWN)
++    } else {
++        // Any other push ΓåÆ thrust. Matches "wherever you push, ship goes".
++        keys.add(KeyEvent.KEYCODE_DPAD_UP)
++    }
++
++    // NOTE: no KEYCODE_DPAD_LEFT / KEYCODE_DPAD_RIGHT here ΓÇö see KDoc above.
++    // The virtual SDL joystick axes handle turning in combat, and dedicated
++    // MenuArrowButton composables handle menu Left/Right navigation.
++    return keys
++}
++
++private fun keyName(kc: Int): String = when (kc) {
++    KeyEvent.KEYCODE_DPAD_UP -> "UP"
++    KeyEvent.KEYCODE_DPAD_DOWN -> "DOWN"
++    KeyEvent.KEYCODE_DPAD_LEFT -> "LEFT"
++    KeyEvent.KEYCODE_DPAD_RIGHT -> "RIGHT"
++    KeyEvent.KEYCODE_ENTER -> "ENTER"
++    KeyEvent.KEYCODE_SHIFT_RIGHT -> "R-SHIFT"
++    KeyEvent.KEYCODE_ESCAPE -> "ESC"
++    else -> "?$kc"
++}
++
++// ---------------------------------------------------------------------------
++// Discrete button (Weapon / Special / ESC)
++// ---------------------------------------------------------------------------
++
++@Composable
++private fun VirtualButton(
++    label: String,
++    keyCode: Int,
++    size: Dp,
++    shape: androidx.compose.foundation.shape.CornerBasedShape,
++    bgColor: Color,
++    borderColor: Color,
++    onInteract: () -> Unit = {},
++) {
++    var pressed by remember { mutableStateOf(false) }
++    Box(
++        modifier = Modifier
++            .size(size)
++            .clip(shape)
++            .background(if (pressed) bgColor.copy(alpha = 0.85f) else bgColor)
++            .border(2.dp, borderColor, shape)
++            .pointerInput(keyCode) {
++                awaitPointerEventScope {
++                    while (true) {
++                        val event = awaitPointerEvent(PointerEventPass.Initial)
++                        val downNow = event.changes.any { it.pressed }
++                        // Dispatch synchronously; do not route through
++                        // LaunchedEffect(pressed) ΓÇö Compose may collapse a
++                        // same-frame down+up and never observe pressed=true.
++                        if (downNow && !pressed) {
++                            Log.i("UqmOverlay", "keydown $label (code=$keyCode)")
++                            SDLActivity.onNativeKeyDown(keyCode)
++                            onInteract()
++                            pressed = true
++                        } else if (!downNow && pressed) {
++                            Log.i("UqmOverlay", "keyup $label (code=$keyCode)")
++                            SDLActivity.onNativeKeyUp(keyCode)
++                            pressed = false
++                        }
++                        event.changes.forEach { if (it.pressed) it.consume() }
++                    }
++                }
++            },
++        contentAlignment = Alignment.Center,
++    ) {
++        Text(
++            text = label,
++            color = Color.White.copy(alpha = 0.95f),
++            style = TextStyle(fontSize = 22.sp, fontWeight = FontWeight.Bold),
++        )
++    }
++}
++
++// ---------------------------------------------------------------------------
++// Modern / Classic mode toggle (top-left)
++// ---------------------------------------------------------------------------
++
++/**
++ * Small square button that flips [OverlayPrefs.modeState] between MODERN
++ * and CLASSIC. Persists via SharedPreferences. Uses a Compose-friendly
++ * click detector (single tap on release) rather than the down-state
++ * dispatch pattern of [VirtualButton], because the toggle does UI state
++ * work rather than injecting SDL key events.
++ */
++@Composable
++private fun ModeToggleButton(size: Dp = 48.dp, onInteract: () -> Unit = {}) {
++    val mode by OverlayPrefs.modeState
++    val label = if (mode == ControlMode.MODERN) "M" else "C"
++    val subtitle = if (mode == ControlMode.MODERN) "modern" else "classic"
++
++    Box(
++        modifier = Modifier
++            .size(size)
++            .clip(RoundedCornerShape(10.dp))
++            .background(Color(0x66442200))
++            .border(2.dp, Color(0xFFFFAA44), RoundedCornerShape(10.dp))
++            .pointerInput(Unit) {
++                awaitPointerEventScope {
++                    while (true) {
++                        val event = awaitPointerEvent(PointerEventPass.Initial)
++                        val ch = event.changes.firstOrNull() ?: continue
++                        // Toggle on release (avoid rapid double-fire while held).
++                        if (!ch.pressed && ch.previousPressed) {
++                            OverlayPrefs.toggleMode()
++                            onInteract()
++                            Log.i("UqmOverlay", "mode toggled to ${OverlayPrefs.modeState.value}")
++                        }
++                        event.changes.forEach { if (it.pressed) it.consume() }
++                    }
++                }
++            },
++        contentAlignment = Alignment.Center,
++    ) {
++        Column(horizontalAlignment = Alignment.CenterHorizontally) {
++            Text(
++                text = label,
++                color = Color.White,
++                style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
++            )
++            Text(
++                text = subtitle,
++                color = Color.White.copy(alpha = 0.7f),
++                style = TextStyle(fontSize = 8.sp),
++            )
++        }
++    }
++}
++
++// ---------------------------------------------------------------------------
++// Pinch-to-zoom detector (full-screen underlay, Main pass)
++// ---------------------------------------------------------------------------
++
++/**
++ * Full-screen invisible layer that watches for two-finger pinch. When the
++ * distance between the two fingers changes by ┬▒30% of the initial baseline
++ * distance, injects one KEYCODE_PAGE_UP (spread) or KEYCODE_PAGE_DOWN
++ * (pinch) then resets the baseline. UQM's star-map default binding
++ * (menu.key: `zoom_in.2 = STRING:key Page Up`, `zoom_out.2 = STRING:key
++ * Page Down`) responds to those.
++ *
++ * Runs at [PointerEventPass.Main] so buttons and the analog stick get
++ * first dibs (they claim at [PointerEventPass.Initial] and consume their
++ * pointers). Only fires when we see ΓëÑ2 pressed pointers that were NOT
++ * consumed upstream.
++ *
++ * Also silently ignores pinches outside of star-map state ΓÇö UQM just
++ * ignores PAGE_UP/DOWN presses that have no meaning in the current
++ * screen, so no state-aware gating is required. Non-star-map screens
++ * (combat, dialog, hyperspace) will occasionally see stray PAGE_UP/DOWN
++ * events from user pinches; those are inert.
++ */
++@Composable
++private fun PinchZoomDetector() {
++    Box(
++        modifier = Modifier
++            .fillMaxSize()
++            .pointerInput(Unit) {
++                var baselineDist: Float = 0f
++                val pinchThresholdRatio = 0.30f
++                awaitPointerEventScope {
++                    while (true) {
++                        val event = awaitPointerEvent(PointerEventPass.Main)
++                        // Only unconsumed pressed pointers matter ΓÇö buttons /
++                        // stick have already claimed their fingers upstream.
++                        val active = event.changes.filter { it.pressed && !it.isConsumed }
++                        if (active.size < 2) {
++                            baselineDist = 0f
++                            continue
++                        }
++                        val a = active[0].position
++                        val b = active[1].position
++                        val dist = kotlin.math.hypot(a.x - b.x, a.y - b.y)
++                        if (baselineDist == 0f) {
++                            baselineDist = dist
++                            continue
++                        }
++                        val ratio = dist / baselineDist
++                        if (ratio > 1f + pinchThresholdRatio) {
++                            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_PAGE_UP)
++                            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_PAGE_UP)
++                            Log.d("UqmOverlay", "pinch spread ΓåÆ PAGE_UP")
++                            baselineDist = dist  // reset for next tier
++                        } else if (ratio < 1f - pinchThresholdRatio) {
++                            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_PAGE_DOWN)
++                            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_PAGE_DOWN)
++                            Log.d("UqmOverlay", "pinch close ΓåÆ PAGE_DOWN")
++                            baselineDist = dist
++                        }
++                    }
++                }
++            }
++    )
++}
++
++// ---------------------------------------------------------------------------
++// Classic D-pad (bottom-left, Classic mode alternative to AnalogStick)
++// ---------------------------------------------------------------------------
++
++/**
++ * Skeleton 4-way D-pad matching desktop UQM's default up/down/left/right
++ * key semantics. Each arrow is a discrete [VirtualButton] emitting the
++ * matching KEYCODE_DPAD_*. Layout is a plus-shape:
++ *
++ *     [ Γåæ ]
++ * [ΓåÉ] [   ] [ΓåÆ]
++ *     [ Γåô ]
++ *
++ * Intentionally minimal for the Stage 5 first pass ΓÇö no diagonal / 8-way
++ * support (Modern mode is where 8-way lives via the analog stick). Once
++ * classic-mode-specific requirements land (haptic feedback, diagonal
++ * chording, mode-specific button layouts) this is where they go.
++ */
++@Composable
++private fun ClassicDPad(size: Dp, onInteract: () -> Unit = {}) {
++    val density = LocalDensity.current
++    val sizePx = with(density) { size.toPx() }
++    val armDp = with(density) { (sizePx / 3f).toDp() }
++
++    Box(
++        modifier = Modifier.size(size),
++        contentAlignment = Alignment.Center,
++    ) {
++        // Up
++        Box(
++            modifier = Modifier.align(Alignment.TopCenter)
++        ) {
++            VirtualButton(
++                label = "\u2191",
++                keyCode = KeyEvent.KEYCODE_DPAD_UP,
++                size = armDp,
++                shape = RoundedCornerShape(12.dp),
++                bgColor = Color(0x66222266),
++                borderColor = Color(0xFF88AAFF),
++                onInteract = onInteract,
++            )
++        }
++        // Down
++        Box(
++            modifier = Modifier.align(Alignment.BottomCenter)
++        ) {
++            VirtualButton(
++                label = "\u2193",
++                keyCode = KeyEvent.KEYCODE_DPAD_DOWN,
++                size = armDp,
++                shape = RoundedCornerShape(12.dp),
++                bgColor = Color(0x66222266),
++                borderColor = Color(0xFF88AAFF),
++                onInteract = onInteract,
++            )
++        }
++        // Left
++        Box(
++            modifier = Modifier.align(Alignment.CenterStart)
++        ) {
++            VirtualButton(
++                label = "\u2190",
++                keyCode = KeyEvent.KEYCODE_DPAD_LEFT,
++                size = armDp,
++                shape = RoundedCornerShape(12.dp),
++                bgColor = Color(0x66222266),
++                borderColor = Color(0xFF88AAFF),
++                onInteract = onInteract,
++            )
++        }
++        // Right
++        Box(
++            modifier = Modifier.align(Alignment.CenterEnd)
++        ) {
++            VirtualButton(
++                label = "\u2192",
++                keyCode = KeyEvent.KEYCODE_DPAD_RIGHT,
++                size = armDp,
++                shape = RoundedCornerShape(12.dp),
++                bgColor = Color(0x66222266),
++                borderColor = Color(0xFF88AAFF),
++                onInteract = onInteract,
++            )
++        }
++    }
++}
++
++// ---------------------------------------------------------------------------
++// Hamburger menu (Γÿ░) ΓÇö top-left, less-used hotkeys behind a dropdown
++// ---------------------------------------------------------------------------
++
++/**
++ * Static Γÿ░ icon button that only triggers a passed-in [onClick]. The
++ * anchored [DropdownMenu] is a sibling composable that reads its
++ * expanded state directly from [TouchOverlay]'s hoisted state.
++ *
++ * Kept simple (no key-event dispatch) because the button doesn't map to
++ * a UQM game action ΓÇö it's purely a Compose UI affordance.
++ */
++@Composable
++private fun HamburgerButton(size: Dp, onClick: () -> Unit) {
++    Box(
++        modifier = Modifier
++            .size(size)
++            .clip(RoundedCornerShape(10.dp))
++            .background(Color(0x66000000))
++            .border(2.dp, Color.White.copy(alpha = 0.5f), RoundedCornerShape(10.dp))
++            .pointerInput(Unit) {
++                awaitPointerEventScope {
++                    while (true) {
++                        val event = awaitPointerEvent(PointerEventPass.Initial)
++                        val ch = event.changes.firstOrNull() ?: continue
++                        if (!ch.pressed && ch.previousPressed) onClick()
++                        event.changes.forEach { if (it.pressed) it.consume() }
++                    }
++                }
++            },
++        contentAlignment = Alignment.Center,
++    ) {
++        Text(
++            text = "\u2630",   // Γÿ░
++            color = Color.White,
++            style = TextStyle(fontSize = 22.sp, fontWeight = FontWeight.Bold),
++        )
++    }
++}
++
++/**
++ * Dropdown menu attached to the hamburger. Each item that maps to a UQM
++ * hotkey emits a pair of `onNativeKeyDown` + `onNativeKeyUp` so UQM's
++ * input state machine sees a clean press/release. `onKeyboard` /
++ * `onOpenSettings` are UI actions (no SDL dispatch).
++ *
++ * All items call [markInteraction] so tapping through the menu resets
++ * the overlay's auto-hide timer.
++ */
++@Composable
++private fun HamburgerDropdown(
++    expanded: Boolean,
++    onDismiss: () -> Unit,
++    onOpenSettings: () -> Unit,
++    onKeyboard: () -> Unit,
++    markInteraction: () -> Unit,
++) {
++    DropdownMenu(
++        expanded = expanded,
++        onDismissRequest = onDismiss,
++    ) {
++        HotkeyMenuItem("\uD83D\uDCBE  F3 ┬╖ σ┐½ΘÇƒσ¡ÿµ¬ö", KeyEvent.KEYCODE_F3,
++            onDismiss, markInteraction)
++        HotkeyMenuItem("\uD83D\uDCC2  F4 ┬╖ σ┐½ΘÇƒΦ«Çµ¬ö", KeyEvent.KEYCODE_F4,
++            onDismiss, markInteraction)
++        HotkeyMenuItem("\uD83D\uDD0D  F6 ┬╖ µÿƒσ£ûµÉ£σ░ï", KeyEvent.KEYCODE_F6,
++            onDismiss, markInteraction)
++        HotkeyMenuItem("\uD83D\uDDFA  F7 ┬╖ σêçµÅ¢σ£░σ£û", KeyEvent.KEYCODE_F7,
++            onDismiss, markInteraction)
++        HotkeyMenuItem("\uD83D\uDEAA  F10 ┬╖ Θ¢óΘûïΘüèµê▓", KeyEvent.KEYCODE_F10,
++            onDismiss, markInteraction)
++        DropdownMenuItem(
++            text = { Text("\u2328\uFE0F  Θì╡τ¢ñ ┬╖ σ╜êσç║Φ╝╕σàÑµ│ò") },
++            onClick = {
++                markInteraction()
++                onKeyboard()
++            },
++        )
++        DropdownMenuItem(
++            text = { Text("\u2699\uFE0F  ΦÖ¢µô¼µîëΘêòΦ¿¡σ«Ü") },
++            onClick = {
++                markInteraction()
++                onOpenSettings()
++            },
++        )
++    }
++}
++
++/**
++ * DropdownMenu item that fires a SDL keydown+keyup pair on click and
++ * closes the parent menu. Convenience wrapper around DropdownMenuItem.
++ */
++@Composable
++private fun HotkeyMenuItem(
++    label: String,
++    keyCode: Int,
++    onDismiss: () -> Unit,
++    markInteraction: () -> Unit,
++) {
++    DropdownMenuItem(
++        text = { Text(label) },
++        onClick = {
++            markInteraction()
++            Log.i("UqmOverlay", "menu keydown $label (code=$keyCode)")
++            SDLActivity.onNativeKeyDown(keyCode)
++            SDLActivity.onNativeKeyUp(keyCode)
++            onDismiss()
++        },
++    )
++}
++
++// ---------------------------------------------------------------------------
++// Keyboard button ΓÇö force-show the Android soft keyboard (IME)
++// ---------------------------------------------------------------------------
++
++/**
++ * Explicit "show soft keyboard" button. SDL2 Android normally pops the
++ * IME automatically on `SDL_StartTextInput()`, but the Compose overlay
++ * atop the SDL surface intercepts focus so the auto-show never fires.
++ * This button lets the player summon the keyboard manually ΓÇö used for:
++ *  - Captain / ship name entry at new game
++ *  - Star-map search (F6) text field
++ *  - Save game slot naming
++ *
++ * The keyboard delivers KEYDOWN / KEYUP / TEXTINPUT events straight to
++ * SDL2 (registered as global key listener during nativeSetupJNI). No
++ * plumbing required beyond calling [SdlIme.toggle].
++ */
++@Composable
++private fun KeyboardButton(size: Dp, onInteract: () -> Unit = {}) {
++    val ctx = LocalContext.current
++    Box(
++        modifier = Modifier
++            .size(size)
++            .clip(RoundedCornerShape(10.dp))
++            .background(Color(0x66004422))
++            .border(2.dp, Color(0xFF66CC88), RoundedCornerShape(10.dp))
++            .pointerInput(Unit) {
++                awaitPointerEventScope {
++                    while (true) {
++                        val event = awaitPointerEvent(PointerEventPass.Initial)
++                        val ch = event.changes.firstOrNull() ?: continue
++                        if (!ch.pressed && ch.previousPressed) {
++                            onInteract()
++                            SdlIme.toggle(ctx)
++                        }
++                        event.changes.forEach { if (it.pressed) it.consume() }
++                    }
++                }
++            },
++        contentAlignment = Alignment.Center,
++    ) {
++        Text(
++            text = "\u2328",  // Γî¿
++            color = Color.White,
++            style = TextStyle(fontSize = 22.sp, fontWeight = FontWeight.Bold),
++        )
++    }
++}
++
++// ---------------------------------------------------------------------------
++// Settings dialog ΓÇö transparency + size + auto-hide seconds
++// ---------------------------------------------------------------------------
++
++/**
++ * Modal dialog with three [Slider]s for the visual preferences held in
++ * [OverlayPrefs]. Live-updates the state as the user drags ΓÇö every
++ * button/stick composable observes [OverlayPrefs] so changes flow
++ * through immediately without needing "Apply".
++ *
++ * Ranges:
++ *  - ΘÇÅµÿÄσ║ª (alpha): 0.3 (very see-through) .. 1.0 (fully opaque)
++ *  - σñºσ░Å (scale):   0.75 .. 1.5 (multiplier applied to every Dp)
++ *  - auto-hide:      0 (disabled) .. 30 seconds. 0 = always visible.
++ */
++@Composable
++private fun OverlaySettingsDialog(onDismiss: () -> Unit) {
++    var alpha by remember { mutableStateOf(OverlayPrefs.alphaState.floatValue) }
++    var scale by remember { mutableStateOf(OverlayPrefs.scaleState.floatValue) }
++    var autoHide by remember { mutableStateOf(OverlayPrefs.autoHideSecondsState.intValue.toFloat()) }
++
++    AlertDialog(
++        onDismissRequest = onDismiss,
++        confirmButton = {
++            TextButton(onClick = onDismiss) { Text("Θù£Θûë") }
++        },
++        title = { Text("ΦÖ¢µô¼µîëΘêòΦ¿¡σ«Ü") },
++        text = {
++            Column {
++                Text("ΘÇÅµÿÄσ║ª: ${"%.2f".format(alpha)}")
++                Slider(
++                    value = alpha,
++                    onValueChange = {
++                        alpha = it
++                        OverlayPrefs.setAlpha(it)
++                    },
++                    valueRange = 0.3f..1.0f,
++                )
++                Spacer(Modifier.height(8.dp))
++                Text("σñºσ░Å: ${"%.2f".format(scale)}x")
++                Slider(
++                    value = scale,
++                    onValueChange = {
++                        scale = it
++                        OverlayPrefs.setScale(it)
++                    },
++                    valueRange = 0.75f..1.5f,
++                )
++                Spacer(Modifier.height(8.dp))
++                Text(
++                    if (autoHide.toInt() == 0) "Φç¬σïòΘÜ▒ΦùÅ: σü£τö¿"
++                    else "Φç¬σïòΘÜ▒ΦùÅ: ${autoHide.toInt()} τºÆµ£¬µîë ΓåÆ µ╖íσç║"
++                )
++                Slider(
++                    value = autoHide,
++                    onValueChange = {
++                        autoHide = it
++                        OverlayPrefs.setAutoHideSeconds(it.toInt())
++                    },
++                    valueRange = 0f..30f,
++                    steps = 29,
++                )
++            }
++        },
++    )
++}

@@ -1,0 +1,24 @@
+{
+  "_notes": [
+    "v3 partial-4 (yehat tokens 53-68) — Clean-room rebuild per v0.7 dossier",
+    "主題: post-split royalist (Feep-Eeep 費普-伊普 hostile clan)、how_is_rebellion 段落、alliance names、OUT_TAKES 彩蛋",
+    "Q10 sub-decision: Feep-Eeep 首次出現用音譯「費普-伊普」+ 英文首介 (對齊 Zeep-Zeep = 翼-翼氏族 決策風格,但 Feep-Eeep 無明顯翼icon對應意譯,建議 diff review 時使用者可選 意譯/音譯)",
+    "OUT_TAKES: Hollywood meta gag (Woody Allen / Tobe Hooper 保留原文 + 中譯); 'get my wing in the door' 保留 bird icon「把翅膀伸進門」"
+  ],
+  "ROYALIST_SPACE_HELLO_1": "人類啊……你將永遠無法完全領會——此番你正在對我族翼哈特文化所造成的損害。\n整整**兩千年**——眾氏族間一直是和平的!……\n……而如今,你卻在我族喙間——播下了古老的紛爭種子!\n血腥的「升位戰爭」再度掀起——艦長,肇因**正是你**!\n翼-翼氏族那些叛徒或許已成為你的盟友,艦長\n但本騎士可以向你確保——我族——費普-伊普(Feep-Eeep) 星艦氏族——\n正沒有比看你死更令我族珍愛的事!",
+  "ROYALIST_SPACE_HELLO_2": "就是這個人類——這**煽動者**——想要看到光輝女皇陛下,從高懸王座上被扯下!\n你將悔恨——你策劃這卑劣陰謀的那一天!",
+  "ROYALIST_HOMEWORLD_HELLO_1": "人類!像所有英雄一樣,你既無腦——也勇敢。\n你難道不知——此地並無任何叛徒翼-翼星艦氏族的人!\n人類——你可算是死定了。",
+  "ROYALIST_HOMEWORLD_HELLO_2": "別再嘰嘰喳喳地挑釁了,人類!\n你像一頭生病的布利格獸(breeg)一樣亂舞——從不肯與我族一戰決死\n——就如榮耀與真正的勇氣所要求的那樣!",
+  "how_is_rebellion": "那個——你們的革命,進行得怎麼樣了?",
+  "ROYALIST_REBELLION_1": "革命!?艦長,你自我抬舉,實無必要。\n這不過是……一群暴徒,妄圖顛覆百代累積下來的和平!\n我族將把那些叛徒——在他們的星艦裡烤熟——並敲碎他們氏族巢裡的每一顆蛋\n好讓翼-翼氏族的罪犯,再也無法飛掠我族的星辰。",
+  "ROYALIST_REBELLION_2": "別為此擔憂,艦長!勝利——已幾乎握在我族掌中。",
+  "sorry_about_revolution": "唉,這場革命的事……我方真的很抱歉。我方並沒有想要造成傷害。",
+  "ALL_YOUR_FAULT": "這場無謂衝突所帶來的痛苦與折磨——不過是生命的一場悲慘揮霍罷了。\n恭喜你,艦長。這一切死亡與苦難的根源——正是**你自己**。",
+  "bye_royalist": "再會了,保皇派的蠢貨!",
+  "GOODBYE_AND_DIE_ROYALIST": "如今——你必須為你的罪行付出代價,人類!",
+  "name_1": "新自由星系聯盟",
+  "name_2": "異星諸邦協和聯盟",
+  "name_3": "諸世界聯邦",
+  "name_4": "<% state.sis.getCaptainName() %> 帝國",
+  "OUT_TAKES": "所以嘛,本騎士猜——你正在納悶,本騎士在這操控台前到底在幹什麼\n好吧,大概可以告訴你了。\n本騎士——正在寫一部劇本!\n是齣**存在主義驚悚劇**!\n大概是伍迪·艾倫(Woody Allen)那種焦慮劇——混上一點托比·胡珀(Tobe Hooper)的經典恐怖手法。\n不過說真的,這只是本騎士——想把翅膀伸進門的方式,你懂吧\n本騎士**真正**想做的——是**當導演**!"
+}

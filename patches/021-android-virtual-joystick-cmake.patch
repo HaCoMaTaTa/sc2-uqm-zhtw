@@ -1,0 +1,23 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 76a71c1..682dccf 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -456,6 +456,18 @@ endif ()
+ 
+ if (ANDROID)
+ 	list (APPEND UQM_LINK_LIBRARIES log)
++
++	# zh-TW Android port: NDK Clang enforces -Werror=format-security which
++	# rejects lander.c's deliberate use of runtime-resolved GAME_STRING(...)
++	# as the format arg to sprintf (element description injection). Downgrade
++	# to warning on Android only — the desktop builds keep the strict default.
++	target_compile_options (UrQuanMasters PRIVATE -Wno-error=format-security)
++
++	# zh-TW Android port: on-screen analog stick bridge. Appended after
++	# add_library because the recurse-based UQM_SOURCES list skips
++	# src/android_*.c (no Makeinfo entry).
++	target_sources (UrQuanMasters PRIVATE
++			${CMAKE_SOURCE_DIR}/src/android_virtual_joystick.c)
+ endif ()
+ 
+ target_link_libraries (UrQuanMasters ${UQM_LINK_LIBRARIES})

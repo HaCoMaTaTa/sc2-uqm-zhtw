@@ -1,0 +1,47 @@
+diff --git a/src/uqm/comm.c b/src/uqm/comm.c
+index cfe4fd0..916ca48 100644
+--- a/src/uqm/comm.c
++++ b/src/uqm/comm.c
+@@ -458,6 +458,10 @@ getLineWithinWidth(TEXT *pText, const char **startNext,
+ 	const char *wordStart;
+ 	UniChar ch;
+ 	COUNT charCount;
++	/* zh-TW patch: Chinese text has no inter-word spaces. Treat every CJK
++	   Unified Ideograph (U+4E00-U+9FFF) as a valid line-break point, so
++	   `getLineWithinWidth` can wrap CJK strings without hint spaces. */
++	BOOLEAN ch_is_cjk_break = FALSE;
+ 
+ 	//GetContextClipRect (&rect);
+ 
+@@ -484,8 +488,18 @@ getLineWithinWidth(TEXT *pText, const char **startNext,
+ 			eol = ch == '\0' || ch == '\n' || ch == '\r';
+ 			done = eol || charCount >= maxChars;
+ 			if (done || ch == ' ')
++			{
++				ch_is_cjk_break = FALSE;
+ 				break;
++			}
+ 			charCount++;
++			/* zh-TW patch: end this "word" after a single CJK char so each
++			   Han character becomes an independent wrap point. */
++			if (ch >= 0x4E00 && ch <= 0x9FFF)
++			{
++				ch_is_cjk_break = TRUE;
++				break;
++			}
+ 		}
+ 
+ 		oldCount = pText->CharCount;
+@@ -504,7 +518,11 @@ getLineWithinWidth(TEXT *pText, const char **startNext,
+ 			*startNext = ptr;
+ 			return eol;
+ 		}
+-		charCount++;
++		/* zh-TW patch: only count an extra "space" char for actual ASCII
++		   space boundaries. CJK boundaries do not consume a separator so we
++		   must not double-advance charCount. */
++		if (!ch_is_cjk_break)
++			charCount++;
+ 				// For the space in between words.
+ 	}
+ }

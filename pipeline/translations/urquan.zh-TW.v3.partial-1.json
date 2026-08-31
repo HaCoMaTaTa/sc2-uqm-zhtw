@@ -1,0 +1,84 @@
+{
+  "_notes": [
+    "v0.7 v3 clean-room partial-1 (2026-08-16) · 26 tokens (SEND_MESSAGE + 前 25 個 Kzer-Za 對白 + 玩家糊塗類 response)",
+    "===== v0.7 Q&A 決策（clean-room 前置） =====",
+    "  Q1 CAPS icon: D (B+C 混合) → 極簡短句 + 句號密集/破折號斷句；情緒段落用短句拆行 + 適量感嘆號；廢除 markdown **粗體**",
+    "  Q2b drone 自稱: A → SEND_MESSAGE 全用『本艦』(現代軍語 · 廢除本平台/本領主/本主宰)",
+    "  Q3 我族/我們分布: C → URQUAN_STORY 全我族史詩體 · 敗北段自然混用我族/我們 · 其餘我族預設",
+    "  Q4 玩家 response 自稱: C 情境切換 → 正式/一般用『我方』或『我』 · 糊塗/憤怒用『我』· key_phrase 用 canonical『我族』",
+    "  Q5 敗北段語氣: B → 帝國骨架 + 灰暗點綴（保留『必』『將』但加『再會』『存續』『已無力』等）",
+    "  Q6 OUT_TAKES: D → 動畫師口氣 + 台灣化 gag 擴展（碎碎念/秀秀抱抱/歌舞劇/才怪）",
+    "  Q7 SEND_MESSAGE wrap: A → 保留 ASCII 空格 wrap 手法（v0.5 layout rule）· 只改詞",
+    "  Q8 signature 譯法: C → NOPE=A(臣服，否則覆滅──蠢人!) · CAUGHT_YA=B(短版哼!) · key_phrase=A(shipped canonical『我族』跨檔一致)",
+    "===== dossier v0.7 §四 §五 §六 核心規則 =====",
+    "  自稱 palette: 我族(預設) / 我們(複數集體) / 我族烏寬克澤札 / 我族烏寬(兩派抽象) · 儀式化: 本艦(SEND_MESSAGE drone icon)",
+    "  對玩家: 你 / 你們 / 人類 / 艦長(尊重) · 判斷: 背叛者 / 後裔 / 奴隸 / 蠢人 / 闖入者",
+    "  廢除: 吾 / 吾等 / 吾儕 / 爾 / 汝 / 爾等 / 本領主 / 卑微者 / 微不足道的蟲豸 / 低等生物 (Kohr-Ah filth 感)",
+    "  句式: 極正式現代白話 + 對句節奏 + 教義史詩敘事長句 + 「──」破折號斷句",
+    "  書卷氣詞: 兩萬年來 / 群星之光 / 蒼穹之下 / 直面 / 覆滅 / 承受（現代雅辭，非文言）",
+    "===== Canonical v0.5.2/v0.7 (Master_Glossary) =====",
+    "  Ur-Quan Kzer-Za = 烏寬克澤札 · Kzer-Za(人) = 克澤札 · Kohr-Ah = 柯亞",
+    "  Path of Now and Forever = 現在與永恆之道 · Eternal Doctrine = 永恆教條 · Doctrinal War = 教義戰爭",
+    "  Sentient Milieu = 感知聯盟 · Sa-Matra = 薩瑪特拉 · Yuptar = 尤普塔（Yuptar）",
+    "  Slave Shield = 奴役護盾 · Battle Thrall = 戰奴 · Fallow Slave = 禁足奴族",
+    "  Excruciator = 苦刑器 · Talking Pet = 會話寵 · Dnyarri = 蟾亞",
+    "  rogue human = 漏網之奴 · The Words = 那句話 · slave laws = 奴役律法",
+    "  Dreadnought = 無畏艦 · Precursor = 先驅者 · HyperSpace = 超空間",
+    "===== SEND_MESSAGE layout rules (v0.5, 保留) =====",
+    "  1. Line count = 11 lines (英文原文)",
+    "  2. 每行 ≤ 12 CJK chars",
+    "  3. 每行 ASCII 空格 wrap 切 2-3 chunk，單 chunk ≤ 5 CJK 避免超寬觸發 _count_lines 死結"
+  ],
+
+  "SEND_MESSAGE": "闖入者， 聽好 此段訊息！\n本艦 以烏寬族 全權發言。\n你們 已擅闖 烏寬領空。\n地球── 不容 任意接近。\n對本艦 敵對行動， 不容。\n你們艦艇 無階層 識別碼──\n故判定為…… 獨立單位。\n不可容忍── 唯有臣服。\n本艦 即將離去， 回報烏寬。\n你們留此， 等候 烏寬 到來。\n違抗者， 必遭 懲處。",
+
+  "HELLO_SAMATRA": "你們不得接近古老的薩瑪特拉── 烏寬統治的象徵！\n你們出現在此，是對奴役律法的再度違犯──\n你們的族群，早已如此明目張膽地違犯過。\n我族無法容忍這種頑逆！\n你們的族群── 刑罰將是滅絕！",
+
+  "SENSE_EVIL": "此處有異…… 令我族的鞘殼收縮、爪尖滲出黏液。\n我族感應到千般邪念的醜惡──\n已定位這惡臭的源頭。\n就在你的艦艇內部！\n愚蠢的漏網之奴── 人類。 為何來到這裡？\n你所找到的── 唯有無可逃避的懲處。",
+
+  "INIT_URQUAN_WAKE_UP": "……此外， 你們拒不回應我族的通訊，視為侮辱──\n死亡將是報酬。 除非你立即應答！",
+
+  "where_am_i": "喂！？ 我在哪裡？",
+
+  "YOU_ARE_HERE": "你的頑逆，不可容忍！\n你必須遵從奴役律法── 否則直面我族殘酷的懲處！",
+
+  "why_does_my_head_hurt": "為什麼我的頭好痛？",
+
+  "HURTS_BECAUSE": "你忘了── 你行為不端的後果\n將為你整個族群， 帶來巨大苦難。",
+
+  "what_about_2_weeks": "哇！？ 過去兩個禮拜跑哪去了？",
+
+  "ABOUT_2_WEEKS": "我族對你的族群一向寬容，因為你們如此幼稚。\n如今， 這種態度已改變。\n你將── 為你的失職負責！",
+
+  "compulsion": "哇！ 我一定是遭到了某種怪異的心靈操控。",
+
+  "WHAT_COMPULSION": "你剛才說什麼？！\n心靈操控？！\n發生了什麼事？！ 說清楚！",
+
+  "wascally_little_guy": "是陰嘎星域裡一個鬼祟的小傢伙。 是他幹的！",
+
+  "WHAT_IT_LOOK_LIKE": "那個生物長什麼樣子？！",
+
+  "terran_amphibian": "牠很像一隻碩大的地球兩棲類。",
+
+  "talking_pet_on_steroids": "牠看起來像打了大腦類固醇的會話寵。",
+
+  "BAD_NEWS": "一隻擁有心靈操控能力的會話寵！\n這是何等沉重的消息── 千古以來，我族最壞的一項！\n我族將加速與我族兄弟── 柯亞的戰爭。\n然後── 我族將處理這隻新蟾亞、這隻會話寵。\n異星艦長！ 你為我族立下的功勞， 遠超你所能想像。\n你的獎賞── 是繼續存活。 若你返回地球， 立即── 摧毀你的艦艇。\n我族將赦免對你與你族群的一切懲處。\n如今離去！…… 永不歸來。",
+
+  "turd_and_toad": "有點像一坨屎跟一隻蟾蜍的混合體。",
+
+  "WHAT_IS_TURD_AND_TOAD": "這些指涉，過於晦澀。 重述。",
+
+  "alien_mind_control": "我覺得我遭到某種外星心靈控制的攻擊！",
+
+  "WHAT_FELT_LIKE": "什麼？！ 喔，不！\n不可能！\n快說，人類！ 告訴我族── 那心靈操控，是什麼感覺？",
+
+  "possessed_by_devil": "我相當確定是被惡魔附身了。",
+
+  "STUPID_DEVIL": "惡魔？ 唯一真實的惡魔── 是駕駛那些黑艦的，人類。\n那些嗜殺的柯亞。\n現在── 給出我族要的情報！ 立刻！",
+
+  "falling_asleep": "感覺就像我睡著了， 或失去意識了。",
+
+  "someone_else_controlled": "我感覺有另一個人控制了我的心智跟身體。",
+
+  "SOUNDS_FAMILIAR": "這聽來過於熟悉…… 是的，噩夢再度開啟。\n或許我族該通告柯亞總主宰── 向她說明。\n不，他們不會相信。 他們過於頑固、過於愚昧。\n他們不會看見危機── 直到為時已晚！\n人類，離去！ 離開我族視線！ 我族必須迅速擊敗柯亞──\n方能處理這隻新蟾亞的威脅。"
+}

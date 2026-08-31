@@ -1,0 +1,46 @@
+# =====================================================================
+# .gitattributes — 跨平台 CJK 檔名與行尾處理
+# =====================================================================
+
+# 預設所有文字檔用 LF（Unix）
+* text=auto eol=lf
+
+# Windows PowerShell / Batch 保留 CRLF
+*.ps1  text eol=crlf
+*.psm1 text eol=crlf
+*.psd1 text eol=crlf
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+
+# Shell / Python / md / json 用 LF
+*.sh   text eol=lf
+*.py   text eol=lf
+*.md   text eol=lf
+*.json text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.txt  text eol=lf
+
+# 二進位（若不慎進 repo）
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.ttf  binary
+*.otf  binary
+*.woff binary
+*.woff2 binary
+*.apk  binary
+*.zip  binary
+*.uqm  binary
+*.7z   binary
+*.pdf  binary
+*.exe  binary
+*.dll  binary
+*.so   binary
+*.jks  binary
+
+# Patch 檔強制 LF（git apply 相容）
+*.patch text eol=lf

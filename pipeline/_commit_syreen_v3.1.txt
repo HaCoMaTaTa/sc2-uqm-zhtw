@@ -1,0 +1,96 @@
+v3.1 syreen Deep Refinement: 13-batch systematic audit · 7 keys refined
+
+Race: 塞蓮族 (Syreen · Talana / Gaia starbase)
+Baseline: v0.7 (127 tokens · dialog-clean · 深淵之子 only in _notes)
+Audit method: 13-batch token-by-token analysis · EN reference · canonical
+              register match (Talana 母系族熱情+挑逗+復仇+詩意告別)
+
+## Summary
+
+- 13 batches audited · 127 tokens (100% coverage)
+- 7 keys refined: 5 semantic + 2 stylistic (Q1=B first-mention + typo fix)
+- All canonical icons preserved (Syra 賽拉 · Deep Children 深層幼體 ·
+  Ur-Quan Hierarchy 烏寬戰奴階層 · Penetrator 穿透艦 · Podships 莢艦 ·
+  Space Patrol 星際巡邏隊 · Habitat 棲居艦 · Ur-Quan Master Nine 烏寬主宰九號)
+- Purity gate PASS (race=0 · simp=0 · variant=0)
+- Lua template gate PASS (0 suspicious first-args)
+- Cross-race VUX canonical verified (raw English preserved · 11 files unified)
+
+## Semantic edits (7)
+
+Batch 1 (1):
+- HELLO_BEFORE_AMBUSH_1 L3: 「泰蘭娜」→「泰蘭娜（Talana）」
+  (Q1=B 首介英文括號 · 呼應蓋亞（Gaia）已有 pattern)
+
+Batch 4 (1):
+- OUR_NEW_WORLD L18:      「我族尋找家園已經找了七十五年」
+                       →「我族尋覓家園已七十五年」
+  (去「找...找了」動詞重複 · 詩意 Talana 悲痛家園史 register)
+
+Batch 5 (1):
+- ABOUT_HOMEWORLD L9:     「至少在你們開始把你們自己的世界包在水泥和塑膠裡之前」
+                       →「至少在你們開始用水泥和塑膠包裹世界之前」
+  (去「你們...你們自己」重複 · 語序自然化「用...包裹」)
+
+Batch 6 (1):
+- GIVE_SHUTTLE L1:        「我族已經組成一支由最優秀軍官所組成的小隊」
+                       →「我族已集結一支由最優秀軍官組成的小隊」
+  (去「組成...所組成」動詞重複 · 去文言「所」)
+
+Batch 10 (1):
+- OK_REPEAT_PLAN L3:      「告訴他們您找到給他們可怕深層幼體的完美世界」
+                       →「告訴他們您找到一顆適合他們可怕深層幼體的完美世界」
+  (加量詞「一顆」+「適合」· 去 possessive 歧義「給他們...的」)
+
+Batch 11 (1) [TYPO FIX]:
+- OK_SPIRIT L1:           「噢，！ 再說一次那個詞！」
+                       →「噢～！ 再說一次那個詞！」
+  (shipped 「噢，！」逗號+驚嘆號 typo · 改波浪號「～」對應 EN「Oooh!」拖長挑逗)
+
+Batch 13 (1):
+- boy_they_never_taught:  「在恩澤伐特他們可沒教過我這種事」
+                       →「在恩澤伐特（Unzervalt）他們可沒教過我這種事」
+  (Q1=B 首介英文括號 · 檔內唯一提及 · 與 arilou/final canonical 對齊)
+
+## Batches 2/3/7/8/9/12 all canonical clean pass (no edit)
+
+Highlights of pass batches:
+- Batch 2 (vindicator + 尋求協助): 全 canonical
+- Batch 3 (Deep Children 證據 lore + NEED_PROOF 招牌悲怒 icon): 全 canonical
+- Batch 7 (地窖獎勵 + OK_FOUND_VAULT 招牌 15L 陷阱計畫): 全 canonical
+- Batch 8 (HELLO_AFTER_AMBUSH_1 招牌 16L 勝利宣告 · WE SLICED THEM TO RIBBONS!): 全 canonical
+- Batch 9 (訊號情報 + 地窖對話): 全 canonical
+- Batch 12 (LIGHTS_OFF + 挑逗 dialogue · MMMmm 擬聲保留): 全 canonical
+
+## Canonical anchors preserved (跨檔一致)
+
+Character/People:
+- Talana 泰蘭娜 · Diani 黛安妮 · Ur-Quan Master Nine 烏寬主宰九號
+
+Places:
+- Syra 賽拉 · Gaia 蓋亞 · Beta Copernicus 哥白尼β ·
+- Epsilon Camelopardalis 鹿豹座ε · Organon 歐加農 · Horologii 時鐘座 ·
+- Unzervalt 恩澤伐特
+
+Race/Object:
+- Syreen 塞蓮族 · Mycon 麥孔族 · Deep Children 深層幼體 · Podships 莢艦 ·
+- Space Patrol 星際巡邏隊 · Penetrator starships 穿透艦 ·
+- Habitat 棲居艦 · Yma 依瑪 · Sun Device (無) · slave shield 奴役護盾 ·
+- Ur-Quan Hierarchy 烏寬戰奴階層 · fallow slaves 禁足奴族 ·
+- combat thralls 戰奴 · Dreadnought 無畏艦 · HyperSpace 超空間 ·
+- Touch-o-Vision 觸感視 · COWABUNGA 卡哇邦嘎 · Sweet Cakes 小甜心
+
+Verified against Q1=B (首介英文括號) / Q3=A (深層幼體) / Q9=A (碎裂世界) /
+Q12 (我族 dominant) dossier decisions.
+
+## Notable canonical stylistic wins retained
+
+- 「地獄降臨」對應「all hell broke loose」(DONT_KNOW_HOW)
+- 「死亡的殮衣」對應「death shroud」(DONT_KNOW_HOW)
+- 「引力抽鞭」對應「gravity whip」(HELLO_AFTER_AMBUSH_1)
+- 「寸寸切碎」對應「SLICED THEM TO RIBBONS」CAPS (HELLO_AFTER_AMBUSH_1)
+- 「熊熊的怒火」對應「BURNING RAGE」CAPS (NEED_PROOF)
+- 「有夠土啊」對應「earthy」pun (SO_AM_I_CAPTAIN)
+- 「拍拍屁股閃人」對應「bugged out」俚語 (ABOUT_WAR)
+- 「平躺 10 小時」對應「horizontal」挑逗雙關 (ABOUT_HOMEWORLD)
+- 「我的人類」對應「my human」canonical Talana 情感稱呼

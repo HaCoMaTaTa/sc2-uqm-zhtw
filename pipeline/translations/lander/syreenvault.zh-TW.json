@@ -1,0 +1,25 @@
+{
+  "_notes": [
+    "v0.7 B1B — Syreen Vault (地底藏艦保險庫, 塞蓮太空巡邏艦).",
+    "Source: extracted/base/base/lander/energy/syreenvault.txt",
+    "3 variants: 找到但打不開 / 打開後艦隊加入 / 已清空",
+    "Terminology:",
+    "  Syreen = 塞蓮族",
+    "  vault = 保險庫",
+    "  bedrock = 基岩",
+    "  metal alloy = 金屬合金",
+    "  Eterna-tech = 「永恆科技」(烏寬族 Dreadnought 護甲材質, 保留引號)",
+    "  Ur-Quan Dreadnought = 烏寬無畏艦",
+    "  super-structure = 骨架結構",
+    "  Space Patrol Penetrator = 太空巡邏穿透艦 (Penetrator = 穿透艦, canonical)",
+    "  rendezvous = 會合",
+    "  Betelgeuse = 參宿四 (canonical, syreen home star)",
+    "  Lua template comm.getStarName 保留原格式"
+  ],
+
+  "SYRVAULT 1": " ---- 地表傳回報告 ----\n\n我方發現一種類似保險庫的建築,\n嵌於此行星基岩之中。\n\n保險庫的金屬合金\n不受我方武器貫穿,\n看似與烏寬族用於加固\n無畏艦骨架結構的\n「永恆科技」金屬相似。\n\n有某種電腦輸入系統,\n但我方無法揣摩其設計。\n受挫且失望,我方正返回登陸艇。\n\n  ---- 報告結束 ----",
+
+  "SYRVAULT 2": " ---- 地表傳回報告 ----\n\n我方已開啟該地底保險庫,\n內藏塞蓮太空巡邏穿透艦。\n\n塞蓮艦長們已接管其艦艇,\n指示我方回到\n<% comm.getStarName(\"參宿四\", \"syreen\") %>\n與他們會合。\n\n  ---- 報告結束 ----",
+
+  "SYRVAULT 3": " ---- 地表傳回報告 ----\n\n塞蓮艦艇保險庫已空,\n內無任何有價值之物。\n\n  ---- 報告結束 ----"
+}

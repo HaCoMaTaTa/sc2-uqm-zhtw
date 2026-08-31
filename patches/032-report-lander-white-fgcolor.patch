@@ -1,0 +1,21 @@
+diff --git a/src/uqm/planets/report.c b/src/uqm/planets/report.c
+index 69761c7..1435fb1 100644
+--- a/src/uqm/planets/report.c
++++ b/src/uqm/planets/report.c
+@@ -152,7 +152,15 @@ MakeReport (SOUND ReadOutSounds, UNICODE *pStr, COUNT StrLen)
+ 	t.baseline.y = r.extent.height + RES_SCALE (1);
+ 			// Text vertical alignment
+ 	row_cells = 0;
+-	fgcolor = BUILD_COLOR (MAKE_RGB15 (0x00, 0x1F, 0x00), 0xFF);
++	// zh-TW patch 032: brighter foreground colour for lander discovery reports.
++	// Original bright-green (0x00, 0x1F, 0x00) sits on top of the PC-mode
++	// blue grid (orbitbackground-021.png RGB(0,0,49)) and is hard to read for
++	// CJK text where glyphs are denser. Switch to full white (0x1F, 0x1F,
++	// 0x1F) — combined with the dark-grey grid override in zh-TW addon
++	// (nav/orbitbackground-021.png → RGB(30,30,30)) this gives high contrast
++	// without eye strain.
++	// Original: BUILD_COLOR (MAKE_RGB15 (0x00, 0x1F, 0x00), 0xFF)  ← green
++	fgcolor = BUILD_COLOR (MAKE_RGB15 (0x1F, 0x1F, 0x1F), 0x0F);
+ 
+ 	if (contextRect.extent.width < SCALED_MAP_WIDTH)
+ 		startx = RES_SCALE (1); // Special case if we're in space

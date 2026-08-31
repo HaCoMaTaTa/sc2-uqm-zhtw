@@ -1,0 +1,424 @@
+commit af96204a6a7391bae604c1d1d85470670b61ae2f
+Author: Neil Kao (UST Global Inc) <v-nientzukao@microsoft.com>
+Date:   Thu Aug 27 17:09:04 2026 +0800
+
+    zh-TW patch 033: localize QuasiSpace portal waypoint hover + CJK-safe star names
+    
+    Adds a localizable format template + CJK-aware nearest-star name lookup for
+    the QuasiSpace-side portal hover text in pstarmap.c's DrawCursor() branch.
+    
+    Before:
+      pstarmap.c hardcoded snprintf() English literal
+        "[%c] To %05.1f : %05.1f (Near %.12s)"
+      with GAME_STRING(nearest_star->Postfix) which returned raw English postfix
+      ("Lyrae", "Squidi"). CJK players saw the whole string in English.
+    
+    After:
+      fmt = GAME_STRING(PORTAL_WAYPOINT_FMT_INDEX);
+      if (empty) fmt = "[%c] To %05.1f : %05.1f (Near %.12s)";  // English fallback
+      snprintf(..., extracted_cjk_star_name);
+    
+    Changes:
+    
+      src/uqm/gamestr.h
+        - New count define: ZHTW_TEMPLATE_STRING_COUNT (= 1 slot for now).
+        - New enum base: ZHTW_TEMPLATE_BASE = STAR_POSTFIX_ZH_BASE + STAR_POSTFIX_ZH_COUNT
+          (absolute index 1024 + 149 = 1173).
+        - New index macro: PORTAL_WAYPOINT_FMT_INDEX (= ZHTW_TEMPLATE_BASE + 0).
+        - GAMESTR_COUNT extended to cover the new slot.
+    
+      src/uqm/planets/pstarmap.c
+        - Added forward declaration for existing static ExtractPureZh() so it can
+          be called from DrawCursor()'s portal branch above its definition.
+        - Rewrote the portal-hover snprintf branch:
+            1. Read STAR_POSTFIX_ZH_BASE + postfixIdx to get "English（中文）"
+               alias, then ExtractPureZh() to obtain just the CJK part.
+            2. Fall back to raw English postfix (GAME_STRING(postfixIdx)) when
+               the alias slot is empty or malformed (non-zh builds).
+            3. Skip the byte-index vowel-drop abbreviation when the resulting
+               name contains any non-ASCII byte — CJK names are already short
+               and mid-cutting UTF-8 sequences produced garbage glyphs.
+            4. Load format template from GAME_STRING(PORTAL_WAYPOINT_FMT_INDEX),
+               falling back to the original English literal on empty.
+    
+    Impact on non-zh players:
+      - GAME_STRING lookups at the two new indices return NULL/empty on the
+        upstream content pack, so both fallbacks fire and the branch behaves
+        exactly like before (identical to shipped upstream text).
+    
+    Impact on zh-TW addon players (Chinese displayed):
+      - Format template becomes "[%c] 往 %05.1f : %05.1f（近 %s）".
+      - Nearest star name becomes pure CJK (e.g. "天琴座", "半人馬座").
+      - Full example: "[E] 往 191.0 : 92.6（近天琴座）"
+    
+    Content-side companion changes live in the zh-TW-addon repo:
+      - _append_star_postfix_zh.py extended to emit ZHTW_TEMPLATE slot at index 1173.
+      - translations/gamestrings.zh-TW.json gains _ZHTW_TEMPLATE_PORTAL_WAYPOINT_FMT.
+      - _stage_hd_fonts rebuilt to include the 32 CJK constellation glyphs
+        (琴/奎/獅/鯨/麒/麟/鳳/蠍/…) that were missing from the previous stage.
+    
+    Patch file: uqm-work/patches/033-pstarmap-portal-waypoint-fmt.patch
+
+diff --git a/src/uqm/gamestr.h b/src/uqm/gamestr.h
+index 65ae29d..d1a9dbe 100644
+--- a/src/uqm/gamestr.h
++++ b/src/uqm/gamestr.h
+@@ -63,6 +63,11 @@ extern "C" {
+ // Kept optional: engine falls back to English GetClusterName() when this
+ // section is empty/missing, so non-zh-TW addon users are unaffected.
+ #define STAR_POSTFIX_ZH_COUNT   149
++// zh-TW patch 033: format templates for strings that pstarmap.c currently
++// builds with hardcoded English snprintf() formats (portal waypoint hover).
++// Codepath falls back to hardcoded English when GAME_STRING() returns an
++// empty entry, so non-zh-TW addon builds are unaffected.
++#define ZHTW_TEMPLATE_STRING_COUNT   1
+ 
+ enum {
+ 	STAR_STRING_BASE       = 0,
+@@ -96,10 +101,16 @@ enum {
+ 	// gives a safe margin above the tail. _append_star_postfix_zh.py pads with
+ 	// empty entries so ZH_000 always lands at absolute index 1024.
+ 	STAR_POSTFIX_ZH_BASE   = 1024,
++	// zh-TW patch 033: Chained after STAR_POSTFIX_ZH; format-template entries
++	// start at absolute index 1024+149 = 1173. Only PORTAL_WAYPOINT_FMT so far.
++	ZHTW_TEMPLATE_BASE     = STAR_POSTFIX_ZH_BASE + STAR_POSTFIX_ZH_COUNT,
+ 
+-	GAMESTR_COUNT          = STAR_POSTFIX_ZH_BASE + STAR_POSTFIX_ZH_COUNT
++	GAMESTR_COUNT          = ZHTW_TEMPLATE_BASE + ZHTW_TEMPLATE_STRING_COUNT
+ };
+ 
++// zh-TW patch 033: format-template slots.
++#define PORTAL_WAYPOINT_FMT_INDEX  (ZHTW_TEMPLATE_BASE + 0)
++
+ 
+ #define GAME_STRING(i) ((UNICODE *)GetStringAddress (SetAbsStringTableIndex (GameStrings, (i))))
+ #define GET_STRING(s,i) ((UNICODE *)GetStringAddress (SetAbsStringTableIndex ((s), (i))))
+diff --git a/src/uqm/planets/pstarmap.c b/src/uqm/planets/pstarmap.c
+index 26e6f76..5ec0995 100644
+--- a/src/uqm/planets/pstarmap.c
++++ b/src/uqm/planets/pstarmap.c
+@@ -51,7 +51,7 @@
+ #include "../util.h"
+ 		// For get_fuel_to_sol()
+ #include <stdlib.h>
+-#include <ctype.h> 
++#include <ctype.h>
+ 		// For isdigit()
+ #include <math.h> // sqrt()
+ #include "../build.h"
+@@ -75,6 +75,10 @@ typedef struct namePlate {
+ 	BYTE index;
+ } NAMEPLATE;
+ 
++// zh-TW patch 033: forward declaration; defined further down in this file
++// (used by portal waypoint hover branch in DrawCursor(), see snprintf below).
++static void ExtractPureZh (const UNICODE *aliasStr, UNICODE *out, size_t outSize);
++
+ static void
+ SwapPlates (NAMEPLATE *n1, NAMEPLATE *n2)
+ {
+@@ -404,7 +408,7 @@ GetSphereRect (FLEET_INFO *FleetPtr, RECT *pRect, RECT *pRepairRect)
+ 		t.CharCount = GetStringLength (locString);
+ 		t.pStr = (UNICODE *)GetStringAddress (locString);
+ 		TextRect (&t, pRepairRect, NULL);
+-		
++
+ 		if (pRepairRect->corner.x <= 0)
+ 			pRepairRect->corner.x = RES_SCALE (1);
+ 		else if (pRepairRect->corner.x + pRepairRect->extent.width >=
+@@ -575,7 +579,7 @@ DrawNoReturnZone (void)
+ 			LOGY_TO_UNIVERSE (GLOBAL_SIS (log_y)) };
+ 
+ 	dist = (double)FuelRequiredTo (sol) / 2;
+-	
++
+ 	if (dist <= halfFuel)
+ 	{	// do not draw ellipse when fuel is not enough to reach Sol
+ 		POINT curr, center, rmax_y, rmin_y;
+@@ -696,7 +700,7 @@ GetFuelRect (DRECT *r, SDWORD diameter, POINT corner)
+ 	r->corner.x = x;
+ 	r->corner.y = y;
+ 	r->extent.width = width;
+-	r->extent.height = height;	
++	r->extent.height = height;
+ }
+ 
+ static void
+@@ -1126,7 +1130,7 @@ DrawStarMap (COUNT race_update, RECT *pClipRect)
+ 		SetTransitionSource (NULL);
+ 	}
+ 	BatchGraphics ();
+-	
++
+ 	which_space = GET_GAME_STATE (ARILOU_SPACE_SIDE);
+ 
+ 	if (which_space <= 1)
+@@ -1295,7 +1299,7 @@ DrawStarMap (COUNT race_update, RECT *pClipRect)
+ 								t.CharCount = GetStringLength (locString);
+ 								t.pStr = (UNICODE *)GetStringAddress (locString);
+ 								break;
+-						}						
++						}
+ 					}
+ 					else if (index == YEHAT_REBEL_SHIP && optSphereColors == 1)
+ 					{
+@@ -1312,7 +1316,7 @@ DrawStarMap (COUNT race_update, RECT *pClipRect)
+ 
+ 					TextRect (&t, &r, NULL);
+ 
+-					if (index == race_index && 
++					if (index == race_index &&
+ 							race_update & IGNORE_MOVING_SOI)
+ 					{
+ 						AdjustTextRect (&r, &t);
+@@ -1329,7 +1333,7 @@ DrawStarMap (COUNT race_update, RECT *pClipRect)
+ 			}
+ 			else if (index == race_index &&
+ 						race_update & (PRE_DEATH_SOI | DEATH_SOI))
+-			{// Kruzen: SoI is dead, but we need to fade nameplate 
++			{// Kruzen: SoI is dead, but we need to fade nameplate
+ 				TEXT t;
+ 				STRING locString;
+ 				RECT repair_r;
+@@ -1391,7 +1395,7 @@ DrawStarMap (COUNT race_update, RECT *pClipRect)
+ 					c = RaceColor (nameplate[j].index & 0x1F);
+ 				r = nameplate[j].rect;
+ 				t = nameplate[j].text;
+-				
++
+ 				AdjustTextRect (&r, &t);
+ 
+ 				r.corner.y += RES_SCALE (1);
+@@ -1551,7 +1555,7 @@ DrawStarMap (COUNT race_update, RECT *pClipRect)
+ 	{	// Draws all the stars
+ 		BYTE star_type;
+ 		static COUNT i = 0;
+-		
++
+ 		i = i >= NUM_SOLAR_SYSTEMS ? 0 : i;
+ 
+ 		star_type = SDPtr->Type;
+@@ -1743,7 +1747,7 @@ UpdateCursorLocation (int sx, int sy, const POINT *newpt)
+ 		cursorLoc.x = ORIG_DISP_TO_UNIVERSEX (s.origin.x) - sx;
+ 		while (ORIG_UNIVERSE_TO_DISPX (cursorLoc.x) == pt.x)
+ 			cursorLoc.x += sx;
+-		
++
+ 		if (cursorLoc.x < 0)
+ 			cursorLoc.x = 0;
+ 		else if (cursorLoc.x > MAX_X_UNIVERSE)
+@@ -1766,14 +1770,14 @@ UpdateCursorLocation (int sx, int sy, const POINT *newpt)
+ 		s.origin.y = ORIG_UNIVERSE_TO_DISPY (cursorLoc.y);
+ 	}
+ 
+-	
++
+ 	if (s.origin.x < 0 || s.origin.y < 0
+-			|| s.origin.x >= ORIG_SIS_SCREEN_WIDTH 
++			|| s.origin.x >= ORIG_SIS_SCREEN_WIDTH
+ 			|| s.origin.y >= ORIG_SIS_SCREEN_HEIGHT)
+ 	{
+ 		mapOrigin = cursorLoc;
+ 		DrawStarMap (0, NULL);
+-		
++
+ 		s.origin.x = ORIG_UNIVERSE_TO_DISPX (cursorLoc.x);
+ 		s.origin.y = ORIG_UNIVERSE_TO_DISPY (cursorLoc.y);
+ 	}
+@@ -1841,7 +1845,7 @@ UpdateCursorInfo (UNICODE *prevbuf)
+ 		// A star is near the cursor:
+ 		// Snap cursor onto star
+ 		cursorLoc = BestSDPtr->star_pt;
+-		
++
+ 		if (GET_GAME_STATE(ARILOU_SPACE_SIDE) >= 2
+ 				&& !(GET_GAME_STATE (KNOW_QS_PORTAL) & (1 << whichPortal)))
+ 			// "UNKNOWN" string
+@@ -1866,11 +1870,41 @@ UpdateCursorInfo (UNICODE *prevbuf)
+ 			// portal_map[whichPortal].star_pt - coords of the exit
+ 			//                  nearest_star - STAR_DESC* of nearest constell.
+ 			UNICODE starnameBuf[CURSOR_INFO_BUFSIZE] = "";
+-			utf8StringCopy (starnameBuf, sizeof (starnameBuf), GAME_STRING
+-					(portal_map[whichPortal].nearest_star->Postfix));
+-			// Abbreviate names longer than 11 at the 10th (or less)
++			const UNICODE *fmt;
++			BOOLEAN isAsciiName;
++			COUNT j;
++			COUNT postfixIdx = portal_map[whichPortal].nearest_star->Postfix;
++			// zh-TW patch 033: prefer localised alias; STAR_POSTFIX_ZH entries
++			// look like "English（中文）" — ExtractPureZh() (defined below in
++			// this file) strips them down to just the CJK portion. Fall back
++			// to raw English postfix when the alias slot is empty or malformed.
++			{
++				UNICODE zhAlias[CURSOR_INFO_BUFSIZE] = "";
++				UNICODE zhOnly[CURSOR_INFO_BUFSIZE] = "";
++				utf8StringCopy (zhAlias, sizeof (zhAlias), GAME_STRING
++						(STAR_POSTFIX_ZH_BASE + postfixIdx));
++				if (zhAlias[0] != '\0')
++					ExtractPureZh (zhAlias, zhOnly, sizeof (zhOnly));
++				if (zhOnly[0] != '\0')
++					utf8StringCopy (starnameBuf, sizeof (starnameBuf), zhOnly);
++				else
++					utf8StringCopy (starnameBuf, sizeof (starnameBuf),
++							GAME_STRING (postfixIdx));
++			}
++			// zh-TW patch 033: byte-index vowel-drop abbreviation mid-cuts
++			// UTF-8 CJK bytes. Only apply the truncation to pure ASCII names.
++			isAsciiName = TRUE;
++			for (j = 0; starnameBuf[j] != '\0'; ++j)
++			{
++				if ((unsigned char)starnameBuf[j] >= 0x80)
++				{
++					isAsciiName = FALSE;
++					break;
++				}
++			}
++			// Abbreviate ASCII names longer than 11 at the 10th (or less)
+ 			// non-vowel character.
+-			if (strlen (starnameBuf) > 11)
++			if (isAsciiName && strlen (starnameBuf) > 11)
+ 			{
+ 				COUNT i;
+ 				for (i = 9; i > 5; i--)
+@@ -1881,8 +1915,13 @@ UpdateCursorInfo (UNICODE *prevbuf)
+ 				starnameBuf[i + 1] = '.';
+ 				starnameBuf[i + 2] = '\0';
+ 			}
+-			snprintf (buf, sizeof (buf),
+-					"[%c] To %05.1f : %05.1f (Near %.12s)",
++			// zh-TW patch 033: portal-hover template comes from GAME_STRING
++			// slot so zh-TW addon can localize the whole "[X] To ... (Near ...)"
++			// string. Falls back to the original English literal when empty.
++			fmt = GAME_STRING (PORTAL_WAYPOINT_FMT_INDEX);
++			if (!fmt || !*fmt)
++				fmt = "[%c] To %05.1f : %05.1f (Near %.12s)";
++			snprintf (buf, sizeof (buf), fmt,
+ 					'A' + whichPortal,
+ 					(float) portal_map[whichPortal].star_pt.x / 10,
+ 					(float) portal_map[whichPortal].star_pt.y / 10,
+@@ -1934,7 +1973,7 @@ UpdateCursorInfo (UNICODE *prevbuf)
+ 	if (strcmp (buf, prevbuf) != 0)
+ 	{
+ 		strcpy (prevbuf, buf);
+-		
++
+ 		// Cursor is on top of a star. Display its name.
+ 		if (BestSDPtr)
+ 		{
+@@ -1960,7 +1999,7 @@ UpdateCursorInfo (UNICODE *prevbuf)
+ 			{
+ 				CONTEXT OldContext;
+ 				OldContext = SetContext (OffScreenContext);
+-				
++
+ 				if (which_starmap == WAR_ERA_STARMAP)
+ 					SetContextForeGroundColor (
+ 							BUILD_COLOR (
+@@ -1969,7 +2008,7 @@ UpdateCursorInfo (UNICODE *prevbuf)
+ 					SetContextForeGroundColor (
+ 							BUILD_COLOR (
+ 								MAKE_RGB15 (0x0E, 0xA7, 0xD9), 0x00));
+-						
++
+ 				DrawSISMessageEx (buf, -1, -1, DSME_MYCOLOR);
+ 				SetContext (OldContext);
+ 			}
+@@ -2042,7 +2081,7 @@ compStarName (const void *ptr1, const void *ptr2)
+ 
+ 	if (star_array[index1].Prefix < star_array[index2].Prefix)
+ 		return -1;
+-	
++
+ 	if (star_array[index1].Prefix > star_array[index2].Prefix)
+ 		return 1;
+ 
+@@ -2360,7 +2399,7 @@ DrawMatchedStarName (TEXTENTRY_STATE *pTES)
+ 		if (pTES->JoystickMode)
+ 			flags |= DSME_BLOCKCUR;
+ 	}
+-	
++
+ 	DrawSISMessageEx (buf, CurPos, ExPos, flags);
+ 	DrawHyperCoords (cursorLoc);
+ }
+@@ -2370,7 +2409,7 @@ MatchNextStar (STAR_SEARCH_STATE *pSS, BOOLEAN Reset)
+ {
+ 	if (Reset)
+ 		pSS->FirstIndex = -1; // reset cache
+-	
++
+ 	if (pSS->FirstIndex < 0)
+ 	{	// first time after changes
+ 		pSS->CurIndex = -1;
+@@ -2385,7 +2424,7 @@ MatchNextStar (STAR_SEARCH_STATE *pSS, BOOLEAN Reset)
+ 			pSS->SingleClust);
+ 	if (pSS->FirstIndex < 0) // first search
+ 		pSS->FirstIndex = pSS->CurIndex;
+-	
++
+ 	if (pSS->CurIndex >= 0)
+ 	{	// remember as last (searching forward-only)
+ 		pSS->LastIndex = pSS->CurIndex;
+@@ -2419,7 +2458,7 @@ OnStarNameChange (TEXTENTRY_STATE *pTES)
+ 	{	// string changed
+ 		pSS->LastChangeTime = GetTimeCounter ();
+ 		strcpy (pSS->LastText, pSS->Text);
+-		
++
+ 		// reset the search
+ 		MatchNextStar (pSS, TRUE);
+ 	}
+@@ -2479,7 +2518,7 @@ OnStarNameFrame (TEXTENTRY_STATE *pTES)
+ 	flashCurrentLocation (NULL, FALSE);
+ 
+ 	SleepThread (ONE_SECOND / 30);
+-	
++
+ 	return TRUE;
+ }
+ 
+@@ -2561,7 +2600,7 @@ DoStarSearch (MENU_STATE *pMS)
+ 
+ 		success = TRUE;
+ 	}
+-	
++
+ 	DrawSISMessageEx (pss->Text, -1, -1, DSME_CLEARFR);
+ 
+ 	HFree (pss);
+@@ -2596,7 +2635,7 @@ DoBubbleWarp (BOOLEAN UseFuel)
+ 
+ static void
+ AdvancedAutoPilot (void)
+-{	// (Based on the Python QuasiSpace Calculator by Lukrative525 
++{	// (Based on the Python QuasiSpace Calculator by Lukrative525
+ 	// https://www.reddit.com/r/starcontrol/comments/zpyhkc/quasispace_calculator/
+ 	POINT current_position;
+ 	POINT destination = GLOBAL (autopilot);
+@@ -2961,7 +3000,7 @@ RepairMap (COUNT update_race, RECT *pLastRect, RECT *pNextRect)
+ 
+ 	r.extent.height += r.corner.y & 1;
+ 	r.corner.y &= ~1;
+-	
++
+ 	DrawStarMap (update_race, &r);
+ }
+ 
+@@ -3417,7 +3456,7 @@ StarMap (void)
+ 
+ 	DrawStarMap (0, (RECT*)-1);
+ 	transition_pending = FALSE;
+-	
++
+ 	BatchGraphics ();
+ 	OldContext = SetContext (SpaceContext);
+ 	GetContextClipRect (&clip_r);
+@@ -3442,7 +3481,7 @@ StarMap (void)
+ 	else
+ 		DrawSISMessage (NULL);
+ 	DrawStatusMessage (NULL);
+-	
++
+ 	if (optSubmenu)
+ 	{
+ 		DeltaSISGauges (UNDEFINED_DELTA, UNDEFINED_DELTA, UNDEFINED_DELTA);

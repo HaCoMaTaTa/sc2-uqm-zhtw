@@ -1,0 +1,19 @@
+diff --git a/src/uqm/planets/pstarmap.c b/src/uqm/planets/pstarmap.c
+index 4d80b27..3d6351a 100644
+--- a/src/uqm/planets/pstarmap.c
++++ b/src/uqm/planets/pstarmap.c
+@@ -1809,7 +1809,13 @@ UpdateCursorInfo (UNICODE *prevbuf)
+ 		else if (GET_GAME_STATE(ARILOU_SPACE_SIDE) < 2 ||
+ 				whichPortal == NUM_HYPER_VORTICES)
+ 			// Hyperspace side, or Arilou homeworld name once known
+-			GetClusterName (BestSDPtr, buf);
++			// zh-TW patch 011: use localized cluster name for star-map top-
++			// center cursor-hover header. Matches sis.c IN_INTERPLANETARY
++			// and encount.c ENCOUNTER-AT header (patch 009). Star-map bottom
++			// info panel (GetClusterName call at ~L2190) and F6 search stay
++			// English. Safe fallback: if STAR_POSTFIX_ZH_BASE entries are
++			// missing, GetClusterNameLocalized() reverts to English.
++			GetClusterNameLocalized (BestSDPtr, buf);
+ 		else
+ 		{
+ 			// Use whichPortal (based on the Postfix of the star) to determine

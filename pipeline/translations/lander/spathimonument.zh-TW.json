@@ -1,0 +1,13 @@
+{
+  "_notes": [
+    "v0.7 B1B — Spathi Monument (紀念史怕族與姆姆族 Umgah 假冒 Mmrnmhrm 的談判).",
+    "Source: extracted/base/base/lander/energy/spathimonument.txt",
+    "背景: 這是史怕族的紀念碑,紀念與 Mmrnmhrm (實為 Umgah 冒充) 的和平談判。",
+    "Terminology:",
+    "  Spathi = 史怕族 / Mmrnmhrm = 姆姆族",
+    "  monument = 紀念碑",
+    "  peaceful negotiations for colonization = 殖民和平談判"
+  ],
+
+  "SPATHI MONUMENTS 1": " ---- 地表傳回報告 ----\n\n我方於行星地表發現一座紀念碑。\n\n碑文寫著:\n此碑為紀念史怕族與姆姆族之間\n和平殖民談判而立。\n\n返回登陸艇。\n\n  ---- 報告結束 ----"
+}

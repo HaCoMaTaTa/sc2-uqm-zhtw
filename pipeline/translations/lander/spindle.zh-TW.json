@@ -1,0 +1,18 @@
+{
+  "_notes": [
+    "v0.7 — Clear Spindle (澄澈紡錘) lander report on Pkunk ruins.",
+    "Source: extracted/base/base/lander/energy/spindle.txt",
+    "Speaker: Landing party report.",
+    "Terminology:",
+    "  Pkunk = 普恩族",
+    "  Kohr-Ah = 柯亞族",
+    "  Clear Spindle = 澄澈紡錘 (shipped v0.3 pkunk.json canonical)",
+    "  demise = 滅亡",
+    "  rain of devastation = 毀滅之雨 (詩意, 撻伐族核彈廢墟感)",
+    "  crystalline = 晶質"
+  ],
+
+  "SPINDLE 1": " ---- 地表傳回報告 ----\n\n這片廢墟悲哀地見證了\n普恩族的滅亡。\n\n艦長,若您原本抱有\n此處會有倖存者的希望——\n抱歉,無人能撐過\n不久前必然降臨於此的\n毀滅之雨。\n此必為柯亞族之作,我打賭!\n\n雖未發現任何倖存者,\n我方確實找到一件有趣的遺物!\n\n它是一件透明的晶質物,\n形狀略似紡錘。\n\n此處已無可學習之物,\n我方正攜這件紡錘物\n返回旗艦。\n\n  ---- 報告結束 ----",
+
+  "SPINDLE 2": " ---- 地表傳回報告 ----\n\n艦長,我方已搜遍普恩族廢墟,\n未再發現其他值得注意之物。\n\n  ---- 報告結束 ----"
+}

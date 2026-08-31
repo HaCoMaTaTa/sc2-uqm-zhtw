@@ -1,0 +1,11 @@
+{
+  "_notes": [
+    "v0.7 B1B — Chmmr Home (Chmmr homeworld post-Kohr-Ah destruction).",
+    "Source: extracted/base/base/lander/energy/chmmrhome.txt",
+    "Terminology:",
+    "  Chmmr = 查姆族",
+    "  Earth's Starbase = 地球星際基地"
+  ],
+
+  "CHMMR HOME 1": " ---- 地表傳回報告 ----\n\n查姆母星已一無所剩,艦長。\n希望地球星際基地\n那邊的存活者足以\n讓我方渡過此難關。\n\n  ---- 報告結束 ----"
+}

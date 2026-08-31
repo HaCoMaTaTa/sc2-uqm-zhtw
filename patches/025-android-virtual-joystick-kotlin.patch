@@ -1,0 +1,74 @@
+diff --git a/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/VirtualJoystick.kt b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/VirtualJoystick.kt
+new file mode 100644
+index 0000000..3c99ad5
+--- /dev/null
++++ b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/VirtualJoystick.kt
+@@ -0,0 +1,68 @@
++package org.megamod.uqm
++
++import android.util.Log
++
++/**
++ * Bridge to SDL2's virtual joystick API (SDL_JoystickAttachVirtual), living
++ * inside libUrQuanMasters.so via `src/android_virtual_joystick.c`.
++ *
++ * Contract:
++ *  - Load libUrQuanMasters.so first (done by [SDLActivity.loadLibraries] in
++ *    [EngineActivity]) so [nativeAttach]/[nativeSetAxes]/[nativeDetach]
++ *    resolve at first call.
++ *  - Call [ensureAttached] any time before you first move the on-screen
++ *    stick. It is idempotent and safe to call from any thread ΓÇö SDL2's
++ *    virtual joystick calls internally lock the joystick subsystem.
++ *  - Call [setAxes] with normalized `(x, y)` in `[-1.0, 1.0]`. Screen-style
++ *    y-down is preserved (positive y = ship should thrust "down" in screen
++ *    space); this matches SDL_CONTROLLER_AXIS_LEFTY's convention.
++ *  - [nativeDetach] is optional (SDL cleans up on process exit), but callers
++ *    that swap Activities cleanly can call it.
++ *
++ * The virtual joystick pairs with the `--dirjoystick=3` UQM CLI flag which
++ * flips `optDirJoy[player 1]` to "left analog = auto-turn to stick heading +
++ * thrust" (see `src/uqm/gameinp.c: GetDirectionalJoystickInput`). Without
++ * that flag UQM will still receive axis events but only as discrete
++ * up/down/left/right presses via the `uqm.key` bindings, which is the
++ * fallback path.
++ */
++object VirtualJoystick {
++    private const val TAG = "UqmVJoy"
++
++    @Volatile
++    private var attached: Boolean = false
++
++    external fun nativeAttach(): Int
++    external fun nativeSetAxes(x: Float, y: Float)
++    external fun nativeDetach()
++
++    /** Attach the virtual joystick if not already attached. Idempotent. */
++    fun ensureAttached() {
++        if (attached) return
++        synchronized(this) {
++            if (attached) return
++            val ret = try {
++                nativeAttach()
++            } catch (t: UnsatisfiedLinkError) {
++                Log.e(TAG, "nativeAttach unresolved ΓÇö is libUrQuanMasters.so loaded?", t)
++                return
++            }
++            attached = (ret == 0)
++            Log.i(TAG, "attach ΓåÆ ret=$ret attached=$attached")
++        }
++    }
++
++    fun setAxes(x: Float, y: Float) {
++        if (!attached) return
++        nativeSetAxes(x, y)
++    }
++
++    fun detach() {
++        if (!attached) return
++        synchronized(this) {
++            if (!attached) return
++            nativeDetach()
++            attached = false
++        }
++    }
++}

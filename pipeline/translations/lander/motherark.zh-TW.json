@@ -1,0 +1,24 @@
+{
+  "_notes": [
+    "v0.7 — Mother-Ark (Mmrnmhrm 母方舟) lander report.",
+    "Source: extracted/base/base/lander/energy/motherark.txt",
+    "Speaker: Landing party report. Has 2 variants: base + slave-shielded-with-Chenjesu.",
+    "Terminology:",
+    "  Mmrnmhrm = 姆姆族 (canonical)",
+    "  Chenjesu = 晶智族 (canonical)",
+    "  Procyon = 南河三 (小犬座, Place_Names 提醒非波江座)",
+    "  Chmmr = 查姆族 (Chenjesu + Mmrnmhrm 融合體)",
+    "  Mother-Ark = 母方舟 (直譯, 承載整個文明的母體方舟)",
+    "  slave-shielded = 奴役護盾封印",
+    "  base of operations = 行動基地",
+    "  colonization = 殖民",
+    "  alien junk = 外星廢料",
+    "  metal scrap = 金屬廢料",
+    "  holos = 全像照 (holograms 縮寫)",
+    "  Lua template comm.getStarName 保留原格式"
+  ],
+
+  "MOTHER_ARK 1": " ---- 地表傳回報告 ----\n\n我方發現了看似姆姆族\n母方舟遺骸的殘餘。\n儘管此行星曾是他們的行動基地,\n我方查無其他姆姆族殖民跡象。\n\n我方不確知姆姆族發生了什麼,\n但看來他們把整個文明打包\n遷離此星了。\n\n此刻,母方舟不過是外星廢料。\n除了方舟本身,已無留下任何有價值之物。\n即使方舟本體,也只有\n研究或作為金屬廢料的價值。\n\n我方已對一切製作全像照,\n正返回登陸艇。\n\n  ---- 報告結束 ----",
+
+  "MOTHER_ARK 2": " ---- 地表傳回報告 ----\n\n我方發現了看似姆姆族\n母方舟遺骸的殘餘。\n儘管此行星曾是他們的行動基地,\n我方查無其他姆姆族殖民跡象。\n\n我方原知姆姆族選擇於\n<% comm.getStarName(\"南河三\", \"chmmr\") %>\n與晶智族共受奴役護盾封印,\n然未料他們為此\n將整個文明打包遷離此星。\n\n此刻,母方舟不過是外星廢料。\n除了方舟本身,已無留下任何有價值之物。\n即使方舟本體,也只有\n研究或作為金屬廢料的價值。\n\n我方已對一切製作全像照,\n正返回登陸艇。\n\n  ---- 報告結束 ----"
+}

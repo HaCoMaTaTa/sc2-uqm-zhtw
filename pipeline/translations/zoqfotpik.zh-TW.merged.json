@@ -1,0 +1,725 @@
+{
+  "_notes": [
+    "== Zoq-Fot-Pik zh-TW v3 (2026-08-17) · Rebuild-Compare completed ==",
+    "Dossier: 02_Races/Zoq_Fot_Pik.md v0.7 §四 全採用",
+    "Rules: 09_AI_Prompt/Rebuild_And_Compare.md v0.7.1 (3-gate + Stage 2.5 Read-Aloud)",
+    "",
+    "== 使用者 Q&A 決策 (2026-08-17) ==",
+    "Q1=A · canonical 全採 Master_Glossary v0.5.2 Round 3 (=shipped continuity):",
+    "  Frungy = 芙戎奇（Frungy）· Nyark! = 嘿嘿嘿！（Nyark! Nyark! Nyark!）",
+    "  Zebranky = 澤布蘭基（Zebranky）· Stinger = 刺針號（Stinger）",
+    "  thrusting stinger tongue attack = 突進刺針舌攻擊",
+    "  Grand-High Poobah = 尊貴至極的波霸大人（Grand-High Poobah）",
+    "  Yip/Tun/Haffy/Jiff/Fod/Rogi/Buppo = 葉普/屯/哈菲/吉夫/佛德/羅吉/布波",
+    "  wood Jukes/tree Narfs/dorfs = 森林朱克獸/樹頂納夫獸/多爾夫",
+    "  Zoq/Fot/Pik = 佐格/佛特/皮克 · Zoq-Fot-Pik = 佐-佛-皮",
+    "  The Sport of Kings! = 諸王之運動！",
+    "",
+    "Q2=A · 集體自稱 palette (我們/我們佐-佛-皮/咱們/佐-佛-皮)",
+    "Q3 · 單方一律「我」· Q4 · 全清吾/吾等/爾/乃/哉/兒 文言助詞",
+    "Q5 · 三方拌嘴 icon = 無前綴換行 (Zoq:/Fot:/Pik: 不加)",
+    "Q6=A · Fortunately/Unfortunately 保留書面「幸運的是……」/「不幸的是……」",
+    "Q7 · Alliance name_1-4 全繼承 shipped",
+    "Q8=A · we_are_vindicator = 「我方是 X 旗艦『Y』」正式感",
+    "Q9=B · 玩家 response 情境切換 (嗆聲=老子 · 正式=我方 · 提問=我)",
+    "Q10=A · OUT_TAKES Did not/Did too 保留「才沒有！/就有！」遞減式",
+    "Q11=B · quiet_toadies = 老子 (玩家假裝主宰嗆聲)",
+    "Q12=A · Frungy 錦標賽段落結構保留 shipped",
+    "Q13=A · SCOUT_HELLO1 座標系 gag「〔齊格佛-葛爾爾努...〕」保留",
+    "Q14=A · 偉大晶智族保留",
+    "",
+    "== Diff 決策應用 (264 entries) ==",
+    "🟡 90 全 B · 🟠 43 全依推薦(B) · ✨ 109 全 B",
+    "🔴 11: A×3 (#82 EMMISSARIES7 · #191 KOHRAH_WINNING9 · #257 ABOUT_STINGER2)",
+    "     B×5 (#86 WE_ALLY2 · #140 GOODBYE_HOME1 · #141 whats_up_homeworld · #172 UTWIG_DELAY2 · #176 UTWIG_DELAY6)",
+    "     B×3 (#178 UTWIG_DELAY8 · #210 GOOD2 · #258 ABOUT_STINGER3)",
+    "🟠 3 tokens override 為 A: #201 KOHRAH_FRENZY4 · #236 what_about_zebranky · #242 what_about_past · #261 what_about_guy_in_back",
+    "C×7 客製化 (WE_ENEMIES1/NEUTRAL_HOME_HELLO_22/NEUTRAL_HOME_HELLO_23/ALLIED_HOME_HELLO_26/GENERAL_INFO_20/GENERAL_INFO_41/UTWIG_DELAY10)",
+    "",
+    "== Stage 2.5 Read-Aloud self-audit (7 self-fix) ==",
+    "詳 _selfaudit_zoqfotpik_v3_readaloud.md",
+    "SCOUT_HELLO1 audio-line 對齊 · UNDER_ATTACK7 流彈 · ALLY_WITH_US5 錯過就虧",
+    "KOHRAH_FRENZY6 audio-line · KOHRAH_FRENZY8 補 Buppo · OUT_TAKES4 dossier §六 icon",
+    "THANKS_FOR_RESCUE9 廢重複「話」",
+    "",
+    "== 污染清除 (shipped v0.5.2 → v3) ==",
+    "吾 157→0 · 吾等 155→0 · 爾 5→3(canonical 音譯 gag) · 之 43→16(modern usage)",
+    "乃 6→0 · 哉 1→0 · 兒 1→1(哥兒們 canonical) · 共 373→0 (皆 modern/canonical)",
+    "",
+    "== 3-gate verify PASS ==",
+    "Gate 1 Purity: race=0 · simp=0 · variant=0",
+    "Gate 2 Line-count: 334/334 對齊 EN 原文",
+    "Gate 3 Lua template: 0 English residual (7 canonical constellations)",
+    "",
+    "== Backup ==",
+    "shipped v0.5.2 (Round 3) 已備份至 zoqfotpik.zh-TW.pre-rebuild.bak"
+  ],
+
+  "WE_ARE0": "注意，星艦！\n我們是佐-佛-皮。",
+
+  "WE_ARE1": "別做出任何敵意舉動！",
+
+  "WE_ARE2": "我們懷抱和平與善意而來。",
+
+  "WE_ARE3": "但你只要走錯一步，就變蒸氣！",
+
+  "WE_ARE4": "別擔心，我的同伴只是有點神經質……",
+
+  "WE_ARE5": "不，我才沒有！",
+
+  "WE_ARE6": "……又愛爭辯。",
+
+  "WE_ARE7": "不，我才沒有。",
+
+  "SCOUT_HELLO0": "我們是偵察艦\n從我們母星派遣出來。",
+
+  "SCOUT_HELLO1": "我們遠道而來\n穿越充滿敵意、未經標記的太空\n才找到你。\n我們來自座標為\n〔齊格佛-葛爾爾努，阿-阿，帕霍伊-霍伊〕（佐-佛-皮自造座標系）的 <% comm.getColor(\"綠色\", \"zoqfot\") %>矮星。",
+
+  "SCOUT_HELLO2": "不，你這蠢材，是要用對方的座標系！",
+
+  "SCOUT_HELLO3": "噢！ 呃\n座標為 <% comm.getPoint(\"400.0 : 543.7\", \"zoqfot\") %>。",
+
+  "INIT_HOME_HELLO0": "你已抵達我們母星。",
+
+  "INIT_HOME_HELLO1": "而且我們這裡有十億艘戰艦！",
+
+  "INIT_HOME_HELLO2": "真幸運，你在我們急需之時找到我們。",
+
+  "INIT_HOME_HELLO3": "所以想都別想攻擊我們！",
+
+  "which_fot": "你們哪一位才是佛特（Fot）？",
+
+  "HE_IS0": "他啦。",
+
+  "HE_IS1": "不，是「她」啦！",
+
+  "HE_IS2": "不，我才不是！",
+
+  "HE_IS3": "是，你就是。",
+
+  "HE_IS4": "要命！（Cripes!） 這事我們已經吵過一百萬次了！",
+
+  "HE_IS5": "吵幾次都改變不了什麼。 你就是佛特！",
+
+  "HE_IS6": "呸！（Faugh!）\n呃，艦長，如你所見，這是有點爭議的一點。",
+
+  "HE_IS7": "佛特！",
+
+  "we_are_vindicator": "我方是 <% comm.getPhrase(\"name_\" .. (state.prop.get(\"NEW_ALLIANCE_NAME\") + 1)) %> 旗艦「<% state.sis.getShipName() %>」，來自地球。 你們有何意圖？",
+
+  "WE_GLAD0": "萬歲！（Hurrah!）\n我們終於找到救世主了！",
+
+  "WE_GLAD1": "或許吧。",
+
+  "WE_GLAD2": "終於，我們的尋覓有了盡頭！\n正如偉大晶智族所應允的那樣！",
+
+  "WE_GLAD3": "他們看起來鬼鬼祟祟。\n我覺得他們在說謊。",
+
+  "WE_GLAD4": "閉嘴，笨蛋！\n你看不出來我們的噩夢終於結束了嗎！？\n這艘艦來自偉大晶智族所傳頌的聯盟\n那自由星系聯盟！",
+
+  "WE_GLAD5": "或許吧。",
+
+  "quiet_toadies": "閉嘴，胡說八道的舔屁蟲！ 老子是你們的新主人。",
+
+  "TOLD_YOU0": "我們很失望。",
+
+  "TOLD_YOU1": "看吧！ 我就告訴過你！",
+
+  "TOLD_YOU2": "我們原希望我們兩個物種可以做朋友。",
+
+  "TOLD_YOU3": "作夢一百萬年也不可能！ 光看他那小豆子眼！",
+
+  "TOLD_YOU4": "但本著理解的精神……",
+
+  "TOLD_YOU5": "噢不！ 你該不會是在考慮……",
+
+  "TOLD_YOU6": "……我們將原諒你這次冒犯。",
+
+  "TOLD_YOU7": "唉喲！（Sheesh!） 你也太好說話了吧！",
+
+  "your_race": "我方繼續之前，能多告訴我方關於你們物種的事嗎？",
+
+  "YEARS_AGO0": "遠古時代，我們母星上有四種物種演化出智慧。",
+
+  "YEARS_AGO1": "同時演化。",
+
+  "YEARS_AGO2": "他們是佐格……",
+
+  "YEARS_AGO3": "……佛特……",
+
+  "YEARS_AGO4": "……皮克……",
+
+  "YEARS_AGO5": "……以及澤布蘭基（Zebranky）。",
+
+  "YEARS_AGO6": "我們三方，佐格、佛特、皮克如此演化\n得以從多種來源獲得養分……",
+
+  "YEARS_AGO7": "……從空中的浮游生物……",
+
+  "YEARS_AGO8": "……從陽光與空氣裡的能量……",
+
+  "YEARS_AGO9": "……以及從岩壁上的黏菌。",
+
+  "YEARS_AGO10": "我們的最愛！",
+
+  "YEARS_AGO11": "澤布蘭基則以多種食物為生\n分別是：佐格、\n佛特、\n以及皮克。",
+
+  "YEARS_AGO12": "為了在澤布蘭基的獵殺下存活\n我們聯合起來\n消滅了澤布蘭基……",
+
+  "YEARS_AGO13": "……並形成你如今所見的合作聯盟。",
+
+  "where_from": "你們有何所求？",
+
+  "TRAVELED_FAR0": "我們是相對愛好和平的物種。",
+
+  "TRAVELED_FAR1": "除非我們生氣。",
+
+  "TRAVELED_FAR2": "所以我們發現自己需要幫助。",
+
+  "TRAVELED_FAR3": "我們只需要「一點點」！",
+
+  "TRAVELED_FAR4": "因為我們處境絕望。",
+
+  "TRAVELED_FAR5": "「絕望」這詞太重了。\n我覺得「棘手」比較貼切。",
+
+  "what_emergency": "你們說的「噩夢」是什麼？ 出了什麼事？",
+
+  "UNDER_ATTACK0": "我們的行星正遭一群入侵大軍攻擊！",
+
+  "UNDER_ATTACK1": "我們不知道他們是誰，也不知道他們為何而來。",
+
+  "UNDER_ATTACK2": "我們正被炸得粉碎。",
+
+  "UNDER_ATTACK3": "外星艦隊憑空出現\n然後釋放可怕的毀滅能量。",
+
+  "UNDER_ATTACK4": "幸運的是……",
+
+  "UNDER_ATTACK5": "……他們把能量釋放在彼此身上。",
+
+  "UNDER_ATTACK6": "不幸的是……",
+
+  "UNDER_ATTACK7": "……他們偏好在強重力井附近作戰。\n他們的流彈常打中我們的行星表面\n通常後果慘不忍睹。",
+
+  "UNDER_ATTACK8": "幸運的是……",
+
+  "UNDER_ATTACK9": "……他們從未找到我們母星，只找到我們的殖民地。",
+
+  "UNDER_ATTACK10": "不幸的是……",
+
+  "UNDER_ATTACK11": "……我們所有的殖民地都因此覆滅了。",
+
+  "tough_luck": "喂，太空是個殘酷的地方，孬種就吃火焰電漿死。",
+
+  "NOT_HELPFUL0": "噢，天啊。",
+
+  "NOT_HELPFUL1": "我就跟你說他看起來像個爛人！",
+
+  "NOT_HELPFUL2": "不！ 我們必須試著理解。\n他做事的方式跟我們不一樣。",
+
+  "NOT_HELPFUL3": "你是說他「整個」物種都是混蛋？",
+
+  "NOT_HELPFUL4": "讓我們再給他一次機會。",
+
+  "NOT_HELPFUL5": "你看看他！ 我告訴你，他就是個殺手！",
+
+  "what_look_like": "誰在攻擊你們？ 他們長什麼樣？",
+
+  "LOOK_LIKE0": "有些艦艇是巨大的綠色戰艦\n會發射一波又一波的小型戰機。",
+
+  "LOOK_LIKE1": "另一些艦艇黑得像太空\n船殼上刻著詭異的異族文字。",
+
+  "LOOK_LIKE2": "戰鬥中兩方艦艇看似勢均力敵。",
+
+  "LOOK_LIKE3": "一方發射融合能量爆擊\n另一方發射旋轉射彈。",
+
+  "valuable_info": "你們給了我方寶貴的情報。 再見。",
+
+  "GOODBYE0": "如果你現在必須離開，我們理解。",
+
+  "GOODBYE1": "什麼？！ 你要走了？！！",
+
+  "GOODBYE2": "我們希望你下次來訪時\n我們能建立一項互助協定。",
+
+  "GOODBYE3": "我不敢相信他就這樣把我們丟在這裡！\n……真是個爛人。",
+
+  "all_very_interesting": "對對對，一切都非常有趣，但老子現在要攻擊你們了！",
+
+  "SEE_TOLD_YOU0": "什麼？",
+
+  "SEE_TOLD_YOU1": "看吧！ 我早就告訴過你了！……\n……但你就是不聽…… 就不聽！",
+
+  "SEE_TOLD_YOU2": "我不懂！",
+
+  "SEE_TOLD_YOU3": "所以你對外星人搞這一套禮貌到底得到什麼？\n什麼也沒有！ 就是這樣！\n你就該照我說的做\n告訴他我們才是先驅者。",
+
+  "how_can_i_help": "我方想幫忙。 我方能做什麼？",
+
+  "ALLY_WITH_US0": "我們想\n跟你們的物種\n建立正式的互助協定。",
+
+  "ALLY_WITH_US1": "就是「你搔我通風口\n我搔你鰭肢」那種安排。",
+
+  "ALLY_WITH_US2": "作為誠意的表示\n我們將為你提供技術精湛的艦長\n以及我們「刺針號」（Stinger）星艦的建造圖。",
+
+  "ALLY_WITH_US3": "作為交換，如果壞人找到我們母星\n你要火速趕來，把他們汽化。",
+
+  "ALLY_WITH_US4": "基本上正是如此。",
+
+  "ALLY_WITH_US5": "多好的交易，對吧？\n你錯過就虧大了！\n所以你意下如何？",
+
+  "decide_later": "呃…… 我方得先請示我方的，呃…… 尊貴至極的波霸大人（Grand-High Poobah）！",
+
+  "PLEASE_HURRY0": "請帶著你波霸大人的話快點回來。\n數百萬條生命危在旦夕！",
+
+  "PLEASE_HURRY1": "其中最要緊的一條就是我的。",
+
+  "EMMISSARIES0": "這正是我們日夜祈禱的話！",
+
+  "EMMISSARIES1": "嘿！ 這趟不是白跑了嘛！",
+
+  "EMMISSARIES2": "我們最渴望的就是一個盟友\n幫我們在這充滿敵意的宇宙中生存下去。",
+
+  "EMMISSARIES3": "我們正遇到那類問題。",
+
+  "EMMISSARIES4": "但我們只是使者。\n你必須見我們的領袖。\n他們更有智慧…… 力量也更強大！",
+
+  "EMMISSARIES5": "不過他們長得跟我們一模一樣就是了。",
+
+  "EMMISSARIES6": "飛到叫做 <% comm.getStarName(\"杜鵑座α\", \"zoqfot\") %> 的恆星。\n離太陽最近的行星就是我們的家。",
+
+  "EMMISSARIES7": "如果可以,請快點。",
+
+  "sure": "你們正遭到烏寬攻擊，牠們也是我方的敵人。 因此，我方代表全體地球子民，接受你們的提議。",
+
+  "WE_ALLY0": "太好了！",
+
+  "WE_ALLY1": "萬歲！（Hurray!）",
+
+  "WE_ALLY2": "太棒了！",
+
+  "WE_ALLY3": "耶哈！（Yee-ha!）",
+
+  "WE_ALLY4": "艦長，我們馬上開始履行約定！\n我們馬上把軍官運送到你的基地！",
+
+  "WE_ALLY5": "哎唷！\n說不定我還要親自跑一趟你的星球！\n我會是個好星艦艦長的，艦長！\n我打起架來還挺兇的\n而且沒人比得過我的\n突進刺針舌攻擊！",
+
+  "never": "什麼？ 保護你們這些廢柴？ 沒門！ 你們太遜了！",
+
+  "WE_ENEMIES0": "我們已經向你敞開心扉。\n我們對你伸出附肢表示友好！……\n……而你卻把我們當死掉的澤布蘭基那樣對待。\n要惹怒我這個物種可不容易，艦長\n可是你剛剛做到了！\n各位船員！ 準備噴射砲！ 升起舌頭！\n備戰！",
+
+  "WE_ENEMIES1": "就是！\n把那些混蛋烤了！",
+
+  "HOSTILE_HELLO_10": "來這裡沒意義，人類。\n我們兩個物種正在打仗。",
+
+  "HOSTILE_HELLO_11": "沒錯！\n準備受死吧，外星渣！",
+
+  "HOSTILE_HELLO_20": "艦長，你當初要是跟我們結盟",
+
+  "HOSTILE_HELLO_21": "你就是沒有！",
+
+  "HOSTILE_HELLO_22": "我們會很樂意告訴你我們探聽到的事",
+
+  "HOSTILE_HELLO_23": "而我們才不會告訴你！",
+
+  "HOSTILE_HELLO_24": "關於那兩個交戰的外星陣營\n烏寬跟他們的手足柯亞。",
+
+  "HOSTILE_HELLO_25": "但你現在「永遠」不會知道了！",
+
+  "HOSTILE_HELLO_30": "以我們所剩不多的兵力\n我們會盡力毀滅你。",
+
+  "HOSTILE_HELLO_31": "沒錯！ 而且她說到做到！",
+
+  "HOSTILE_HELLO_40": "你的惡行罄竹難書！\n我們被憤怒逼得非毀滅你不可。",
+
+  "HOSTILE_HELLO_41": "他大概又要落跑了。\n那個膽小鬼！",
+
+  "NEUTRAL_HOME_HELLO_10": "啊！ 是晶智族聯盟那個外星人！",
+
+  "NEUTRAL_HOME_HELLO_11": "看看他艦上那些武器艙。",
+
+  "NEUTRAL_HOME_HELLO_12": "我們希望這次來訪\n能讓你們物種明白\n互助協定的好處。",
+
+  "NEUTRAL_HOME_HELLO_13": "不過我們也是全副武裝\n所以別想偷我們的大氣層或搞什麼鬼把戲！",
+
+  "NEUTRAL_HOME_HELLO_20": "聯盟的星艦又回來了。",
+
+  "NEUTRAL_HOME_HELLO_21": "是啊。 我打賭「這次」他們就要來耍我們了。",
+
+  "NEUTRAL_HOME_HELLO_22": "外星艦長，你帶來領袖的口信了嗎？",
+
+  "NEUTRAL_HOME_HELLO_23": "他要是有帶，我打賭八成就是\n「投降不然就被吃掉」那種！",
+
+  "ALLIED_HOME_HELLO_10": "你好啊，朋友兼盟友！",
+
+  "ALLIED_HOME_HELLO_11": "有沒有帶什麼禮物給咱們？",
+
+  "ALLIED_HOME_HELLO_12": "希望你對抗烏寬的戰鬥順利！",
+
+  "ALLIED_HOME_HELLO_13": "可惡！（Darn!） 他從來都不給咱們什麼。",
+
+  "ALLIED_HOME_HELLO_20": "歡迎回到我們的世界。",
+
+  "ALLIED_HOME_HELLO_21": "是啊，歡迎回到我們的世界！",
+
+  "ALLIED_HOME_HELLO_22": "我剛剛就那樣講了。",
+
+  "ALLIED_HOME_HELLO_23": "那又怎樣？ 又不表示我不能也講。\n再說，每次都你先講。\n這不公平！",
+
+  "ALLIED_HOME_HELLO_24": "抱歉，就是這樣。",
+
+  "ALLIED_HOME_HELLO_25": "為什麼啊？ 這不合理。",
+
+  "ALLIED_HOME_HELLO_26": "喂，別問我啦。\n我猜應該是技術面的問題吧。",
+
+  "ALLIED_HOME_HELLO_27": "是啊，才怪。 我信才有鬼。\n真是爛藉口。",
+
+  "ALLIED_HOME_HELLO_30": "你好，艦長。\n盟友能為你做什麼？",
+
+  "ALLIED_HOME_HELLO_31": "你最愛的盟友！",
+
+  "ALLIED_HOME_HELLO_40": "你好，人類盟友。\n我們為你效勞。",
+
+  "ALLIED_HOME_HELLO_41": "你想要什麼？",
+
+  "THANKS_FOR_RESCUE0": "救世主！ 我們的救世主！\n你把我們從必死的命運中救出來了！",
+
+  "THANKS_FOR_RESCUE1": "好耶寶貝！（Howee-baby!） 差一點就完蛋了！",
+
+  "THANKS_FOR_RESCUE2": "那艘黑船幾天前出現在軌道上\n然後開始朝我們星球表面\n傾瀉毀滅能量！",
+
+  "THANKS_FOR_RESCUE3": "幸運的是……",
+
+  "THANKS_FOR_RESCUE4": "……我們能夠聚焦我們的行星護盾\n把能量爆擊從我們的城市那邊偏折開。",
+
+  "THANKS_FOR_RESCUE5": "不幸的是……",
+
+  "THANKS_FOR_RESCUE6": "我們星球上大片美麗的原野\n已被殲滅…… 整個生態系被摧毀。",
+
+  "THANKS_FOR_RESCUE7": "噢！ 這讓我「非常」火大！\n我是說，攻擊手無寸鐵、有智慧的外星物種\n是一回事，\n但把咱們可愛的森林朱克獸（wood Jukes）跟樹頂納夫獸（tree Narfs）都烤了\n那真的太過分！",
+
+  "THANKS_FOR_RESCUE8": "如果那艘黑船有其他同伴一起來\n我們就沒辦法擋下那波毀滅之雨了。\n他們早就把我們全殺光了。",
+
+  "THANKS_FOR_RESCUE9": "好啦，這樣的話，寧可牽牲那些朱克獸跟納夫獸，也不要牽牲我們，對吧？",
+
+  "THANKS_FOR_RESCUE10": "艦長，很明顯，在戰爭這方面\n你比我們更有本事。\n有鑑於此，我們想給你\n我們最精良的四艘星艦跟艦員。\n希望它們為你帶來很多勝利。",
+
+  "THANKS_FOR_RESCUE11": "盡量別一下子就都弄丟了。",
+
+  "bye_homeworld": "掰囉佐格。 掰囉佛特。 掰囉皮克。",
+
+  "GOODBYE_HOME0": "再見，艦長。",
+
+  "GOODBYE_HOME1": "回見囉。",
+
+  "whats_up_homeworld": "那，最近這裡有什麼事嗎？",
+
+  "GENERAL_INFO_10": "上禮拜我們差點就完蛋了。",
+
+  "GENERAL_INFO_11": "有艘那種黑船在系統裡到處探頭探腦。",
+
+  "GENERAL_INFO_12": "但在它抵達我們星球之前\n幾艘綠船超空間跳進來\n把黑船打爆了\n然後馬上離開。",
+
+  "GENERAL_INFO_13": "我們運氣不錯。",
+
+  "GENERAL_INFO_20": "最近挺安靜的，艦長。\n沒什麼新情報要回報。",
+
+  "GENERAL_INFO_21": "你「瘋」了嗎？！ 芙戎奇錦標賽（Frungy Championships）怎麼算？！",
+
+  "GENERAL_INFO_22": "我們幹嘛要跟地球艦長講那個？\n他不會有興趣的。",
+
+  "GENERAL_INFO_23": "喔是嗎？ 你怎麼知道？",
+
+  "GENERAL_INFO_24": "因為連「我」都沒興趣。\n有腦袋的都不會對芙戎奇有興趣！",
+
+  "GENERAL_INFO_25": "那我呢，啊？\n我「愛」芙戎奇！ 它是諸王之運動！",
+
+  "GENERAL_INFO_26": "唉喲！（Sheesh!）",
+
+  "GENERAL_INFO_27": "喔，好啦\n反正他也不會認識任何隊伍。",
+
+  "GENERAL_INFO_30": "雖然這可能跟烏寬無關\n我們從一位深空偵察兵那裡\n收到一份有意思的報告。",
+
+  "GENERAL_INFO_31": "她發現一種奇怪的金屬門\n嵌在一顆外星行星的表面。",
+
+  "GENERAL_INFO_32": "雖然她跟艦員花了好幾天\n想把那扇門打開",
+
+  "GENERAL_INFO_33": "他們完全搞不定，甚至連推動它一絲一毫都失敗。",
+
+  "GENERAL_INFO_34": "那件外星文物的位置\n據報是在 <% comm.getStarName(\"鹿豹座ε\", \"ship vault\") %> I-A。",
+
+  "GENERAL_INFO_35": "去打開它！\n我打賭裡面有很酷的東西！",
+
+  "GENERAL_INFO_40": "我們之前可能沒告訴過你，艦長\n但我這個物種\n對某些超心靈震盪還算敏感。",
+
+  "GENERAL_INFO_41": "喔不！ 又要來這套心靈鬼扯了！",
+
+  "GENERAL_INFO_42": "雖然我朋友這個物種\n很難理解我們的力量\n我可以跟你保證，艦長\n我們有限的能力是相當真實的。",
+
+  "GENERAL_INFO_43": "喔對啊！ 記得那次\n你說你用你的「共感靈能波」\n可以修好我們故障的計時器嗎？\n要我說根本是「可悲能波」！\n嘿嘿嘿！（Nyark! Nyark! Nyark!）",
+
+  "GENERAL_INFO_44": "就算隔著這些負面能量，艦長\n我們也發現了……",
+
+  "GENERAL_INFO_45": "……然「後」還有那次\n你說你可以只靠意志力就把多爾夫（dorfs）彎折……",
+
+  "GENERAL_INFO_46": "閉嘴！",
+
+  "GENERAL_INFO_47": "……抱歉。",
+
+  "GENERAL_INFO_48": "如我剛剛所說，在我被人「粗魯地」打斷之前！……",
+
+  "GENERAL_INFO_49": "我說了抱歉。",
+
+  "GENERAL_INFO_410": "我們最厲害的占卜者偵測到\n從 <% comm.getConstellation(\"獵戶座\", \"talking pet\") %> 星座方向\n傳來一些不祥又強大的超心靈訊號。",
+
+  "GENERAL_INFO_411": "騙子。（Faker.）",
+
+  "any_war_news": "有沒有關於兩個外星種族之間戰爭的消息？",
+
+  "UTWIG_DELAY0": "我們的偵察兵在 <% comm.getConstellation(\"時鐘座\", \"samatra\") %> 星系裡\n目擊了一件令人興奮的事。",
+
+  "UTWIG_DELAY1": "沒錯！ 大新聞！",
+
+  "UTWIG_DELAY2": "兩個外星種族從 <% comm.getConstellation(\"銀核方向\", \"utwig\") %>\n進入那片星域。",
+
+  "UTWIG_DELAY3": "其中一族看起來像會講話的巨大雜草\n另一族戴著搞笑的面具。",
+
+  "UTWIG_DELAY4": "而且他們正在攻擊我們的敵人！",
+
+  "UTWIG_DELAY5": "呃，反正是其中一個敵人啦。",
+
+  "UTWIG_DELAY6": "是啊，這些新來的外星人似乎只針對\n那個陰險的柯亞展開攻擊。",
+
+  "UTWIG_DELAY7": "說實在的，這是好消息。",
+
+  "UTWIG_DELAY8": "他們專打柯亞\n目前為止在戰爭中一直佔上風的正是柯亞……",
+
+  "UTWIG_DELAY9": "他們一直在痛扁烏寬。",
+
+  "UTWIG_DELAY10": "這麼一來，雙方戰局多少扳平了一些……",
+
+  "UTWIG_DELAY11": "但柯亞「還是」很可能會贏！",
+
+  "UTWIG_DELAY12": "不過我們估計，這些新來的外星種族的努力\n把柯亞最終的勝利\n往後延了九到十二個月。",
+
+  "UTWIG_DELAY13": "有總比沒有好！",
+
+  "KOHRAH_WINNING0": "我們改裝了幾艘「刺針號」星艦\n讓它們執行長程偵察任務。",
+
+  "KOHRAH_WINNING1": "我們在船殼上綁了一堆燃料罐。",
+
+  "KOHRAH_WINNING2": "偵察兵奉命調查那場戰爭的進展\n綠船一方，我們現在知道叫「烏寬」\n黑船那邊，是「柯亞」駕駛的。",
+
+  "KOHRAH_WINNING3": "我們派了十艘出去…… 回來了兩艘",
+
+  "KOHRAH_WINNING4": "但他們收集到的情報值回票價。",
+
+  "KOHRAH_WINNING5": "除非你就是那些偵察兵之一，我猜？\n嘿嘿嘿！（Nyark! Nyark! Nyark!）",
+
+  "KOHRAH_WINNING6": "閉嘴！",
+
+  "KOHRAH_WINNING7": "……抱歉。",
+
+  "KOHRAH_WINNING8": "總之，如我剛剛所說，他們收集到的情報\n顯示柯亞會在\n2158 年年初左右贏得那場戰爭。",
+
+  "KOHRAH_WINNING9": "除非有人挺身而出\n炸毀大約幾十億艘柯亞戰艦來扳平雙方戰力。",
+
+  "URQUAN_NEARLY_GONE0": "我們的偵察艦又一次回來了",
+
+  "URQUAN_NEARLY_GONE1": "帶著壞消息。",
+
+  "URQUAN_NEARLY_GONE2": "根據他們的所見\n柯亞會在不到六個月內\n擊敗烏寬。",
+
+  "URQUAN_NEARLY_GONE3": "糟啊。（Bummer.）",
+
+  "URQUAN_NEARLY_GONE4": "而且根據我們上次跟柯亞的接觸\n我們預估他們贏得跟烏寬的戰爭後\n柯亞會橫掃這整片星域\n毀滅所有有智慧的生命。",
+
+  "URQUAN_NEARLY_GONE5": "大糟糕啦！（Major bummer!）",
+
+  "KOHRAH_FRENZY0": "艦長，恐怕我們收到偵察兵最後的報告了。",
+
+  "KOHRAH_FRENZY1": "可憐的葉普、屯跟哈菲！ 我真的會很想念那些傢伙！",
+
+  "KOHRAH_FRENZY2": "我們沒有一個偵察兵活著回家",
+
+  "KOHRAH_FRENZY3": "……還有吉夫…… 還有佛德…… 還有（啜泣！）（sniff!）……\n……還有我最好的哥兒們，羅吉！",
+
+  "KOHRAH_FRENZY4": "他們送出了最後一則訊息。\n柯亞贏得對抗烏寬的戰爭\n且他們已開始其恐怖的死亡進軍。",
+
+  "KOHRAH_FRENZY5": "（啜泣！）",
+
+  "KOHRAH_FRENZY6": "我們僅有的一項知識\n或許能助你擊敗他們\n那是一段殘破的訊息，來自我們駐 <% comm.getConstellation(\"巨爵座\", \"samatra\") %> 星座\n那位特工布波所發送。",
+
+  "KOHRAH_FRENZY7": "他們連布波也殺了？！……（嗚咽！）（SOB!）",
+
+  "KOHRAH_FRENZY8": "他報告說柯亞有樣東西\n「又大又危險又重要得要命」\n就在附近某個恆星系裡。\n這是布波訊號中斷前我們收到的全部內容。",
+
+  "KOHRAH_FRENZY9": "（嗚咽！）",
+
+  "KOHRAH_FRENZY10": "艦長，你一定要阻止柯亞！……\n……在他們把我們全殺光之前。",
+
+  "KOHRAH_FRENZY11": "（啜泣！）",
+
+  "NO_WAR_NEWS0": "沒。 我們沒什麼新的可以報告。",
+
+  "NO_WAR_NEWS1": "沒有！ 完全沒有。",
+
+  "i_want_alliance": "我方遠道而來，是要在我們兩個民族之間尋求結盟。",
+
+  "GOOD0": "太好了！ 我們接受！",
+
+  "GOOD1": "萬歲！",
+
+  "GOOD2": "太棒了！",
+
+  "GOOD3": "耶哈！",
+
+  "GOOD4": "艦長，我們很高興你們的人民做出這個選擇！",
+
+  "GOOD5": "現在「我們」不會被屠殺了！",
+
+  "GOOD6": "作為交換，我們合作提供艦長跟艦艇設計\n我們只要求你的保護。",
+
+  "GOOD7": "這樣我們才不會被屠殺！",
+
+  "GOOD8": "我們馬上開始履行約定！\n我們馬上把軍官跟刺針號設計運送到你的基地！",
+
+  "GOOD9": "哎唷！\n說不定我還要親自跑一趟你的星球！\n我會是個好星艦艦長的，艦長！\n我打起架來還挺兇的\n而且沒人比得過我的\n突進刺針舌攻擊！",
+
+  "want_specific_info": "我方想要一些具體的情報。",
+
+  "WHAT_SPECIFIC_INFO0": "當然。 你想知道什麼？",
+
+  "WHAT_SPECIFIC_INFO1": "儘管問！",
+
+  "enough_info": "情報夠了，謝啦！",
+
+  "OK_ENOUGH_INFO": "還有別的嗎？",
+
+  "what_about_others": "你們對其他外星種族了解多少？",
+
+  "ABOUT_OTHERS0": "老實說，不多。",
+
+  "ABOUT_OTHERS1": "這種太空探索的事情對我們來說還挺新的。",
+
+  "ABOUT_OTHERS2": "除了綠色的外星艦……",
+
+  "ABOUT_OTHERS3": "他們只想殺我們。",
+
+  "ABOUT_OTHERS4": "……跟黑色的外星艦……",
+
+  "ABOUT_OTHERS5": "他們殺我們殺得「非常成功」。",
+
+  "ABOUT_OTHERS6": "我們遇過的唯一其他星艦\n是些奇怪、翻滾著的紅色探測器\n口口聲聲說是和平任務……",
+
+  "ABOUT_OTHERS7": "……然後就像流著口水的澤布蘭基一樣攻擊。",
+
+  "ABOUT_OTHERS8": "我們相信那些探測器其實是機器人偵察兵\n出了某種故障\n才導致它們行為異常。",
+
+  "ABOUT_OTHERS9": "更糟的是，它們正在繁殖。",
+
+  "ABOUT_OTHERS10": "是啊，這是真的。\n探測器似乎正以幾何級數複製。",
+
+  "ABOUT_OTHERS11": "啊咦！（AIEE!） 那意思是如果上禮拜只有一台\n那下個月…… 啊\n等等…… 讓我算算\n呃\n意思是，下個月會有\n……「一整片那種東西」！",
+
+  "ABOUT_OTHERS12": "藉由回溯探測器的航跡\n我們算得出來\n探測器的來源\n是在 <% comm.swapIfSeeded(\"直線通向\", \"在\") %>……\n……<% comm.getConstellation(\"包含我們恆星系，還有\", \"slylandro\") %><%comm.swapIfSeeded(\" 蒼蠅座ε\", \" 星系裡\") %>。",
+
+  "ABOUT_OTHERS13": "去修理他們，艦長！",
+
+  "what_about_zebranky": "多告訴我方關於你們族類的事。",
+
+  "ABOUT_ZEBRANKY0": "啊！ 文化交流。 好主意。",
+
+  "ABOUT_ZEBRANKY1": "耶！ 跟他講芙戎奇的事吧！",
+
+  "ABOUT_ZEBRANKY2": "閉嘴，笨蛋！ 他問了個嚴肅的問題！\n他不會想知道芙戎奇的事。",
+
+  "ABOUT_ZEBRANKY3": "你怎麼知道？ 你哪來的自信這麼聰明？\n你根本沒問過他想不想知道芙戎奇的事。\n哎呀，我打賭他現在正在想\n「什麼是芙戎奇這奇妙的運動？」「怎麼玩？」\n「玩芙戎奇需要什麼裝備？」\n以及「芙戎奇錦標賽現在誰領先啊？」",
+
+  "ABOUT_ZEBRANKY4": "噁啊！（AUGH!） 你能不能「閉嘴不談芙戎奇」？！\n你要是再說一個字關於那「愚蠢遊戲」\n我就要失控，朝你噴一團孢子雲！",
+
+  "ABOUT_ZEBRANKY5": "噁心！（Yech!） 好啦，好啦。 別把你的孢子囊搞爆了。\n我不再提芙戎奇了，我保證。",
+
+  "ABOUT_ZEBRANKY6": "呃，艦長，如你大概也看得出來\n我們文化最主要的特質\n也就是它最大的優點跟缺點\n就是佐格、佛特、皮克三方之間各式各樣的互動。",
+
+  "ABOUT_ZEBRANKY7": "芙戎奇！ 芙戎奇！ 芙戎奇！",
+
+  "what_about_past": "你們的歷史是怎樣的？",
+
+  "ABOUT_PAST0": "我們的過去？ 這麼短的對話講不完\n但我們會跟你分享一段我們歷史上的關鍵。",
+
+  "ABOUT_PAST1": "我們宰掉最後一隻澤布蘭基之後\n面臨一個有意思的問題。",
+
+  "ABOUT_PAST2": "我們該繼續前進，建立一個\n在藝術、科技、社會複雜度上都有發展的文化？……",
+
+  "ABOUT_PAST3": "……還是我們該回到森林\n放輕鬆好好享受一下\n因為知道再也不會有澤布蘭基從灌木叢裡跳出來吃我們！",
+
+  "ABOUT_PAST4": "呃，我們「確實」回到森林了。\n我們在那裡待了大約五千年，玩得可爽了……",
+
+  "ABOUT_PAST5": "……然後，某個下著暴風雨的日子，一隻佐格、一隻佛特、還有一隻皮克正沿著一條陡峭的小徑往上走\n想找些好吃的東西，這時附近打下一道閃電。\n伴隨一道巨大的閃光，那道能量\n從斷崖上切下一塊形狀怪異的花崗岩。",
+
+  "ABOUT_PAST6": "那是個圓盤，中間有個洞！\n當那塊石頭開始滾下山，朝三隻被嚇壞的生物滾去\n有些乾草卡進了它的洞裡，而由於那石頭還熱著\n那些草就燒起來了。",
+
+  "ABOUT_PAST7": "當那塊石頭終於滾到佐格、佛特、皮克面前時\n他們同時發現了「輪子」、「火」，以及「宗教」\n因而把他們推上了進步的道路。",
+
+  "ABOUT_PAST8": "而這一路把我們帶到了今天，艦長。\n喔！ 你問燃燒的輪子是怎麼為我們文化帶來宗教的？",
+
+  "ABOUT_PAST9": "我來說明。\n你看，當它到達三個小傢伙面前時，燃燒的輪子跑得挺快\n然後就直直撞上那隻佐格，把他撞死了。",
+
+  "ABOUT_PAST10": "那隻佛特跟那隻皮克覺得非常難過\n他們真的很喜歡那隻佐格！……\n……他們就認定那隻佐格被輪子壓扁時並沒有真的死掉\n他只是去了「一個更好的地方」。",
+
+  "ABOUT_PAST11": "大概是個沒有致命燃燒輪子的地方。",
+
+  "what_about_stinger": "可以描述一下你們的「刺針號」（Stinger）星艦嗎？",
+
+  "ABOUT_STINGER0": "刺針號是我們技術實力的巔峰。",
+
+  "ABOUT_STINGER1": "它超讚的！",
+
+  "ABOUT_STINGER2": "這種艦艇建造便宜\n在近距離戰鬥中可相當有效。",
+
+  "ABOUT_STINGER3": "它們的迴轉半徑就像…… 就像\n呃，某個「非常」小的圓形東西那樣小！",
+
+  "ABOUT_STINGER4": "但要記住，面對大多數艦艇\n刺針號必須立刻拉近距離\n然後不斷發動舌攻擊\n直到敵人或刺針號其中一方被毀為止。",
+
+  "ABOUT_STINGER5": "沒錯！ 用舌頭捅是最讚的部分！",
+
+  "what_about_guy_in_back": "後面那位傢伙從來都沒說過話嗎？",
+
+  "ABOUT_GUY0": "沒。",
+
+  "ABOUT_GUY1": "一個字都沒有。",
+
+  "name_1": "「新自由星系聯盟」",
+
+  "name_2": "「異星諸邦協和聯盟」",
+
+  "name_3": "「聯合世界聯邦」",
+
+  "name_4": "「<% state.sis.getCaptainName() %>之帝國」",
+
+  "OUT_TAKES0": "感謝您玩「烏寬大師」。",
+
+  "OUT_TAKES1": "本遊戲由\n芙戎奇！ 諸王之運動！ 為您贊助播出。",
+
+  "OUT_TAKES2": "才不是！",
+
+  "OUT_TAKES3": "就是！",
+
+  "OUT_TAKES4": "苙戎奇跟本遊戲一點關係也沒有！\n本遊戲主題是戰爭、奴役、偏執\n英雄氣概、正義，還有善終將戰勝惡！",
+
+  "OUT_TAKES5": "你瘋了嗎？！ 開發者收了數百萬芙戎奇的代言費！",
+
+  "OUT_TAKES6": "他們才沒有。",
+
+  "OUT_TAKES7": "他們就有。",
+
+  "OUT_TAKES8": "他們才沒有！",
+
+  "OUT_TAKES9": "他們就有！",
+
+  "OUT_TAKES10": "沒有！",
+
+  "OUT_TAKES11": "有！",
+
+  "OUT_TAKES12": "沒有！",
+
+  "OUT_TAKES13": "有！"
+}

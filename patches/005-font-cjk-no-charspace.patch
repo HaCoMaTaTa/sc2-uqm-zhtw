@@ -1,0 +1,75 @@
+diff --git a/src/libs/graphics/font.c b/src/libs/graphics/font.c
+index acdbc82..6227104 100644
+--- a/src/libs/graphics/font.c
++++ b/src/libs/graphics/font.c
+@@ -395,7 +395,10 @@ TextRect (TEXT *lpText, RECT *pRect, BYTE *pdelta)
+ 				if (y > bot_y)
+ 					bot_y = y;
+ 
+-				width += charFrame->disp.width + FontPtr->CharSpace;
++				/* zh-TW patch: skip CharSpace for CJK codepoints (PNG already padded) */
++				width += charFrame->disp.width;
++				if (ch < 0x4E00 || ch > 0x9FFF)
++					width += FontPtr->CharSpace;
+ 
+ 				if (num_chars && next_ch < MAX_UNICODE
+ 						&& FontPtr->KernTab[ch] != (BYTE)~0
+@@ -502,7 +505,10 @@ _text_blt (RECT *pClipRect, TEXT *TextPtr, POINT ctxOrigin)
+ 						ctxOrigin);
+ 			}
+ 
+-			origin.x += fontChar->disp.width + FontPtr->CharSpace;
++			/* zh-TW patch: skip CharSpace for CJK codepoints (PNG already padded) */
++			origin.x += fontChar->disp.width;
++			if (ch < 0x4E00 || ch > 0x9FFF)
++				origin.x += FontPtr->CharSpace;
+ 
+ 			if (num_chars && next_ch < MAX_UNICODE
+ 					&& FontPtr->KernTab[ch] != (BYTE)~0
+@@ -573,6 +579,10 @@ _text_blt_fade (RECT *pClipRect, TEXT *TextPtr, POINT ctxOrigin, FRAME repair, B
+ 		while (next_ch == ' ')
+ 		{
+ 			fontChar = getCharFrame (FontPtr, next_ch);
++			/* zh-TW patch note: this space-advance loop only fires for ASCII ' '
++			   which is never CJK, so keep the original behaviour (always add
++			   CharSpace). Do NOT reference `ch` here ΓÇö it is uninitialised
++			   on the first iteration. */
+ 			origin.x += fontChar->disp.width + FontPtr->CharSpace;
+ 			next_ch = getCharFromString (&pStr);
+ 			num_chars--;
+@@ -627,7 +637,10 @@ _text_blt_fade (RECT *pClipRect, TEXT *TextPtr, POINT ctxOrigin, FRAME repair, B
+ 			}
+ 			else if (next_ch != '\0')
+ 			{
+-				origin.x += fontChar->disp.width + FontPtr->CharSpace;
++				/* zh-TW patch: skip CharSpace for CJK codepoints (PNG already padded) */
++				origin.x += fontChar->disp.width;
++				if (ch < 0x4E00 || ch > 0x9FFF)
++					origin.x += FontPtr->CharSpace;
+ 
+ 				if (num_chars && next_ch < MAX_UNICODE
+ 						&& FontPtr->KernTab[ch] != (BYTE)~0
+@@ -737,7 +750,10 @@ TextRectAlt (TEXT *lpText, RECT *pRect, BYTE *pdelta, BYTE swap,
+ 				if (y > bot_y)
+ 					bot_y = y;
+ 
+-				width += charFrame->disp.width + FontPtr->CharSpace;
++				/* zh-TW patch: skip CharSpace for CJK codepoints (PNG already padded) */
++				width += charFrame->disp.width;
++				if (ch < 0x4E00 || ch > 0x9FFF)
++					width += FontPtr->CharSpace;
+ 
+ 				if (num_chars && next_ch < MAX_UNICODE
+ 						&& FontPtr->KernTab[ch] != (BYTE)~0
+@@ -888,7 +904,10 @@ _text_blt_alt (RECT *pClipRect, TEXT *TextPtr, POINT ctxOrigin, BYTE swap,
+ 					ctxOrigin);
+ 			}
+ 
+-			origin.x += fontChar->disp.width + FontPtr->CharSpace;
++			/* zh-TW patch: skip CharSpace for CJK codepoints (PNG already padded) */
++			origin.x += fontChar->disp.width;
++			if (ch < 0x4E00 || ch > 0x9FFF)
++				origin.x += FontPtr->CharSpace;
+ 
+ 			if (num_chars && next_ch < MAX_UNICODE
+ 					&& FontPtr->KernTab[ch] != (BYTE)~0

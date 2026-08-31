@@ -1,0 +1,18 @@
+{
+  "_notes": [
+    "v0.1 — Ur-Quan/Kohr-Ah Starbase destroyed report translation.",
+    "Source: extracted/base/base/lander/energy/urquanbase.txt",
+    "Speaker: 玩家艦艇軌道回報（軍事簡報格式,與 moonbase.zh-TW.json 對齊）。",
+    "Register: 軍事簡報風,對齊 moonbase.zh-TW.json v0.5.7 :",
+    "  - REPORT FROM ORBIT → 軌道傳回報告",
+    "  - END OF REPORT → 報告結束",
+    "  - Hierarchy = 階層 (v0.3 canonical) | Kohr-Ah = 柯亞",
+    "  - Captain → 艦長",
+    "CRITICAL:",
+    "  - --allow-line-mismatch used in build (無 voice cue,可 \\n 換行)"
+  ],
+
+  "DESTROYED_URQUAN_STARBASE": " ---- 軌道傳回報告 ----\n\n該階層星艦基地已被徹底摧毀，艦長。\n\n  ---- 報告結束 ----",
+
+  "DESTROYED_KOHRAH_STARBASE": " ---- 軌道傳回報告 ----\n\n該柯亞星艦基地已被徹底摧毀，艦長。\n\n  ---- 報告結束 ----"
+}

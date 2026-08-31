@@ -1,0 +1,20 @@
+{
+  "_notes": [
+    "v0.7 — Rosy Sphere (Druuge 遺物 in Kohr-Ah 屠殺後) lander report.",
+    "Source: extracted/base/base/lander/energy/sphere.txt",
+    "Speaker: Landing party report.",
+    "Terminology:",
+    "  Druuge = 毒賈族",
+    "  Kohr-Ah = 柯亞族",
+    "  Rosy Sphere = 玫瑰球體 (Master_Glossary Phase 7 canonical)",
+    "  planetary bombardment = 行星轟炸",
+    "  anomalous energy reading = 異常能量讀數",
+    "  hardened chamber / vault = 加固艙室 / 保險庫",
+    "  glowing-red = 紅光閃爍",
+    "  bummer = 遺憾 (口語微弱化, 保留 landing party 士兵語氣)"
+  ],
+
+  "SPHERE 1": " ---- 地表傳回報告 ----\n\n這處曾經繁華的毒賈族大都會廢墟中,\n所有跡證都表明\n他們已遭柯亞族的行星轟炸\n徹底消滅。真夠遺憾的吧?\n\n根據一組異常能量讀數,\n我方於地底深處\n定位到一間加固艙室——\n某種保險庫。\n\n艙室內我方發現一顆\n約握拳大小的紅光閃爍球體。\n\n既然毒賈族將此遺物放入\n這保險庫中保護,\n可推斷它必有某種價值。\n因此,我方正將這顆玫瑰球體\n帶回艦上。\n\n  ---- 報告結束 ----",
+
+  "SPHERE 2": " ---- 地表傳回報告 ----\n\n艦長,柯亞族做得非常徹底。\n此處似無其他有價值之物。\n\n  ---- 報告結束 ----"
+}

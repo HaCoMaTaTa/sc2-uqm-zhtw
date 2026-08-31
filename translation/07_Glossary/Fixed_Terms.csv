@@ -1,0 +1,226 @@
+category,english,chinese,notes,source
+race,Ur-Quan,烏寬族,可簡稱「烏寬」,shipped_v0.3
+race,Ur-Quan Kzer-Za,烏寬克澤札,簡稱「克澤札」,shipped_v0.3
+race,Kzer-Za,克澤札,,shipped_v0.3
+race,Ur-Quan Kohr-Ah,烏寬柯亞,簡稱「柯亞」,shipped_v0.3
+race,Kohr-Ah,柯亞族,,shipped_v0.3
+race,Chenjesu,晶智族,非「蒼捷蘇」,shipped_v0.3_chmmr
+race,Mmrnmhrm,姆姆族,,shipped_v0.3_chmmr
+race,Chmmr,查姆族,,shipped_v0.3_chmmr
+race,Shofixti,修烈士族,非「蘇菲斯特族」（shipped v0.3 舊）;修=修行/烈士=神風自爆,v0.4_user
+race,Yehat,翼哈特族,非「葉哈特族」（shipped v0.3 舊）;翼=鳥人翅膀,v0.4_user
+race,Yehat Rebels,翼哈特叛軍,,v0.4_user
+race,Arilou,阿麗露,無「族」字,shipped_v0.3_arilou
+race,Arilou Lalee'lay,阿麗露·萊蕾,,shipped_v0.3_arilou
+race,Syreen,塞蓮族,,shipped_v0.3_syreen
+race,Spathi,史怕族,,shipped_v0.3_spathi
+race,Safe Ones,平安族,史怕族自稱,v0.2
+race,Umgah,陰嘎族,非「阿姆嘎族」（shipped v0.3 舊）;陰=陰險/嘎=hee-hee-hee 陰笑,v0.4_user
+race,Mycon,麥孔族,shofixti.json _notes 誤植為梅蒙族,shipped_v0.3
+race,VUX,VUX,保留原文全大寫無「族」字,shipped_v0.3
+race,Ilwrath,蛛狂族,,shipped_v0.3_ilwrath
+race,Androsynth,安卓辛族,,shipped_v0.3_commander
+race,Utwig,憂特族,,shipped_v0.3_druuge
+race,Supox,蘇菩族,非「蘇波族」（shipped v0.3 舊）；菩=菩薩式優雅,v0.4_user
+race,Pkunk,普恩族,,shipped_v0.3_pkunk
+race,Thraddash,撻伐族,非「撒達許族」（shipped v0.3 舊）/「斯拉達族」（v0.2）;撻=鞭打/伐=攻打,v0.4_user
+race,Slylandro,斯萊族,,shipped_v0.3_slylandro
+race,Slylandro Probe,探測器,v0.8 canonical 升版（原「斯萊探測器」與跨檔 89 次「探測器」bare 用法不一致 · 統一改用 bare「探測器」· 也統一 shipped「探測機」variant 為「探測器」）,v0.8
+race,Druuge,毒賈族,非「德魯族」（shipped v0.3 舊）；毒=惡毒奴役/賈=商人,v0.4_user
+race,Melnorme,梅諾商,無「族」字；非「梅爾諾」（shipped v0.3 舊）；商=商人本質,v0.4_user
+race,Orz,歐茲族,非「奧茲」,shipped_v0.3_orz
+race,Zoq-Fot-Pik,佐-佛-皮,保留連字號結構,v0.2
+race,Dnyarri,蟾亞族,非「尼亞里」（shipped v0.3 舊）;蟾=蟾蜍/亞=nya 音+居人下,v0.4_user
+race,Talking Pet,會話寵,,v0.2
+race,Taalo,塔洛族,,shipped_v0.3_orz
+race,Precursor,先驅者,,v0.2
+race,Precursors,先驅者,,v0.2
+race,Burvixese,布維族,,v0.2
+race,Drall,卓爾族,,v0.2
+race,Faz,法茲族,,v0.2
+race,Gg,Gg 族,保留原文無元音無法音譯,v0.2
+race,Mael-Num,梅努族,,v0.2
+character,Commander Hayes,海斯艦長,可簡稱「海斯」,v0.2
+character,Cdr. Hayes,海斯艦長,,v0.2
+character,Talana,泰蘭娜,,v0.2
+character,Fwiffo,費佛,,v0.2
+character,Trade Master Greenish,綠光貿易官,,v0.2
+character,ZEX,澤克斯,不分階級一律統稱,v0.3
+character,Admiral ZEX,澤克斯,,v0.3
+character,General ZEX,澤克斯,,v0.3
+character,Captain Burton,巴頓艦長,,v0.2_manual
+character,Captain I. Burton,巴頓艦長,,v0.2_manual
+character,Captain Chi,齊船長,,manual_OCR
+character,Mr. Chi,齊先生,,manual_OCR
+character,Professor Jules Farnsworth,方斯渥教授,,manual_OCR
+character,Captain Rand,蘭德艦長,,user_prompt
+character,Tanaka,田中,日文姓氏漢字,shipped_v0.3
+character,Katana,武士刀,日文かたな,shipped_v0.3
+character,Daikon,蘿蔔,日文だいこん,shipped_v0.3
+ship,Dreadnought,無畏艦,,v0.2
+ship,Marauder,掠奪者,,v0.2
+ship,Broodhome,母巢艦,chmmr.json 亦用「育巢艦」,v0.2
+ship,Transformer,變形艦,,v0.2
+ship,X-Form,X 型艦,chmmr.json 用法,shipped_v0.3
+ship,Avatar,復仇號,查姆族主艦,v0.2
+ship,Terminator,終結者,,v0.2
+ship,Fury,憤怒者,翼哈特叛軍艦；Pkunk 亦有 Fury 待議,v0.2
+ship,Scout,偵察艦,,v0.2
+ship,Skiff,快艇,,v0.2
+ship,Penetrator,穿透艦,非「穿透船」,v0.3
+ship,Eluder,迴避者,,v0.2
+ship,Drone,蜂機艦,,v0.2
+ship,Intruder,入侵者,,v0.2
+ship,Guardian,守衛艦,,v0.2
+ship,Avenger,復仇艦,Ilwrath；v0.8 canonical 升版（原「復仇者」與 shipped 主流「復仇艦」（commander/starbase）不一致 · 統一改為「復仇艦」；仍與 Vindicator「復仇者號」/Avatar「復仇號」/Nemesis「宿敵號」區分）,v0.8
+ship,Podship,莢艦,,v0.2
+ship,Nemesis,復仇者號,Orz；末尾有「號」,v0.2
+ship,Jugger,重砲艦,,v0.2
+ship,Blade,鋒刃艦,,v0.2
+ship,Torch,火炬艦,撻伐族,v0.2
+ship,Mauler,重擊者,,v0.2
+ship,Stinger,刺針號,佐-佛-皮；v0.8 canonical 升版（原 v0.2「刺激者號」從未 shipped · 統一改為實際使用的「刺針號」）,v0.8
+ship,Cutter,切割艦,所屬待查,v0.2
+ship,Behemoth,巨獸,所屬待查,v0.2
+ship,Probe,探測器,斯萊族機械；v0.8 canonical 升版（同 race,Slylandro Probe · 統一 bare「探測器」）,v0.8
+ship,Vindicator,復仇者號,玩家旗艦專名末尾有「號」,v0.2
+ship,Vindicator,復仇艦,艦級名末尾無「號」,v0.2
+ship,Tobermoon,土柏月亮號,,v0.2
+weapon,Fusion Bolt,融合彈,烏寬克澤札,v0.2
+weapon,F.R.I.E.D. Blades,旋轉刀刃,柯亞族,v0.2
+weapon,Photon Crystals,光子晶體彈,晶智族,v0.2
+weapon,Plasmoids,電漿團,麥孔族,v0.2
+weapon,BUTT Missile,屁彈飛彈,史怕族；BUTT=Back Unit Targeting & Tracking,v0.4
+weapon,Antimatter Cone,反物質錐,陰嘎族,v0.2
+weapon,VUX Laser,雷射,VUX,v0.2
+weapon,limpet,吸附雷,非「吸附機」,shipped_v0.3
+weapon,Bubble Cannon,泡泡彈,安卓辛族,v0.2
+weapon,Blazer Form,燃燒衝撞形態,安卓辛族,v0.2
+weapon,Flame Jets,火焰噴流,蛛狂族,v0.2
+weapon,Lightning Weapon,閃電武器,斯萊探測器,v0.2
+weapon,Twin Pulsar Cannons,雙脈衝砲,翼哈特族,v0.2
+weapon,Glory Device,榮耀彈,修烈士族,shipped_v0.3
+weapon,Glory Devices,榮耀彈,,shipped_v0.3
+weapon,Autotracking Laser,自動追蹤雷射,阿麗露,v0.2
+weapon,Particle Beam,粒子束,塞蓮族,v0.2
+weapon,Syreen Song,塞蓮之歌,塞蓮族,v0.2
+weapon,Cannon,重砲,憂特族或毒賈族依語境,v0.2
+weapon,Glob Launcher,漿團發射器,蘇菩族,v0.2
+weapon,Triple Bullets,三連發彈,普恩族,v0.2
+weapon,Nose Cannon,前置砲,撻伐族,v0.2
+weapon,Afterburner Trail,後燃燒尾焰,撻伐族,v0.2
+weapon,Furnace,爐膛,毒賈族,v0.2
+weapon,Confusion Beam,迷亂光束,梅諾商,v0.2
+weapon,High-Powered Weapon,三段式高能砲,梅諾商,v0.2
+weapon,Howitzer,榴彈砲,歐茲族,v0.2
+weapon,Space Marines,*太空探險隊*,歐茲族；保留星號,v0.2
+weapon,Antimatter Spray,反物質吐射,佐-佛-皮,v0.2
+weapon,Fighter Form,戰機形態,姆姆族,v0.2
+weapon,Missile Form,飛彈形態,姆姆族,v0.2
+weapon,Zapsat Laser,Zap 衛星雷射,查姆族,v0.2
+weapon,Tractor Beam,牽引光束,查姆族,v0.2
+artifact,Sa-Matra,薩瑪特拉,chmmr.json 用「薩-瑪特拉」,v0.2
+artifact,Ultron,厄創,,v0.2
+artifact,Rosy Sphere,玫瑰球體,,phase_7
+artifact,Sun Device,太陽裝置,,phase_7
+artifact,Taalo Shield,塔洛防護罩,,phase_7
+tech,HyperSpace,超空間,,v0.2
+tech,QuasiSpace,準空間,,v0.2
+tech,TrueSpace,真實空間,,v0.2
+tech,HyperWave,超波通訊,shipped 口語多用「超波」（30 次 / 通訊 5 次）· 兩者皆合法,shipped_v0.3
+tech,Star Control,星際指揮部,非「星控」,shipped_v0.3
+tech,slave shield,奴役護盾,,shipped_v0.3
+tech,FunRom,歡樂晶片,,shipped_v0.3
+tech,lander,登陸艇,,shipped_v0.3
+tech,RU,RU,保留原文縮寫；括號附「資源單位」,通用
+tech,Credits,星幣,v0.5.2 canonical 升版：取代 v0.4「信用點數」（梅諾商貨幣）,v0.5.2
+tech,Interstar Credits,星幣,v0.5.2 canonical,v0.5.2
+tech,Fuel Tank,燃料艙,,manual
+tech,Crew Pod,船員艙,,manual
+tech,Point-Defense Laser,點防禦雷射,,manual
+tech,Hellbore Cannon,火獄穿甲炮,v0.5.2 canonical 升版：取代舊「地獄砲」（melnorme+setupmenu shipped 主流）,v0.5.2
+tech,Shiva Furnace,濕婆熔爐,v0.5.2 canonical 升版：取代舊「希瓦爐」（melnorme+gamestrings+setupmenu shipped 全場一致）,v0.5.2
+tech,Ion-Bolt Gun,離子波砲,v0.5.2 canonical,v0.5.2
+tech,Fusion Blaster,融合爆能砲,v0.7 shipped-preference,v0.7
+faction,Alliance of Free Stars,自由星系聯盟,簡稱「聯盟」,v0.2
+faction,New Alliance of Free Stars,新自由星系聯盟,,v0.2
+faction,Ur-Quan Hierarchy,烏寬戰奴階層,簡稱「階層」,v0.2
+faction,Battle Thrall,戰奴,,v0.2
+faction,Fallow Slave,禁足奴族,,v0.2
+faction,Doctrinal War,教義戰爭,,v0.2
+faction,Doctrine of Slavery,奴役派,,v0.2
+faction,Doctrine of Extermination,滅絕派,,v0.2
+faction,Path of Now and Forever,現在與永恆之道,克澤札教條,v0.2
+faction,Eternal Doctrine,永恆教條,柯亞教條,v0.2
+faction,Sentient Milieu,感知聯盟,,v0.2
+faction,Utwig Proctorate,憂特監督團,,v0.2
+faction,Crimson Corporation,血紅集團,v0.7 canonical 升版：取代舊「紅色財團」（Druuge shipped 65+ 處主流）,v0.7
+faction,Culture Nineteen,第十九文化,撛伐族,v0.2
+faction,Keel-Verezy,奇維瑞族/商行,武器製造商,v0.3
+religious,Dogar,多加,蛛狂雙生邪神,shipped_v0.3
+religious,Kazon,卡宗,蛛狂雙生邪神,shipped_v0.3
+religious,Juffo-Wup,聖源,v0.5.2 canonical：對齊 Alien_Speech_Rule §2.1 Phase 14c；首介「聖源（Juffo-Wup）」其餘全篇「聖源」,v0.5.2
+religious,Frungy,苙戎奇,v0.5.2 canonical：取代「保留原文」；首介「苙戎奇（Frungy）」,v0.5.2
+place,Sol,太陽系,,v0.2
+place,Earth,地球,,通用
+place,Pluto,冥王星,,通用
+place,Sirius,天狼星,,天文學會
+place,Betelgeuse,參宿四,,天文學會
+place,Procyon,南河三,小犬座 非波江座,天文學會
+place,Arcturus,大角星,,天文學會
+place,Vulpeculae,狐狸座,,天文學會
+place,Draconis,天龍座,,shipped_v0.3
+place,Alpha Centauri,半人馬座 α,,天文學會
+place,Rigel,參宿七,,天文學會
+place,Alpha Tucanae,杜鵑座 α,,天文學會
+place,Alpha Pavonis,孔雀座 α,,天文學會
+place,Beta Corvi,烏鴉座 β,,天文學會
+place,Delta Crateris,巨爵座 δ,,天文學會
+place,Delta Vulpeculae,狐狸座 δ,,天文學會
+place,Gamma Vulpeculae,狐狸座 γ,,天文學會
+place,Vela,船帆座,,天文學會
+place,Beta Brahe,第谷 β,v0.7 patch009 canonical 升版：取代舊「布拉赫 β」（starbase shipped 使用）· 丹麥天文學家 Tycho Brahe 華語圓常用名,v0.7
+place,Zeta Sextantis,六分儀座 ζ,,shipped_v0.3
+place,Zeta Persei,英仙座 ζ,,shipped_v0.3
+place,Groombridge,葛倫布利吉,音譯,通用
+place,Zeeman-Vela,日曼-微拉,,manual_OCR
+place,Giclas,吉克拉斯,,shipped_v0.3
+place,Oort Cloud,歐特雲,亦可用「Oort 雲」,manual_OCR
+place,Unzervalt,恩澤伐特,,v0.2
+place,Vela II,船帆星 II,,v0.2
+place,Syra,席拉,塞蓮母星（已毀）,v0.2
+place,Kyabetsu,高麗菜,日文キャベツ Shofixti 母星,shipped_v0.3
+place,Falayalaralfali,法拉雅拉拉法利,阿麗露母星,shipped_v0.3
+place,The Vault,庇護所,塞蓮居住艦,v0.2
+place,Starbase,星際基地,,v0.2
+place,Sphere of Influence,影響圈,,v0.2
+planet_type,Gas Giant,氣態巨行星,v0.7 canonical：對齊華文天文學界通用譯名，取代舊「氣體形成的巨行星」（Planet_Types.md 已同步）,v0.7
+planet_type,Quasi-Degenerate,準簡併態,天文物理術語（白矮星核心相關）,v0.7
+planet_type,Super-Dense,超緻密,中子星等物質狀態,v0.7
+ui,Deep Space,深空,ENCOUNTER IN [Deep Space] HUD,v0.7
+ui,BATTLE GROUP,戰鬥編隊,遭遇畫面對手艦隊 label,v0.7
+ui,ENCOUNTER,遭遇,ENCOUNTER IN/AT [位置] 統一「遭遇於」,v0.7
+ui,Fleet Points,艦隊分數,造船廠 UI,v0.7
+ui,FP,FP,保留英文縮寫；艦隊列表精簡欄,v0.7
+ui,Remaining Crew,剩餘船員,戰鬥/招募面板,v0.7
+bio,Libixx,里比克斯,恩澤伐特有翅膀的兔子,manual_OCR
+bio,Ortog,歐特哥斯,恩澤伐特六隻腳家畜,manual_OCR
+bio,Iccamullon,Iccamullon,保留原文；恩澤伐特藍花植物,manual_OCR
+bio,Dhrang,Dhrang,保留原文；Ilwrath 死屍隱喻詞,shipped_v0.3
+bio,Dgrunti,蒂格倫提,,shipped_v0.3
+bio,Ogrunti,歐格倫提,,shipped_v0.3
+interjection,Aieee!,Aieee!,保留原文,shipped_v0.3
+interjection,Kyaiee!,Kyaiee!,保留原文,shipped_v0.3
+interjection,Hyai!,Hyai!,保留原文,shipped_v0.3
+interjection,HYAIEEE!,HYAIEEE!,保留原文,shipped_v0.3
+interjection,Ha!,Ha!,保留原文,shipped_v0.3
+interjection,Lykeee-lieee!,Lykeee-lieee!,保留原文,shipped_v0.3
+interjection,hee-hee-hee,hee-hee-hee,保留原文,shipped_v0.3
+interjection,Ho-ho-ho,Ho-ho-ho,保留原文,shipped_v0.3
+interjection,SNORT!,SNORT!,保留原文；撻伐族哼嗤,v0.2
+interjection,Banzai!,Banzai!,保留原文；修烈士族日式呼喊,v0.2
+slang,roof-rabbit,小兔崽子,對嗆用,v0.4
+slang,vapor city,灰飛煙滅,威脅語,v0.4
+slang,donkey breath,臭嘴巴,對嗆用,v0.4
+slang,butt blasted,屁滾尿流,,v0.4
+slang,MORON RATHEAD,白痴鼠腦,Shofixti 專用侮辱,shipped_v0.3

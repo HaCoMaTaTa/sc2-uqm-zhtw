@@ -1,0 +1,37 @@
+{
+  "_notes": [
+    "v0.1 — Deathmarch (Kohr-Ah 統治結局動畫) translation。9 TFI blocks。",
+    "Source: extracted/base/base/cutscene/gameover/deathmarch.txt",
+    "Format: 對齊 intro.zh-TW.json,以英文原句為 key,中文譯為 value。",
+    "Speaker: Kohr-Ah Primat 女性個體視角,冰冷宗教滅絕派敘事。",
+    "Register: 冷硬宗教肅殺,對齊 kohrah.zh-TW.json voice。",
+    "===== v0.5.2 canonical (Q6-Q8, 2026-08-11) =====",
+    "  Q6 ignition key = 引爆鑰匙 (呼應 Sa-Matra 對地球末日的爆炸性)",
+    "  Q7 cleansing this filth = 淨化此污穢 (對齊 kohrah.zh-TW.json 宗教用語)",
+    "  Q8 Kohr-Ah Primat = 她/其後裔 (保留 SC2 canon 女性領袖 lore)",
+    "===== 繼承 canonical =====",
+    "  Kohr-Ah=柯亞 | Kohr-Ah Primat=柯亞總主宰 | Kzer-Za=克澤札",
+    "  Doctrinal War=教義戰爭 | Doctrine=教條 | Ur-Quan=烏寬",
+    "  New Alliance=新自由星系聯盟 | Captain=艦長",
+    "===== 排版 =====",
+    "  translate_intro.py 做字串替換,不硬性要求行數對齊"
+  ],
+
+  "The Kohr-Ah Primat stares at the ignition key,\ntalons dangling mere inches from\nEarth's certain doom.": "柯亞總主宰凝視著引爆鑰匙\n利爪懸於距地球必然末日\n僅數吋之外。",
+
+  "This would be it.": "就是此刻了。",
+
+  "This wasn't just Earth's end, this wasn't\njust the end of the New Alliance.": "這不僅是地球之終結\n亦不僅是新自由星系聯盟之終結。",
+
+  "The Kzer-Za could no longer intervene.\nThe Captain could no longer stand against the might\nof the Kohr-Ah.": "克澤札已無從介入。\n艦長已無力抵擋\n柯亞之威。",
+
+  "But it would be the end of the Doctrinal War.\nAfter cleansing this filth, the Doctrine's purpose\nwill be fulfilled... At least for another millennia.": "而這將終結教義戰爭。\n淨化此污穢之後\n教條之使命將得以達成……\n至少再一個千年。",
+
+  "When new sentience emerges from worlds\nunknown, she hoped that her progeny\nwould take up the mantle.": "當新的智慧自未知世界誕生時\n她盼其後裔\n能承其衣缽。",
+
+  "Eliminating future threats to the\nfreedom of the Ur-Quan.": "將未來對烏寬自由之威脅\n一一剷除。",
+
+  "They would not understand.": "他們永遠不會明白。",
+
+  "Forever.": "永遠地。"
+}

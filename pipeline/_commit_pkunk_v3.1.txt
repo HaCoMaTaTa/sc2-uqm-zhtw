@@ -1,0 +1,105 @@
+v3.1 pkunk Deep Refinement: 18-batch systematic audit · 3 keys refined
+
+Race: 快樂鳥人族 (Pkunk · v0.1 baseline · 180 tokens · Tier 2 High)
+Nature: Post-typography-normalization (Batch 0 baseline) content refinement
+Depends-on: 17c1659 (v3.1 Batch 0 typography normalization)
+
+## Summary
+
+- 18 batches audited · 180 tokens (100% coverage)
+- 3 semantic edits + 1 canonical revert
+- Pkunk mystical register 「吾/爾/爾等」preserved (A-decision: race-specific
+  exception to Master_Glossary v0.7 dewenyan policy)
+- All canonical icons preserved (Precursor 先驅者 · Clear Spindle 澄澈紡錘 ·
+  Juffo-Wup — no, that's Mycon — Yin/Yang 陰陽 · Deep Children — no ·
+  Harmonic Realm 造化的和諧界域 · Pyramid Power 金字塔能量 · ...)
+- Purity gate PASS (race=0 · simp=0 · variant=0)
+- Lua template gate PASS (0 suspicious first-args)
+
+## Semantic edits (3)
+
+Batch 2 (1):
+- NEUTRAL_HOMEWORLD_HELLO_1 L6:  「以及諸如此類炫的頭銜。」
+                              →「以及諸如此類響亮的頭銜。」
+  (「炫」現代網路口語與「諸如此類」文言 register 混搭 · 改「響亮」古今皆通)
+
+Batch 4 (1):
+- GENERAL_INFO_NEUTRAL_2 L4:     「緊接一次強大的超波通訊廣播」
+                              →「緊接一次強大的超波（HyperWave）通訊廣播」
+  (Q1=B 首介英文括號 · 跨檔對齊 syreen「超波（HyperWave）」canonical)
+
+Batch 11 (1) [MISTRANSLATION FIX]:
+- WAR_GOES_2 L1:                「吾只能請你細思那顆小小的膽石。」
+                              →「吾只能請你細思那顆小小的反芻石。」
+  (「膽石」= gallstone 誤譯「gobbet stone」· gobbet = archaic 小塊/塊狀
+   · 對應 L2「疣岔獸從喉嚨吐出」→ 鳥類反芻石 stylistic correct)
+
+## Reverted decision
+
+Batch 4 C (initially applied, then reverted):
+- GENERAL_INFO_NEUTRAL_2 L5:  attempted「多加與卡宗」→「多加（Dogar）與卡宗（Kazon）」
+  REVERTED to: 「多加與卡宗」
+  Reason: Canonical convention (per ilwrath 66 / safeones 2 / umgah 2 / starbase
+  3 dialog usage) is Chinese-only for god names (多加/卡宗). Adding Q1=B EN
+  parenthetical violated cross-race canonical + FORBIDDEN_ZH_VARIANTS gate.
+
+## Batches 0-1, 3, 5-10, 12-18 all pass (canonical clean)
+
+Highlights of clean batches:
+- Batch 1 招牌 NEUTRAL_SPACE_HELLO_1~4 (Pkunk mystical intro icons)
+- Batch 4 GENERAL_INFO_NEUTRAL_3 (crystal/past-lives/crop-circles Pkunk icons)
+- Batch 5 SENSE_KOHRAH_VICTORY 招牌 (Kohr-Ah prophecy dream + 「吾等」preserve)
+- Batch 6 MIGRATING_SPACE_1 招牌 (Yehat 返鄉 reunion)
+- Batch 7 YES_FRIENDS 招牌 (「靈性漂泊者」+「你們才剛倒出車道」比喻)
+- Batch 9 GOOD_IDEA 招牌 (aura 氣場詩意 + Chrupp 大副幽默)
+- Batch 10 GIVE_HELP + ILWRATH_FIGHT_BECAUSE (Yin-Yang lore + 圓滿繞回邪惡)
+- Batch 11 STOP_FIGHT_LIKE_SO 招牌 (「扯斷所有的腳」諷刺)
+- Batch 12 ABOUT_HISTORY 招牌 (「威尼·威奇·畢奇·畢地（Weeny Wikki Beeki Birdi）」起源鳥鳴)
+- Batch 14 DONT_WORRY_3 招牌 (sneegel 徵兆狂喜)
+- Batch 17 GENERAL_INFO_SPACE_1-5 招牌 (Dogar/Kazon 騙局揭穿 + Awkky Birdy 夢)
+- Batch 18 OUT_TAKES 招牌 (「0800-普恩克（PKUNKRA）」台灣本地化電話廣告)
+
+## Canonical decisions established
+
+Pkunk mystical register (documented for future dossier):
+- **A-decision**: 「吾」× 10 保留 (SENSE_KOHRAH_VICTORY 預言, SPIRITUAL_PROBLEMS
+  祭司口吻, HATE_YOU_FOREVER 神秘敵對) · Pkunk 特殊 mystical register 例外
+- **Extended A**: 「爾/爾等」× 2 保留 (HATE_YOU_FOREVER_3 神啟預言 pronoun)
+- **Q1=B convention updates**:
+  - 神明名 (Dogar/Kazon): dialog Chinese-only, NO English parenthetical
+    (established by ilwrath 66/64 · safeones/umgah/starbase dialog)
+  - Race name (Pkunk): dialog Chinese-only (跨檔 canonical)
+  - Character/Place names (Talana/Unzervalt/Gaia/etc.): Q1=B 首介英文括號
+    (established by syreen/arilou 等)
+
+## Canonical anchors preserved (Pkunk-specific)
+
+Race/People:
+- Pkunk 普恩(族) · Yehat 翼哈特 · Ilwrath 蛛狂族 ·
+- Weeny Wikki Beeki Birdi 威尼·威奇·畢奇·畢地 · Awkky Birdy 奧奇小鳥 ·
+- Chrupp 恰普 · Braky 布拉奇 · Rumdumdaddy 蘭姆咚爹地 ·
+- Bosco 波斯可 · Plarty Fum 普拉提芬
+
+Places:
+- Gamma Krueger 克魯格 γ · Serpentis 巨蛇座 · Perseus 英仙座 ·
+- Horologii 時鐘座 · Draconis 天龍座 · Bis Bis 必必座 · Shamla Sool 闇拉·蘇
+
+Concepts:
+- Juffo-Wup — not applicable (Mycon race)
+- Yin/Yang 陰陽 · Harmonic Realm 造化的和諧界域 · Astral Plane 星靈界 ·
+- Chakras 脈輪 · Pyramid Power 金字塔能量 · Pointy Power 尖端能量 ·
+- Ouija Board 碟仙 · Clear Spindle 澄澈紡錘 (Precursor artifact) ·
+- Trance of Plam Prikky 靈啟出神 · Blissful Yompin 極樂之嗡 ·
+- HyperWave 超波 · Ur-Quan Hierarchy 烏寬階層
+
+Creatures (all Q1=B canonical):
+- Pootworm 噗噗蟲 · Wart Wumpet 疣岔獸 · Charg beast 查戈猛獸 ·
+- Ibids 咿比獸 · Wrinkle Dogs 皺皮犬 · trumble cart 叩隆車 · sneegel bird 史尼哥鳥
+
+Exclamations/interjections:
+- Whoopdy Dee and Trolly Bazoo! 歡呼喔耶！愛啵愛啵！ ·
+- Rup-Rup-Rup-BGAK! 呼—呼—呼—啊嘧！ · Har-har-har! 嘎嘎嘎！ ·
+- COWABUNGA! (Star Trek ref, kept Adios Pkunkos 阿迪奧斯，普恩兄)
+
+Star Trek reference (exploring_universe): "seek out new life... boldly go..."
+preserved with playful ZH「勇敢邁向前人未曾……嗯，你懂那意思。就是在探險。」

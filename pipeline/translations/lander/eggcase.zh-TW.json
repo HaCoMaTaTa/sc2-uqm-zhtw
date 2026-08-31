@@ -1,0 +1,15 @@
+{
+  "_notes": [
+    "v0.7 — Mycon Egg Casing lander report.",
+    "Source: extracted/base/base/lander/energy/eggcase.txt",
+    "Speaker: Landing party report.",
+    "Terminology:",
+    "  volcanic fumarole = 火山噴氣孔",
+    "  biological encasement = 生物外殼",
+    "  fungal fibers = 真菌纖維 (麥孔族真菌本質)",
+    "  hatched = 孵化 (加引號,對應原文 `HATCHED')",
+    "  flagship = 旗艦"
+  ],
+
+  "EGGCASE 1": " ---- 地表傳回報告 ----\n\n我方於一處異常的火山噴氣孔附近,\n發現某種生物外殼的碎片,\n材質為極堅韌、耐熱的真菌纖維墊。\n\n查無任何自此蛋殼\n「孵化」而出的生命跡象,\n然我方仍將其帶回旗艦\n以供進一步研究。\n\n  ---- 報告結束 ----"
+}

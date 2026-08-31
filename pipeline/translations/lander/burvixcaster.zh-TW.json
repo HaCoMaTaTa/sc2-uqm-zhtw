@@ -1,0 +1,14 @@
+{
+  "_notes": [
+    "v0.7 — Burvixese Hyperwave transmitter lander report.",
+    "Source: extracted/base/base/lander/energy/burvixcaster.txt",
+    "Note: 檔名為 burvixcaster 但 ID 為 DRUTRANS (Druuge Transmitter?),",
+    "      內容為布維族的遠古超波發送器,持續朝銀河反自轉方向廣播。",
+    "Terminology:",
+    "  HyperWave = 超波 (Tech_Names § 四 canonical)",
+    "  transmitter = 發送器",
+    "  anti-spinward = 反自轉 (銀河自轉相反方向)"
+  ],
+
+  "DRUTRANS 1": " ---- 地表傳回報告 ----\n\n我方於此衛星地表\n發現一具極強大的超波發送器。\n\n該設備正朝銀河反自轉方向、\n未探索區域發射強大超波訊號。\n因此設備極具價值,\n且我方查無此衛星有任何智能生命跡象,\n故決定拆解該發送器並運回艦上。\n\n  ---- 報告結束 ----"
+}

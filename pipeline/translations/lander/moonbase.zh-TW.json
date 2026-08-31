@@ -1,0 +1,21 @@
+{
+  "_notes": [
+    "v0.5.7 — Moon Base lander report translation.",
+    "Source: extracted/base/base/lander/energy/moonbase.txt",
+    "Speaker: Landing party report (space station away team perspective).",
+    "Register: 軍事簡報風（AI 提詞 § 六 Hayes 相關）。",
+    "  - 陣列實、句短精練，接近漢語文版量",
+    "  - 保留原文段落結構（空行 = 段落分隔）",
+    "  - 「REPORT FROM SURFACE」→「地表傳回報告」",
+    "  - 「END OF REPORT」→「報告結束」",
+    "Terminology (依 SC2_繁中化_AI翻譯提詞.md § 五):",
+    "  HyperWave = 超波通訊 | xenotech = 外星科技官",
+    "  Ensign = 少尉 (軍銜) | alien base = 外星基地",
+    "  fusion generator = 融合發電機",
+    "CRITICAL:",
+    "  - --allow-line-mismatch used in build (無 voice cue, 可 \\n 換行)",
+    "  - 長段落用 \\n 拆成螢幕可讀的 ~25 CJK/行"
+  ],
+
+  "MOONBASE 1": " ---- 地表傳回報告 ----\n\n我方發現一座外星基地\n並已探索其內部。\n\n該設施必於多年前遭棄置，\n然為使其看似仍在運作\n而下足工夫。\n維生系統運作正常，\n融合發電機全功率輸出，\n機器人建造車輛\n已被編程巡遊月表，\n將月塵推成隨機堆積。\n\n此外，我方發現該設施的\n超波通訊被鎖定於發送模式，\n反覆播放同一段外星錄音。\n雖無法翻譯該訊息，\n我方外星科技官——\n瑞比少尉——認為\n此為某種警報或求救廣播。\n\n基地充滿有用之\n材料與設備。\n我方將盡量搜刮\n並即刻運回艦上。\n\n  ---- 報告結束 ----"
+}

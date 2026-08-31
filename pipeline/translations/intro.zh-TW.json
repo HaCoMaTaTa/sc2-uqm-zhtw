@@ -1,0 +1,74 @@
+{
+  "_notes": [
+    "v0.5.0 — 依 SC2_繁中化_AI翻譯提詞.md 與 SC2-詞彙對照表.md 統一重譯。",
+    "Rules applied:",
+    "  1) Each visible screen line stays <= 12 CJK chars (safe against overflow).",
+    "  2) Register: 敘事史詩感 + 正式軍事科幻語氣（AI 提詞 § 三.1）。",
+    "  3) 專有名詞鎖定表（AI 提詞 § 五）:",
+    "     Ur-Quan = 烏寬族（正式）/ 烏寬（敘事流暢時）",
+    "     Alliance of Free Stars = 自由星系聯盟",
+    "     Hierarchy of Battle Thralls = 烏寬戰奴階層 / 戰奴階層",
+    "     Precursors = 先驅者  |  HyperSpace = 超空間",
+    "     Earth = 地球  |  Captain = 艦長  |  starship = 星艦",
+    "  4) Only slides.fon (20px) FONT-1 narrative slides are translated.",
+    "     Font-0 (starcon.fon) title-screen credits stay English."
+  ],
+
+  "There were many great battles...": "戰役無數，可歌可泣……",
+
+  "Earth and her partners in the\nAlliance of Free Stars...": "地球與其自由星系聯盟\n中的盟友們……",
+
+  "Against the evil Ur-Quan and its\nHierarchy of Battle Thralls.": "奮起對抗邪惡的烏寬族\n與其麾下戰奴階層。",
+
+  "...and the Ur-Quan were winning...": "……而烏寬節節進逼……",
+
+  "Meanwhile, on the edge of the\nknown frontier, an amazing\ndiscovery was made...": "同時，在已知疆域的邊陲\n一項驚人的發現……",
+
+  "far beneath the surface of an\nunexplored, alien world...": "深埋於某個未經探索的\n異星世界地底之下……",
+
+  "A huge underground city...": "一座巨大的地下城市……",
+
+  "Filled with the technological\nwonders of an advanced alien\nrace, the Precursors...": "其中滿是先進外星種族──\n先驅者──\n所留下的科技奇蹟……",
+
+  "Who vanished a thousand\ncenturies ago.": "一個在十萬年前\n悄然消逝的種族。",
+
+  "But then the main Ur-Quan fleet\nbroke through the Alliance's\ndefensive line...": "然而就在此時\n烏寬主力艦隊突破了\n聯盟的防線……",
+
+  "Isolating the planet, stranding\nthe scientists a hundred light\nyears away from Earth.": "該行星陷入孤立\n科學家們被困\n距地球一百光年之遙。",
+
+  "They waited hopefully for a\nrescue vessel...": "他們滿懷希望\n等待救援船艦……",
+
+  "which never came.": "卻始終未見蹤影。",
+
+  "20 years have passed...": "二十年的歲月已過……",
+
+  "We, the survivors of the research\nmission have colonized this world.": "我們這批研究任務的倖存者\n已在此星球建立殖民地。",
+
+  "We continued our investigation of\nthe underground city...": "我們持續探索\n這座地下城市……",
+
+  "And we have discovered its\npurpose...": "終於，我們發現了\n它真正的用途……",
+
+  "It is a factory. ": "那是一座工廠。",
+
+  "A factory for building starships!": "一座建造星艦的工廠！",
+
+  "But there aren't enough materials\nto make a complete vessel.": "但材料不足以\n打造完整的星艦。",
+
+  "We can finish only the skeleton\nof one starship.": "我們只能勉強組出\n一艘星艦的骨架。",
+
+  "But that must be enough --": "但這樣，也已足夠──",
+
+  "Because YOU must captain the\nvessel...": "因為你必須擔任\n這艘星艦的艦長……",
+
+  "And return to Earth!": "並帶她回到地球！",
+
+  "To travel the great distance,\nyou must push through into\nHyperSpace...": "要跨越如此漫長的距離\n你必須突入超空間……",
+
+  "Find out what has happened over\nthese many years...": "查明這些年來\n究竟發生了什麼事……",
+
+  "Tell Earth of our plight!": "將我們的困境告知地球！",
+
+  "And if the war with the Ur-Quan\nstill rages...": "若與烏寬的戰爭\n仍在延燒……",
+
+  "Fight for Earth and the Alliance,\nas well as you can...": "就為地球與聯盟而戰\n竭盡你所能……"
+}

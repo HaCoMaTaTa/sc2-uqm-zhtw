@@ -1,0 +1,17 @@
+{
+  "_notes": [
+    "v0.7 B1B — Chmmr Base (Ur-Quan orbital starbase over Chmmr homeworld) report.",
+    "Source: extracted/base/base/lander/energy/chmmrbase.txt",
+    "Register: 軍事簡報風。",
+    "Terminology:",
+    "  starbase = 星際基地",
+    "  Ur-Quan = 烏寬族 / Chenjesu = 晶智族 / Mmrnmhrm = 姆姆族",
+    "  slave shield = 奴役護盾",
+    "  synthesis schemes = 融合方案 (Chenjesu + Mmrnmhrm → Chmmr)",
+    "  hybrid race = 融合種族",
+    "  mindless robots = 無腦機器人",
+    "  databanks = 資料庫"
+  ],
+
+  "CHMMRBAS 1": " ---- 軌道傳回報告 ----\n\n我方已探索星際基地內部,\n查明現為棄置狀態。\n\n電腦紀錄顯示,烏寬族在擊敗\n晶智族與姆姆族後,\n將此星際基地置入該星球軌道。\n就我方所判定,派駐此基地的\n晶智族與姆姆族設定了\n無腦機器人接管站台運作,\n之後不知何故突破奴役護盾,\n返回其行星地表!\n\n進一步分析基地資料庫顯示,\n晶智族與姆姆族曾研究融合方案,\n欲創造一個晶智族與姆姆族\n各半的融合種族。\n\n管理此星際基地的機器人有武裝,\n不允許我方搜刮物資,\n因此我方正返回艦上。\n\n  ---- 通訊結束 ----"
+}

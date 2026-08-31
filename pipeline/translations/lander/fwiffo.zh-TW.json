@@ -1,0 +1,16 @@
+{
+  "_notes": [
+    "v0.7 — Fwiffo (Spathi Pluto pickup) MAYDAY report translation.",
+    "Source: extracted/base/base/lander/energy/fwiffo.txt",
+    "Speaker: Lander crew emergency broadcast (crew perishing).",
+    "Register: 緊急求救風 (斷續、驚恐、口語化簡略軍事通訊)。",
+    "Terminology:",
+    "  Pluto = 冥王星 (Place_Names.md)",
+    "  MAYDAY = 緊急求救 (國際救難通訊代碼)",
+    "  Stunner = 電擊器 (非致命武器)",
+    "  Crew names 音譯: Kowalski/Fritz/Chin/O'Donnell/Luigi/Liebermann",
+    "END OF TRANSMISSION = 通訊結束"
+  ],
+
+  "SPAPLUTO 1": "   !!!! 地表緊急求救 !!!!\n\n我方遭到一艘藏匿冥王星地表的\n外星艦艇開火攻擊！\n\n艦長！他們殺了科瓦斯基、弗里茨、\n陳、歐唐納、路易吉，\n還有里柏曼三胞胎全部三人！\n我方已還擊，\n然電擊器貫穿不了對方艦艇裝甲。\n\n正啟動緊急起飛程序！\n\n  ---- 通訊結束 ----"
+}

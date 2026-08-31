@@ -1,0 +1,19 @@
+diff --git a/src/libs/graphics/sdl/sdl2_pure.c b/src/libs/graphics/sdl/sdl2_pure.c
+index e44111b..70cb628 100644
+--- a/src/libs/graphics/sdl/sdl2_pure.c
++++ b/src/libs/graphics/sdl/sdl2_pure.c
+@@ -231,7 +231,13 @@ TFB_Pure_ConfigureVideo (int driver, int flags, int width, int height,
+ 		{
+ 			SDL_RenderSetLogicalSize (renderer, width, height);
+ 		}
+-		if (SDL_Screens[0]->h != CanvasHeight)
++		// zh-TW Android port: guard against SDL_Screens[0] being NULL. This can
++		// happen when the platform re-enters ConfigureVideo before the first-
++		// time init path has set up SDL_Screens[] — observed on Android when
++		// SwiftShader emulator sends a spurious onWindowFocusChanged(false)
++		// during main-menu load. Without the guard the next line dereferences
++		// NULL at offset 0x14 (SDL_Surface->h) and SIGSEGVs the SDLThread.
++		if (SDL_Screens[0] != NULL && SDL_Screens[0]->h != CanvasHeight)
+ 		{
+ 			for (i = 0; i < TFB_GFX_NUMSCREENS; i++)
+ 			{

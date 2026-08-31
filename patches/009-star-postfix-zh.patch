@@ -1,0 +1,134 @@
+diff --git a/src/uqm/encount.c b/src/uqm/encount.c
+index 7cec160..d6ce9e4 100644
+--- a/src/uqm/encount.c
++++ b/src/uqm/encount.c
+@@ -376,7 +376,9 @@ InitEncounter (void)
+ 		t.CharCount = (COUNT)~0;
+ 		font_DrawText (&t);
+ 		t.baseline.y += RES_SCALE (12); 
+-		GetClusterName (CurStarDescPtr, buf);
++		// zh-TW patch 009: ZH-localized cluster name for ENCOUNTER-AT screen.
++		// Fallback to English GetClusterName() if ZH entries missing.
++		GetClusterNameLocalized (CurStarDescPtr, buf);
+ 		t.pStr = buf;
+ 		t.CharCount = (COUNT)~0;
+ 		font_DrawText (&t);
+diff --git a/src/uqm/gamestr.h b/src/uqm/gamestr.h
+index 9133a4c..65ae29d 100644
+--- a/src/uqm/gamestr.h
++++ b/src/uqm/gamestr.h
+@@ -56,6 +56,13 @@ extern "C" {
+ #define BIOLOGICAL_STRING_COUNT  26
+ #define PLAYMENU_STRING_COUNT    30
+ #define LABEL_STRING_COUNT       26
++// zh-TW patch 009: mirror of STAR_STRING_COUNT for STAR_POSTFIX_ZH_BASE.
++// Provides Chinese translations for star postfixes (constellations + proper stars),
++// used only by GetClusterNameLocalized() at the 3 patched display sites
++// (sis.c IN_INTERPLANETARY top-header + encount.c ENCOUNTER-AT screen).
++// Kept optional: engine falls back to English GetClusterName() when this
++// section is empty/missing, so non-zh-TW addon users are unaffected.
++#define STAR_POSTFIX_ZH_COUNT   149
+ 
+ enum {
+ 	STAR_STRING_BASE       = 0,
+@@ -83,8 +90,14 @@ enum {
+ 	BIOLOGICAL_STRING_BASE = NETMELEE_STRING_BASE + NETMELEE_STRING_COUNT,
+ 	PLAYMENU_STRING_BASE   = BIOLOGICAL_STRING_BASE + BIOLOGICAL_STRING_COUNT,
+ 	LABEL_STRING_BASE      = PLAYMENU_STRING_BASE + PLAYMENU_STRING_COUNT,
+-
+-	GAMESTR_COUNT          = LABEL_STRING_BASE + LABEL_STRING_COUNT
++	// zh-TW patch 009: Fixed base (not chained from LABEL_STRING_BASE) to
++	// insulate from content-pack variation. Actual observed count of
++	// gamestrings.txt across mm-hd/classic/base packs ranges 813-816, so 1024
++	// gives a safe margin above the tail. _append_star_postfix_zh.py pads with
++	// empty entries so ZH_000 always lands at absolute index 1024.
++	STAR_POSTFIX_ZH_BASE   = 1024,
++
++	GAMESTR_COUNT          = STAR_POSTFIX_ZH_BASE + STAR_POSTFIX_ZH_COUNT
+ };
+ 
+ 
+diff --git a/src/uqm/sis.c b/src/uqm/sis.c
+index 6a599b2..9ef621f 100644
+--- a/src/uqm/sis.c
++++ b/src/uqm/sis.c
+@@ -282,7 +282,11 @@ DrawSISMessageEx (const UNICODE *pStr, SIZE CurPos, SIZE ExPos,
+ 				break;
+ 			case IN_LAST_BATTLE:
+ 			case IN_INTERPLANETARY:
+-				GetClusterName (CurStarDescPtr, buf);
++				// zh-TW patch 009: use ZH-localized name for the top-of-screen
++				// hyperspace/interplanetary/orbit header. Falls back to English
++				// automatically when STAR_POSTFIX_ZH_BASE entries are missing.
++				// Star map (pstarmap.c) + F6 search still use raw English.
++				GetClusterNameLocalized (CurStarDescPtr, buf);
+ 				pStr = buf;
+ 				break;
+ 			case IN_HYPERSPACE:
+diff --git a/src/uqm/starmap.c b/src/uqm/starmap.c
+index f839e35..3972e9c 100644
+--- a/src/uqm/starmap.c
++++ b/src/uqm/starmap.c
+@@ -147,6 +147,41 @@ GetClusterName (const STAR_DESC *pSD, UNICODE buf[])
+ 	}
+ }
+ 
++// zh-TW patch 009: Chinese-localised variant of GetClusterName.
++// Same output layout as GetClusterName but reads the postfix from the
++// STAR_POSTFIX_ZH_BASE section (149 entries appended by zh-TW addon).
++// Gracefully falls back to the English postfix when the ZH entry is missing
++// or empty (which happens when the zh-TW addon is not loaded, or during
++// early boot before gamestrings finishes loading).
++// Prefix (Greek letter Alpha/Beta/...) is left in English per user spec.
++void
++GetClusterNameLocalized (const STAR_DESC *pSD, UNICODE buf[])
++{
++	UNICODE *pBuf, *pStr;
++
++	// Read the localized postfix first; if not available, use English path.
++	pStr = GAME_STRING (STAR_POSTFIX_ZH_BASE + pSD->Postfix);
++	if (pStr == NULL || pStr[0] == '\0')
++	{
++		GetClusterName (pSD, buf);
++		return;
++	}
++
++	pBuf = buf;
++	if (pSD->Prefix)
++	{
++		UNICODE *pfx = GAME_STRING (STAR_NUMBER_BASE + pSD->Prefix - 1);
++		if (pfx)
++		{
++			while ((*pBuf++ = *pfx++))
++				;
++			pBuf[-1] = ' ';
++		}
++	}
++	while ((*pBuf++ = *pStr++))
++		;
++}
++
+ // Finds the nearest (constellation = TRUE / FALSE = star) to the
+ // point P provided on the starmap, returns pointer to that star.
+ STAR_DESC*
+diff --git a/src/uqm/starmap.h b/src/uqm/starmap.h
+index 2f64b28..0d953f4 100644
+--- a/src/uqm/starmap.h
++++ b/src/uqm/starmap.h
+@@ -56,6 +56,16 @@ extern STAR_DESC* FindStar (STAR_DESC *pLastStar, POINT *puniverse,
+ // May not be used much any more ***
+ extern void GetClusterName (const STAR_DESC *pSD, UNICODE buf[]);
+ 
++// zh-TW patch 009: Chinese-localised variant. Uses gamestrings
++// STAR_POSTFIX_ZH_BASE (149 entries in zh-TW addon shadow gamestrings.txt) for
++// the postfix; falls back to English GetClusterName() when the ZH entry is
++// NULL / empty. Only called from the 3 patched display sites (sis.c
++// IN_INTERPLANETARY top-header + encount.c ENCOUNTER-AT screen). Star map
++// rendering (pstarmap.c) and F6 search still use GetClusterName / raw
++// GAME_STRING(Postfix) so English search + English star-map cross-ref remain
++// intact.
++extern void GetClusterNameLocalized (const STAR_DESC *pSD, UNICODE buf[]);
++
+ // Returns the closest star to point p on the given starmap
+ STAR_DESC *FindNearestStar (STAR_DESC *starmap, POINT p);
+ 

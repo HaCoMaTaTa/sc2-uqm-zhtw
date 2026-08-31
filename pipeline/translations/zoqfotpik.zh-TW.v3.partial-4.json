@@ -1,0 +1,103 @@
+{
+  "_notes": ["== Zoq-Fot-Pik v3 clean-room · Partial 4/7 (ALLIED_HOME_HELLO + THANKS_FOR_RESCUE + GOODBYE_HOME + GENERAL_INFO_10-35) ==", "咱們 用於 ALLIED_HOME 親暱調侃"],
+
+  "ALLIED_HOME_HELLO_10": "你好啊，朋友兼盟友！",
+
+  "ALLIED_HOME_HELLO_11": "有沒有帶什麼禮物給咱們？",
+
+  "ALLIED_HOME_HELLO_12": "希望你對抗烏寬人的戰鬥順利！",
+
+  "ALLIED_HOME_HELLO_13": "可惡！（Darn!） 他從來都不給咱們什麼。",
+
+  "ALLIED_HOME_HELLO_20": "歡迎回到我們的世界。",
+
+  "ALLIED_HOME_HELLO_21": "是啊，歡迎回到我們的世界！",
+
+  "ALLIED_HOME_HELLO_22": "我剛剛就那樣講了。",
+
+  "ALLIED_HOME_HELLO_23": "那又怎樣？ 又不表示我不能也講。\n再說，每次都你先講。\n這不公平！",
+
+  "ALLIED_HOME_HELLO_24": "抱歉，就是這樣。",
+
+  "ALLIED_HOME_HELLO_25": "為什麼啊？ 這不合理。",
+
+  "ALLIED_HOME_HELLO_26": "喂，別問我。\n我覺得是什麼技術上的事。",
+
+  "ALLIED_HOME_HELLO_27": "是啊，才怪。 我信才有鬼。\n真是爛藉口。",
+
+  "ALLIED_HOME_HELLO_30": "你好，艦長。\n盟友能為你做什麼？",
+
+  "ALLIED_HOME_HELLO_31": "你最愛的盟友！",
+
+  "ALLIED_HOME_HELLO_40": "你好，人類盟友。\n我們為你效勞。",
+
+  "ALLIED_HOME_HELLO_41": "你想要什麼？",
+
+  "THANKS_FOR_RESCUE0": "救世主！ 我們的救世主！\n你把我們從必死的命運中救出來了！",
+
+  "THANKS_FOR_RESCUE1": "好耶寶貝！（Howee-baby!） 差一點就完蛋了！",
+
+  "THANKS_FOR_RESCUE2": "那艘黑船幾天前出現在軌道上\n然後開始朝我們星球表面\n傾瀉毀滅能量！",
+
+  "THANKS_FOR_RESCUE3": "幸運的是……",
+
+  "THANKS_FOR_RESCUE4": "……我們能夠聚焦我們的行星護盾\n把能量爆擊從我們的城市那邊偏折開。",
+
+  "THANKS_FOR_RESCUE5": "不幸的是……",
+
+  "THANKS_FOR_RESCUE6": "我們星球上大片美麗的原野\n已被殲滅…… 整個生態系被摧毀。",
+
+  "THANKS_FOR_RESCUE7": "噢！ 這讓我「非常」火大！\n我是說，攻擊手無寸鐵、有智慧的外星物種\n是一回事，\n但把咱們可愛的森林朱克獸（wood Jukes）跟樹頂納夫獸（tree Narfs）都烤了\n那真的太過分！",
+
+  "THANKS_FOR_RESCUE8": "如果那艘黑船有其他同伴一起來\n我們就沒辦法擋下那波毀滅之雨了。\n他們早就把我們全殺光了。",
+
+  "THANKS_FOR_RESCUE9": "話說回來，這樣的話，寧可犧牲那些朱克獸跟納夫獸，總好過犧牲我們吧？",
+
+  "THANKS_FOR_RESCUE10": "艦長，很明顯，在戰爭這方面\n你比我們更有本事。\n有鑑於此，我們想給你\n我們最精良的四艘星艦跟艦員。\n希望它們為你帶來很多勝利。",
+
+  "THANKS_FOR_RESCUE11": "盡量別一下子就都弄丟了。",
+
+  "bye_homeworld": "掰囉佐格。 掰囉佛特。 掰囉皮克。",
+
+  "GOODBYE_HOME0": "再見，艦長。",
+
+  "GOODBYE_HOME1": "回見囉。",
+
+  "whats_up_homeworld": "那，最近這裡有什麼事嗎？",
+
+  "GENERAL_INFO_10": "上禮拜我們差點就完蛋了。",
+
+  "GENERAL_INFO_11": "有艘那種黑船在系統裡到處探頭探腦。",
+
+  "GENERAL_INFO_12": "但在它抵達我們星球之前\n幾艘綠船超空間跳進來\n把黑船打爆了\n然後馬上離開。",
+
+  "GENERAL_INFO_13": "我們運氣不錯。",
+
+  "GENERAL_INFO_20": "最近挺安靜的，艦長。\n沒什麼新的可報告。",
+
+  "GENERAL_INFO_21": "你「瘋」了嗎？！ 芙戎奇錦標賽（Frungy Championships）怎麼算？！",
+
+  "GENERAL_INFO_22": "我們幹嘛要跟地球艦長講那個？\n他不會有興趣的。",
+
+  "GENERAL_INFO_23": "喔是嗎？ 你怎麼知道？",
+
+  "GENERAL_INFO_24": "因為連「我」都沒興趣。\n有腦袋的都不會對芙戎奇有興趣！",
+
+  "GENERAL_INFO_25": "那我呢，啊？\n我「愛」芙戎奇！ 它是諸王之運動！",
+
+  "GENERAL_INFO_26": "唉喲！（Sheesh!）",
+
+  "GENERAL_INFO_27": "喔，好啦\n反正他也不會認識任何隊伍。",
+
+  "GENERAL_INFO_30": "雖然這可能跟烏寬人無關\n我們從一位深空偵察兵那裡\n收到一份有意思的報告。",
+
+  "GENERAL_INFO_31": "她發現一種奇怪的金屬門\n嵌在一顆外星行星的表面。",
+
+  "GENERAL_INFO_32": "雖然她跟艦員花了好幾天\n想把那扇門打開",
+
+  "GENERAL_INFO_33": "他們完全搞不定，甚至連推動它一絲一毫都失敗。",
+
+  "GENERAL_INFO_34": "那件外星文物的位置\n據報是在 <% comm.getStarName(\"鹿豹座ε\", \"ship vault\") %> I-A。",
+
+  "GENERAL_INFO_35": "去打開它！\n我打賭裡面有很酷的東西！"
+}

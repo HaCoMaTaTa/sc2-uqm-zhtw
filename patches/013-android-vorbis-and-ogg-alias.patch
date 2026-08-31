@@ -1,0 +1,60 @@
+diff --git a/helpers.cmake b/helpers.cmake
+index 36aa59f..81f73ca 100644
+--- a/helpers.cmake
++++ b/helpers.cmake
+@@ -210,6 +210,16 @@ function (FetchOgg)
+ 
+ 	set (CMAKE_MESSAGE_LOG_LEVEL "STATUS") # Re-enable status messages
+ 
++	# zh-TW Android port: expose Ogg::ogg imported alias so that the upstream
++	# Xiph libvorbis (which does `find_package(Ogg REQUIRED)` and then
++	# `target_link_libraries(... Ogg::ogg)`) can be satisfied purely from the
++	# FetchContent-built ogg target — no system libogg or pkg-config required.
++	# GLOBAL scope is needed because FetchVorbis runs add_subdirectory, and
++	# ALIAS libraries created inside a function otherwise vanish with the scope.
++	if (NOT TARGET Ogg::ogg)
++		add_library (Ogg::ogg ALIAS ogg)
++	endif ()
++
+ 	# Set variables
+ 	set (OGG_FOUND TRUE PARENT_SCOPE)
+ 	set (OGG_LIBRARIES ogg PARENT_SCOPE)
+@@ -230,12 +240,35 @@ function (FetchVorbis)
+ 
+ 	FetchContent_Declare (
+ 			libvorbis
+-			URL https://github.com/JHGuitarFreak/vorbis/archive/refs/tags/uqm-megamod.tar.gz
+-			URL_HASH SHA256=1f51792ad82269317866c1f347ca4aa35bfbaade9ddab80dd3db9fd3d8fe094c
++			URL https://downloads.xiph.org/releases/vorbis/libvorbis-1.3.7.tar.gz
++			URL_HASH SHA256=0e982409a9c3fc82ee06e08205b1355e5c6aa4c36bca58146ef399621b0ce5ab
+ 			SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libvorbis
+ 			DOWNLOAD_NO_PROGRESS TRUE
+ 	)
+-	FetchContent_MakeAvailable (libvorbis)
++	# zh-TW Android port: split MakeAvailable so we can patch the extracted
++	# tree between Populate and add_subdirectory. Xiph's stock FindOgg.cmake
++	# uses find_library() which requires a real .a/.so on disk — impossible
++	# when libogg is being built alongside via FetchContent. Overwrite with a
++	# stub that trusts our pre-created Ogg::ogg target (set up in FetchOgg).
++	FetchContent_GetProperties (libvorbis)
++	if (NOT libvorbis_POPULATED)
++		FetchContent_Populate (libvorbis)
++		file (WRITE "${libvorbis_SOURCE_DIR}/cmake/FindOgg.cmake"
++			"# UQM-MegaMod zh-TW Android port stub: Ogg::ogg is provided by\n"
++			"# the parent CMake project via FetchContent + add_library ALIAS.\n"
++			"if (TARGET Ogg::ogg)\n"
++			"    set (Ogg_FOUND TRUE)\n"
++			"    set (OGG_FOUND TRUE)\n"
++			"    set (OGG_LIBRARIES ogg)\n"
++			"    set (OGG_LIBRARY ogg)\n"
++			"    set (OGG_INCLUDE_DIR \"${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libogg/include\")\n"
++			"    set (OGG_INCLUDE_DIRS \"${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libogg/include\")\n"
++			"else ()\n"
++			"    message (FATAL_ERROR \"UQM-MegaMod: expected Ogg::ogg target to be created by FetchOgg before FetchVorbis\")\n"
++			"endif ()\n"
++		)
++		add_subdirectory (${libvorbis_SOURCE_DIR} ${libvorbis_BINARY_DIR})
++	endif ()
+ 
+ 	set (CMAKE_MESSAGE_LOG_LEVEL "STATUS") # Re-enable status messages
+ 

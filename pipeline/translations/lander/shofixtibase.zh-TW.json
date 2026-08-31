@@ -1,0 +1,18 @@
+{
+  "_notes": [
+    "v0.7 B1B — Shofixti Base (新生代修烈士族在此打造 Scout 星艦).",
+    "Source: extracted/base/base/lander/energy/shofixtibase.txt",
+    "3 variants: 有空位/滿艦隊/接收後訊息。",
+    "Terminology:",
+    "  Shofixti = 修烈士族 (canonical)",
+    "  Scouts = 偵察艦 (SC1 修烈士族艦艇, ship class)",
+    "  new generation = 新生代 (Tanaka + Maidens 混血後代)",
+    "  fleet = 艦隊 / lack of resources = 資源不足"
+  ],
+
+  "SHOFIXTI 1": " ---- 星際基地傳回報告 ----\n\n修烈士新生代已於此處\n設立星際基地,\n以打造偵察艦助我方對抗烏寬族。\n\n他們表示,由於資源不足,\n我方艦隊一次最多只能容納兩艘。\n\n待日後艦隊有多餘位置時,\n我方再回來添購。\n\n  ---- 報告結束 ----",
+
+  "SHOFIXTI 2": " ---- 星際基地傳回報告 ----\n\n修烈士新生代已於此處\n設立星際基地,\n以打造偵察艦助我方對抗烏寬族。\n\n可惜我方艦隊目前\n沒有空位再接收艦艇了。\n\n待日後艦隊有空位時,\n我方應回來添購。\n\n  ---- 報告結束 ----",
+
+  "SHOFIXTI 3": " ---- 星際基地傳回報告 ----\n\n修烈士新生代已於此處\n設立星際基地,\n以打造偵察艦助我方對抗烏寬族。\n\n他們正裝載我方艦隊\n可接收的偵察艦,\n然亦提醒我方由於資源不足,\n艦隊一次最多只能容納兩艘。\n\n  ---- 報告結束 ----"
+}

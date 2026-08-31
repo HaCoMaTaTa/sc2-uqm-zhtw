@@ -1,0 +1,18 @@
+{
+  "_notes": [
+    "v0.7 B1B — Destroyed Starbase (Ur-Quan neglected slave-race base).",
+    "Source: extracted/base/base/lander/energy/destroyedbase.txt",
+    "2 variants: with + without the Ur-Quan neglect intro paragraph.",
+    "Terminology:",
+    "  xeno-forensics = 外星鑑識學",
+    "  reactor = 反應爐 / life support = 維生系統",
+    "  escape pods = 逃生艙",
+    "  electrical scoring = 電弧灼痕",
+    "  super-structure = 骨架結構",
+    "  melted down for raw materials = 熔化取原料 (掠奪者行徑)"
+  ],
+
+  "DESTROYED BASE 1": " ---- 軌道傳回報告 ----\n\n我方已探索星際基地內部,\n該基地已遭徹底摧毀。\n\n看來烏寬族對其奴役種族之疏忽,\n提前終結了此處居民的性命。\n據我方外星鑑識專家判定,\n基地反應爐燃料耗盡而關機,\n維生系統隨之停止,\n迫使居民進入逃生艙,\n然逃生艙之後亦下落不明。\n我方不知他們是誰、\n長什麼樣子,\n因為他們將基地徹底清空。\n\n我是說徹底。無屍體,\n任何有價值之物皆被從艙壁扯下,\n連部分骨架結構亦缺失。\n電弧灼痕處處可見,\n看似有人或某物穿過此處,\n將整地熔化取原料。\n\n此處已無他物。返回艦上。\n\n  ---- 報告結束 ----",
+
+  "DESTROYED BASE 2": " ---- 軌道傳回報告 ----\n\n我方已探索星際基地內部,\n該基地已遭徹底摧毀。\n\n據我方外星鑑識專家判定,\n基地反應爐燃料耗盡而關機,\n維生系統隨之停止,\n迫使居民進入逃生艙,\n然逃生艙之後亦下落不明。\n我方不知他們是誰、\n長什麼樣子,\n因為他們將基地徹底清空。\n\n我是說徹底。無屍體,\n任何有價值之物皆被從艙壁扯下,\n連部分骨架結構亦缺失。\n電弧灼痕處處可見,\n看似有人或某物穿過此處,\n將整地熔化取原料。\n\n此處已無他物。返回艦上。\n\n  ---- 報告結束 ----"
+}

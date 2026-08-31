@@ -1,0 +1,14 @@
+{
+  "_notes": [
+    "v0.7 B1C — Burvixese ruins (被柯亞屠殺後 8-12 年).",
+    "Source: extracted/base/base/lander/energy/burvixeseruins.txt",
+    "Terminology:",
+    "  Burvixese = 布維族 (canonical, v0.5.2)",
+    "  Ur-Quan = 烏寬族",
+    "  Fusion Blaster = 融合爆能砲 (Technology_Level canonical)",
+    "  radioactive slag = 放射性熔渣",
+    "  Earth years = 地球年"
+  ],
+
+  "BURRUINS 1": " ---- 地表傳回報告 ----\n\n此處廢墟看似自稱\n「布維族」的文明殘餘。\n\n他們的所有城市\n皆遭類似烏寬族融合爆能砲的\n某種能量武器\n化為放射性熔渣。\n根據我方於此蒐集之證據,\n可推斷整個文明\n約於過去 8 至 12 個地球年間\n遭軌道轟炸滅絕。\n\n無任何倖存者。\n\n  ---- 報告結束 ----"
+}

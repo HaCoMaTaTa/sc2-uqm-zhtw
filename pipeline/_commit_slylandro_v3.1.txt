@@ -1,0 +1,135 @@
+v3.1 slylandro Deep Refinement: 12-batch systematic audit · 13 keys refined
+
+Race: 斯萊族 (Slylandro · v0.4 baseline · 114 tokens · Tier 2 High)
+Nature: User-requested audit for 直譯/上下文不通順/語意不順 issues
+Focus: Fix 3 CRITICAL typos/mistranslations discovered during audit
+
+## Summary
+
+- 12 batches audited · 114 tokens (100% coverage)
+- 13 semantic edits + 1 typography sweep (6 punctuation drift)
+- 3 CRITICAL discoveries fixed:
+  1. 「噁」→「哦」（MAYBE_INTERESTED L1 · 誤字 · 「噁」= 噁心 vs 「Oh!」= 感嘆）
+  2. 「寧生者」→「寄生者」（ABOUT_BIOLOGY L8 · 錯字 · 寧≠寄）
+  3. 「喉…」→「喔…」+ 缺 EN L5 補齊（WHY_YES_THERE_IS · 錯字+漏譯）
+- Slylandro mystical register「吾等漂浮者/氣息之族/風中之靈/Drahn」全保留
+- Purity gate PASS (race=0 · simp=0 · variant=0)
+- Lua template gate PASS (0 suspicious)
+
+## CRITICAL fixes (3)
+
+Batch 3 (1):
+- MAYBE_INTERESTED L1:  「噁！ 那您等該去查訪...」
+                     →「哦！ 那您等該去查訪...」
+  (「噁」U+5641 = 噁心/嘔吐感嘆詞 · 應為「哦」= "Oh!" 認可/興趣感嘆
+   對齊同檔 VISITORS L4 正確用「哦」canonical)
+
+Batch 5 (1):
+- ABOUT_BIOLOGY L8:    「生產者、消費者、獵者和寧生者」
+                     →「生產者、消費者、掠食者和寄生者」
+  (「寧」U+5BE7 = 和平/寧願 · 非中文詞「寧生者」· 應為「寄」U+5BC4 = 寄生者
+   同時「獵者」→「掠食者」增強生物學術語精準度)
+
+Batch 12 (2):
+- WHY_YES_THERE_IS L4: 「喉… 不過有個問題！」
+                    →「喔… 不過有個問題！」
+  (「喉」U+5589 = 喉嚨 · 應為「喔」U+55A9 = "Oh..." 感嘆詞)
+
+- WHY_YES_THERE_IS L6: (NEW - missing translation of EN L5)
+                    +「如此一來，您若遇上探測器，便能將它摧毀而不被攻擊。」
+  (EN 「That way, if you run into a probe, you can destroy it without
+   getting shot at.」原本 ZH 缺此重要 gameplay 提示行 · 補齊詩意 register)
+
+## Semantic edits (7)
+
+Batch 1 (1):
+- TERRIBLY_EXCITING L9: 「我們看著剛部署的探索探測器艦隊」
+                      →「我們期盼剛部署的探索探測器艦隊」
+  (EN「We hope that」= 期望未來 · 誤譯為「看著」= 現在觀察 · 語意錯位)
+
+Batch 2 (2):
+- OK_EARTH L8:        「或者有別的像我們斯萊族這樣的」
+                    →「或許有別的像我們斯萊族這樣的」
+  (EN「so maybe」= 推斷結論 · 「或者」變 選項並列 · 「或許」精準)
+
+- OK_EXPLORE L4:      「關於雲，我們懂得很多」
+                    →「關於雲，我們知之甚多」
+  (「知之甚多」文言 · 對應 EN CAPS「A LOT」強調 + Slylandro 悠然 register)
+
+Batch 3 (3):
+- VISITORS L3:        「您也出現在這裡！」→「您竟然出現在這裡！」
+  (EN CAPS「YOU show up!」用「竟然」加強驚訝)
+- VISITORS L8:        「願意為此付我們代價」→「願意為此付錢給我們」
+  (EN CAPS「PAY」用「付錢」明譯強調)
+- VISITORS L10:       「一具探測船具」→「一具探測器」
+  (「船具」= tool/apparatus · 略脫離「vessel」語意 · 「探測器」自然)
+- MET_TAALO_THEY_ARE_FROM L4:  「尤利、卓爾、塔洛族、梅努、法茲和烏寬」
+                             →「尤利族、卓爾族、塔洛族、梅努族、法茲族和烏寬族」
+  (6 個感知聯盟族名統一加「族」· 跨檔 canonical: 詞彙表 v0.3 line 102
+   Yuli 尤利族 · Taalo.md 塔洛族 · Drall.md 卓爾族 · Mael_Num.md 梅努族
+   · Faz.md 法茲族 · Ur-Quan 烏寬族)
+
+Batch 4 (2):
+- must_know_more:     「這對我們非常重要！」→「這對我們極其重要！」
+  (EN CAPS「EXTREMELY」→ 「極其」書面強調)
+- ALL_WE_KNOW L7:     「排列(？)」→「排列（？）」
+  (半形括號→全形 · 對齊 slylandro 檔內全形 punctuation 主流)
+
+Batch 5 (1 - besides CRITICAL):
+- ABOUT_BIOLOGY L5-6: 「為了更好地／協作驅趕食物匯聚，發明了語言。」
+                    →「發明了語言／以便更順利地協作，把食物驅趕成密集群。」
+  (拆句去拗口 · 「invented language so that...」邏輯清晰化)
+
+Batch 7 (2):
+- OK_WHAT_MORE_PROBE L1: 「這才是真正酷的部分！」→「這才是最酷的部分！」
+  (EN CAPS「REALLY」→ 「最」最高級強調)
+- SELL_FOR_INFO L5:  「這正是他們型錄第 2418 號」→「這恰恰是他們型錄第 2418 號」
+  (EN CAPS「EXACTLY」→ 「恰恰」帶巧合幽默感 · 呼應探針災難荒謬起源)
+
+Batch 8 (1):
+- ONLY_DEFEND L3:    「攻擊行為不是我們寫進」→「攻擊行為絕不是我們寫進」
+  (EN CAPS「NOT」→ 「絕不是」書面強調)
+
+Batch 10 (1) [TYPO FIX]:
+- probe_has_bug:     「星艦, 我可以證明！」（半形逗號+半形空格）
+                   →「星艦，我可以證明！」（全形逗號無空格）
+  (孤立半形逗號 typo · 檔內主流 205 處全形「，」)
+
+## Typography sweep (Batch A+F normalize)
+
+6 處「全形逗號 + 半形空格 + CJK」西式標點 drift 全域正規化：
+- enough_probe: 「了， 謝」
+- think_about_rep_priorities: 「值， 它」
+- sue_melnorme: 「呢， 我」+「們， 我」
+- WHY_YES_THERE_IS: 「哪， 還」+「題， 至」
+
+全部改為「，」（無空格）· 對齊 CJK 標準慣例。
+
+## Canonical anchors preserved (per dossier + Taalo.md et al.)
+
+Slylandro-specific register (per Slylandro.md):
+- 吾等斯萊 · 吾等漂浮者 · 氣息之族 · 風中之靈 · 有形之艦長 · 液囊
+- Drahn (raw preserved) · Drahnasa · 漂浮 · 盤旋 · 深感抱歉
+
+Places/Concepts:
+- Source 源界 · Depths 深淵 · Void 虛空 · Beta Corvi (implicit)
+
+Characters (Slylandro 詩意名):
+- Content to Hover 安於漂浮 · Joyous Lifting 欣然上升 · Sullen Plummet 悶然下沉
+
+Sentient Milieu races (uniformly 族 canonical per K decision):
+- 尤利族 (Yuli) · 卓爾族 (Drall) · 塔洛族 (Taalo · Taalo.md)
+- 梅努族 (Mael-Num · Mael_Num.md) · 法茲族 (Faz · Faz.md) · 烏寬族 (Ur-Quan)
+
+Other cross-file terms:
+- 感知聯盟 (Sentient Milieu) · 毛絨巨人/毛絨者 (Precursors) · 歷史頌歌 (History Chants)
+- 型錄第 2418 號 遠端自我複製 機器人探索探測器 · Gree-dots (raw)
+- 型錄第 2419 號 · 硬編 · 損害免責書 · 總自毀密碼 · 電漿放電裝置
+
+Star Trek reference "seek out new life and new civilizations... boldly go..."
+preserved with catalog-item 2418 humor twist in SEEK_OUT_NEW_LIFE.
+
+## Batches all-pass no-edit summary
+
+Batches 6/9 全 canonical clean pass (Slylandro dossier register 完美 匹配)。
+Batches 1-5, 7-8, 10-12 有 semantic/typography edits (詳上)。

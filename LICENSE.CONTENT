@@ -1,0 +1,57 @@
+# Content License · Creative Commons Attribution-NonCommercial-ShareAlike 2.5
+
+## 中文摘要（非授權原文，僅供理解）
+
+本專案的**內容資產**（翻譯文字、字型 raster 產物、圖示美術、遊戲說明書）採用：
+
+**Creative Commons 姓名標示－非商業性－相同方式分享 2.5 通用授權**
+（CC BY-NC-SA 2.5）
+
+### 你可以
+
+- **免費分享、複製、散布** — 於任何媒介、任何格式
+- **修改、改編、二次創作** — 例如：改進翻譯、追加種族對白
+
+### 但必須遵守
+
+- **姓名標示（BY）** — 必須標示：
+  - 原作 *Star Control II / The Ur-Quan Masters* 由 Toys for Bob (Fred Ford, Paul Reiche III) 開發
+  - The Ur-Quan Masters 開源引擎社群
+  - MegaMod 分支（JHGuitarFreak 與貢獻者）
+  - 繁體中文化 (激戰M星雲II) 及 Android 移植（本 repo 作者）
+- **非商業性（NC）** — 不得用於商業目的（含 Google Play Store 上架 · 見 [License_And_Attribution.md](docs/License_And_Attribution.md)）
+- **相同方式分享（SA）** — 衍生作品必須以**相同或相容**授權釋出（CC BY-NC-SA 2.5 或後續相容版本）
+
+### 完整授權原文
+
+英文原文：<https://creativecommons.org/licenses/by-nc-sa/2.5/legalcode>
+Deed（人類可讀摘要）：<https://creativecommons.org/licenses/by-nc-sa/2.5/deed.zh_TW>
+
+---
+
+## 授權範圍細則
+
+| 資產 | 授權 | 說明 |
+|---|---|---|
+| `translation/` 全部 md 文件（世界觀、種族 dossier、詞彙、規則）| CC BY-NC-SA 2.5 | 繁中翻譯的知識庫，衍生自遊戲內容 |
+| `pipeline/translations/*.zh-TW.json` | CC BY-NC-SA 2.5 | 翻譯譯文本體 |
+| `pipeline/zh-TW-addon/content/` 內的 rasterised font PNG | CC BY-NC-SA 2.5 | 從 CJK TTF 產出的位元字型（衍生自遊戲內字型 pipeline）|
+| `android/_icon_candidates/`、圖示美術 | CC BY-NC-SA 2.5 | 從遊戲 `mm-hd/ui/mainmenu/title.debrand.png` 衍生 |
+| `docs/Game_Manual_zh-TW.md` 內遊戲設定描述 | CC BY-NC-SA 2.5 | 衍生自遊戲劇本、UQM wiki、社群資料 |
+| `pipeline/*.py`, `pipeline/*.ps1`, `scripts/*.ps1`, `patches/*.patch` | **GPL-2.0（見 [LICENSE](LICENSE)）** | 這些是「程式碼」，套用引擎相容授權 |
+
+---
+
+## 為什麼是 CC BY-NC-SA 2.5 而非 3.0/4.0
+
+Ur-Quan Masters / MegaMod 上游明確採用 CC BY-NC-SA **2.5**（見 UQM 官方網站 <https://sc2.sourceforge.net/>）。SA 條款要求衍生作品採「相同或相容」授權，故本 repo 內容資產一律沿用 2.5，以維持與上游相容。
+
+---
+
+## 商業性判定與 Play Store 的爭議
+
+- **允許**：GitHub Releases 免費下載、個人論壇/網盤分享、免費 side-load
+- **爭議**：Google Play Store 上架（即使 App 免費）— 因平台本身具商業性、開發者協議、有廣告 SDK 生態
+- **保險做法**：本專案僅走 GitHub Releases + F-Droid（若對方接受）
+
+詳細分析見 [docs/License_And_Attribution.md](docs/License_And_Attribution.md)。

@@ -1,0 +1,16 @@
+diff --git a/src/uqm/planets/planets.c b/src/uqm/planets/planets.c
+index 47c7124..d36f262 100644
+--- a/src/uqm/planets/planets.c
++++ b/src/uqm/planets/planets.c
+@@ -332,7 +332,10 @@ DrawEnterOrbitText (RECT rect)
+ 	UNICODE buf[256];
+ 	COORD og_baseline_x;
+ 
+-	OldFont = SetContextFont (MicroFont);
++	// zh-TW patch: PlyrFont (10px native, 15px CJK via our shadow) is much more
++	// readable than MicroFont (11px native, 8px CJK) for this banner.
++	// MicroFont still used elsewhere (planet info panel labels), unaffected.
++	OldFont = SetContextFont (PlyrFont);
+ 	OldFontEffect = SetContextFontEffect (
+ 			SetAbsFrameIndex (FontGradFrame, 12));
+ 

@@ -1,0 +1,14 @@
+{
+  "_notes": [
+    "v0.7 B1B — Zoq-Fot-Pik colony ruins (被 Kohr-Ah 突襲滅絕).",
+    "Source: extracted/base/base/lander/energy/zfpcolony.txt",
+    "Terminology:",
+    "  Zoq-Fot-Pik = 佐-佛-皮 (canonical, 保留連字符)",
+    "  colony worlds = 殖民世界",
+    "  nearby civilization = 鄰近文明",
+    "  unprovoked surprise attack = 無故突襲",
+    "  unknown race = 未知種族 (實為柯亞族 Kohr-Ah)"
+  ],
+
+  "ZFPRUINS 1": " ---- 地表傳回報告 ----\n\n此處廢墟看似鄰近文明——\n名為「佐-佛-皮」——的\n殖民世界殘餘。\n\n這些殖民地看似\n直到毀滅之前一直與\n母星保持定期聯絡。\n其紀錄顯示,毀滅乃某未知種族\n無故突襲之結果。\n\n無任何倖存者。\n\n  ---- 報告結束 ----"
+}

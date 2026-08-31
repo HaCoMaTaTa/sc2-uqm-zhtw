@@ -1,0 +1,101 @@
+{
+  "_notes": ["== Zoq-Fot-Pik v3 clean-room · Partial 6/7 (KOHRAH_FRENZY5-11 + NO_WAR + GOOD + WHAT_SPECIFIC + OK_ENOUGH + ABOUT_OTHERS + ABOUT_ZEBRANKY) =="],
+
+  "KOHRAH_FRENZY5": "（啜泣！）",
+
+  "KOHRAH_FRENZY6": "我們唯一\n可能幫得上你打敗他們的知識\n是我們從 <% comm.getConstellation(\"巨爵座\", \"samatra\") %> 星座\n那位特工布波那裡收到的一段殘破訊息。",
+
+  "KOHRAH_FRENZY7": "他們連布波也殺了？！……（嗚咽！）（SOB!）",
+
+  "KOHRAH_FRENZY8": "他報告說柯亞人有樣東西\n「又大又危險又重要得要命」\n就在附近某個恆星系裡。\n訊號在斷之前，我們就只收到這些。",
+
+  "KOHRAH_FRENZY9": "（嗚咽！）",
+
+  "KOHRAH_FRENZY10": "艦長，你一定要阻止柯亞人！……\n……在他們把我們全殺光之前。",
+
+  "KOHRAH_FRENZY11": "（啜泣！）",
+
+  "NO_WAR_NEWS0": "沒。 我們沒什麼新的可以報告。",
+
+  "NO_WAR_NEWS1": "沒有！ 完全沒有。",
+
+  "i_want_alliance": "我方遠道而來，是要在我們兩個民族之間尋求結盟。",
+
+  "GOOD0": "太好了！ 我們接受！",
+
+  "GOOD1": "萬歲！",
+
+  "GOOD2": "太棒了！",
+
+  "GOOD3": "耶哈！",
+
+  "GOOD4": "艦長，我們很高興你們的人民做出這個選擇！",
+
+  "GOOD5": "現在「我們」不會被屠殺了！",
+
+  "GOOD6": "作為交換，我們合作提供艦長跟艦艇設計\n我們只要求你的保護。",
+
+  "GOOD7": "這樣我們才不會被屠殺！",
+
+  "GOOD8": "我們馬上開始履行約定！\n我們馬上把軍官跟刺針號設計運送到你的基地！",
+
+  "GOOD9": "哎唷！\n說不定我還要親自跑一趟你的星球！\n我會是個好星艦艦長的，艦長！\n我打起架來還挺兇的\n而且沒人比得過我的\n突進刺針舌攻擊！",
+
+  "want_specific_info": "我方想要一些具體的情報。",
+
+  "WHAT_SPECIFIC_INFO0": "當然。 你想知道什麼？",
+
+  "WHAT_SPECIFIC_INFO1": "儘管問！",
+
+  "enough_info": "情報夠了，謝啦！",
+
+  "OK_ENOUGH_INFO": "還有別的嗎？",
+
+  "what_about_others": "你們對其他外星種族了解多少？",
+
+  "ABOUT_OTHERS0": "老實說，不多。",
+
+  "ABOUT_OTHERS1": "這種太空探索的事情對我們來說還挺新的。",
+
+  "ABOUT_OTHERS2": "除了綠色的外星艦……",
+
+  "ABOUT_OTHERS3": "他們只想殺我們。",
+
+  "ABOUT_OTHERS4": "……跟黑色的外星艦……",
+
+  "ABOUT_OTHERS5": "他們殺我們殺得「非常成功」。",
+
+  "ABOUT_OTHERS6": "我們遇過的唯一其他星艦\n是些奇怪、翻滾著的紅色探測器\n口口聲聲說是和平任務……",
+
+  "ABOUT_OTHERS7": "……然後就像流著口水的澤布蘭基一樣攻擊。",
+
+  "ABOUT_OTHERS8": "我們相信那些探測器其實是機器人偵察兵\n出了某種故障\n才導致它們行為異常。",
+
+  "ABOUT_OTHERS9": "更糟的是，它們正在繁殖。",
+
+  "ABOUT_OTHERS10": "是啊，這是真的。\n探測器似乎正以幾何級數複製。",
+
+  "ABOUT_OTHERS11": "啊咦！（AIEE!） 那意思是如果上禮拜只有一台\n那下個月…… 啊\n等等…… 讓我算算\n呃\n意思是，下個月會有\n……「一整片那種東西」！",
+
+  "ABOUT_OTHERS12": "藉由回溯探測器的航跡\n我們算得出來\n探測器的來源\n是在 <% comm.swapIfSeeded(\"直線通向\", \"在\") %>……\n……<% comm.getConstellation(\"包含我們恆星系，還有\", \"slylandro\") %><%comm.swapIfSeeded(\" 蒼蠅座ε\", \" 星系裡\") %>。",
+
+  "ABOUT_OTHERS13": "去修理他們，艦長！",
+
+  "what_about_zebranky": "多告訴我一點你們民族的事。",
+
+  "ABOUT_ZEBRANKY0": "啊！ 文化交流。 好主意。",
+
+  "ABOUT_ZEBRANKY1": "耶！ 跟他講芙戎奇的事吧！",
+
+  "ABOUT_ZEBRANKY2": "閉嘴，笨蛋！ 他問了個嚴肅的問題！\n他不會想知道芙戎奇的事。",
+
+  "ABOUT_ZEBRANKY3": "你怎麼知道？ 你哪來的自信這麼聰明？\n你根本沒問過他想不想知道芙戎奇的事。\n哎呀，我打賭他現在正在想\n「什麼是芙戎奇這奇妙的運動？」「怎麼玩？」\n「玩芙戎奇需要什麼裝備？」\n以及「芙戎奇錦標賽現在誰領先啊？」",
+
+  "ABOUT_ZEBRANKY4": "噁啊！（AUGH!） 你能不能「閉嘴不談芙戎奇」？！\n你要是再說一個字關於那「愚蠢遊戲」\n我就要失控，朝你噴一團孢子雲！",
+
+  "ABOUT_ZEBRANKY5": "噁心！（Yech!） 好啦，好啦。 別把你的孢子囊搞爆了。\n我不再提芙戎奇了，我保證。",
+
+  "ABOUT_ZEBRANKY6": "呃，艦長，如你大概也看得出來\n我們文化最主要的特質\n也就是它最大的優點跟缺點\n就是佐格、佛特、皮克三方之間各式各樣的互動。",
+
+  "ABOUT_ZEBRANKY7": "芙戎奇！ 芙戎奇！ 芙戎奇！"
+}

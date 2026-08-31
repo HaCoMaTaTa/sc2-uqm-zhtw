@@ -1,0 +1,10 @@
+{
+  "_notes": [
+    "v0.1 — Defeated game-over 短訊 (玩家艦艇被摧毀)。1 TFI block。",
+    "Source: extracted/base/base/cutscene/gameover/defeated.txt",
+    "Register: 溫和鼓勵基調 (開發者用意在勸玩家 retry)。",
+    "Q9 defeated = A · 直譯 (原意就是溫和鼓勵)"
+  ],
+
+  "Better luck next time.": "下次好運。"
+}

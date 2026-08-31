@@ -1,0 +1,71 @@
+v3.1 mycon Deep Refinement: 12-batch systematic audit · 14 keys refined
+
+Race: 麥孔族 (Mycon)
+Baseline: v0.7 rebuild-compare (28c88df, 2026-08-17)
+Audit method: 12-batch token-by-token analysis · EN reference · canonical
+              register match (詩意冷酷宗教感 · Juffo-Wup 招牌 icons)
+
+## Summary
+
+- 12 batches audited · ~109 tokens covered
+- 14 keys refined: 10 semantic + 4 stylistic (em dash → comma)
+- All canonical icons preserved (Juffo-Wup 聖源 · Deep Children 深層幼體 ·
+  Non-Juffo-Wup 非聖源者 · Birthing Fleet 孵化艦隊 · Sun Device pod 聖源莢)
+- Purity gate PASS (race=0 · simp=0 · variant=0)
+- Lua template gate PASS (0 suspicious first-args)
+
+## Semantic edits (10)
+
+Batch 1 (4):
+- TELL_US_ABOUT_WORLD:  「以評估其適宜性」→「以評估這個世界的適宜性」
+  (指代不明 → 顯示對象)
+- RAMBLE_1:              「一朵新生命的雲霧」→「一片新生命的雲霧」
+  (量詞 · 雲霧配「片」更合宜)
+- RAMBLE_2:              「一族一千個個體」→「一族千個之眾」
+  (更 Mycon 詩意 register)
+- RAMBLE_6:              「一具幼體的胎宮」→「一副為幼體而生的胎宮」
+  (量詞 · 生物冷酷描述 register match)
+
+Batch 3 (5):
+- RAMBLE_17:             「流動溫熱的玄武岩」→「流動的溫熱玄武岩」
+  (詞序清晰化 · 修飾語順)
+- RAMBLE_19:             「噪訊進入訊號」→「噪聲混入訊號」
+  (術語準確 · 廣播工程用語 mix)
+- RAMBLE_20:             「一段間隔中」→「一段時間內」
+  (時間表達更自然)
+- RAMBLE_23:             「生出啟蒙的結果」→「帶來啟蒙的結果」
+  (搭配動詞 · 啟蒙不用「生出」)
+- RAMBLE_24:             「尖嘆」→「尖銳呼嘯」 [錯字修正]
+  (原譯錯字「嘆」→ 正確語義「呼嘯」高頻聲響)
+
+Batch 4 (1):
+- RAMBLE_31:             「至傳送台」→「至儀典台」 [誤譯修正]
+  (dais = 儀典台/講台，非 transporter 傳送台)
+
+## Stylistic normalizations (4 · em dash → comma)
+
+- RAMBLE_3:              「我即他們——他們即我們」→「我即他們，他們即我們」
+- RAMBLE_4:              「聖源的一部分——家園的建造者」→「聖源的一部分，家園的建造者」
+- GENERAL_INFO_SUN_DEVICE:「聖源的莢——已在此地」→「聖源的莢，已在此地」
+- NEVER_LET_LAND:        「你是異類——不是聖源」→「你是異類，不是聖源」
+
+  All 4 preserve semantic; Chinese punctuation prefers「，」over「——」in
+  appositive/parenthetical contexts.
+
+## Batches 2/5-12 all canonical clean pass (no edit)
+
+- Batch 2 (Q&A · YES/NO/BEG/ABJURATION), Batches 5-12 audit:
+  RAMBLE 5/7-16/18/21-22/25-30/32 · Q&A 系列 · HELLO_HOMEWORLD/SPACE ·
+  RESPONSE 系列 · GOODBYE 系列 · DIE_* · GENERAL_INFO_SUN_DEVICE ·
+  HELLO_SUN_DEVICE_WORLD · WE_GO_TO_IMPLANT (⭐ 招牌 lore icon) ·
+  WONT_FALL_FOR_TRICK · etc — all canonical shipped correctly.
+
+## Canonical anchors preserved (v3 baseline)
+
+- Juffo-Wup 聖源 · Deep Children 深層幼體 · Birthing Fleet 孵化艦隊 ·
+- Shattered worlds 碎裂世界 · Non-Juffo-Wup 非聖源者 (首介英文括號) ·
+- pod 莢 · spore sacs 孢囊 · tendrils 觸鬚 · brain organ 腦器官 ·
+- Solar Manipulator 恆星操控器 · Organon 歐加農
+
+Verified against Q9 (碎裂世界) / Q3 (深層幼體) / Q1 (首介英文) / Q12 (我方) /
+Q18 (莢) dossier decisions.

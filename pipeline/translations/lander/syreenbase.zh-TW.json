@@ -1,0 +1,16 @@
+{
+  "_notes": [
+    "v0.7 B1B — Syreen Base (destroyed by Kohr-Ah, 逃生艙可能倖存).",
+    "Source: extracted/base/base/lander/energy/syreenbase.txt",
+    "Register: 士兵報告 + 一絲希望。",
+    "Terminology:",
+    "  Syreen = 塞蓮族",
+    "  Kohr-Ah = 柯亞族",
+    "  Ensign Charles = 查爾斯少尉",
+    "  emergency escape capsules = 緊急逃生艙",
+    "  blasted to kingdom come = 炸得灰飛煙滅 (口語俚語)",
+    "  charred remains = 焦黑殘骸"
+  ],
+
+  "SYREEN BASE 1": " ---- 軌道傳回報告 ----\n\n此星際基地所剩不多,艦長。\n只剩焦黑殘骸與扭曲金屬...\n嗯?這倒是有趣了,艦長。\n據查爾斯少尉判定,\n有一到兩具緊急逃生艙下落不明。\n\n看似是在柯亞族炸得此地灰飛煙滅前\n剛剛發射出去。\n或許有人倖存!\n或者...逃生艙已被完全殲滅...\n\n希望是前者吧,對嗎?\n\n  ---- 報告結束 ----"
+}

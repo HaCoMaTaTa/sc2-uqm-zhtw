@@ -1,0 +1,31 @@
+diff --git a/src/uqm/planets/lander.c b/src/uqm/planets/lander.c
+index 1caad07..693472e 100644
+--- a/src/uqm/planets/lander.c
++++ b/src/uqm/planets/lander.c
+@@ -1561,17 +1561,17 @@ ScrollPlanetSide (SIZE dx, SIZE dy, int landingOffset)
+ 			SetContextForeGroundColor (
+ 					pPSD->ColorCycle[pPSD->NumFrames >> 1]);
+ 
+-			if (isPC (optSuperPC))
+-			{
+-				pPSD->MineralText[0].baseline.x = RADAR_WIDTH >> 1;
+-				pPSD->MineralText[0].baseline.y = RES_SCALE (8);
+-						// original value
+-			}
+-			else
++			// zh-TW patch: always use PC-style pickup text position
++			// (top-center of RADAR area). In 3DO mode the original code
++			// used the element's world position which overlaps the lander
++			// (lander is always at map center). Also switch to PlyrFont
++			// (15px CJK via our shadow) for readable Chinese mineral names.
+ 			{
+-				pPSD->MineralText[0].baseline.x -= dx;
+-				pPSD->MineralText[0].baseline.y -= dy;
++				FONT OldPickupFont = SetContextFont (PlyrFont);
++				(void)OldPickupFont;  // restored by lander init on next frame
+ 			}
++			pPSD->MineralText[0].baseline.x = RADAR_WIDTH >> 1;
++			pPSD->MineralText[0].baseline.y = RES_SCALE (8);
+ 			font_DrawText (&pPSD->MineralText[0]);
+ 			pPSD->MineralText[1].baseline.x =
+ 					pPSD->MineralText[0].baseline.x;

@@ -1,0 +1,10 @@
+{
+  "_notes": [
+    "v0.1 — Surrendered game-over 短訊 (玩家投降或退出)。1 TFI block。",
+    "Source: extracted/base/base/cutscene/gameover/surrendered.txt",
+    "Register: 開發者乾式幽默,「I guess」語感。",
+    "Q9 surrendered = B · 詼諧化 (「I guess」→「好吧」語感)"
+  ],
+
+  "I guess that's one way to quit the game.": "好吧，這也算是種退出遊戲的方式。"
+}

@@ -1,0 +1,104 @@
+commit ae491d932228856de9ea63fc431802fe01681255
+Author: Neil Kao (UST Global Inc) <v-nientzukao@microsoft.com>
+Date:   Thu Aug 27 17:42:40 2026 +0800
+
+    zh-TW patch 034: pickup notification text over planet exploration area
+    
+    Moves the mineral / life / energy pickup pop-up text out of the RADAR
+    mini-map corner and into the planet-exploration area, centred ~30 px
+    above the lander sprite (which is always at the map centre).
+    
+    Before (v1.0.4):
+      ScrollPlanetSide()'s NumFrames branch (which draws the 3-line pickup
+      notification) still ran in the outer RadarContext set at ScrollPlanetSide
+      top, and computed baselines with (RADAR_WIDTH >> 1, RES_SCALE(8)).
+      Players' eyes stayed on the lander during pickup, so the text popping
+      up in the bottom-right radar corner was easy to miss.
+    
+    After (this patch):
+      1. Save the outer context and switch to PlanetContext for just the text
+         draw block; restore both at the end so the subsequent
+         RedrawSurfaceScan / DrawRadarBorder / RotatePlanetSphere calls are
+         unaffected.
+      2. Save + set PlyrFont locally, restore afterward (matches the pattern
+         used elsewhere in the file for context-scoped state).
+      3. Place baseline.x at MapSurface.width >> 1 (horizontal centre of the
+         planet-exploration view).
+      4. Place baseline.y at (MapSurface.height >> 1) - RES_SCALE(30) so the
+         three-line stack sits just above the lander sprite without covering
+         it.
+      5. Lines 2 and 3 continue to stack down by RES_SCALE(7) each — same
+         spacing as the previous position.
+    
+    Impact scope:
+      - Behaviour is identical for PC and 3DO font modes; the outer branch
+        used to differ only in which context ScrollPlanetSide had already
+        activated, and this patch overrides that locally for the text block.
+      - Nothing else uses these MineralText baselines at draw time; they are
+        reset at the start of every pickup event.
+      - Non-zh-TW players receive the same behavioural change (the text is
+        a gameplay HUD element, not localised strings). If we later want to
+        keep this addon-only, the block can be wrapped in an addon check;
+        for now it is unconditional to keep the change minimal.
+    
+    Patch file: uqm-work/patches/034-lander-pickup-text-over-planet.patch
+
+diff --git a/src/uqm/planets/lander.c b/src/uqm/planets/lander.c
+index 693472e..71f6001 100644
+--- a/src/uqm/planets/lander.c
++++ b/src/uqm/planets/lander.c
+@@ -1561,28 +1561,34 @@ ScrollPlanetSide (SIZE dx, SIZE dy, int landingOffset)
+ 			SetContextForeGroundColor (
+ 					pPSD->ColorCycle[pPSD->NumFrames >> 1]);
+ 
+-			// zh-TW patch: always use PC-style pickup text position
+-			// (top-center of RADAR area). In 3DO mode the original code
+-			// used the element's world position which overlaps the lander
+-			// (lander is always at map center). Also switch to PlyrFont
+-			// (15px CJK via our shadow) for readable Chinese mineral names.
++			// zh-TW patch 034: draw pickup text over the planet-exploration
++			// area, centred ~30 px above the lander (which is always at map
++			// centre), instead of the RADAR mini-map. Uses PlyrFont for
++			// readable CJK; both the context and font are restored so the
++			// caller's follow-up radar/rotate rendering is unaffected.
+ 			{
+-				FONT OldPickupFont = SetContextFont (PlyrFont);
+-				(void)OldPickupFont;  // restored by lander init on next frame
++				CONTEXT SavedContext = SetContext (PlanetContext);
++				FONT SavedFont = SetContextFont (PlyrFont);
++
++				pPSD->MineralText[0].baseline.x =
++						MapSurface.width >> 1;
++				pPSD->MineralText[0].baseline.y =
++						(MapSurface.height >> 1) - RES_SCALE (30);
++				font_DrawText (&pPSD->MineralText[0]);
++				pPSD->MineralText[1].baseline.x =
++						pPSD->MineralText[0].baseline.x;
++				pPSD->MineralText[1].baseline.y =
++						pPSD->MineralText[0].baseline.y + RES_SCALE (7);
++				font_DrawText (&pPSD->MineralText[1]);
++				pPSD->MineralText[2].baseline.x =
++						pPSD->MineralText[1].baseline.x;
++				pPSD->MineralText[2].baseline.y =
++						pPSD->MineralText[1].baseline.y + RES_SCALE (7);
++				font_DrawText (&pPSD->MineralText[2]);
++
++				SetContextFont (SavedFont);
++				SetContext (SavedContext);
+ 			}
+-			pPSD->MineralText[0].baseline.x = RADAR_WIDTH >> 1;
+-			pPSD->MineralText[0].baseline.y = RES_SCALE (8);
+-			font_DrawText (&pPSD->MineralText[0]);
+-			pPSD->MineralText[1].baseline.x =
+-					pPSD->MineralText[0].baseline.x;
+-			pPSD->MineralText[1].baseline.y =
+-					pPSD->MineralText[0].baseline.y + RES_SCALE (7);
+-			font_DrawText (&pPSD->MineralText[1]);
+-			pPSD->MineralText[2].baseline.x =
+-					pPSD->MineralText[1].baseline.x;
+-			pPSD->MineralText[2].baseline.y =
+-					pPSD->MineralText[1].baseline.y + RES_SCALE (7);
+-			font_DrawText (&pPSD->MineralText[2]);
+ 
+ 			AlarmTextIndex--;
+ 			if (!AlarmTextIndex)

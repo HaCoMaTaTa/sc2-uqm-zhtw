@@ -1,0 +1,72 @@
+diff --git a/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/SdlIme.kt b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/SdlIme.kt
+new file mode 100644
+index 0000000..6b59514
+--- /dev/null
++++ b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/SdlIme.kt
+@@ -0,0 +1,66 @@
++package org.megamod.uqm
++
++import android.content.Context
++import android.util.Log
++import android.view.View
++import android.view.inputmethod.InputMethodManager
++
++/**
++ * zh-TW Android port ΓÇö soft keyboard (IME) helper.
++ *
++ * Motivation: UQM upstream calls `SDL_StartTextInput()` when it wants text
++ * entry (captain / ship name at new game, star-map F6 search). On desktop
++ * that pops the OS keyboard automatically. On Android, SDL2's Java-side
++ * `SDLActivity` DOES bridge this to the system IME, but only if:
++ *  - the SDL SurfaceView is the currently focused view, and
++ *  - the app hasn't overridden focus with a Compose ComposeView
++ *
++ * Our layout stacks a full-screen [androidx.compose.ui.platform.ComposeView]
++ * on top of the SDL surface (see `engine_activity.xml`), which intercepts
++ * focus ΓÇö so SDL's implicit IME show never fires. Rather than untangle
++ * SDL's Java IME state, we expose an explicit "show keyboard" button in the
++ * overlay that calls [InputMethodManager.showSoftInput] against whichever
++ * view currently holds focus.
++ *
++ * SDL2 will still consume the resulting KEYDOWN/KEYUP + TEXTINPUT events
++ * once the keyboard is up, because it registered as a global key listener
++ * during `nativeSetupJNI()`.
++ */
++object SdlIme {
++    private const val TAG = "UqmIme"
++
++    /**
++     * Toggle the system soft keyboard visibility.
++     *
++     * @param context Prefer the [android.app.Activity] context so the IMM
++     *   can find a focus target. Application context works but requires
++     *   [InputMethodManager.SHOW_FORCED] which some OEMs no-op.
++     */
++    fun toggle(context: Context) {
++        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
++        if (imm == null) {
++            Log.w(TAG, "InputMethodManager unavailable")
++            return
++        }
++        // toggleSoftInput has been deprecated on API 31+ but remains the
++        // most reliable path when we don't have a specific EditText target
++        // ΓÇö SDL doesn't expose an EditText; it just wants raw key events.
++        // The alternatives (WindowInsetsControllerCompat.show(IME)) require
++        // API 30 and a window-attached view, which is fragile inside a
++        // Compose overlay atop an SDL surface.
++        @Suppress("DEPRECATION")
++        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
++        Log.i(TAG, "toggle soft input (forced)")
++    }
++
++    /**
++     * Show the keyboard without toggling ΓÇö used when we know the caller
++     * wants it up (e.g. auto-show on star-map search entry). Currently
++     * unused; kept for future star-map state detection.
++     */
++    fun show(view: View) {
++        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
++        imm?.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
++        Log.i(TAG, "show soft input on view ${view.javaClass.simpleName}")
++    }
++}

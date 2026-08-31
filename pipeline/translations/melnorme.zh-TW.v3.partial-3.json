@@ -1,0 +1,49 @@
+{
+  "HELLO_SLIGHTLY_ANGRY_1": "看啊, 暴力的人回來了。\n您是回來尋求我方的原諒\n還是要再次攻擊我方無防備的船艦？",
+
+  "HELLO_SLIGHTLY_ANGRY_2": "您使我方失望了\n不過老實說\n我方本有些預兆, 我方的關係起初會很難\n因為您物種的情緒不成熟。",
+
+  "HELLO_SLIGHTLY_ANGRY_3": "我方要求一次正式的道歉。",
+
+  "explore_relationship": "咱們能討論建立聯盟嗎？",
+
+  "EXAMPLE_OF_RELATIONSHIP": "您的問題透露出對友好、跨物種關係本質\n某種程度的欠缺理解。\n我方將澄清這個情況。\n若您希望與人為友\n永遠、絕對\n不要向他們發射超高熱的電漿彈。\n這清楚了嗎？",
+
+  "excuse_1": "聽好, 難免出錯嘛。 別這麼氣！",
+
+  "NO_EXCUSE_1": "史怕族在他們 <% comm.getStarName(\"大陵五\", \"algolites\") %>（Algol） IV 的基地\n發生一起不幸事件後, 曾用過類似的藉口。\n他們不喜歡那裡的氣候\n因此決定進行「幾項小小的、氣候上的調整」。\n他們的設備失控, 他們慌亂逃走\n整個大氣層被剝離出這顆星球\n讓當地的阿爾戈斯人（Algolites）真誠地\n雖然短暫地, 深表遺憾。",
+
+  "excuse_2": "咱們就當先前的戰鬥從未發生過, 好嗎？",
+
+  "NO_EXCUSE_2": "不。",
+
+  "excuse_3": "你們到底要什麼, 一次正式的道歉嗎？",
+
+  "NO_EXCUSE_3": "有極小的可能, 道歉能弭平這件事。\n但那道歉必須是真心的。",
+
+  "we_apologize": "我方道歉。 我方很抱歉。 請你們原諒, 懇請。",
+
+  "APOLOGY_ACCEPTED": "既然您說得如此得體\n您似乎如此真心悔改\n我方將再給您一次機會成為我方的交易夥伴。\n但別再攻擊我方\n否則下次我方就不會這麼好說話了。",
+
+  "so_we_can_attack": "這聽起來像是再次攻擊你們的絕佳機會。",
+
+  "DECEITFUL_HUMAN": "詭詐的人類！",
+
+  "bye_melnorme_slightly_angry": "我方要離開了。 再見。",
+
+  "MELNORME_SLIGHTLY_ANGRY_GOODBYE": "別了, 暴力的人類。",
+
+  "HELLO_HATE_YOU_1": "我方原以為您是好人。\n哎, 我方大錯特錯！\n如今您走遠一點, 別再打擾我方。",
+
+  "HELLO_HATE_YOU_2": "喔, 混蛋回來了。\n您這次要什麼？\n算了, 我方不想知道。",
+
+  "HELLO_HATE_YOU_3": "我方將永遠憎恨您。\n您回來這裡希望我方改變心意是徒勞的。\n我方不會！",
+
+  "well_if_thats_the_way_you_feel": "去死吧, 獨眼怪。",
+
+  "you_hate_us_so_we_go_away": "再見。",
+
+  "HATE_YOU_GOODBYE": "永遠別再回來！",
+
+  "WE_FIGHT_AGAIN": "這次您將為您的過犯付出代價！"
+}

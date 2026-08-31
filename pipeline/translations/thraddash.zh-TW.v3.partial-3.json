@@ -1,0 +1,95 @@
+{
+  "_notes": [
+    "== Thraddash v0.7 Rebuild-Compare · Batch 3/4 (Ally + Culture Exp) · 38 tokens ==",
+    "Player response 保留 shipped (Q10=B):",
+    "  why_you_here_ally, whats_helix_ally, may_i_land, friendly, wacky, just_like_us, contemplative, how_goes_culture",
+    "Player response 重譯 (含污染):",
+    "  whats_up_ally (吾/爾等/之 都在, 全改)",
+    "",
+    "AQUA HELIX 首介 policy 第 3 個 token: GUARDING_HELIX_ALLY 加英文標記",
+    "Hoy-yo-HO! 首介 = WELCOME_HELIX0 加英文標記",
+    "",
+    "WELCOME_* concat pattern (需保留 leading/trailing 空格):",
+    "  SPACE0 + [culture] + SPACE1 · HOMEWORLD0 + [culture] + HOMEWORLD1 · HELIX0 + [culture] + HELIX1",
+    "",
+    "Great Teacher 情境 (Q4=C):",
+    "  極恭敬 = 「偉大的地球導師」/「來自地球的偉大戰士」+「您」",
+    "  一般 = 「偉大導師」/「您」"
+  ],
+
+  "HELLO_PIG_LATIN_1": "Eway areyay ethay igpay atinlay eakingspay Addashthray! Ortsnay!（豬拉丁譯註:「我方就是說豬拉丁的撻伐族！ 哼！」）",
+
+  "HELLO_PIG_LATIN_2": "Ombatcay! Ecklessray ouragecay! Eakingspay igpay atinlay!（豬拉丁譯註:「戰鬥！ 魯莽勇氣！ 說豬拉丁！」）\nEway aryay ategray orfay eesethay easonsray!（豬拉丁譯註:「我方就是因為這些原因而偉大！」）",
+
+  "HELLO_PIG_LATIN_3": "Ellohay umanhay! Elcomeway ackbay! E'veway eenbay xpectingay ouyay.（豬拉丁譯註:「哈囉,人類！ 歡迎回來！ 我方一直在等您光臨。」）",
+
+  "HELLO_PIG_LATIN_4": "Eway aypay espectray otay ouryay eategray eachertay!（豬拉丁譯註:「我方向您這位偉大的地球導師致敬！」）",
+
+  "HELLO_LIKE_YOU_1": "我是格拉（Grah）,來自星艦「熱脈推進器號」（Hot Pulsing Thrusters）。",
+
+  "HELLO_LIKE_YOU_2": "問候！ 我是恰德（Chudd）艦長,指揮「榮耀熾焰砲號」（Blazing Guns of Glory）！",
+
+  "HELLO_LIKE_YOU_3": "注意！ 這裡是星艦「碾壓者號」（Overwhelmer）。",
+
+  "HELLO_LIKE_YOU_4": "我是指揮官德頓克（Dthunk）。",
+
+  "WELCOME_SPACE0": "我方 ",
+
+  "WELCOME_SPACE1": " 很高興在太空見到您,喔,睿智的地球導師！",
+
+  "WELCOME_HOMEWORLD0": "您親臨我方母星,讓我方全體 ",
+
+  "WELCOME_HOMEWORLD1": " 都深感敬畏。 我方深感榮幸,睿智的人類。",
+
+  "WELCOME_HELIX0": "呵咿呀嗬！（Hoy-yo-HO!） 超強大的人類已回來,來到我方最重要的星球。\n我方 ",
+
+  "WELCOME_HELIX1": " ,向您致以歡迎。",
+
+  "why_you_here_ally": "這行星有什麼特別？",
+
+  "GUARDING_HELIX_ALLY": "我方在此軌道上守護我方最珍貴的遺物,我方最珍愛的東西\n那個一直是我方所有文化核心的東西\n(除了第九文化,但他們不算)\n我方守護著超越凡俗界域的物件\n蔚藍螺旋（Aqua Helix）！",
+
+  "whats_helix_ally": "所以這「蔚藍螺旋」是啥？ 會什麼把戲嗎？",
+
+  "HELIX_IS_ALLY": "蔚藍螺旋是我方最珍貴的遺物。\n在我方全部的歷史記憶中,螺旋一直與我方同在。\n它指引、激勵、獎賞。 它是那個發動千艘戰艦的扭扭之物！\n它是我方所有文化最……喔對,這句話我剛才講過了。\n我方知道蔚藍螺旋很偉大\n主要是因為我方過去所有十九個文化都知道這是真的！\n如果蔚藍螺旋不特別\n我方為什麼要為這小玩意流那麼多血和熱情？\n那會是巨大的浪費！ 荒謬的鬧劇！……\n……事實上,第九文化就這麼講過\n在他們被第十文化滅掉之前的兩週統治期間。\n反正,我方仍堅信不移！……\n……我方是撻伐族,所有撻伐族都知道蔚藍螺旋的意義。\n所以,蔚藍螺旋就是很偉大！ 事情就這樣解決了。",
+
+  "may_i_land": "聽起來真酷！ 你們不介意我方下去看看,是吧？",
+
+  "SURE_LAND": "當然,快去登陸這顆行星,好好看看我方所有遺物中最珍貴的那一個\n我方最珍愛的遺物,一如我方所有的文化……",
+
+  "whats_up_ally": "身為你們的偉大導師,這裡有沒有什麼發展是我該知道的？",
+
+  "GENERAL_INFO_ALLY_1": "是的,導師,至少有一件事值得一提。\n我方之前可能提過我方遇到的翻滾紅色探測器\n就是那些不停攻擊卻同時吐出詭異和平提議的傢伙。\n一開始我方以為他們是從 <% comm.getConstellation(\"Vega\", \"slylandro\") %> 星系那個方向來。\n現在我方以為是反過來。\n呃……不,艦長,我方不知道 <% comm.getConstellation(\"Vega\", \"slylandro\") %> 的反方向是什麼,我方不是那個意思。\n我方現在以為那些探測器是要回到 <% comm.getConstellation(\"Vega\", \"slylandro\") %>。\n至於他們任務的性質,我方還不清楚。",
+
+  "GENERAL_INFO_ALLY_2": "是的,睿智的人類,請容我方細說。\n兩年前,我方監測到有兩艘船進入我方領空。\n一艘顯然是無畏艦,我方前主子烏寬的船。\n另一艘是暗黑不祥的船,跟無畏艦一樣巨大。\n兩艘船陷入死鬥。 他們打得英勇無比！\n最終烏寬摧毀了黑船,但自身也受了致命傷。\n我方最後看到那艘船時,它正失控翻滾朝 <% comm.getStarName(\"Alpha Pavonis\", \"urquan wreck\") %> 而去。\n它最終的命運我方不清楚。",
+
+  "GENERAL_INFO_ALLY_3": "既然您現在是我方的新典範,我方看是時候把烏寬的底細抖出來了。\n可惜我方從來沒真的抖出什麼底細 —— 我是說,秘密資訊。\n但您可能會想知道我方最後一次看到烏寬的情況。\n我想那是 2140 年吧。 突然間,一支無畏艦艦隊衝進我方領空\n迅速補給,然後離開,同時廣播一段錄音訊息\n告訴我方要待在原本的勢力範圍、遵守奴隸法、等他們回來。\n無畏艦艦隊朝 <% comm.getConstellation(\"Crateris\", \"samatra\") %> 星座方向離去\n但他們現在在哪,不明。",
+
+  "GENERAL_INFO_ALLY_4": "這不算什麼新聞,導師\n但戰爭真的很偉大,不是嗎？\n熔化戰艦令人心跳加速的景象！\n減壓士兵沸騰的鮮血！\n我就是愛這一切！……\n……您不愛嗎？",
+
+  "HOW_SHOULD_WE_ACT": "我方需要向您學好多東西,例如\n在我方的新文化裡,我方該怎麼行事？ 我方的方向、我方的道德基礎是什麼？",
+
+  "friendly": "無論何時何地都要善良。 將你遇到的每個陌生人都當成最好的朋友。",
+
+  "OK_FRIENDLY": "友善？ 和善？ 這智慧我一時聽不懂……啊對！ 我現在懂了！\n和善、友善……這樣入侵者就會放下戒心\n等我方殺他們時,他們會驚訝到來不及反應！\n好棒的計畫,人類！ 您真的是偉大導師！",
+
+  "wacky": "放輕鬆點嘛！ 稍微搞笑一點嘛 —— 你知道的 —— 搞怪！ 來,試試看這幾片影片:蒙提· 派森和馬克思兄弟。",
+
+  "OK_WACKY": "搞怪！……搞怪？ 我方不懂。 我方會看這些您的影片。\n我方會研究它們,學著怎麼……搞怪。\n然後等我方夠搞怪了,我方會在戰鬥中測試我方的新搞怪\n無疑會發現這給我方帶來的巨大優勢。\n謝謝您,偉大導師。",
+
+  "just_like_us": "聽好,如果你們真想找個文化的典範,那就跟我方一模一樣就好！",
+
+  "OK_JUST_LIKE_YOU": "啊哈！ 我方懂了。 我方會小心行事\n不冒不必要的險。 我方會慢慢累積實力\n只在勝算壓倒性大的時候才發動攻擊！\n與其他種族來往時,我方會無情盤問他們\n試圖榨出每一絲最後的資訊,如果他們不合作\n我方就用即刻死亡威脅他們！\n我方會變得跟您一模一樣！",
+
+  "WORK_TO_DO": "要實施這些全面的文化變革,我方有很多工作要做。\n從一個文化的忠誠和道德轉移到另一個\n是艱難又耗時的任務。\n我方懇求您,來自地球的偉大戰士,給我方時間去執行您所建議的變革。\n稍後再回來看看我方美麗的新世界。",
+
+  "contemplative": "試試多點沉思。 思考一顆寶石的許多面向……那類事。",
+
+  "OK_CONTEMPLATIVE": "啊哈！ 沉思,是！ 全新的思想與領悟！ 用我方新的用功方式\n我方將發掘出新方法、新發明和新計謀\n讓我方能輕鬆征服整個文明！\n太傑出了,人類,太傑出了！",
+
+  "how_goes_culture": "所以新文化發展得如何？",
+
+  "CONTEMP_GOES_1": "啊！ 要不是我方對您智慧的信心,來自地球的偉大導師\n我方連一天都撐不住繼續當「沉思」文化\n話說回來,我方沉思了我方的戰略、戰術、我方的武器、星辰\n行星,甚至我方的肚臍\n對撻伐族來說沉思肚臍很不舒服,而且至少要用兩面鏡子。",
+
+  "CONTEMP_GOES_2": "這麼用功！ 這麼安靜！ 這麼沉思！ 哼！\n我方不是幹這種事的料。 我方開始長痘子了！"
+}

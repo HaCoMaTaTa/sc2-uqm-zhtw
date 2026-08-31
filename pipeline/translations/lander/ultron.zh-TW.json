@@ -1,0 +1,20 @@
+{
+  "_notes": [
+    "v0.7 — Ultron (厄創) lander report on Supox vault.",
+    "Source: extracted/base/base/lander/energy/ultron.txt",
+    "Speaker: Landing party report.",
+    "Terminology:",
+    "  Supox = 蘇菩族 (v0.4 canonical)",
+    "  Utwig = 憂特族",
+    "  Ultron = 厄創 (v0.5.2 canonical, 對齊 utwig)",
+    "  Impregnium = 壁壘金 (使用者鎖定 2026-08-13)",
+    "  granite massif = 花崗岩地塊",
+    "  eternal winter = 永冬 (Supox 對柯亞屠殺的隱喻)",
+    "  golden device = 金色裝置",
+    "  transceiver = 收發器"
+  ],
+
+  "ULTRON 1": " ---- 地表傳回報告 ----\n\n此處相當淒涼,艦長——\n蘇菩族的文明僅剩\n冒煙的莖枝與種籽堆。\n\n然,在一座堅實花崗岩地塊之下深處,\n我方發現一間完整的壁壘金保險庫。\n蘇菩族想保護某物,艦長,確定無疑。\n\n保險庫內我方發現兩物:\n一件奇異的金色裝置——\n顯然已損壞——\n以及一張紙條,寫著...\n\n    我等蘇菩族已見\n    永冬將至,然我等\n    向憂特友邦許諾\n    護衛其鐘愛之厄創...\n    此諾必守。\n\n正攜此裝置返回艦上。\n\n  ---- 報告結束 ----",
+
+  "ULTRON 2": " ---- 地表傳回報告 ----\n\n我方原以為找到訊號,艦長,\n然那不過是風把百葉窗\n吹到一具收發器上罷了。\n\n  ---- 報告結束 ----"
+}

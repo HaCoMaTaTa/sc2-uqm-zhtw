@@ -1,0 +1,92 @@
+name: Verify build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pipeline/**'
+      - 'patches/**'
+      - 'translation/**'
+      - 'scripts/**'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# 注意：本 workflow 目前為「架構樣板」，實際 job 依你決定是否啟用。
+# CI 完整 build MegaMod exe + Android APK 需要 GitHub Actions runner 上有 MSYS2/Android SDK，
+# 首次跑會花 15+ 分鐘設 cache。若你只想快速跑「翻譯純度閘」則可只啟用第一個 job。
+
+jobs:
+  purity-check:
+    name: 翻譯純度閘 (_check_zh_purity + _check_lua_templates)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run purity checks
+        working-directory: pipeline
+        run: |
+          python _check_zh_purity.py --strict
+          python _check_lua_templates.py --strict
+
+      - name: Report
+        if: always()
+        run: |
+          echo "純度閘檢查完成 · 若失敗請看上方 log"
+
+  # 以下 job 需要 Windows runner + MSYS2 · 首次會慢，暫時 disabled。
+  # 想啟用請把 if: false 改成 if: true
+
+  # pc-build:
+  #   name: PC Build (MSYS2 MINGW32)
+  #   if: false
+  #   runs-on: windows-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: msys2/setup-msys2@v2
+  #       with:
+  #         msystem: MINGW32
+  #         update: true
+  #         install: >-
+  #           mingw-w64-i686-toolchain
+  #           mingw-w64-i686-cmake
+  #           mingw-w64-i686-ninja
+  #           mingw-w64-i686-SDL2
+  #           mingw-w64-i686-libpng
+  #           mingw-w64-i686-libvorbis
+  #     - name: Setup upstream + apply patches
+  #       run: pwsh -Command "./scripts/setup_upstream.ps1 -Execute"
+  #     - name: Build MegaMod exe
+  #       shell: msys2 {0}
+  #       run: |
+  #         cd ../UQM-MegaMod
+  #         cmake . -G Ninja -DUQM_PLATFORM_ACCEL=OFF -DCMAKE_BUILD_TYPE=Release
+  #         ninja
+
+  # android-build:
+  #   name: Android APK Build
+  #   if: false
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-java@v4
+  #       with:
+  #         distribution: temurin
+  #         java-version: 21
+  #     - uses: android-actions/setup-android@v3
+  #       with:
+  #         ndk-version: 27.2.12479018
+  #     - name: Setup upstream + apply patches
+  #       run: pwsh -Command "./scripts/setup_upstream.ps1 -Execute"
+  #     - name: Build APK
+  #       run: |
+  #         cd ../UQM-MegaMod/build/android
+  #         chmod +x gradlew
+  #         ./gradlew --no-daemon :composeApp:assembleDebug

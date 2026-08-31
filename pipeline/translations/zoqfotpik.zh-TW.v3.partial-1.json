@@ -1,0 +1,149 @@
+{
+  "_notes": [
+    "== Zoq-Fot-Pik v3 clean-room Rebuild-Compare (2026-08-17) · Partial 1/7 ==",
+    "Dossier: StarControl2_TW_Localization/02_Races/Zoq_Fot_Pik.md v0.7 §四 頂框",
+    "Rules: 09_AI_Prompt/Rebuild_And_Compare.md v0.7.1 (含階段 2.5 Read-Aloud)",
+    "",
+    "== 使用者 Q&A 決策 (2026-08-17) ==",
+    "Q1=A · canonical 全採 Master_Glossary v0.5.2 Round 3 (=shipped continuity):",
+    "  Frungy = 芙戎奇（Frungy）首介英文 (Round 3 Q1 · 廢止 dossier v0.7 保留原文說)",
+    "  Nyark! Nyark! Nyark! = 嘿嘿嘿！（Nyark! Nyark! Nyark!）(Round 3 Q12)",
+    "  Zebranky = 澤布蘭基（Zebranky）(Round 3 Q3)",
+    "  Stinger = 刺針號（Stinger）· thrusting stinger tongue attack = 突進刺針舌攻擊 (Round 3 Q7)",
+    "  Grand-High Poobah = 尊貴至極的波霸大人（Grand-High Poobah）(Round 3 Q9)",
+    "  Yip/Tun/Haffy/Jiff/Fod/Rogi/Buppo = 葉普/屯/哈菲/吉夫/佛德/羅吉/布波 (Round 3 Q6)",
+    "  wood Jukes/tree Narfs/dorfs = 森林朱克獸/樹頂納夫獸/多爾夫 (Round 3 Q11)",
+    "  Zoq/Fot/Pik = 佐格/佛特/皮克 (dossier + Master 一致)",
+    "  Zoq-Fot-Pik = 佐-佛-皮 (3 字連字號)",
+    "  諸王之運動！(BOTH agree)",
+    "",
+    "Q2=A · 集體自稱 palette 情境分配:",
+    "  我們 = 日常對話主體 (~110)",
+    "  我們佐-佛-皮 = 正式自介 (~25 · WE_ARE0/SCOUT_HELLO0/YEARS_AGO0/ALLY_WITH_US0)",
+    "  咱們 = 親暱調侃 (~15 · ALLIED_HOME 系列)",
+    "  佐-佛-皮 = 第三方指稱 (~5)",
+    "",
+    "Q3 · 單方自稱一律「我」(三方交錯 voice 差異由句尾/內容區隔)",
+    "Q4 · 全清文言 (吾157/吾等155/爾8/之46/乃6/哉1/兒1 → 0)",
+    "Q5 · 三方拌嘴 icon = 無前綴換行 (原文無 Zoq:/Fot:/Pik: · 中譯亦不加)",
+    "Q6=A · Fortunately/Unfortunately 保留 shipped「幸運的是……」/「不幸的是……」",
+    "Q7 · Alliance name_1-4 全繼承 shipped canonical",
+    "Q8=A · we_are_vindicator = 「我方是 X 旗艦『Y』，來自地球。你們有何意圖？」",
+    "Q9=B · 玩家 response 情境切換 (嗆聲=老子·正式=我方·提問=我)",
+    "Q10=A · OUT_TAKES Did not/Did too 保留 shipped「才沒有！/就有！」",
+    "Q11=B · quiet_toadies 玩家假裝主宰 line = 老子語氣",
+    "Q12=A · Frungy 錦標賽段落結構保留 shipped",
+    "Q13=A · SCOUT_HELLO1 座標系笑話保留 shipped (Round 3 Q14 canonical)",
+    "Q14=A · 偉大晶智族 canonical 保留",
+    "",
+    "Voice per token block (Batch 1):",
+    "  WE_ARE0-7 = 首次接觸+三方拌嘴 (Zoq 冷靜 / Fot 神經質 / Pik 補刀)",
+    "  SCOUT_HELLO0-3 = 偵察艦相遇 + 座標系笑話",
+    "  INIT_HOME_HELLO0-3 = 玩家抵達母星",
+    "  HE_IS0-7 = 誰是佛特大爭吵 (經典三方拌嘴)",
+    "  we_are_vindicator = 玩家正式自介 (我方)",
+    "  WE_GLAD0-5 = 認出玩家是晶智族聯盟 · 三方懷疑vs興奮",
+    "  quiet_toadies = 玩家假裝主宰嗆聲 (Q11=B 老子)",
+    "  TOLD_YOU0-7 = 失望但寬容",
+    "  your_race = 玩家提問 (我方)",
+    "  YEARS_AGO0-6 = 四原始種族史開場"
+  ],
+
+  "WE_ARE0": "注意，星艦！\n我們是佐-佛-皮。",
+
+  "WE_ARE1": "別做出任何敵意舉動！",
+
+  "WE_ARE2": "我們懷抱和平與善意而來。",
+
+  "WE_ARE3": "但你只要走錯一步，就變蒸氣！",
+
+  "WE_ARE4": "別擔心，我的同伴只是有點神經質……",
+
+  "WE_ARE5": "不，我才沒有！",
+
+  "WE_ARE6": "……又愛爭辯。",
+
+  "WE_ARE7": "不，我才沒有。",
+
+  "SCOUT_HELLO0": "我們是偵察艦\n從我們母星派遣出來。",
+
+  "SCOUT_HELLO1": "我們穿越了充滿敵意、未經標記的太空\n遠道而來\n為的是找到你。\n我們來自座標為\n〔齊格佛-葛爾爾努，阿-阿，帕霍伊-霍伊〕（佐-佛-皮自造座標系）的 <% comm.getColor(\"綠色\", \"zoqfot\") %>矮星。",
+
+  "SCOUT_HELLO2": "不，你這蠢材，是要用對方的座標系！",
+
+  "SCOUT_HELLO3": "噢！ 呃\n座標為 <% comm.getPoint(\"400.0 : 543.7\", \"zoqfot\") %>。",
+
+  "INIT_HOME_HELLO0": "你已抵達我們母星。",
+
+  "INIT_HOME_HELLO1": "而且我們這裡有十億艘戰艦！",
+
+  "INIT_HOME_HELLO2": "真幸運，你在我們急需之時找到我們。",
+
+  "INIT_HOME_HELLO3": "所以想都別想攻擊我們！",
+
+  "which_fot": "你們哪一位才是佛特（Fot）？",
+
+  "HE_IS0": "他啦。",
+
+  "HE_IS1": "不，是「她」啦！",
+
+  "HE_IS2": "不，我才不是！",
+
+  "HE_IS3": "是，你就是。",
+
+  "HE_IS4": "要命！（Cripes!） 這事我們已經吵過一百萬次了！",
+
+  "HE_IS5": "吵幾次都改變不了什麼。 你就是佛特！",
+
+  "HE_IS6": "呸！（Faugh!）\n呃，艦長，如你所見，這是有點爭議的一點。",
+
+  "HE_IS7": "佛特！",
+
+  "we_are_vindicator": "我方是 <% comm.getPhrase(\"name_\" .. (state.prop.get(\"NEW_ALLIANCE_NAME\") + 1)) %> 旗艦「<% state.sis.getShipName() %>」，來自地球。 你們有何意圖？",
+
+  "WE_GLAD0": "萬歲！（Hurrah!）\n我們終於找到救世主了！",
+
+  "WE_GLAD1": "或許吧。",
+
+  "WE_GLAD2": "終於，我們的尋覓有了盡頭！\n正如偉大晶智族所應允的那樣！",
+
+  "WE_GLAD3": "他們看起來鬼鬼祟祟。\n我覺得他們在說謊。",
+
+  "WE_GLAD4": "閉嘴，笨蛋！\n你看不出來我們的噩夢終於結束了嗎！？\n這艘艦來自偉大晶智族所傳頌的聯盟\n那自由星系聯盟！",
+
+  "WE_GLAD5": "或許吧。",
+
+  "quiet_toadies": "閉嘴，胡說八道的舔屁蟲！ 老子是你們的新主人。",
+
+  "TOLD_YOU0": "我們很失望。",
+
+  "TOLD_YOU1": "看吧！ 我就告訴過你！",
+
+  "TOLD_YOU2": "我們原希望我們兩個物種可以做朋友。",
+
+  "TOLD_YOU3": "作夢一百萬年也不可能！ 光看他那小豆子眼！",
+
+  "TOLD_YOU4": "但本著理解的精神……",
+
+  "TOLD_YOU5": "噢不！ 你該不會是在考慮……",
+
+  "TOLD_YOU6": "……我們將原諒你這次冒犯。",
+
+  "TOLD_YOU7": "唉喲！（Sheesh!） 你也太好說話了吧！",
+
+  "your_race": "我方繼續之前，能多告訴我方關於你們物種的事嗎？",
+
+  "YEARS_AGO0": "遠古時代，我們母星上有四種物種演化出智慧。",
+
+  "YEARS_AGO1": "同時演化。",
+
+  "YEARS_AGO2": "他們是佐格……",
+
+  "YEARS_AGO3": "……佛特……",
+
+  "YEARS_AGO4": "……皮克……",
+
+  "YEARS_AGO5": "……以及澤布蘭基（Zebranky）。",
+
+  "YEARS_AGO6": "我們三方，佐格、佛特、皮克如此演化\n得以從多種來源獲得養分……"
+}

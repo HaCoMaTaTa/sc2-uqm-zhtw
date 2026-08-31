@@ -1,0 +1,105 @@
+diff --git a/build/android/composeApp/build.gradle.kts b/build/android/composeApp/build.gradle.kts
+index ef43c32..a20b9ad 100644
+--- a/build/android/composeApp/build.gradle.kts
++++ b/build/android/composeApp/build.gradle.kts
+@@ -40,6 +40,10 @@ android {
+     namespace = "org.megamod.uqm"
+     compileSdk = libs.versions.android.compileSdk.get().toInt()
+ 
++    // zh-TW port: pin NDK to r27d LTS (27.2.12479018) so AGP does not silently
++    // pick the older 27.0 rc that ships with cmdline-tools.
++    ndkVersion = "27.2.12479018"
++
+     defaultConfig {
+         applicationId = "org.megamod.uqm"
+         minSdk = libs.versions.android.minSdk.get().toInt()
+@@ -49,7 +53,12 @@ android {
+ 
+         ndk {
+             //noinspection ChromeOsAbiSupport
+-            abiFilters += listOf("arm64-v8a")
++            // zh-TW port: arm64-v8a is the shipping target (all modern phones);
++            // x86_64 is added so Windows/x86_64 hosts can run the Google
++            // Android emulator (37.x removed arm64-on-x86 binary translation).
++            // The extra native-lib footprint is ~19 MB per ABI — acceptable
++            // for a debug APK; consider filtering to arm64-v8a for release.
++            abiFilters += listOf("arm64-v8a", "x86_64")
+         }
+         externalNativeBuild {
+             cmake {
+@@ -77,6 +86,16 @@ android {
+             keepDebugSymbols += "**/*.so"
+         }
+     }
++    // zh-TW port: .uqm content packs are already zip-compressed. Tell aapt2 not
++    // to recompress them (saves CPU on install + first-run and lets us mmap the
++    // asset directly if we ever want zero-extract loading).
++    androidResources {
++        noCompress += listOf("uqm")
++    }
++    // zh-TW port: pull the base game pack + SD zh-TW addon into a staged assets
++    // dir. Kept out of src/main/assets/ so the ~64 MB payload is not tracked in
++    // git. `preBuild` depends on `stageUqmContent` so a clean run always ships.
++    sourceSets["main"].assets.srcDir(layout.buildDirectory.dir("uqm-content-staged"))
+     buildTypes {
+         getByName("release") {
+             isMinifyEnabled = false
+@@ -110,3 +129,58 @@ dependencies {
+     implementation(libs.androidx.core.ktx)
+ }
+ 
++// -------------------------------------------------------------------------
++// zh-TW port: stage the required content files into build/uqm-content-staged/
++// so that AGP packages them under assets/uqm-content/ inside the APK.
++//
++// Layout inside the APK (relative to assets/):
++//   uqm-content/version                       (20 B)
++//   uqm-content/gamecontrollerdb.txt          (~570 KB, joystick mapping DB)
++//   uqm-content/packages/mm-0.8.5-content.uqm (~25 MB, base game SD)
++//   uqm-content/addons/mm-hd.uqm              (~232 MB, MegaMod HD assets)
++//   uqm-content/addons/zh-TW.uqm              (~38 MB, SD zh-TW addon)
++//   uqm-content/addons/zh-TW-hd.uqm           (~82 MB, HD zh-TW font addon)
++//
++// Total shipped payload ~380 MB. This APK is side-load only (Play Store limit
++// is 200 MB per APK; use App Bundles + asset packs for Play distribution).
++// -------------------------------------------------------------------------
++val uqmContentRoot: File = rootProject.file("../../../uqm-work/install/content")
++val stagedContentDir = layout.buildDirectory.dir("uqm-content-staged/uqm-content")
++val requiredContentPaths = listOf(
++    "version",
++    "gamecontrollerdb.txt",
++    "packages/mm-0.8.5-content.uqm",
++    "addons/mm-hd.uqm",
++    "addons/zh-TW.uqm",
++    "addons/zh-TW-hd.uqm"
++)
++
++val stageUqmContent by tasks.registering(Copy::class) {
++    description = "Stage UQM content pack + zh-TW SD addon for APK inclusion."
++    group = "uqm"
++    // Capture as plain File / List<String> so the task action is configuration-
++    // cache safe (no captured Project/Task references from the enclosing script).
++    val root = uqmContentRoot
++    val required = requiredContentPaths
++    into(stagedContentDir)
++    from(root) {
++        for (p in required) include(p)
++    }
++    doFirst {
++        val missing = required.filter { !File(root, it).exists() }
++        if (missing.isNotEmpty()) {
++            throw GradleException(
++                "UQM content missing from $root: $missing\n" +
++                        "Run desktop MegaMod installer + package_zh-TW.ps1 first."
++            )
++        }
++    }
++}
++
++// Chain the staging task in front of anything that reads assets. AGP variants
++// register mergeAssets tasks dynamically per build type/variant, so hook via
++// the `preBuild` lifecycle task (safe: runs before any variant compile step).
++tasks.named("preBuild") {
++    dependsOn(stageUqmContent)
++}
++

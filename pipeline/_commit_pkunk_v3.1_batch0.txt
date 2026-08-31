@@ -1,0 +1,49 @@
+v3.1 pkunk Batch 0: shipped punctuation typography normalization
+
+Race: 快樂鳥人族 (Pkunk · v0.1 baseline · 180 tokens)
+Nature: Pre-content typography drift fix (Q1=B canonical alignment)
+
+## Discovery
+
+Cross-race comparison revealed pkunk was the ONLY outlier using half-width
+Latin punctuation inside Chinese dialog:
+
+| Race | half `?` | full 「？」 | half `(X)` | full 「（X）」 |
+|------|---------:|----------:|-----------:|-------------:|
+| pkunk (before) | **93** | 4 | **32** | 6 |
+| syreen | 0 | 65 | 0 | 17 |
+| mycon | 0 | ... | 0 | 9 |
+| melnorme | 0 | ... | 0 | 46 |
+| arilou | 0 | ... | 0 | 19 |
+
+pkunk v0.1 shipped drifted to Western punctuation conventions inside CJK
+context; every other race file uses full-width Q1=B canonical.
+
+## Normalization Applied
+
+Dialog values only (skipped `_notes` annotations):
+- 93 × `?` → `？` (66 keys touched)
+- 32 × `(English...)` → `（English...）` (24+ keys touched)
+
+Internal English punctuation preserved (e.g., 「（Whoopdy Dee and Trolly
+Bazoo!）」keeps `!` half-width because it's inside English phrase).
+
+Empty `(` `)` structural characters left untouched (no code/URL contexts
+existed in pkunk).
+
+_notes annotations restored (9 items) to keep original half-width
+convention — those are internal decision comments, not shipped text.
+
+## Gates PASS
+
+- Purity: race=0 · simp=0 · variant=0
+- Lua template: 0 suspicious first-args
+- JSON valid · 180 tokens
+- No semantic content changes; strictly typography
+
+## Rationale
+
+Doing this as Batch 0 (before content audit batches) so:
+1. Subsequent content commits stay clean (semantic-only diffs)
+2. Content audit sees canonical typography state
+3. Reviewers can review typography vs content separately

@@ -1,0 +1,97 @@
+{
+  "_notes": ["== Zoq-Fot-Pik v3 clean-room · Partial 3/7 (ALLY_WITH_US + EMMISSARIES + WE_ALLY + HOSTILE_HELLO + NEUTRAL_HOME_HELLO_10-23) =="],
+
+  "ALLY_WITH_US0": "我們想\n跟你們的物種\n建立正式的互助協定。",
+
+  "ALLY_WITH_US1": "就是「你搔我通風口\n我搔你鰭肢」那種安排。",
+
+  "ALLY_WITH_US2": "作為誠意的表示\n我們將為你提供技術精湛的艦長\n以及我們「刺針號」（Stinger）星艦的建造圖。",
+
+  "ALLY_WITH_US3": "作為交換，如果壞人找到我們母星\n你要火速趕來，把他們汽化。",
+
+  "ALLY_WITH_US4": "基本上正是如此。",
+
+  "ALLY_WITH_US5": "多好的交易，對吧？\n你絕對錯過不起！\n所以你意下如何？",
+
+  "decide_later": "呃…… 我方得先請示我方的，呃…… 尊貴至極的波霸大人（Grand-High Poobah）！",
+
+  "PLEASE_HURRY0": "請帶著你波霸大人的話快點回來。\n數百萬條生命危在旦夕！",
+
+  "PLEASE_HURRY1": "其中最要緊的一條就是我的。",
+
+  "EMMISSARIES0": "這正是我們日夜祈禱的話！",
+
+  "EMMISSARIES1": "嘿！ 這趟不是白跑了嘛！",
+
+  "EMMISSARIES2": "我們最渴望的就是一個盟友\n幫我們在這充滿敵意的宇宙中生存下去。",
+
+  "EMMISSARIES3": "我們正遇到那類問題。",
+
+  "EMMISSARIES4": "但我們只是使者。\n你必須見我們的領袖。\n他們更有智慧…… 力量也更強大！",
+
+  "EMMISSARIES5": "不過他們長得跟我們一模一樣就是了。",
+
+  "EMMISSARIES6": "飛到叫做 <% comm.getStarName(\"杜鵑座α\", \"zoqfot\") %> 的恆星。\n離太陽最近的行星就是我們的家。",
+
+  "EMMISSARIES7": "還有，方便的話，麻煩快一點。",
+
+  "sure": "你們正遭到烏寬人攻擊，牠們也是我方的敵人。 因此，我方代表全體地球子民，接受你們的提議。",
+
+  "WE_ALLY0": "太好了！",
+
+  "WE_ALLY1": "萬歲！（Hurray!）",
+
+  "WE_ALLY2": "太棒了！",
+
+  "WE_ALLY3": "耶哈！（Yee-ha!）",
+
+  "WE_ALLY4": "艦長，我們馬上開始履行約定！\n我們馬上把軍官運送到你的基地！",
+
+  "WE_ALLY5": "哎唷！\n說不定我還要親自跑一趟你的星球！\n我會是個好星艦艦長的，艦長！\n我打起架來還挺兇的\n而且沒人比得過我的\n突進刺針舌攻擊！",
+
+  "never": "什麼？ 保護你們這些廢柴？ 沒門！ 你們太遜了！",
+
+  "WE_ENEMIES0": "我們已經向你敞開心扉。\n我們對你伸出附肢表示友好！……\n……而你卻把我們當死掉的澤布蘭基那樣對待。\n要惹怒我這個物種可不容易，艦長\n可是你剛剛做到了！\n各位船員！ 準備噴射砲！ 升起舌頭！\n備戰！",
+
+  "WE_ENEMIES1": "是啊。\n烤那些爛人去！",
+
+  "HOSTILE_HELLO_10": "來這裡沒意義，人類。\n我們兩個物種正在打仗。",
+
+  "HOSTILE_HELLO_11": "沒錯！\n準備受死吧，外星渣！",
+
+  "HOSTILE_HELLO_20": "艦長，你當初要是跟我們結盟",
+
+  "HOSTILE_HELLO_21": "你就是沒有！",
+
+  "HOSTILE_HELLO_22": "我們會很樂意告訴你我們探聽到的事",
+
+  "HOSTILE_HELLO_23": "而我們才不會告訴你！",
+
+  "HOSTILE_HELLO_24": "關於那兩個交戰的外星陣營\n烏寬人跟他們的手足柯亞人。",
+
+  "HOSTILE_HELLO_25": "但你現在「永遠」不會知道了！",
+
+  "HOSTILE_HELLO_30": "以我們所剩不多的兵力\n我們會盡力毀滅你。",
+
+  "HOSTILE_HELLO_31": "沒錯！ 而且她說到做到！",
+
+  "HOSTILE_HELLO_40": "你的惡行罄竹難書！\n我們被憤怒逼得非毀滅你不可。",
+
+  "HOSTILE_HELLO_41": "他大概又要落跑了。\n那個膽小鬼！",
+
+  "NEUTRAL_HOME_HELLO_10": "啊！ 是晶智族聯盟那個外星人！",
+
+  "NEUTRAL_HOME_HELLO_11": "看看他艦上那些武器艙。",
+
+  "NEUTRAL_HOME_HELLO_12": "我們希望這次來訪\n能讓你們物種明白\n互助協定的好處。",
+
+  "NEUTRAL_HOME_HELLO_13": "不過我們也是全副武裝\n所以別想偷我們的大氣層或搞什麼鬼把戲！",
+
+  "NEUTRAL_HOME_HELLO_20": "聯盟的星艦又回來了。",
+
+  "NEUTRAL_HOME_HELLO_21": "是啊。 我打賭「這次」他們就要來耍我們了。",
+
+  "NEUTRAL_HOME_HELLO_22": "外星艦長，你帶著你領袖的話來了嗎？",
+
+  "NEUTRAL_HOME_HELLO_23": "他如果有帶，我打賭肯定是像\n「投降或被吃掉」！"
+}

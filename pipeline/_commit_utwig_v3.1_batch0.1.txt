@@ -1,0 +1,58 @@
+v3.1 utwig Batch 0.1: comprehensive CJK punctuation typography sweep
+
+Race: 憂特族 (Utwig · v0.1 baseline · 114 tokens)
+Depends-on: 0dede36 (v3.1 Batch 0 half-paren normalization)
+Nature: Second-pass typography normalization (broader punctuation drift)
+
+## Discovery
+
+After Batch 0 (paren sweep), extended scan revealed massive additional drift:
+
+| Type | Before | After | 全形 baseline |
+|------|-------:|------:|-------------:|
+| `,` CJK-CJK | **260** | 0 | melnorme/syreen: 0 |
+| `:` CJK-CJK | **18** | 0 | others: 0 |
+| `;` CJK-CJK | **6** | 0 | others: 0 |
+
+Utwig v0.1 shipped translator used Western-style ASCII punctuation heavily
+inside CJK dialog (comma 92.7% half-width, colons/semicolons 100% half-width).
+This is unique among race files — syreen/mycon/melnorme/pkunk (post-audit)
+use 100% full-width CJK punctuation.
+
+## Normalization Applied
+
+Dialog values only (skipped `_notes` annotations, which are internal translator
+comments and legitimately use Western-style punctuation in annotations):
+- 260 × `,` → `，` (between CJK chars)
+- 18 × `:` → `：` (between CJK chars)
+- 6 × `;` → `；` (between CJK chars)
+= 284 total punctuation edits
+
+Iterative regex applied to catch chained instances (e.g. 「A,B,C」 where
+after `A,B → A，B`, the next pass catches `B，C → B，C` — no, wait that's
+already CJK-CJK. The iterative loop ensures no missed cases.).
+
+Preserved:
+- Half-width `,` in English content (inside 「（Bah!）」etc.)
+- Half-width `,` around numbers (`1,000`)
+- Half-width `,` inside template `<%...%>` blocks
+- `_notes` annotation punctuation (1 item restored)
+
+## Gates PASS
+
+- Purity: race=0 · simp=0 · variant=0
+- Lua template: 0 suspicious first-args
+- JSON valid · 114 tokens
+- No semantic content changes; strictly typography
+
+## Rationale
+
+Batch 0 (parens 31) + Batch 0.1 (commas/colons/semis 284) = 315 typography
+edits cleaned before content audit. Subsequent content commits stay clean
+(semantic-only diffs).
+
+## Note
+
+This is by far the biggest single-file typography normalization in the
+Refinement Progress. Utwig had the most severe punctuation drift among all
+race files audited so far.

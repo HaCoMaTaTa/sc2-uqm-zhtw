@@ -1,0 +1,61 @@
+{
+  "_notes": [
+    "Zoq-Fot-Pik Rebuild-Compare · User Decision Log (2026-08-17)",
+    "Format: {token: 'A' | 'B' | 'C' | 'C:<custom text>'} — one entry per token.",
+    "Only tokens WITH decision are listed here. Missing tokens = 待決策 (not yet reviewed).",
+    "",
+    "Values:",
+    "  A = 保留 shipped v0.5.2",
+    "  B = 採用 v3 clean-room",
+    "  C = 客製化 (custom text stored in v3.json directly since 2026-08-17)",
+    "",
+    "Merge behavior:",
+    "  A → 該 token 在最終 zoqfotpik.zh-TW.json 用 shipped value",
+    "  B → 該 token 用 v3.json value",
+    "  C → 該 token 用 v3.json value (C custom already applied to v3.json)",
+    "  🟢 identical (未列此表 · v3=shipped 直接繼承 shipped)",
+    "",
+    "Diff report: uqm-work/_reaudit_zoqfotpik_v3_diff.md",
+    "Total diff entries: 264 · Decided: 17 · Pending: 247"
+  ],
+
+  "decisions_so_far": {
+    "#82_EMMISSARIES7": "A",
+    "#86_WE_ALLY2": "B",
+    "#91_WE_ENEMIES1": "C",
+    "#110_NEUTRAL_HOME_HELLO_22": "C",
+    "#111_NEUTRAL_HOME_HELLO_23": "C",
+    "#122_ALLIED_HOME_HELLO_26": "C",
+    "#146_GENERAL_INFO_20": "C",
+    "#160_GENERAL_INFO_41": "C",
+    "#180_UTWIG_DELAY10": "C",
+    "#191_KOHRAH_WINNING9": "A",
+    "#201_KOHRAH_FRENZY4": "A",
+    "#210_GOOD2": "B",
+    "#236_what_about_zebranky": "A",
+    "#242_what_about_past": "A",
+    "#257_ABOUT_STINGER2": "A",
+    "#258_ABOUT_STINGER3": "B",
+    "#261_what_about_guy_in_back": "A"
+  },
+
+  "c_custom_texts": {
+    "WE_ENEMIES1": "就是！\n把那些混蛋烤了！",
+    "NEUTRAL_HOME_HELLO_22": "外星艦長，你帶來領袖的口信了嗎？",
+    "NEUTRAL_HOME_HELLO_23": "他要是有帶，我打賭八成就是\n「投降不然就被吃掉」那種！",
+    "ALLIED_HOME_HELLO_26": "喂，別問我啦。\n我猜應該是技術面的問題吧。",
+    "GENERAL_INFO_20": "最近挺安靜的，艦長。\n沒什麼新情報要回報。",
+    "GENERAL_INFO_41": "喔不！ 又要來這套心靈鬼扯了！",
+    "UTWIG_DELAY10": "這麼一來，雙方戰局多少扳平了一些……"
+  },
+
+  "a_shipped_kept_tokens": [
+    "EMMISSARIES7",
+    "KOHRAH_WINNING9",
+    "KOHRAH_FRENZY4",
+    "what_about_zebranky",
+    "what_about_past",
+    "ABOUT_STINGER2",
+    "what_about_guy_in_back"
+  ]
+}

@@ -1,0 +1,102 @@
+diff --git a/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/OverlayPrefs.kt b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/OverlayPrefs.kt
+new file mode 100644
+index 0000000..63ce99d
+--- /dev/null
++++ b/build/android/composeApp/src/androidMain/kotlin/org/megamod/uqm/OverlayPrefs.kt
+@@ -0,0 +1,96 @@
++package org.megamod.uqm
++
++import android.content.Context
++import android.content.SharedPreferences
++import androidx.compose.runtime.mutableFloatStateOf
++import androidx.compose.runtime.mutableIntStateOf
++import androidx.compose.runtime.mutableStateOf
++
++/**
++ * zh-TW Android port ΓÇö persistent overlay preferences.
++ *
++ * The touch overlay has two mutually exclusive control modes:
++ *
++ *  - **Modern**: 360┬░ analog stick fed to a virtual SDL joystick with UQM's
++ *    `--dirjoystick=3` engaged. Push in a direction ΓåÆ ship auto-turns to face
++ *    it and thrusts only when aligned. See [VirtualJoystick] + [AnalogStick]
++ *    in [TouchOverlay].
++ *  - **Classic**: 4-way D-pad emitting KEYCODE_DPAD_UP/DOWN/LEFT/RIGHT
++ *    directly ΓÇö mirrors the desktop keyboard model exactly. Familiar to
++ *    long-time UQM players, precise for pillbox / gravity-whip / Utwig-
++ *    shield-reflect tactics that value zero auto-thrust.
++ *
++ * Also holds three visual preferences applied to every overlay button:
++ *  - [alphaState]: 0.3..1.0 global transparency of all buttons + stick
++ *  - [scaleState]: 0.75..1.5 multiplier applied to every button/stick size
++ *  - [autoHideSecondsState]: 0=off, else fade out N seconds after last touch
++ *
++ * Persistence uses [SharedPreferences] (per-app private storage). Kept as a
++ * process-wide `object` so composables can call [modeState] without needing
++ * DI plumbing; safe because SharedPreferences is thread-safe for reads.
++ */
++enum class ControlMode { MODERN, CLASSIC }
++
++object OverlayPrefs {
++    private const val PREFS_NAME = "uqm_overlay_prefs"
++    private const val KEY_MODE = "control_mode"
++    private const val KEY_ALPHA = "overlay_alpha"
++    private const val KEY_SCALE = "overlay_scale"
++    private const val KEY_AUTOHIDE = "overlay_autohide_seconds"
++
++    private const val DEFAULT_ALPHA = 0.85f
++    private const val DEFAULT_SCALE = 1.0f
++    private const val DEFAULT_AUTOHIDE = 0  // off by default
++
++    private var prefs: SharedPreferences? = null
++
++    /** Backing state ΓÇö read by composables, written by the mode toggle. */
++    val modeState = mutableStateOf(ControlMode.MODERN)
++
++    /** Global button/stick alpha, 0.3..1.0. Applied via Modifier.alpha. */
++    val alphaState = mutableFloatStateOf(DEFAULT_ALPHA)
++
++    /** Global button/stick size multiplier, 0.75..1.5. */
++    val scaleState = mutableFloatStateOf(DEFAULT_SCALE)
++
++    /** Auto-hide seconds (0 disables auto-hide, buttons always visible). */
++    val autoHideSecondsState = mutableIntStateOf(DEFAULT_AUTOHIDE)
++
++    fun init(context: Context) {
++        val p = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
++        prefs = p
++        val name = p.getString(KEY_MODE, ControlMode.MODERN.name) ?: ControlMode.MODERN.name
++        modeState.value = runCatching { ControlMode.valueOf(name) }
++            .getOrDefault(ControlMode.MODERN)
++        alphaState.floatValue = p.getFloat(KEY_ALPHA, DEFAULT_ALPHA)
++        scaleState.floatValue = p.getFloat(KEY_SCALE, DEFAULT_SCALE)
++        autoHideSecondsState.intValue = p.getInt(KEY_AUTOHIDE, DEFAULT_AUTOHIDE)
++    }
++
++    fun setMode(mode: ControlMode) {
++        modeState.value = mode
++        prefs?.edit()?.putString(KEY_MODE, mode.name)?.apply()
++    }
++
++    fun toggleMode() {
++        setMode(if (modeState.value == ControlMode.MODERN) ControlMode.CLASSIC else ControlMode.MODERN)
++    }
++
++    fun setAlpha(v: Float) {
++        val clamped = v.coerceIn(0.3f, 1.0f)
++        alphaState.floatValue = clamped
++        prefs?.edit()?.putFloat(KEY_ALPHA, clamped)?.apply()
++    }
++
++    fun setScale(v: Float) {
++        val clamped = v.coerceIn(0.75f, 1.5f)
++        scaleState.floatValue = clamped
++        prefs?.edit()?.putFloat(KEY_SCALE, clamped)?.apply()
++    }
++
++    fun setAutoHideSeconds(v: Int) {
++        val clamped = v.coerceIn(0, 30)
++        autoHideSecondsState.intValue = clamped
++        prefs?.edit()?.putInt(KEY_AUTOHIDE, clamped)?.apply()
++    }
++}

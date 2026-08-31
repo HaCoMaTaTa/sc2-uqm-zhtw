@@ -1,0 +1,22 @@
+{
+  "_meta": "v3 partial-3 · HELLO_HOMEWORLD_1-8 + HELLO_SPACE_1-8 + RESPONSE_1-3 (19 tokens)",
+  "HELLO_HOMEWORLD_1": "聖源（Juffo-Wup）即一切……無所不在，散布著、將異類轉化為聖源。\n你即異類，必須成為聖源，或化為虛空。\n我們是聖源的執行者。\n我們是麥孔族。",
+  "HELLO_HOMEWORLD_2": "我們是麥孔族。",
+  "HELLO_HOMEWORLD_3": "我們是麥孔族。",
+  "HELLO_HOMEWORLD_4": "我們是麥孔族。",
+  "HELLO_HOMEWORLD_5": "我們是麥孔族。",
+  "HELLO_HOMEWORLD_6": "我們是麥孔族。",
+  "HELLO_HOMEWORLD_7": "我們是麥孔族。",
+  "HELLO_HOMEWORLD_8": "我們是麥孔族。",
+  "HELLO_SPACE_1": "我們是聖源（Juffo-Wup）的一部分。\n聖源，即黑暗中的熾光。\n此外皆是未竟的虛空。\n聖源的源頭，在 <% comm.getPoint(\"629.1, 220.8\", \"mycon\") %>。\n我們是麥孔族。",
+  "HELLO_SPACE_2": "我們是麥孔族。",
+  "HELLO_SPACE_3": "我們是麥孔族。",
+  "HELLO_SPACE_4": "我們是麥孔族。",
+  "HELLO_SPACE_5": "我們是麥孔族。",
+  "HELLO_SPACE_6": "我們是麥孔族。",
+  "HELLO_SPACE_7": "我們是麥孔族。",
+  "HELLO_SPACE_8": "我們是麥孔族。",
+  "RESPONSE_1": "甚好。",
+  "RESPONSE_2": "甚好。",
+  "RESPONSE_3": "甚好。"
+}
