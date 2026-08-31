@@ -28,7 +28,7 @@ $env:ANDROID_SDK_ROOT = $env:ANDROID_HOME
 ## 1. Clone 本 repo + Upstream MegaMod
 
 ```powershell
-git clone https://github.com/<你>/uqm-megamod-zhTW.git
+git clone https://github.com/HaCoMaTaTa/uqm-megamod-zhTW.git
 cd uqm-megamod-zhTW
 .\scripts\first_time_setup.ps1              # 檢查環境
 .\scripts\setup_upstream.ps1 -Execute       # clone MegaMod fork（含全部 34 個 patch 已 commit）

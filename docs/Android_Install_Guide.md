@@ -19,7 +19,7 @@
 ## 二、下載
 
 前往 GitHub Releases：
-- <https://github.com/[repo owner]/uqm-megamod-zhTW/releases/latest>
+- <https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/releases/latest>
 - 下載 **`激戰M星雲II-v3.8-release.apk`**（一般玩家版）
   - 若你要 debug 版（可插 adb logcat 除錯），下載 `激戰M星雲II-v3.8-debug.apk`
   - Debug 與 Release 的**簽章不同**，不能互升，只能擇一裝
@@ -208,7 +208,7 @@ Android 系統 back = ESC（不會 finish activity · 用 patch 019/020 攔截�
 4. `uqm_log.txt` 最後 100 行（`/sdcard/Android/data/org.megamod.uqm/files/uqm-megamod/uqm_log.txt`）
 5. 螢幕截圖（若是 UI 問題）
 
-**回報位置**：<https://github.com/[repo owner]/uqm-megamod-zhTW/issues>（用 `bug_report.md` 樣板）
+**回報位置**：<https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/issues>（用 `bug_report.md` 樣板）
 
 ## 十二、致謝與授權
 

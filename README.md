@@ -41,7 +41,7 @@ Not intended for Play Store distribution (CC-NC clause). Free side-load and pers
 | **Android** | `激戰M星雲II-v3.8-release.apk` | ~380 MB | side-load only · 見安裝說明 |
 | **Debug APK** | `激戰M星雲II-v3.8-debug.apk` | ~400 MB | 給 QA / 除錯用 |
 
-前往 [**Releases 頁面**](https://github.com/[repo owner]/uqm-megamod-zhTW/releases/latest) 下載。
+前往 [**Releases 頁面**](https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/releases/latest) 下載。
 
 **驗證檔案完整性**：
 - 每個檔案附 `.sha256` sidecar
@@ -65,7 +65,7 @@ Not intended for Play Store distribution (CC-NC clause). Free side-load and pers
 
 ```powershell
 # 1. Clone
-git clone https://github.com/[repo owner]/uqm-megamod-zhTW.git
+git clone https://github.com/HaCoMaTaTa/uqm-megamod-zhTW.git
 cd uqm-megamod-zhTW
 
 # 2. 環境檢查
@@ -190,8 +190,8 @@ uqm-megamod-zhTW/
 
 ## 八、貢獻
 
-- **翻譯錯誤** → [開 Issue](https://github.com/[repo owner]/uqm-megamod-zhTW/issues/new?template=translation_correction.md)
-- **技術 bug** → [開 Issue](https://github.com/[repo owner]/uqm-megamod-zhTW/issues/new?template=bug_report.md) · 附 `game.log` / `uqm_log.txt`
+- **翻譯錯誤** → [開 Issue](https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/issues/new?template=translation_correction.md)
+- **技術 bug** → [開 Issue](https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/issues/new?template=bug_report.md) · 附 `game.log` / `uqm_log.txt`
 - **Pull Request** → 先讀 [`docs/SOP_Rebuild_And_Release.md`](docs/SOP_Rebuild_And_Release.md) 與 [`docs/AI_Handoff/README.md`](docs/AI_Handoff/README.md)
 - **翻譯風格** → 依 [`translation/08_Translation_Rules/`](translation/08_Translation_Rules/) 規範
 

@@ -137,7 +137,7 @@ Get-ChildItem -Recurse -Include *.md -File | ForEach-Object {
 
 ```powershell
 git add patches\UPSTREAM_COMMIT.txt *.md docs\*.md .github\ISSUE_TEMPLATE\*.md
-git commit -m "docs: point setup_upstream to my UQM-MegaMod fork · replace [repo owner] with YOUR_USER"
+git commit -m "docs: point setup_upstream to my UQM-MegaMod fork · replace HaCoMaTaTa with YOUR_USER"
 git push
 ```
 

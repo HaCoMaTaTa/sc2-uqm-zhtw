@@ -18,7 +18,7 @@ dc2a4e68ccbe1011a8ad7c1c57a547fa5c1c67b9
 ## Fork Source（你的中文化 fork · **實際 clone 目標**）
 
 ```
-https://github.com/CHANGE_ME_TO_YOUR_GITHUB_USER/UQM-MegaMod-zhTW.git
+https://github.com/HaCoMaTaTa/UQM-MegaMod-zhTW.git
 ```
 
 > **首次使用者請注意**：專案作者若尚未把本地 UQM-MegaMod push 到 GitHub 前，

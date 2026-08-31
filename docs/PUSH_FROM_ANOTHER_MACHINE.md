@@ -47,7 +47,7 @@ git bundle create GitHubRepo.bundle --all
 
 - 已安裝 Git for Windows / macOS Git / Linux git
 - 已用 `gh auth login` 登入 GitHub CLI（或用瀏覽器登入 github.com）
-- 決定好 GitHub URL：`https://github.com/<你的帳號>/uqm-megamod-zhTW`
+- 決定好 GitHub URL：`https://github.com/HaCoMaTaTa/uqm-megamod-zhTW`
 
 ### 步驟 1 · 解壓與定位
 
@@ -83,14 +83,14 @@ gh repo create uqm-megamod-zhTW --public --description "繁體中文化 · UQM M
 ### 步驟 4 · 加 remote 並 push
 
 ```powershell
-git remote add origin https://github.com/<你的帳號>/uqm-megamod-zhTW.git
+git remote add origin https://github.com/HaCoMaTaTa/uqm-megamod-zhTW.git
 git branch -M main
 git push -u origin main
 ```
 
 推送時 GitHub 會要驗證：
 - **HTTPS**：跳 GitHub OAuth 對話框 · 用瀏覽器登入
-- **SSH**：改用 `git@github.com:<你>/uqm-megamod-zhTW.git`
+- **SSH**：改用 `git@github.com:HaCoMaTaTa/uqm-megamod-zhTW.git`
 - **PAT (Personal Access Token)**：GitHub Settings → Developer settings → PAT · 建 fine-grained token · push 時當密碼
 
 ### 步驟 5 · 上傳 APK / PC zip 到 Release Page
@@ -121,7 +121,7 @@ gh release edit v1.0.12 --draft=false
 ```
 
 **方法 B · 用瀏覽器**：
-1. 進 <https://github.com/<你>/uqm-megamod-zhTW/releases/new>
+1. 進 <https://github.com/HaCoMaTaTa/uqm-megamod-zhTW/releases/new>
 2. Choose tag: `v1.0.12`（新建）
 3. Release title: 「繁中版 v1.0.12 (激戰M星雲II Android v3.8)」
 4. Description: 貼 CHANGELOG 內容
@@ -132,7 +132,7 @@ gh release edit v1.0.12 --draft=false
 
 ### 步驟 6 · 更新 README 內下載連結
 
-推送後回到 README 把 `[repo owner]` 替換為實際帳號：
+推送後回到 README 把 `HaCoMaTaTa` 替換為實際帳號：
 
 ```powershell
 # 假設 GitHub 帳號叫 alice
@@ -140,11 +140,11 @@ $readme = 'D:\Projects\GitHubRepo\README.md'
 (Get-Content $readme -Raw) -replace '\[repo owner\]', 'alice' | Set-Content $readme -Encoding utf8
 
 git add README.md
-git commit -m "docs: replace [repo owner] placeholder with actual GitHub handle"
+git commit -m "docs: replace HaCoMaTaTa placeholder with actual GitHub handle"
 git push
 ```
 
-（同樣要處理 `docs/PC_Install_Guide.md`, `docs/Android_Install_Guide.md`, `AUTHORS.md`, `.github/ISSUE_TEMPLATE/*.md` — 用 grep 找所有 `[repo owner]` 位置。）
+（同樣要處理 `docs/PC_Install_Guide.md`, `docs/Android_Install_Guide.md`, `AUTHORS.md`, `.github/ISSUE_TEMPLATE/*.md` — 用 grep 找所有 `HaCoMaTaTa` 位置。）
 
 ## 常見問題
 
