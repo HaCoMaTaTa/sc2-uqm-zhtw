@@ -31,13 +31,16 @@ $env:ANDROID_SDK_ROOT = $env:ANDROID_HOME
 git clone https://github.com/<你>/uqm-megamod-zhTW.git
 cd uqm-megamod-zhTW
 .\scripts\first_time_setup.ps1              # 檢查環境
-.\scripts\setup_upstream.ps1 -Execute       # clone MegaMod + 套 34 個 patch
+.\scripts\setup_upstream.ps1 -Execute       # clone MegaMod fork（含全部 34 個 patch 已 commit）
 ```
 
 `setup_upstream.ps1` 會：
-- Clone `https://github.com/JHGuitarFreak/UQM-MegaMod` 到 `../UQM-MegaMod/`
-- Checkout `patches/UPSTREAM_COMMIT.txt` 記錄的 SHA
-- 逐一套用 34 個 patch，印出 `34/34 patches applied` 或衝突報告
+- Clone **你的** UQM-MegaMod fork（URL 於 `patches/UPSTREAM_COMMIT.txt` 內）
+- Checkout 該檔記錄的 pinned SHA
+- **不套用** `patches/*.patch` — 因為 fork HEAD 已內建全部變動
+
+**重要**：首次使用者若看到「Fork URL 是佔位符」警告，代表專案作者尚未 push
+UQM-MegaMod 到 GitHub。見 [`PUSH_UQM_MEGAMOD_FORK.md`](PUSH_UQM_MEGAMOD_FORK.md)。
 
 ## 2. Build PC 中文化版
 
@@ -55,18 +58,45 @@ cmake . -G Ninja -DUQM_PLATFORM_ACCEL=OFF -DCMAKE_BUILD_TYPE=Release && ninja
 
 產出：`UQM-MegaMod/UrQuanMasters.exe`（i386 PE32, 2.6 MB）· `UQM-MegaMod/UrQuanMasters-zip64.exe`（patch 007 版）
 
-### 2.2 安裝 MegaMod content 基座
+### 2.2 下載 MegaMod content pack + 安裝
 
-從 <https://github.com/JHGuitarFreak/UQM-MegaMod/releases> 下載 `mm-0.8.5-installer.exe`，安裝到 `pipeline/install/`（會自動放 dll + content packs + 3DO 音檔）。
-
-**替換 exe**：
+**下載**（見 [`../pipeline/downloads/README.md`](../pipeline/downloads/README.md)）：
 ```powershell
-Copy-Item ".\UQM-MegaMod\UrQuanMasters-zip64.exe" ".\pipeline\install\UrQuanMasters-zip64.exe" -Force
+cd pipeline
+.\download_megamod.ps1 -Preset Minimum       # 或 Recommended
 ```
 
-### 2.3 一鍵 PC release
+**安裝到 install/**（見 [`../pipeline/install/README.md`](../pipeline/install/README.md)）：
+```powershell
+.\downloads\mm-0.8.5-installer.exe /D=Q:\path\to\uqm-megamod-zhTW\pipeline\install
+```
+
+**替換為 patched exe**：
+```powershell
+Copy-Item ..\UQM-MegaMod\UrQuanMasters-zip64.exe install\UrQuanMasters-zip64.exe -Force
+```
+
+### 2.3 解壓 content 到 extracted/
+
+`build_zh-TW.ps1` 需要讀取英文原文（gamestrings.txt / comm/*/*.txt / fonts/*.fon）。
+它們在 `mm-0.8.5-content.uqm` 內。
 
 ```powershell
+# 從已安裝的 install/ 內拿
+Expand-Archive -Path install\content\packages\mm-0.8.5-content.uqm -DestinationPath extracted -Force
+
+# 驗證
+Test-Path extracted\base\base\gamestrings.txt           # 應為 True
+Test-Path extracted\base\base\comm\commander\commander.txt  # 應為 True
+Test-Path extracted\base\base\fonts\slab.fon\kerndat.fnt    # 應為 True
+```
+
+見 [`../pipeline/extracted/README.md`](../pipeline/extracted/README.md) 完整說明。
+
+### 2.4 一鍵 PC release
+
+```powershell
+cd ..  # 回到 repo 根
 .\scripts\build_pc.ps1 -Version v1.0.13 -Execute
 # → pipeline/release/output/SC2-zhTW-v1.0.13.zip + .sha256
 ```

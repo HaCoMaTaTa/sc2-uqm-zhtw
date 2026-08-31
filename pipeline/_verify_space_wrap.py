@@ -6,9 +6,11 @@ import json
 import os
 import sys
 import re
+from pathlib import Path
 from PIL import Image
 
-FONT_DIR = r"Q:\Dos_G\StarControl2\uqm-work\zh-TW-addon\_stage\zh-TW\shadow-content\base\fonts\commander.fon"
+HERE = Path(__file__).parent.resolve()   # pipeline/
+FONT_DIR = str(HERE / "zh-TW-addon" / "_stage" / "zh-TW" / "shadow-content" / "base" / "fonts" / "commander.fon")
 CHAR_SPACE = 2  # commander.fon kerndat: "commander.fon 14 2 1 4" → CharSpace=2
 MAX_WIDTH = 143
 LIMIT = MAX_WIDTH - 5
@@ -70,6 +72,6 @@ def check_translation(path: str):
     return total_bad == 0
 
 if __name__ == '__main__':
-    p = sys.argv[1] if len(sys.argv) > 1 else r'Q:\Dos_G\StarControl2\uqm-work\translations\commander.zh-TW.json'
+    p = sys.argv[1] if len(sys.argv) > 1 else str(HERE / 'translations' / 'commander.zh-TW.json')
     ok = check_translation(p)
     sys.exit(0 if ok else 1)

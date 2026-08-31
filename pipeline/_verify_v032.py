@@ -3,9 +3,11 @@ import io
 import re
 import sys
 import zipfile
+from pathlib import Path
 from PIL import Image
 
-ADDON = r'Q:\Dos_G\StarControl2\uqm-work\install\content\addons\zh-TW.uqm'
+HERE = Path(__file__).parent.resolve()   # pipeline/
+ADDON = str(HERE / 'install' / 'content' / 'addons' / 'zh-TW.uqm')
 CHAR_SPACE = 1
 MAX_WIDTH = 143
 ELLIPSIS_OVERHEAD = 20
@@ -44,7 +46,7 @@ print(f'commander.txt: {len(txt.encode("utf-8"))} bytes')
 # Extract English commander.txt for line count comparison
 import zipfile as zf
 import os
-english_txt = open(r'Q:\Dos_G\StarControl2\uqm-work\extracted\base\base\comm\commander\commander.txt', 'r', encoding='utf-8').read()
+english_txt = open(str(HERE / 'extracted' / 'base' / 'base' / 'comm' / 'commander' / 'commander.txt'), 'r', encoding='utf-8').read()
 
 lua_template = re.compile(r'<%.*?%>')
 target_tokens = [

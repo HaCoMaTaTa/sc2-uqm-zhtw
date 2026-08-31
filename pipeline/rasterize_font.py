@@ -2,12 +2,12 @@ r"""
 UQM font rasterizer: convert a TTF/OTF Chinese font into UQM .fon/ directory
 format (per-character PNG + kerndat.fnt).
 
-Usage:
+Usage (paths are relative to pipeline/):
   python rasterize_font.py \
-      --ref-font  Q:\Dos_G\StarControl2\uqm-work\extracted\base\base\fonts\slab.fon \
-      --ttf       C:\Windows\Fonts\NotoSansTC-VF.ttf \
+      --ref-font  extracted/base/base/fonts/slab.fon \
+      --ttf       C:/Windows/Fonts/NotoSansTC-VF.ttf \
       --chars     "測試繁體中文你好世界" \
-      --out       Q:\Dos_G\StarControl2\uqm-work\zh-TW-addon\content\base\fonts\slab.fon
+      --out       zh-TW-addon/content/base/fonts/slab.fon
 
 Behaviour:
   1. Copies the reference font's kerndat.fnt to the output (keeps original

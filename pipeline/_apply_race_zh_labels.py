@@ -28,8 +28,9 @@ v0.7.2 (2026-08-17): 擴充為 3 個 index patch
 import shutil
 from pathlib import Path
 
-BASE = Path(r"Q:\Dos_G\StarControl2\uqm-work\_megamod_content\UQM-MegaMod-Content-master\base\ships")
-DST = Path(r"Q:\Dos_G\StarControl2\uqm-work\zh-TW-addon\content\base\ships")
+HERE = Path(__file__).parent.resolve()   # pipeline/
+BASE = HERE / "_megamod_content" / "UQM-MegaMod-Content-master" / "base" / "ships"
+DST  = HERE / "zh-TW-addon" / "content" / "base" / "ships"
 
 # race → (filename, soi_label_idx1, race_upper_zh, ship_upper_zh)
 # soi_label_idx1: 星圖勢力圈標籤（3-4 字通用族名）

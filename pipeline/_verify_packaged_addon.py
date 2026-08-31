@@ -5,9 +5,11 @@ import os
 import re
 import sys
 import zipfile
+from pathlib import Path
 from PIL import Image
 
-ADDON = r'Q:\Dos_G\StarControl2\uqm-work\install\content\addons\zh-TW.uqm'
+HERE = Path(__file__).parent.resolve()   # pipeline/
+ADDON = str(HERE / 'install' / 'content' / 'addons' / 'zh-TW.uqm')
 FONT_DIR_IN_ZIP = 'zh-TW/shadow-content/base/fonts/commander.fon/'
 CHAR_SPACE = 1
 MAX_WIDTH = 143

@@ -1,7 +1,8 @@
 # One-shot v0.1 translation pipeline
 $ErrorActionPreference = "Stop"
 $env:PYTHONIOENCODING = "utf-8"
-$root = "Q:\Dos_G\StarControl2\uqm-work"
+$root = $PSScriptRoot                          # pipeline/ (see docs/SOP_Rebuild_And_Release.md)
+$repoRoot = Split-Path -Parent $root           # GitHubRepo/ (translation/, docs/ etc.)
 Set-Location $root
 
 # Coordinate with other sessions (build + package share zh-TW-addon/ and _stage/)
@@ -554,10 +555,10 @@ foreach ($f in @(
   }
 }
 # Also seed with the terminology master list so future additions reuse fonts.
-# Phase 12: 詞彙表已遷移到 StarControl2_TW_Localization/Reference_Material/
-$chars += (Get-Content "Q:\Dos_G\StarControl2\StarControl2_TW_Localization\Reference_Material\SC2-詞彙對照表.md" -Raw -Encoding UTF8)
+# Phase 12: 詞彙表已遷移到 translation/Reference_Material/
+$chars += (Get-Content "$repoRoot\translation\Reference_Material\SC2-詞彙對照表.md" -Raw -Encoding UTF8)
 # Also seed with Phase 8 v0.4 canonical glossary (Fixed_Terms.csv covers new v0.4 race names)
-$fixedTermsCsv = "Q:\Dos_G\StarControl2\StarControl2_TW_Localization\07_Glossary\Fixed_Terms.csv"
+$fixedTermsCsv = "$repoRoot\translation\07_Glossary\Fixed_Terms.csv"
 if (Test-Path $fixedTermsCsv) {
   $chars += (Get-Content $fixedTermsCsv -Raw -Encoding UTF8)
 }

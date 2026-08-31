@@ -71,7 +71,7 @@ cd uqm-megamod-zhTW
 # 2. 環境檢查
 .\scripts\first_time_setup.ps1
 
-# 3. 一鍵準備 upstream + patches
+# 3. 一鍵準備 upstream fork（含全部 34 patch 已 committed 的 state）
 .\scripts\setup_upstream.ps1 -Execute
 
 # 4. 完整 PC build

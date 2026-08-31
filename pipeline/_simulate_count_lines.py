@@ -14,9 +14,11 @@ import io
 import re
 import sys
 import zipfile
+from pathlib import Path
 from PIL import Image
 
-ADDON = r'Q:\Dos_G\StarControl2\uqm-work\install\content\addons\zh-TW.uqm'
+HERE = Path(__file__).parent.resolve()   # pipeline/
+ADDON = str(HERE / 'install' / 'content' / 'addons' / 'zh-TW.uqm')
 CHAR_SPACE = 2  # verified from kerndat.fnt: "commander.fon 14 2 1 4"
 MAX_WIDTH = 143  # AlienTextWidth for commander
 
@@ -155,7 +157,7 @@ def split_sub_pages(block_text):
 
 def check_all_translations():
     import json
-    trans = json.loads(open(r'Q:\Dos_G\StarControl2\uqm-work\translations\commander.zh-TW.json', encoding='utf-8').read())
+    trans = json.loads(open(str(HERE / 'translations' / 'commander.zh-TW.json'), encoding='utf-8').read())
 
     lua_template = re.compile(r'<%.*?%>')
     # Simulate MAX-length captain name (UQM SIS_CAPTAIN_NAME_MAX = 15 ASCII chars)

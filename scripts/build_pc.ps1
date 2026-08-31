@@ -53,33 +53,40 @@ try {
         exit 1
     }
 
-    # ---- Step 0/1: build + package -----------------------------------
+    # ---- Step 1: build ------------------------------------------------
     Write-Host ""
     Write-Host "→ Step 1: build_zh-TW.ps1 (JSON → shadow content + rasterize)" -ForegroundColor Cyan
     if ($Execute) {
         & (Join-Path $pipeline 'build_zh-TW.ps1')
         if ($LASTEXITCODE -ne 0) { throw "build_zh-TW.ps1 失敗" }
     } else {
-        Write-Host "  (DryRun) 未執行" -ForegroundColor Yellow
+        Write-Host "  (DryRun) 略過 — 真跑時會執行 pipeline/build_zh-TW.ps1" -ForegroundColor Yellow
     }
 
+    # ---- Step 2: package -----------------------------------------------
     Write-Host ""
     Write-Host "→ Step 2: package_zh-TW.ps1 (shadow content → zh-TW.uqm)" -ForegroundColor Cyan
     if ($Execute) {
         & (Join-Path $pipeline 'package_zh-TW.ps1') -SkipBuild
         if ($LASTEXITCODE -ne 0) { throw "package_zh-TW.ps1 失敗" }
     } else {
-        Write-Host "  (DryRun) 未執行" -ForegroundColor Yellow
+        Write-Host "  (DryRun) 略過 — 真跑時會執行 pipeline/package_zh-TW.ps1 -SkipBuild" -ForegroundColor Yellow
     }
 
-    # ---- Step 3: 完整 release zip ------------------------------------
+    # ---- Step 3: 完整 release zip -------------------------------------
     Write-Host ""
     Write-Host "→ Step 3: _release_full_zh-TW.ps1 -Version $Version" -ForegroundColor Cyan
-    $releaseArgs = @('-Version', $Version)
-    if ($Execute) { $releaseArgs += '-Execute' }
-    if ($Force)   { $releaseArgs += '-Force' }
-    & (Join-Path $pipeline '_release_full_zh-TW.ps1') @releaseArgs
-    if ($LASTEXITCODE -ne 0) { throw "_release_full_zh-TW.ps1 失敗" }
+    if ($Execute) {
+        $releaseScript = Join-Path $pipeline '_release_full_zh-TW.ps1'
+        if ($Force) {
+            & $releaseScript -Version $Version -Execute -Force
+        } else {
+            & $releaseScript -Version $Version -Execute
+        }
+        if ($LASTEXITCODE -ne 0) { throw "_release_full_zh-TW.ps1 失敗" }
+    } else {
+        Write-Host "  (DryRun) 略過 — 真跑時會執行 pipeline/_release_full_zh-TW.ps1 -Version $Version -Execute" -ForegroundColor Yellow
+    }
 } finally { Pop-Location }
 
 # ---- Step 4: 顯示產物 -----------------------------------------------

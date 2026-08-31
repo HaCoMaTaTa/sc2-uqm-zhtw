@@ -17,7 +17,7 @@ param(
   [switch]$SkipHybridUI
 )
 $ErrorActionPreference = 'Stop'
-$root = 'Q:\Dos_G\StarControl2\uqm-work'
+$root = $PSScriptRoot                          # pipeline/ (see docs/SOP_Rebuild_And_Release.md)
 Set-Location $root
 
 # Ensure Python310 (has PIL) — msys python does NOT

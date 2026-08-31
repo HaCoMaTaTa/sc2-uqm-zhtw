@@ -1,15 +1,19 @@
 # =====================================================================
 # setup_upstream.ps1
-# 一鍵準備 UQM-MegaMod upstream source tree，並套用本 repo 的引擎 patches。
+# 一鍵準備 UQM-MegaMod upstream source tree（含全部 34 個 patch 已 commit 的 state）。
 #
 # 使用方式：
 #   .\scripts\setup_upstream.ps1                 # 預設 DryRun（只列出動作）
 #   .\scripts\setup_upstream.ps1 -Execute        # 實跑
-#   .\scripts\setup_upstream.ps1 -Execute -Force # 已存在 UQM-MegaMod 也強制重跑（重置本地變更）
+#   .\scripts\setup_upstream.ps1 -Execute -Force # 已存在也強制重跑（重置本地變更）
 #   .\scripts\setup_upstream.ps1 -Execute -TargetPath 'D:\my\path\UQM-MegaMod'
+#   .\scripts\setup_upstream.ps1 -Execute -ForkUrl 'https://github.com/USER/UQM-MegaMod-zhTW.git'
+#
+# 這個腳本 **不** apply patches/*.patch。
+# 原因見 patches/UPSTREAM_COMMIT.txt § patches/*.patch 的角色。
 #
 # 產物：<repo_root>/../UQM-MegaMod/ 或 -TargetPath 指定路徑
-#       內容 = upstream commit (見 patches/UPSTREAM_COMMIT.txt) + 本 repo 34 個 patch
+#       內容 = fork 於指定 SHA（等同於作者本地 UQM-MegaMod state）
 # =====================================================================
 
 [CmdletBinding()]
@@ -17,7 +21,7 @@ param(
     [switch]$Execute,
     [switch]$Force,
     [string]$TargetPath,
-    [string]$UpstreamUrl = 'https://github.com/JHGuitarFreak/UQM-MegaMod.git'
+    [string]$ForkUrl
 )
 
 $ErrorActionPreference = 'Stop'
@@ -33,7 +37,6 @@ Write-Host ""
 Write-Host "=== UQM-MegaMod upstream setup ===" -ForegroundColor Cyan
 Write-Host "Repo root:    $repoRoot"
 Write-Host "Target path:  $TargetPath"
-Write-Host "Upstream URL: $UpstreamUrl"
 if (-not $Execute) {
     Write-Host "Mode:         DryRun (加 -Execute 才實跑)" -ForegroundColor Yellow
 } else {
@@ -47,35 +50,64 @@ if (-not $git) {
     Write-Error "找不到 git。請先安裝 Git for Windows: https://git-scm.com/download/win"
     exit 1
 }
-Write-Host "✔ git found: $($git.Source)" -ForegroundColor Green
+Write-Host "OK  git found: $($git.Source)" -ForegroundColor Green
 
-# ---- 讀 pinned SHA --------------------------------------------------
+# ---- 讀 pinned SHA + Fork URL --------------------------------------
 $pinnedFile = Join-Path $repoRoot 'patches\UPSTREAM_COMMIT.txt'
 if (-not (Test-Path $pinnedFile)) {
     Write-Error "找不到 $pinnedFile"
     exit 1
 }
 $content = Get-Content $pinnedFile -Raw
-$match = [regex]::Match($content, '(?m)^([a-f0-9]{40})\s*$')
-if (-not $match.Success) {
+
+# SHA
+$shaMatch = [regex]::Match($content, '(?m)^([a-f0-9]{40})\s*$')
+if (-not $shaMatch.Success) {
     Write-Error "無法從 UPSTREAM_COMMIT.txt 解析 SHA"
     exit 1
 }
-$pinnedSha = $match.Groups[1].Value
-Write-Host "✔ Pinned SHA: $pinnedSha" -ForegroundColor Green
+$pinnedSha = $shaMatch.Groups[1].Value
+Write-Host "OK  Pinned SHA: $pinnedSha" -ForegroundColor Green
 
-# ---- 蒐集 patches ---------------------------------------------------
-$patches = Get-ChildItem (Join-Path $repoRoot 'patches\*.patch') | Sort-Object Name
-Write-Host "✔ Found $($patches.Count) patches" -ForegroundColor Green
-foreach ($p in $patches) { Write-Host "    $($p.Name)" -ForegroundColor DarkGray }
-Write-Host ""
+# Fork URL（若命令列未傳，從 UPSTREAM_COMMIT.txt 讀）
+if (-not $ForkUrl) {
+    $urlMatch = [regex]::Match($content, '(?m)^https://github\.com/[^\s`)]+UQM-MegaMod[^\s`)]*\.git')
+    if ($urlMatch.Success) {
+        $ForkUrl = $urlMatch.Value
+    }
+}
 
+# 檢查 URL 是否還是佔位符
+if ($ForkUrl -match 'CHANGE_ME_TO_YOUR_GITHUB_USER') {
+    Write-Host ""
+    Write-Host "警告：Fork URL 是佔位符：" -ForegroundColor Yellow
+    Write-Host "  $ForkUrl" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "專案作者尚未把 UQM-MegaMod push 到 GitHub。請完成以下之一：" -ForegroundColor Yellow
+    Write-Host "  1. 依 docs/PUSH_UQM_MEGAMOD_FORK.md 建立 fork · 更新 UPSTREAM_COMMIT.txt"
+    Write-Host "  2. 或用 -ForkUrl 手動指定 URL：" -ForegroundColor Yellow
+    Write-Host "     .\scripts\setup_upstream.ps1 -Execute -ForkUrl 'https://github.com/YOUR_USER/UQM-MegaMod-zhTW.git'"
+    Write-Host ""
+    if (-not $Execute) {
+        Write-Host "（DryRun 允許繼續往下印剩餘檢查步驟）" -ForegroundColor DarkGray
+    } else {
+        exit 1
+    }
+}
+Write-Host "OK  Fork URL: $ForkUrl" -ForegroundColor Green
+
+# ---- DryRun 出口 ---------------------------------------------------
 if (-not $Execute) {
+    Write-Host ""
     Write-Host "DryRun 完畢。加 -Execute 執行以下動作：" -ForegroundColor Yellow
-    Write-Host "  1. $(if (Test-Path $TargetPath) { 'git fetch existing' } else { 'git clone new' }) → $TargetPath"
+    if (Test-Path $TargetPath) {
+        Write-Host "  1. git fetch existing → $TargetPath"
+        if ($Force) { Write-Host "     (-Force) git reset --hard + git clean -fdx" }
+    } else {
+        Write-Host "  1. git clone $ForkUrl → $TargetPath"
+    }
     Write-Host "  2. git checkout $pinnedSha"
-    if ($Force -and (Test-Path $TargetPath)) { Write-Host "  (-Force) 3. git reset --hard + git clean -fd" }
-    Write-Host "  4. 逐一套用 $($patches.Count) 個 patch"
+    Write-Host "  3. （不套 patches——patches 已被 committed 到 fork branch）"
     Write-Host ""
     exit 0
 }
@@ -86,65 +118,64 @@ if (Test-Path $TargetPath) {
     Push-Location $TargetPath
     try {
         if ($Force) {
-            Write-Host "  -Force: git reset --hard + git clean -fd" -ForegroundColor Yellow
+            Write-Host "  -Force: git reset --hard + git clean -fdx" -ForegroundColor Yellow
             git reset --hard HEAD 2>&1 | Out-Host
             git clean -fdx 2>&1 | Out-Host
+        }
+        # 確保 remote 指向 fork
+        $currentRemote = git remote get-url origin 2>&1
+        if ($currentRemote -ne $ForkUrl) {
+            Write-Host "  Remote origin 目前指向: $currentRemote" -ForegroundColor DarkGray
+            Write-Host "  改指向 fork: $ForkUrl" -ForegroundColor DarkGray
+            git remote set-url origin $ForkUrl 2>&1 | Out-Host
         }
         git fetch origin 2>&1 | Out-Host
         if ($LASTEXITCODE -ne 0) { throw "git fetch failed" }
     } finally { Pop-Location }
 } else {
-    Write-Host "→ Clone $UpstreamUrl → $TargetPath ..." -ForegroundColor Cyan
+    Write-Host "→ Clone $ForkUrl → $TargetPath ..." -ForegroundColor Cyan
     $parent = Split-Path -Parent $TargetPath
     if (-not (Test-Path $parent)) { New-Item -ItemType Directory -Path $parent -Force | Out-Null }
-    git clone $UpstreamUrl $TargetPath 2>&1 | Out-Host
-    if ($LASTEXITCODE -ne 0) { throw "git clone failed" }
+    git clone $ForkUrl $TargetPath 2>&1 | Out-Host
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host ""
+        Write-Host "Clone 失敗。可能原因：" -ForegroundColor Red
+        Write-Host "  1. Fork URL 錯誤或該 repo 尚未建立"
+        Write-Host "  2. 網路連不到 GitHub"
+        Write-Host "  3. 需要驗證（private repo？）"
+        Write-Host ""
+        Write-Host "詳見 docs/PUSH_UQM_MEGAMOD_FORK.md § 疑難排解"
+        throw "git clone failed"
+    }
 }
 
 Write-Host "→ Checkout $pinnedSha ..." -ForegroundColor Cyan
 Push-Location $TargetPath
 try {
     git checkout $pinnedSha 2>&1 | Out-Host
-    if ($LASTEXITCODE -ne 0) { throw "git checkout failed (SHA 不存在？跑 git fetch 後重試)" }
-
-    # ---- 套用 patches -----------------------------------------------
-    Write-Host ""
-    Write-Host "→ 套用 $($patches.Count) 個 patches..." -ForegroundColor Cyan
-    $applied = 0
-    $failed  = @()
-    foreach ($p in $patches) {
-        # 先 check 再 apply
-        git apply --check $p.FullName 2>&1 | Out-Null
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "  ✗ $($p.Name) — apply --check 失敗（可能已 upstream 或衝突）" -ForegroundColor Yellow
-            $failed += $p.Name
-            continue
-        }
-        git apply $p.FullName 2>&1 | Out-Null
-        if ($LASTEXITCODE -eq 0) {
-            Write-Host "  ✔ $($p.Name)" -ForegroundColor Green
-            $applied++
-        } else {
-            Write-Host "  ✗ $($p.Name) — apply 失敗" -ForegroundColor Red
-            $failed += $p.Name
-        }
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host ""
+        Write-Host "Checkout 失敗。SHA $pinnedSha 不在 fork 內。" -ForegroundColor Red
+        Write-Host "可能原因：" -ForegroundColor Yellow
+        Write-Host "  1. Fork 尚未 push 到最新（作者本地有這個 commit，但 GitHub 上沒）"
+        Write-Host "  2. UPSTREAM_COMMIT.txt 的 SHA 過期"
+        Write-Host ""
+        Write-Host "解法：見 docs/PUSH_UQM_MEGAMOD_FORK.md § 疑難排解"
+        throw "git checkout failed"
     }
 } finally { Pop-Location }
 
-# ---- 結果報告 -------------------------------------------------------
+# ---- 結果 ----------------------------------------------------------
 Write-Host ""
 Write-Host "=== 完成 ===" -ForegroundColor Cyan
-Write-Host "套用成功: $applied / $($patches.Count)" -ForegroundColor $(if ($failed.Count -eq 0) { 'Green' } else { 'Yellow' })
-if ($failed.Count -gt 0) {
-    Write-Host "失敗 patches:" -ForegroundColor Yellow
-    $failed | ForEach-Object { Write-Host "  - $_" -ForegroundColor Yellow }
-    Write-Host ""
-    Write-Host "可能原因：" -ForegroundColor Yellow
-    Write-Host "  1. Patch 已被 upstream 合併（正常，可略過）"
-    Write-Host "  2. UPSTREAM_COMMIT.txt SHA 過舊，upstream 已改動同一區域（需更新 SHA 或 patch）"
-    Write-Host ""
-}
 Write-Host "MegaMod ready at: $TargetPath" -ForegroundColor Green
+Write-Host "Commit: $pinnedSha" -ForegroundColor Green
+Write-Host ""
+Write-Host "此時 $TargetPath 內含："
+Write-Host "  - JHGuitarFreak/UQM-MegaMod 官方源碼"
+Write-Host "  - 34 個 CJK/Android 引擎 patch（已 committed 為分支歷史）"
+Write-Host "  - Android build scaffold + 觸控 UI + 虛擬 joystick"
+Write-Host "  - 品牌化資產（icon / manifest）"
 Write-Host ""
 Write-Host "下一步："
 Write-Host "  cd $repoRoot\pipeline"

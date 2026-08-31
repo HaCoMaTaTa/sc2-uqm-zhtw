@@ -18,6 +18,7 @@
 param(
     [ValidateSet('Debug','Release','Both')]
     [string]$BuildType = 'Both',
+    [switch]$Execute,      # 未指定則 DryRun
     [switch]$Clean,
     [string]$UqmMegaModPath,
     [string]$AndroidSdk,
@@ -43,6 +44,11 @@ Write-Host "ANDROID_HOME:  $AndroidSdk"
 Write-Host "JAVA_HOME:     $JavaHome"
 Write-Host "MSYS2:         $Msys64"
 Write-Host "BuildType:     $BuildType"
+if (-not $Execute) {
+    Write-Host "Mode:          DryRun (加 -Execute 才實跑)" -ForegroundColor Yellow
+} else {
+    Write-Host "Mode:          Execute" -ForegroundColor Green
+}
 Write-Host ""
 
 # ---- 檢查 ----------------------------------------------------------
@@ -85,14 +91,24 @@ if (-not (Test-Path $androidProj)) {
 
 Push-Location $androidProj
 try {
+    $tasks = @()
+    if ($BuildType -in 'Debug','Both')   { $tasks += ':composeApp:assembleDebug' }
+    if ($BuildType -in 'Release','Both') { $tasks += ':composeApp:assembleRelease' }
+
+    if (-not $Execute) {
+        Write-Host "(DryRun) 略過 gradle 執行。真跑會做以下動作：" -ForegroundColor Yellow
+        if ($Clean) { Write-Host "  gradlew clean --console=plain" }
+        Write-Host "  gradlew --no-daemon $($tasks -join ' ') --console=plain"
+        Write-Host ""
+        Write-Host "（首次執行約 5-10 分鐘 · 增量 rebuild ~30 秒）"
+        Pop-Location
+        return
+    }
+
     if ($Clean) {
         Write-Host "→ gradlew clean" -ForegroundColor Cyan
         .\gradlew.bat clean --console=plain
     }
-
-    $tasks = @()
-    if ($BuildType -in 'Debug','Both')   { $tasks += ':composeApp:assembleDebug' }
-    if ($BuildType -in 'Release','Both') { $tasks += ':composeApp:assembleRelease' }
 
     Write-Host "→ gradlew $($tasks -join ' ')" -ForegroundColor Cyan
     .\gradlew.bat --no-daemon @tasks --console=plain

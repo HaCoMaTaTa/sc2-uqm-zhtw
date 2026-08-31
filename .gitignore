@@ -93,3 +93,7 @@ _release_*_log.txt
 !docs/**/*.md
 !patches/*.patch
 !.github/**
+# 允許 pipeline 內的 stub README（雖然 extracted/ downloads/ install/ 是 gitignore）
+!pipeline/extracted/README.md
+!pipeline/downloads/README.md
+!pipeline/install/README.md

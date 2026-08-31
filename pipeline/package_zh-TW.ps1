@@ -27,7 +27,7 @@ param(
 #    build first would zip stale staged .txt files. Skip with -SkipBuild.
 $ProgressPreference = 'SilentlyContinue'
 
-$root = "Q:\Dos_G\StarControl2\uqm-work"
+$root = $PSScriptRoot                          # pipeline/ (see docs/SOP_Rebuild_And_Release.md)
 $stage = "$root\zh-TW-addon\_stage\zh-TW"
 
 # Auto-run build to guarantee staged .txt is fresh from JSON.

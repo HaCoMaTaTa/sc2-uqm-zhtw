@@ -1,7 +1,13 @@
-# UPSTREAM_COMMIT — MegaMod pinned SHA
+# UPSTREAM_COMMIT — MegaMod pinned state
 
-本專案的 34 個引擎 patch **必須套用在此 upstream commit 之上**。
-`scripts/setup_upstream.ps1` 會讀取本檔並自動 `git checkout` 到此 SHA。
+本專案 34 個引擎 patch **已被 commit** 為分支歷史 commit（見 `git log` 中的
+`zh-TW patches 001-006 applied state`、`zh-TW patch 008/009/011`、`feat(android): ...` 等）。
+所以你**不用**再 `git apply patches/*.patch`——只要 clone 到指定 SHA，你就得到完整的
+patched source tree。
+
+`scripts/setup_upstream.ps1` 會自動處理這件事。
+
+---
 
 ## Pinned SHA
 
@@ -9,40 +15,65 @@
 dc2a4e68ccbe1011a8ad7c1c57a547fa5c1c67b9
 ```
 
-## Metadata（僅供人類閱讀，腳本不依賴）
+## Fork Source（你的中文化 fork · **實際 clone 目標**）
+
+```
+https://github.com/CHANGE_ME_TO_YOUR_GITHUB_USER/UQM-MegaMod-zhTW.git
+```
+
+> **首次使用者請注意**：專案作者若尚未把本地 UQM-MegaMod push 到 GitHub 前，
+> 上面的 URL 是佔位符。實際 URL 會在作者建立 fork 後更新到本檔。
+> **見 [docs/PUSH_UQM_MEGAMOD_FORK.md](../docs/PUSH_UQM_MEGAMOD_FORK.md) 一鍵建立 fork 步驟**。
+
+## Official Upstream（**只作歷史參考**，不建議直接用）
+
+```
+https://github.com/JHGuitarFreak/UQM-MegaMod.git
+```
+
+**注意**：JHGuitarFreak 官方 upstream **沒有**本專案 34 個 patch 的 commit。若你 clone
+官方版，會需要手動找出 patches 對應的 base SHA 並依序 apply，維護成本高。**建議走 fork**。
+
+## Metadata
 
 - **Short SHA**: `dc2a4e6`
 - **Date**: 2026-08-31T11:14:49+08:00
 - **Subject**: chore(android): v3.8 refresh zh-TW addon — sync with PC release v1.0.12
-- **Parent**: `d3fbebdceaae6ff3fce7d4edbf74c487a058f8b9`
-- **Upstream repo**: <https://github.com/JHGuitarFreak/UQM-MegaMod>
 - **Recorded**: 2026-08-31
+- **Commit chain 摘要**：
+  - `207a5eb` UIO: add Zip64 EOCD Record support (zh-TW patch 007)
+  - `6311c53` zh-TW patches 001-006 applied state (CJK localization)
+  - `21f3316` zh-TW patch 008: fix CJK scan report hang + cell size mismatch
+  - `f907715` zh-TW patch 009: Chinese star cluster names
+  - `042530a` zh-TW patch 011: cursor-hover cluster name
+  - `0709dad` feat(android): Stage 5 v4 overlay + virtual SDL joystick
+  - `d776b7f` feat(android): brand as 激戰M星雲II · Sa-Matra composite icon
+  - `af96204` zh-TW patch 033/034
+  - `dc2a4e6` chore(android): v3.8 refresh
 
-## 為什麼要 pin SHA
+## patches/*.patch 的角色
 
-MegaMod 主幹持續更新（AGP / SDK / bug fix），若我們套 patch 時對到不同 upstream，會 conflict 甚至 build 出無法運作的 exe/apk。鎖 SHA 保證：
+本資料夾內的 31 個 `.patch` 檔**不是**必須套用的檔案，而是：
 
-1. **同步性**：本 repo 內任何工作站都能重現一模一樣的 build
-2. **可回溯**：發現問題可 checkout 這個 SHA 對照
-3. **升 upstream 有紀律**：想跟上 upstream 時，更新此檔並重跑 3-gate 驗證
+1. **歷史紀錄**：每個 patch 記錄「這個變動針對什麼問題、為什麼要改」
+2. **教學材料**：新 maintainer 可以照 patches/ 順序理解專案演進
+3. **rebase 素材**：未來若上游 major update 打散了 commit，可用 patches 快速重新對齊
 
-## 已知內建 CJK patches（不需要再套）
+## 為什麼採 fork 而非傳統 patches apply
 
-以下 patches 已由本專案作者提交到 MegaMod HEAD（不在 `patches/` 內，但 `checkout dc2a4e6` 就能拿到）：
+見 [docs/PUSH_UQM_MEGAMOD_FORK.md](../docs/PUSH_UQM_MEGAMOD_FORK.md)。
 
-- Zip64 EOCD parsing (patch 007 曾在本 repo，現已 upstream)
-- STAR_POSTFIX_ZH_BASE=1024 (patch 009 已 upstream)
-- pstarmap cursor-hover zh (patch 011 已 upstream)
-- CJK scan report hang (patch 008 · 內含於引擎，未產出 patch 檔)
-- Race SoI zh labels (patch 010 · 純 addon shadow content，無 patch 檔)
+## 如何升 upstream（跟上 JHGuitarFreak 官方最新變動）
 
-## 如何升級 upstream
-
-```powershell
-cd Q:\path\to\UQM-MegaMod
-git fetch origin
-git log --oneline HEAD..origin/master   # 看有多少新 commit
-# 若想升，先把 patches 反套用測試 → 選新 SHA → 更新本檔 → 重跑 setup_upstream.ps1
-```
-
-**必做**：升 upstream 後，跑 `pipeline/build_zh-TW.ps1` + `pipeline/package_zh-TW.ps1` + `_verify_v032.py`，確認翻譯 addon 對齊。
+1. 在你的 fork 內：
+   ```powershell
+   cd Q:\path\to\UQM-MegaMod
+   git remote add official https://github.com/JHGuitarFreak/UQM-MegaMod.git
+   git fetch official
+   git merge official/master   # 或 rebase，依情況選
+   ```
+2. 解決衝突（本專案 patch 大多動 `src/uqm/planets/report.c`、`src/libs/uio/`、
+   `build/android/`）
+3. 測試 build（PC + Android）
+4. 更新 UPSTREAM_COMMIT.txt 內 SHA
+5. `git push` 到你的 fork
