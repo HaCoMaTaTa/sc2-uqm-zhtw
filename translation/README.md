@@ -23,7 +23,7 @@
 | `01_World_Lore/` | 宇宙觀、時間線、銀河史、科技水平、政治、人類陣營 | 翻譯前要理解時空背景時 |
 | `02_Races/` | 每個種族一份 dossier（27 族） | 翻譯該族對話時 |
 | `03_Characters/` | 重要 NPC 個人 dossier（艦長、Fwiffo、Talana 等） | 翻譯有該 NPC 出現的對話時 |
-| `04_Ships/` | 艦艇級別與戰術描述 | 翻譯戰鬥或艦艇介紹時 |
+| `04_Ships/` | 艦艇級別、戰術描述、**Super Melee 操作指南**（[Combat_Guide.md](04_Ships/Combat_Guide.md)） | 翻譯戰鬥或艦艇介紹時 · 玩 Super Melee 時 |
 | `05_Technology/` | 武器、裝置、資源、神器（Ultron 等） | 翻譯任務物品／科技相關時 |
 | `06_Locations/` | 星系、行星、星圖 | 翻譯地名時 |
 | `07_Glossary/` | 主術語鎖定表 + 分類子表 + CSV | **每次翻譯前必查** |

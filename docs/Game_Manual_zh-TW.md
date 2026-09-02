@@ -119,6 +119,9 @@
 ### 中央主宰
 - **Sa-Matra** · 薩瑪特拉 · 最終 boss · 生物機械超級武器
 
+> **📖 想學怎麼駕駛與 Super Melee 對戰？**
+> 各艦操作、武器機制、戰術剋星、組隊建議 → 詳細操作指南見 [Combat_Guide.md](../translation/04_Ships/Combat_Guide.md)
+
 ## 五、關鍵科技與神器
 
 | 中譯 | 英文 | 用途 |
