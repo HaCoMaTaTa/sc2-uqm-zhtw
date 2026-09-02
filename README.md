@@ -31,7 +31,27 @@ Not intended for Play Store distribution (CC-NC clause). Free side-load and pers
 - **Android APK**（觸控 UI + 中文 IME + 星圖點擊跳位）
 - **34 個引擎 patch**（Zip64 / CJK font / CJK word-wrap / lander scan / Android build / touch overlay ...）
 
-## 二、下載
+## 二、Demo 影片
+
+想先看實機畫面、或者想知道本次中文化作得如何？以下是專案 demo 影片（YouTube）：
+
+### 專案介紹（強推 · 先從這部入門）
+
+[![激戰M星雲II - 繁體中文化介紹](https://i.ytimg.com/vi/uCZD5t6xoJQ/hqdefault.jpg)](https://youtu.be/uCZD5t6xoJQ)
+
+▶ [**激戰M星雲II - 繁體中文化介紹 \| Star Control 2 \| Ur-Quan Masters**](https://youtu.be/uCZD5t6xoJQ)
+
+### 實機遊玩
+
+| 縮圖 | 影片 |
+|---|---|
+| [![手機版前15分鐘](https://i.ytimg.com/vi/Ija8oAl9ouE/mqdefault.jpg)](https://youtu.be/Ija8oAl9ouE) | **[故事模式 · 手機版 · 前 15 分鐘遊玩畫面](https://youtu.be/Ija8oAl9ouE)**<br>從新遊戲開始到走出星際基地的完整中文化流程 |
+| [![對戰模式手機版](https://i.ytimg.com/vi/qk5Muj1ZOlw/mqdefault.jpg)](https://youtu.be/qk5Muj1ZOlw) | **[對戰模式 · 手機版（Super Melee）](https://youtu.be/qk5Muj1ZOlw)**<br>25 族艦艇對戰示範 · 觸控操作演示 |
+| [![結尾動畫第四面牆](https://i.ytimg.com/vi/GAjjlKb4vfE/mqdefault.jpg)](https://youtu.be/GAjjlKb4vfE) | ⚠️ **[故事模式結尾動畫 · 第四面牆](https://youtu.be/GAjjlKb4vfE)**<br>**含結局劇透 · 建議通關後再看** |
+
+---
+
+## 三、下載
 
 ### 最新版
 
@@ -54,7 +74,7 @@ Not intended for Play Store distribution (CC-NC clause). Free side-load and pers
 | PC | Win 7 · OpenGL 2.0 · 400MB 空閒 | Win 10/11 · OpenGL 3.0+ · 1GB |
 | Android | 7.0 · 1GB RAM · 900MB 空閒 | 8.0+ · 2GB · Snapdragon 660+ |
 
-## 三、快速開始
+## 四、快速開始
 
 ### 玩家（只想玩）
 
@@ -83,7 +103,7 @@ cd sc2-uqm-zhtw
 
 詳細 SOP → [`docs/SOP_Rebuild_And_Release.md`](docs/SOP_Rebuild_And_Release.md)
 
-## 四、專案結構
+## 五、專案結構
 
 ```
 sc2-uqm-zhtw/
@@ -149,7 +169,7 @@ sc2-uqm-zhtw/
     └── ISSUE_TEMPLATE/
 ```
 
-## 五、涵蓋範圍
+## 六、涵蓋範圍
 
 | 內容 | 完成度 |
 |---|---|
@@ -164,7 +184,7 @@ sc2-uqm-zhtw/
 | 戰鬥模組名 | ✅ |
 | 主選單 | ✅ |
 
-## 六、平台狀態
+## 七、平台狀態
 
 | 平台 | 狀態 | 版本 | 說明 |
 |---|---|---|---|
@@ -176,7 +196,7 @@ sc2-uqm-zhtw/
 
 歡迎 macOS/Linux 玩家 fork 補齊。
 
-## 七、授權
+## 八、授權
 
 - **引擎源碼**（`patches/*.patch`, `pipeline/*.{py,ps1}`, `scripts/*.ps1`）→ **GPL-2.0**（見 [LICENSE](LICENSE)）
 - **翻譯內容 / 字型 / 圖示 / 文件**（`translation/`, `pipeline/translations/`, `android/_icon_candidates/`, `docs/`）→ **CC BY-NC-SA 2.5**（見 [LICENSE.CONTENT](LICENSE.CONTENT)）
@@ -188,14 +208,14 @@ sc2-uqm-zhtw/
 
 **Play Store 上架**：不建議（見 [License_And_Attribution.md](docs/License_And_Attribution.md) §三）。
 
-## 八、貢獻
+## 九、貢獻
 
 - **翻譯錯誤** → [開 Issue](https://github.com/HaCoMaTaTa/sc2-uqm-zhtw/issues/new?template=translation_correction.md)
 - **技術 bug** → [開 Issue](https://github.com/HaCoMaTaTa/sc2-uqm-zhtw/issues/new?template=bug_report.md) · 附 `game.log` / `uqm_log.txt`
 - **Pull Request** → 先讀 [`docs/SOP_Rebuild_And_Release.md`](docs/SOP_Rebuild_And_Release.md) 與 [`docs/AI_Handoff/README.md`](docs/AI_Handoff/README.md)
 - **翻譯風格** → 依 [`translation/08_Translation_Rules/`](translation/08_Translation_Rules/) 規範
 
-## 九、致謝
+## 十、致謝
 
 - **Toys for Bob** · Fred Ford, Paul Reiche III · 原著
 - **UQM Team** · 開源引擎
@@ -208,7 +228,7 @@ sc2-uqm-zhtw/
 
 完整致謝見 [`NOTICE`](NOTICE) 與 [`AUTHORS.md`](AUTHORS.md)。
 
-## 十、聯絡
+## 十一、聯絡
 
 - Issues → GitHub Issues
 - 討論 → GitHub Discussions
