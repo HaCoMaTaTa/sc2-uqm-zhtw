@@ -33,7 +33,13 @@ Get-FileHash SC2-zhTW-v1.0.13.zip -Algorithm SHA256
 ## 四、安裝
 
 1. **解壓** `SC2-zhTW-v1.0.13.zip` 到你想要的位置（例：`C:\Games\SC2-zhTW\`）
-   - 解壓後應該看到 `UrQuanMasters-zip64.exe`、`SDL2.dll`、`content/` 等
+   - **建議避開** `C:\Program Files\` 與 OneDrive 同步資料夾（權限與同步衝突）
+   - 解壓後你會看到：
+     - `UrQuanMasters-zip64.exe` ← 主程式
+     - **`Play_HD.bat`** ← ⭐ **推薦：雙擊即玩**（HD 全螢幕）
+     - `Play_HD_windows.bat` ← HD 視窗模式
+     - `Setup.bat` ← 進 in-game 設定選單
+     - `快速開始.txt`、`README.md`、`content/`、`LICENSES/` 等
 2. **無需執行 installer** — 這是綠色版
 3. **無需 admin 權限**
 
@@ -54,17 +60,41 @@ Add-MpPreference -ExclusionPath 'C:\Games\SC2-zhTW\'
 
 ## 六、啟動
 
-**主啟動**：雙擊 `UrQuanMasters-zip64.exe`
+### 6.1 一鍵啟動 · **雙擊 batch 檔即玩**
 
-**建議命令列參數**（若你想直接進中文）：
+Zip 內已內建啟動 batch，**不用打任何命令列**、**不用手動改 config**、**不用手動勾 addon**——直接雙擊就跑：
+
+| Batch 檔 | 模式 | 解析度 | 適用 |
+|---|---|---|---|
+| ⭐ **`Play_HD.bat`** | **HD 全螢幕** | 1280×960 | **推薦 · 現代 PC** |
+| `Play_HD_windows.bat` | HD 視窗 | 1280×960 | 雙螢幕 · 常 alt-tab · 邊玩邊查資料 |
+| `Setup.bat` | 進 in-game Setup | — | 改音量／鍵配／addon／難度 |
+
+> ℹ️ **本版 release 只驗證並推薦 HD 模式**（zh-TW-hd 字型 + mm-hd 圖像）。Zip 內雖含 `Play_SD.bat`，但 SD 模式尚未完成完整驗證，**不建議使用**。
+
+**這些 batch 做了什麼**（給進階讀者）：
+
+- **智慧更新** `%APPDATA%\uqm-megamod\uqm.cfg` 內的 graphics keys（resolutionfactor / reswidth / resheight / fullscreen / alwaysgl）
+- **保留** 使用者其他設定（音量／鍵配／cheat／已勾 addon）——切換全螢幕 ↔ 視窗 **不會弄丟你的個人化設定**
+- 自動附帶正確的 `--addon` 參數：`--addon mm-hd --addon zh-TW --addon zh-TW-hd`
+
+> 💡 **首次執行**：Windows Defender SmartScreen 可能會擋——「更多資訊」→「仍要執行」即可。詳見上一節「五、Windows Defender / 防毒警告」。
+
+### 6.2 進階：命令列啟動
+
+若你要自訂啟動參數（例如自訂解析度或 configdir）：
+
+**HD 模式全螢幕**（`fullscreen=2` 是 exclusive fullscreen）：
 ```powershell
-.\UrQuanMasters-zip64.exe --windowed --addon zh-TW
+.\UrQuanMasters-zip64.exe --fullscreen=2 --res=1280x960 --opengl --scale=none --cscan=2 --addon mm-hd --addon zh-TW --addon zh-TW-hd
 ```
 
-**HD 模式**（需要下載額外 HD 資產）：
+**HD 視窗模式**：
 ```powershell
-.\UrQuanMasters-zip64.exe --windowed --addon mm-hd --addon zh-TW --addon zh-TW-hd --resfactor 2
+.\UrQuanMasters-zip64.exe --fullscreen=0 --res=1280x960 --opengl --scale=none --cscan=2 --addon mm-hd --addon zh-TW --addon zh-TW-hd
 ```
+
+**注意**：手打命令列會**跳過**智慧更新 `uqm.cfg` 的步驟——如果你之前有跑過 Play_HD.bat，config 內的 graphics keys 已被鎖成該模式。下次改用 batch 時會被覆寫，這是預期行為。
 
 ## 七、操作說明
 
@@ -106,12 +136,18 @@ Add-MpPreference -ExclusionPath 'C:\Games\SC2-zhTW\'
 
 ## 八、存檔位置
 
-Windows 預設：
+Windows 預設（MegaMod fork）：
 ```
-%APPDATA%\uqm\
+%APPDATA%\uqm-megamod\
+├── uqm.cfg          ← 遊戲設定（graphics/音量/鍵配/addon）
+└── save\            ← 存檔（.mgs / .mgc 檔）
 ```
 
-若想使用可攜式存檔，加參數 `--configdir .\config`。
+> ⚠️ **注意**：本 release 基於 **UQM MegaMod fork**，存檔路徑是 `uqm-megamod\`（不是原版 UQM 的 `uqm\`）。從原版 UQM 遷移過來的存檔需手動搬到 `uqm-megamod\save\`。
+
+**HD / 視窗 存檔通用**：切換 `Play_HD.bat` ↔ `Play_HD_windows.bat` **不會**遺失或分離存檔——兩者使用同一個 save 資料夾。
+
+**可攜式存檔**（存檔跟遊戲一起搬）：加參數 `--configdir .\config`——若要走 batch 又想可攜式，可自製一個 `Play_Portable.bat` 複製 `Play_HD.bat` 內容並在最後那行加 `--configdir .\config`。
 
 ## 九、中文化涵蓋範圍
 
@@ -154,12 +190,13 @@ Windows 預設：
 - 若還是不行，開 game.log 查 STAR SEARCH 訊息
 
 ### 存檔遺失
-- 檢查 `%APPDATA%\uqm\` 是否有 `.mgs` 檔
+- 檢查 `%APPDATA%\uqm-megamod\save\` 是否有 `.mgs` 檔
 - 若你有加 `--configdir` → 存檔在該路徑
+- 若從原版 UQM 遷移：存檔可能在 `%APPDATA%\uqm\save\`（要手動搬到 `%APPDATA%\uqm-megamod\save\`）
 
 ## 十二、移除
 
-因為是綠色版，直接刪除 `C:\Games\SC2-zhTW\` 資料夾即可。存檔在 `%APPDATA%\uqm\`（若你想留就別刪）。
+因為是綠色版，直接刪除 `C:\Games\SC2-zhTW\` 資料夾即可。存檔在 `%APPDATA%\uqm-megamod\`（若你想留就別刪）。
 
 ## 十三、資源與支援
 
